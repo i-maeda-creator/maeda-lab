@@ -184,34 +184,31 @@ a {
 }
 
 .track-card,
-.works-grid article,
-.track-detail {
+.works-grid article {
   background: var(--panel);
   border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 28px;
+  border-radius: 24px;
   box-shadow: var(--shadow);
   padding: 24px;
 }
 
 .track-card {
-  cursor: pointer;
-  min-height: 168px;
+  min-height: 118px;
+  text-decoration: none;
   transition:
     background 180ms ease,
     box-shadow 180ms ease,
     transform 180ms ease;
 }
 
-.track-card:hover,
-.track-card.active {
+.track-card:hover {
   background: #fff;
   box-shadow: 0 24px 70px rgba(0, 113, 227, 0.14);
   transform: translateY(-3px);
 }
 
 .track-card h3,
-.works-grid h3,
-.track-detail h3 {
+.works-grid h3 {
   letter-spacing: -0.01em;
   margin: 0;
 }
@@ -219,30 +216,6 @@ a {
 .track-card h3 {
   font-size: clamp(1.2rem, 2vw, 1.75rem);
   line-height: 1.05;
-}
-
-.track-detail {
-  margin-top: 14px;
-}
-
-.track-detail h3 {
-  font-size: clamp(1.9rem, 4vw, 3.4rem);
-  line-height: 1.05;
-}
-
-.track-detail p {
-  color: var(--muted);
-  font-size: clamp(1rem, 1.45vw, 1.2rem);
-  line-height: 1.55;
-  margin: 10px 0 0;
-}
-
-.detail-link {
-  color: var(--accent);
-  display: inline-flex;
-  font-weight: 650;
-  margin-top: 16px;
-  text-decoration: none;
 }
 
 .works-grid span {

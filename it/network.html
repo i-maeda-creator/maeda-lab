@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Network | IT Notes</title>
     <meta name="description" content="Network notes for Maeda Lab." />
-    <link rel="stylesheet" href="it.css?v=20260509-notes-dark" />
+    <link rel="stylesheet" href="it.css?v=20260509-network-osi" />
   </head>
   <body>
     <header class="site-header">
@@ -21,29 +21,40 @@
       <section class="hero">
         <p class="eyebrow">01 / IT Notes</p>
         <h1>Network</h1>
-        <p class="lead">ネットワークは、端末同士がルールに従ってデータを届け合う仕組み。Web、クラウド、セキュリティの土台になる。</p>
+        <p class="lead">ネットワークは、データを別の場所へ届けるための階層的な仕組み。まずOSI参照モデルで役割を分け、実際のインターネットではTCP/IPとして理解する。</p>
       </section>
 
       <section class="lesson">
         <article class="content">
-          <h2>まず見る流れ</h2>
-          <p>ブラウザでURLを開くと、名前解決、接続、暗号化、リクエスト、レスポンスという順番で通信が進む。最初は細かいプロトコル名よりも、どこで何が決まっているかを押さえる。</p>
-          <div class="note-box">
-            <strong>Example</strong>
-            <p>example.com を開くと、DNSでIPアドレスを調べ、TCPで通信路を作り、HTTPSで暗号化してからHTTPリクエストを送る。</p>
-          </div>
-
-          <h2>基本キーワード</h2>
+          <h2>OSI参照モデル</h2>
+          <p>OSI参照モデルは、ネットワーク通信を7つの層に分けて考えるための整理方法です。実際の通信機器やソフトウェアが完全にこの通りに分かれているわけではありませんが、「どの層が何を担当しているか」を考える地図になります。</p>
           <ul>
-            <li>IP address: ネットワーク上の住所。</li>
-            <li>DNS: ドメイン名をIPアドレスに変換する仕組み。</li>
-            <li>TCP: データを順番通り、欠けにくく届ける通信方式。</li>
-            <li>HTTP: WebブラウザとWebサーバーが情報をやり取りするルール。</li>
-            <li>Router: 別のネットワークへデータを中継する機器。</li>
+            <li>L1 Physical: 電気信号、光、無線、ケーブル、コネクタ。</li>
+            <li>L2 Data Link: 同じネットワーク内でフレームを届ける。</li>
+            <li>L3 Network: IPアドレスを使って別ネットワークへ届ける。</li>
+            <li>L4 Transport: TCP/UDPでアプリ間の通信を扱う。</li>
+            <li>L5-L7 Session / Presentation / Application: アプリケーションに近い通信のルール。</li>
           </ul>
 
-          <h2>次に深掘りしたいこと</h2>
-          <p>OSI参照モデル、TCP/IP、サブネット、ポート番号、HTTPステータスコード、DNSレコードを順番に足していく。</p>
+          <h2>TCP/IP</h2>
+          <p>TCP/IPは、現在のインターネットで実際に使われている通信の考え方です。OSI参照モデルほど細かく7層に分けず、リンク層、インターネット層、トランスポート層、アプリケーション層として見ることが多いです。</p>
+          <div class="note-box">
+            <strong>OSIとTCP/IPの関係</strong>
+            <p>OSIは学習や設計のための分類。TCP/IPは実際のインターネットで使う実装寄りの分類。まずOSIで役割を理解し、その後TCP/IPで現実の通信に接続するとわかりやすいです。</p>
+          </div>
+
+          <h2>L1 Physical Layer</h2>
+          <p>L1は、データを「物理的な信号」として運ぶ層です。ここではIPアドレスやHTTPの意味はまだ出てきません。0と1を、電圧、光、電波などに変えて相手まで届けます。</p>
+          <ul>
+            <li>Cable: LANケーブル、光ファイバー。</li>
+            <li>Signal: 電気信号、光信号、無線信号。</li>
+            <li>Connector: RJ-45、SFPなど。</li>
+            <li>Bit: 0と1の最小単位。</li>
+            <li>Bandwidth: どれくらいの量を送れるか。</li>
+          </ul>
+
+          <h2>L1で見るポイント</h2>
+          <p>L1の問題は「そもそも信号が届いているか」です。ケーブルが抜けている、規格が合っていない、距離が長すぎる、ノイズが多い、といった問題は上位層ではなくL1で考えます。</p>
         </article>
 
         <aside class="side-panel">

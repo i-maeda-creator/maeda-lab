@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Maeda Lab | Notes & Works</title>
     <meta name="description" content="IT, accounting, mathematics, physics, and works by Maeda Lab." />
-    <link rel="stylesheet" href="styles.css?v=20260509-notes-dark" />
+    <link rel="stylesheet" href="styles.css?v=20260509-simple-notes" />
   </head>
   <body>
     <header class="site-header">
@@ -37,25 +37,20 @@
         <div class="section-heading">
           <h2>Notes</h2>
         </div>
-        <div class="track-grid">
-          <article class="track-card" data-track="IT">
+        <div class="track-grid" aria-label="Notes">
+          <a class="track-card" href="it/">
             <h3>IT</h3>
-          </article>
-          <article class="track-card" data-track="Accounting">
+          </a>
+          <a class="track-card" href="#notes">
             <h3>Accounting</h3>
-          </article>
-          <article class="track-card" data-track="Mathematics">
+          </a>
+          <a class="track-card" href="math/regression/">
             <h3>Mathematics</h3>
-          </article>
-          <article class="track-card" data-track="Physics">
+          </a>
+          <a class="track-card" href="#notes">
             <h3>Physics</h3>
-          </article>
+          </a>
         </div>
-        <article class="track-detail" id="trackDetail" aria-live="polite">
-          <h3 id="detailTitle">IT</h3>
-          <p id="detailText">Network, cloud, security, programming, data, and computer science.</p>
-          <a class="detail-link" id="detailLink" href="#" hidden>Open</a>
-        </article>
       </section>
 
       <section class="section" id="works">
@@ -84,6 +79,5 @@
       <span>Maeda Lab</span>
     </footer>
 
-    <script src="script.js?v=20260509-notes-dark"></script>
   </body>
 </html>
