@@ -4,7 +4,9 @@ const detailLink = document.querySelector("#detailLink");
 
 const trackDetails = {
   IT: {
-    text: "Computer science, security, databases, and algorithms.",
+    text: "Network, cloud, security, programming, data, and computer science.",
+    href: "it/",
+    linkText: "IT Notes",
   },
   Accounting: {
     text: "Bookkeeping, statements, cost, and finance.",

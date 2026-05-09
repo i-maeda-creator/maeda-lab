@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cloud | IT Notes</title>
+    <meta name="description" content="Cloud notes for Maeda Lab." />
+    <link rel="stylesheet" href="it.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html">IT</a>
+        <a href="../index.html#notes">Notes</a>
+        <a href="../index.html#works">Works</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">02 / IT Notes</p>
+        <h1>Cloud</h1>
+        <p class="lead">クラウドは、サーバーやネットワークなどのIT資源を必要な分だけ使える仕組み。作ったものを公開する力につながる。</p>
+      </section>
+
+      <section class="lesson">
+        <article class="content">
+          <h2>全体像</h2>
+          <p>クラウドでは、計算、保存、ネットワーク、データベース、認証、監視などをサービスとして組み合わせる。まずは「どの部品が何を担当するか」を整理すると理解しやすい。</p>
+          <div class="note-box">
+            <strong>Example</strong>
+            <p>静的サイトはGitHub Pagesで公開できる。APIやアプリはサーバー、DB、認証、ログ監視が必要になる。</p>
+          </div>
+
+          <h2>基本キーワード</h2>
+          <ul>
+            <li>Server: アプリやAPIを動かすコンピュータ。</li>
+            <li>Virtual machine: 物理サーバー上に作る仮想的なサーバー。</li>
+            <li>Container: アプリと実行環境をまとめて運べる単位。</li>
+            <li>Storage: 画像、ファイル、ログなどを保存する場所。</li>
+            <li>Monitoring: 障害や負荷を見つけるための観測。</li>
+          </ul>
+
+          <h2>次に深掘りしたいこと</h2>
+          <p>AWS、GCP、Docker、CI/CD、サーバーレス、ロードバランサー、IAMを追加していく。</p>
+        </article>
+
+        <aside class="side-panel">
+          <span class="status ready">Ready</span>
+          <h2>Chapters</h2>
+          <a href="network.html">01 Network</a>
+          <a href="cloud.html">02 Cloud</a>
+          <a href="security.html">03 Security</a>
+          <a href="programming.html">04 Programming</a>
+          <a href="data-ai.html">05 Data & AI</a>
+          <a href="computer-science.html">06 Computer Science</a>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Maeda Lab</span></footer>
+  </body>
+</html>
