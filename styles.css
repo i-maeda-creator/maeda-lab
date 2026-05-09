@@ -279,22 +279,26 @@ a {
 }
 
 .lab-girl__image {
+  clip-path: inset(16% 23% 12% 22% round 22px);
   display: none;
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
-  height: 150px;
-  left: -20px;
+  height: 270px;
+  left: -43px;
   object-fit: contain;
   position: absolute;
-  top: -20px;
+  top: -58px;
   transform: rotate(0deg);
   transform-origin: 50% 58%;
-  width: 150px;
+  transition:
+    clip-path 180ms ease,
+    transform 180ms ease;
+  width: 180px;
   z-index: 3;
 }
 
 .lab-girl.has-image {
-  height: 142px;
-  width: 142px;
+  height: 168px;
+  width: 112px;
 }
 
 .lab-girl.has-image .lab-girl__image {
@@ -306,9 +310,9 @@ a {
 }
 
 .lab-girl.has-image .lab-girl__shadow {
-  bottom: -3px;
-  left: 34px;
-  width: 76px;
+  bottom: -5px;
+  left: 18px;
+  width: 78px;
 }
 
 .lab-girl:hover .lab-girl__body,
@@ -318,7 +322,12 @@ a {
 
 .lab-girl:hover .lab-girl__image,
 .lab-girl.is-paused .lab-girl__image {
-  transform: rotate(0deg) scale(1.04);
+  clip-path: inset(0 round 18px);
+  transform: rotate(0deg) scale(1.08);
+}
+
+.lab-girl.has-image .lab-girl__orbit {
+  display: none;
 }
 
 .lab-girl__orbit {

@@ -30,8 +30,8 @@ if (mascot) {
   function mascotSize(s) {
     const imageLoaded = mascot.classList.contains("has-image");
     return {
-      width: (imageLoaded ? 142 : 108) * s,
-      height: (imageLoaded ? 142 : 122) * s,
+      width: (imageLoaded ? 112 : 108) * s,
+      height: (imageLoaded ? 168 : 122) * s,
     };
   }
 
