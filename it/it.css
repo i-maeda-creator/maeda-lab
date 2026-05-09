@@ -108,16 +108,23 @@ main {
 }
 
 h1 {
-  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-size: clamp(2.8rem, 8vw, 6.8rem);
   letter-spacing: -0.03em;
   line-height: 0.96;
   margin: 0;
 }
 
+h1 span {
+  display: block;
+  font-size: clamp(1.3rem, 3.2vw, 2.8rem);
+  letter-spacing: -0.01em;
+  margin-top: 10px;
+}
+
 .lead {
-  color: var(--muted);
+  color: #424248;
   font-size: clamp(1.08rem, 2.2vw, 1.5rem);
-  font-weight: 560;
+  font-weight: 620;
   line-height: 1.55;
   margin: 20px 0 0;
   max-width: 720px;
@@ -134,7 +141,7 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.84);
   border-radius: 24px;
   box-shadow: var(--shadow);
-  min-height: 216px;
+  min-height: 188px;
   padding: 22px;
   text-decoration: none;
   transition:
@@ -152,7 +159,7 @@ h1 {
   display: block;
   font-size: 0.78rem;
   font-weight: 760;
-  margin-bottom: 46px;
+  margin-bottom: 22px;
 }
 
 .chapter-card h2 {
@@ -163,10 +170,11 @@ h1 {
 }
 
 .chapter-card p {
-  color: var(--muted);
-  font-size: 0.98rem;
-  line-height: 1.55;
-  margin: 12px 0 0;
+  color: #414147;
+  font-size: 0.95rem;
+  font-weight: 620;
+  line-height: 1.45;
+  margin: 14px 0 0;
 }
 
 .lesson {
@@ -284,6 +292,6 @@ h1 {
   }
 
   h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 }

@@ -16,11 +16,8 @@ const trackDetails = {
     href: "math/regression/",
     linkText: "Regression Analysis",
   },
-  Competition: {
-    text: "AtCoder, Kaggle, notebooks, and experiments.",
-  },
-  Works: {
-    text: "Videos, web projects, analysis, and prototypes.",
+  Physics: {
+    text: "Mechanics, electromagnetism, simulations, and experiments.",
   },
 };
 
