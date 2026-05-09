@@ -255,6 +255,108 @@ h1 span {
   margin-bottom: 6px;
 }
 
+.diagram-card {
+  background: #f7f7f8;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  margin: 30px 0;
+  overflow: hidden;
+  padding: clamp(12px, 3vw, 22px);
+}
+
+.diagram-card svg {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.diagram-card figcaption {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  color: #4b4b52;
+  line-height: 1.7;
+  margin-top: 14px;
+  padding-top: 12px;
+}
+
+.diagram-shell {
+  fill: #ffffff;
+}
+
+.diagram-title {
+  fill: #15161a;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.layer,
+.tcp {
+  stroke: rgba(17, 17, 20, 0.09);
+  stroke-width: 1;
+}
+
+.layer-stack text,
+.diagram-card text {
+  fill: #17171a;
+  font-family: "Meiryo UI", Meiryo, "Yu Gothic UI", "Yu Gothic", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.app {
+  fill: #eef6ff;
+}
+
+.transport {
+  fill: #f1f7ee;
+}
+
+.network {
+  fill: #fff6e8;
+}
+
+.link {
+  fill: #f5f0ff;
+}
+
+.physical {
+  fill: #f2f2f4;
+}
+
+.diagram-line {
+  fill: none;
+  stroke: #8cc8ff;
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+.lesson-list.compact {
+  margin-top: 18px;
+}
+
+.lesson-list.compact a {
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--ink);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 56px 1fr;
+  min-height: 64px;
+  padding: 15px 18px;
+  text-decoration: none;
+}
+
+.lesson-list.compact a:hover {
+  background: var(--panel-hover);
+}
+
+.lesson-list.compact span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
 .side-panel h2 {
   color: #fff;
   font-size: 1rem;

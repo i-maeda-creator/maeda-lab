@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Network | IT Notes</title>
     <meta name="description" content="Network notes for Maeda Lab." />
-    <link rel="stylesheet" href="it.css?v=20260509-network-osi" />
+    <link rel="stylesheet" href="it.css?v=20260509-network-diagrams" />
   </head>
   <body>
     <header class="site-header">
@@ -21,51 +21,92 @@
       <section class="hero">
         <p class="eyebrow">01 / IT Notes</p>
         <h1>Network</h1>
-        <p class="lead">ネットワークは、データを別の場所へ届けるための階層的な仕組み。まずOSI参照モデルで役割を分け、実際のインターネットではTCP/IPとして理解する。</p>
+        <p class="lead">ネットワークは、通信を層に分けて理解すると見通しがよくなる。まずOSI参照モデルで全体像をつかみ、実際のインターネットではTCP/IPに対応させて考える。</p>
       </section>
 
       <section class="lesson">
         <article class="content">
           <h2>OSI参照モデル</h2>
-          <p>OSI参照モデルは、ネットワーク通信を7つの層に分けて考えるための整理方法です。実際の通信機器やソフトウェアが完全にこの通りに分かれているわけではありませんが、「どの層が何を担当しているか」を考える地図になります。</p>
-          <ul>
-            <li>L1 Physical: 電気信号、光、無線、ケーブル、コネクタ。</li>
-            <li>L2 Data Link: 同じネットワーク内でフレームを届ける。</li>
-            <li>L3 Network: IPアドレスを使って別ネットワークへ届ける。</li>
-            <li>L4 Transport: TCP/UDPでアプリ間の通信を扱う。</li>
-            <li>L5-L7 Session / Presentation / Application: アプリケーションに近い通信のルール。</li>
-          </ul>
+          <p>OSI参照モデルは、通信の役割を7つの層に分けた考え方です。下の層ほど物理的な信号に近く、上の層ほどアプリケーションに近くなります。L1やL2の詳しい内容は、それぞれ別ページで整理していきます。</p>
+
+          <figure class="diagram-card" aria-label="OSI reference model diagram">
+            <svg viewBox="0 0 760 430" role="img">
+              <title>OSI Reference Model</title>
+              <rect x="16" y="16" width="728" height="398" rx="28" class="diagram-shell" />
+              <text x="54" y="62" class="diagram-title">OSI Reference Model</text>
+              <g class="layer-stack">
+                <rect x="54" y="86" width="652" height="40" rx="12" class="layer app" />
+                <text x="76" y="112">L7 Application</text>
+                <rect x="54" y="134" width="652" height="40" rx="12" class="layer app" />
+                <text x="76" y="160">L6 Presentation</text>
+                <rect x="54" y="182" width="652" height="40" rx="12" class="layer app" />
+                <text x="76" y="208">L5 Session</text>
+                <rect x="54" y="230" width="652" height="40" rx="12" class="layer transport" />
+                <text x="76" y="256">L4 Transport</text>
+                <rect x="54" y="278" width="652" height="40" rx="12" class="layer network" />
+                <text x="76" y="304">L3 Network</text>
+                <rect x="54" y="326" width="652" height="40" rx="12" class="layer link" />
+                <text x="76" y="352">L2 Data Link</text>
+                <rect x="54" y="374" width="652" height="40" rx="12" class="layer physical" />
+                <text x="76" y="400">L1 Physical</text>
+              </g>
+            </svg>
+            <figcaption>通信を7層に分ける地図。まず下から積み上げて考える。</figcaption>
+          </figure>
 
           <h2>TCP/IP</h2>
-          <p>TCP/IPは、現在のインターネットで実際に使われている通信の考え方です。OSI参照モデルほど細かく7層に分けず、リンク層、インターネット層、トランスポート層、アプリケーション層として見ることが多いです。</p>
-          <div class="note-box">
-            <strong>OSIとTCP/IPの関係</strong>
-            <p>OSIは学習や設計のための分類。TCP/IPは実際のインターネットで使う実装寄りの分類。まずOSIで役割を理解し、その後TCP/IPで現実の通信に接続するとわかりやすいです。</p>
+          <p>TCP/IPは、実際のインターネットで使われる通信の考え方です。OSIの7層をそのまま使うというより、役割を4つほどにまとめて扱います。学習では、OSIで役割を分解し、TCP/IPで現実の通信に接続すると理解しやすくなります。</p>
+
+          <figure class="diagram-card" aria-label="OSI and TCP IP mapping diagram">
+            <svg viewBox="0 0 760 360" role="img">
+              <title>OSI and TCP/IP Mapping</title>
+              <rect x="16" y="16" width="728" height="328" rx="28" class="diagram-shell" />
+              <text x="54" y="62" class="diagram-title">OSI → TCP/IP</text>
+              <g>
+                <rect x="58" y="88" width="240" height="42" rx="12" class="layer app" />
+                <text x="78" y="115">L7 Application</text>
+                <rect x="58" y="138" width="240" height="42" rx="12" class="layer app" />
+                <text x="78" y="165">L6 Presentation</text>
+                <rect x="58" y="188" width="240" height="42" rx="12" class="layer app" />
+                <text x="78" y="215">L5 Session</text>
+                <rect x="58" y="238" width="240" height="42" rx="12" class="layer transport" />
+                <text x="78" y="265">L4 Transport</text>
+                <rect x="58" y="288" width="240" height="42" rx="12" class="layer network" />
+                <text x="78" y="315">L3 Network</text>
+              </g>
+              <path d="M320 150 C370 150 370 128 420 128" class="diagram-line" />
+              <path d="M320 258 C370 258 370 206 420 206" class="diagram-line" />
+              <path d="M320 310 C370 310 370 286 420 286" class="diagram-line" />
+              <g>
+                <rect x="440" y="96" width="248" height="84" rx="16" class="tcp app" />
+                <text x="464" y="144">Application</text>
+                <rect x="440" y="196" width="248" height="52" rx="16" class="tcp transport" />
+                <text x="464" y="228">Transport</text>
+                <rect x="440" y="264" width="248" height="52" rx="16" class="tcp network" />
+                <text x="464" y="296">Internet / Link</text>
+              </g>
+            </svg>
+            <figcaption>OSIは役割の分解、TCP/IPは実際のインターネット寄りの見方。</figcaption>
+          </figure>
+
+          <h2>この章の進め方</h2>
+          <p>このページは全体像だけにして、各層の詳しい説明は別ページに分けます。最初はL1とL2を丁寧に作り、そこからL3、L4、アプリケーション層へ進みます。</p>
+          <div class="lesson-list compact">
+            <a href="network-l1.html"><span>01-1</span>L1 Physical Layer</a>
+            <a href="network-l2.html"><span>01-2</span>L2 Data Link Layer</a>
           </div>
-
-          <h2>L1 Physical Layer</h2>
-          <p>L1は、データを「物理的な信号」として運ぶ層です。ここではIPアドレスやHTTPの意味はまだ出てきません。0と1を、電圧、光、電波などに変えて相手まで届けます。</p>
-          <ul>
-            <li>Cable: LANケーブル、光ファイバー。</li>
-            <li>Signal: 電気信号、光信号、無線信号。</li>
-            <li>Connector: RJ-45、SFPなど。</li>
-            <li>Bit: 0と1の最小単位。</li>
-            <li>Bandwidth: どれくらいの量を送れるか。</li>
-          </ul>
-
-          <h2>L1で見るポイント</h2>
-          <p>L1の問題は「そもそも信号が届いているか」です。ケーブルが抜けている、規格が合っていない、距離が長すぎる、ノイズが多い、といった問題は上位層ではなくL1で考えます。</p>
         </article>
 
         <aside class="side-panel">
           <span class="status ready">Ready</span>
-          <h2>Chapters</h2>
-          <a href="network.html">01 Network</a>
+          <h2>Network</h2>
+          <a href="network.html">Overview</a>
+          <a href="network-l1.html">L1 Physical</a>
+          <a href="network-l2.html">L2 Data Link</a>
+          <h2>IT</h2>
           <a href="cloud.html">02 Cloud</a>
           <a href="security.html">03 Security</a>
           <a href="programming.html">04 Programming</a>
-          <a href="data-ai.html">05 Data & AI</a>
-          <a href="computer-science.html">06 Computer Science</a>
         </aside>
       </section>
     </main>
