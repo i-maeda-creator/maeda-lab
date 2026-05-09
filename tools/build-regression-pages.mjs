@@ -5,6 +5,7 @@ const siteRoot = path.resolve("C:/Users/kyomi/Documents/Codex/2026-05-06/maeda-l
 const sourceRoot = path.resolve("C:/Users/kyomi/Documents/Codex/2026-05-08/md-pdf-a-b-r-c");
 const outRoot = path.join(siteRoot, "math", "regression");
 const figureOut = path.join(outRoot, "figures");
+const assetVersion = "20260509-quiz";
 
 const lessons = [
   ["01_regression_ols.md", "回帰分析と最小二乗法"],
@@ -254,7 +255,7 @@ function layout({ title, body, nav = "" }) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escapeHtml(title)} | Maeda Lab</title>
     <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="regression.css">
+    <link rel="stylesheet" href="regression.css?v=${assetVersion}">
   </head>
   <body>
     <header class="site-header">
@@ -269,7 +270,7 @@ function layout({ title, body, nav = "" }) {
       ${body}
       ${nav}
     </main>
-    <script src="regression-quiz.js"></script>
+    <script src="regression-quiz.js?v=${assetVersion}"></script>
   </body>
 </html>`;
 }
