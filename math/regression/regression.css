@@ -67,10 +67,10 @@ body {
 .lesson-hero h1,
 .lesson-article h1 {
   color: #fff;
-  font-size: clamp(2.6rem, 7vw, 6.6rem);
+  font-size: clamp(2.1rem, 4.6vw, 4.2rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.03;
+  letter-spacing: -0.015em;
+  line-height: 1.16;
   margin: 0;
 }
 
@@ -87,9 +87,9 @@ body {
 
 .lesson-index h2 {
   color: #fff;
-  font-size: clamp(1.8rem, 4vw, 3.4rem);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
   margin: 0 0 18px;
 }
 
@@ -154,21 +154,21 @@ body {
 .lesson-article h2 {
   border-top: 1px solid var(--line);
   color: #fff;
-  font-size: clamp(1.7rem, 4vw, 3.2rem);
+  font-size: clamp(1.45rem, 2.8vw, 2.25rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.18;
-  margin: clamp(48px, 8vw, 78px) 0 18px;
-  padding-top: 28px;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+  margin: clamp(38px, 6vw, 58px) 0 14px;
+  padding-top: 24px;
 }
 
 .lesson-article h3 {
   color: #fff;
-  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+  font-size: clamp(1.18rem, 2vw, 1.48rem);
   font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.35;
-  margin: 32px 0 10px;
+  letter-spacing: 0;
+  line-height: 1.45;
+  margin: 28px 0 8px;
 }
 
 .lesson-article p,
@@ -245,7 +245,7 @@ body {
 
 .lesson-quiz h2 {
   border: 0;
-  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  font-size: clamp(1.35rem, 2.3vw, 1.8rem);
   margin: 0 0 14px;
   padding: 0;
 }
