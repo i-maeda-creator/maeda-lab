@@ -180,7 +180,7 @@ a {
 }
 
 .works-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .track-card,
@@ -223,12 +223,12 @@ a {
   display: block;
   font-size: 0.78rem;
   font-weight: 700;
-  margin-bottom: 56px;
+  margin-bottom: 18px;
   text-transform: uppercase;
 }
 
 .works-grid h3 {
-  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
   line-height: 1.1;
 }
 
@@ -236,12 +236,12 @@ a {
   color: var(--accent);
   display: inline-flex;
   font-weight: 650;
-  margin-top: 18px;
+  margin-top: 10px;
   text-decoration: none;
 }
 
 .work-card {
-  min-height: 220px;
+  min-height: 118px;
 }
 
 .site-footer {
@@ -251,7 +251,8 @@ a {
 }
 
 @media (max-width: 1080px) {
-  .track-grid {
+  .track-grid,
+  .works-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
