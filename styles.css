@@ -1053,6 +1053,7 @@ a {
 /* Handmade mascot based on the lab character reference. */
 .lab-girl {
   height: 154px;
+  touch-action: manipulation;
   transform-origin: 78px 77px;
   width: 132px;
 }

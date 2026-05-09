@@ -14,6 +14,7 @@ if (mascot) {
     speed: 1,
     direction: 1,
     typeTimer: 0,
+    smileTimer: 0,
     startedAt: performance.now(),
     pausedAt: 0,
     x: 18,
@@ -428,33 +429,59 @@ if (mascot) {
     requestAnimationFrame(tick);
   }
 
-  mascot.addEventListener("mouseenter", () => {
-    if (isOnTopEdge()) {
-      fallFromTop();
-      return;
-    }
-    if (isOnLeftSideEdge()) {
-      magicFlightFromLeft();
-      return;
-    }
-    if (isOnSideEdge()) {
-      writeNiceMessage();
-      return;
-    }
-    if (isOnBottomEdge()) {
-      speedUpAndDropPencil();
-      return;
-    }
+  function pauseForSmile(autoResume = false) {
     if (state.falling || state.writing || state.speeding || state.magic) return;
+    window.clearTimeout(state.smileTimer);
     state.paused = true;
     state.pausedAt = performance.now();
     mascot.classList.add("is-paused");
     place({ x: state.x, y: state.y, rotation: state.rotation, scale: state.scale }, true);
+
+    if (!autoResume) return;
+
+    state.smileTimer = window.setTimeout(() => {
+      if (state.falling || state.writing || state.speeding || state.magic) return;
+      state.paused = reduceMotion.matches;
+      state.startedAt += performance.now() - state.pausedAt;
+      mascot.classList.remove("is-paused");
+    }, 950);
+  }
+
+  function handleMascotAction(autoResume = false) {
+    if (isOnTopEdge()) {
+      fallFromTop();
+      return true;
+    }
+    if (isOnLeftSideEdge()) {
+      magicFlightFromLeft();
+      return true;
+    }
+    if (isOnSideEdge()) {
+      writeNiceMessage();
+      return true;
+    }
+    if (isOnBottomEdge()) {
+      speedUpAndDropPencil();
+      return true;
+    }
+    pauseForSmile(autoResume);
+    return true;
+  }
+
+  mascot.addEventListener("mouseenter", () => {
+    handleMascotAction(false);
+  });
+
+  mascot.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse") return;
+    event.preventDefault();
+    handleMascotAction(true);
   });
 
   mascot.addEventListener("mouseleave", () => {
     if (state.falling || state.speeding || state.magic) return;
     if (state.writing) return;
+    window.clearTimeout(state.smileTimer);
     state.paused = reduceMotion.matches;
     state.startedAt += performance.now() - state.pausedAt;
     mascot.classList.remove("is-paused");
