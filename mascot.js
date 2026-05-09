@@ -1,6 +1,8 @@
 const mascot = document.querySelector(".lab-girl");
 
 if (mascot) {
+  const turn = mascot.querySelector(".lab-girl__turn");
+  const image = mascot.querySelector(".lab-girl__image");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const state = {
     paused: reduceMotion.matches,
@@ -12,14 +14,39 @@ if (mascot) {
     scale: 1,
   };
 
+  if (image) {
+    image.addEventListener("load", () => {
+      mascot.classList.add("has-image");
+    });
+    image.addEventListener("error", () => {
+      mascot.classList.remove("has-image");
+    });
+  }
+
   function scale() {
     return window.innerWidth <= 760 ? 0.82 : 1;
   }
 
+  function mascotSize(s) {
+    const imageLoaded = mascot.classList.contains("has-image");
+    return {
+      width: (imageLoaded ? 142 : 108) * s,
+      height: (imageLoaded ? 142 : 122) * s,
+    };
+  }
+
+  function angleBetween(from, to, t) {
+    const delta = ((to - from + 540) % 360) - 180;
+    return from + delta * t;
+  }
+
+  function ease(t) {
+    return t * t * (3 - 2 * t);
+  }
+
   function pathPoint(time) {
     const s = scale();
-    const width = 108 * s;
-    const height = 122 * s;
+    const { width, height } = mascotSize(s);
     const inset = 18;
     const top = 62;
     const left = -width - 18;
@@ -31,25 +58,38 @@ if (mascot) {
     const rightLen = bottom - top;
     const topLen = right;
     const leftLen = bottom - top;
+    const corner = 0.1;
     const total = bottomLen + rightLen + topLen + leftLen;
     let d = progress * total;
 
     if (d <= bottomLen) {
-      return { x: left + d, y: bottom, rotation: 0, scale: s };
+      const rotation = d > bottomLen * (1 - corner)
+        ? angleBetween(0, -90, ease((d - bottomLen * (1 - corner)) / (bottomLen * corner)))
+        : 0;
+      return { x: left + d, y: bottom, rotation, scale: s };
     }
     d -= bottomLen;
 
     if (d <= rightLen) {
-      return { x: right, y: bottom - d, rotation: -90, scale: s };
+      const rotation = d > rightLen * (1 - corner)
+        ? angleBetween(-90, 180, ease((d - rightLen * (1 - corner)) / (rightLen * corner)))
+        : -90;
+      return { x: right, y: bottom - d, rotation, scale: s };
     }
     d -= rightLen;
 
     if (d <= topLen) {
-      return { x: right - d, y: top, rotation: 180, scale: s };
+      const rotation = d > topLen * (1 - corner)
+        ? angleBetween(180, 90, ease((d - topLen * (1 - corner)) / (topLen * corner)))
+        : 180;
+      return { x: right - d, y: top, rotation, scale: s };
     }
     d -= topLen;
 
-    return { x: 0, y: top + d, rotation: 90, scale: s };
+    const rotation = d > leftLen * (1 - corner)
+      ? angleBetween(90, 0, ease((d - leftLen * (1 - corner)) / (leftLen * corner)))
+      : 90;
+    return { x: 0, y: top + d, rotation, scale: s };
   }
 
   function place(point, front = false) {
@@ -57,7 +97,10 @@ if (mascot) {
     state.y = point.y;
     state.rotation = front ? 0 : point.rotation;
     state.scale = point.scale;
-    mascot.style.transform = `translate(${state.x}px, ${state.y}px) rotate(${state.rotation}deg) scale(${state.scale})`;
+    mascot.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
+    if (turn) {
+      turn.style.transform = `rotate(${state.rotation}deg)`;
+    }
   }
 
   function tick(time) {
@@ -84,7 +127,9 @@ if (mascot) {
     state.paused = reduceMotion.matches;
     if (state.paused) {
       mascot.classList.add("is-paused");
-      place({ x: window.innerWidth - 126, y: window.innerHeight - 146, rotation: 0, scale: scale() }, true);
+      const s = scale();
+      const { width, height } = mascotSize(s);
+      place({ x: window.innerWidth - width - 18, y: window.innerHeight - height - 18, rotation: 0, scale: s }, true);
     } else {
       mascot.classList.remove("is-paused");
       state.startedAt = performance.now();
@@ -93,7 +138,9 @@ if (mascot) {
 
   if (state.paused) {
     mascot.classList.add("is-paused");
-    place({ x: window.innerWidth - 126, y: window.innerHeight - 146, rotation: 0, scale: scale() }, true);
+    const s = scale();
+    const { width, height } = mascotSize(s);
+    place({ x: window.innerWidth - width - 18, y: window.innerHeight - height - 18, rotation: 0, scale: s }, true);
   } else {
     place(pathPoint(performance.now()));
   }
