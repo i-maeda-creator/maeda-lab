@@ -198,7 +198,7 @@ const overviewBody = `
   <section class="lesson-hero">
     <p class="lesson-kicker">Mathematics</p>
     <h1>回帰分析</h1>
-    <p>最小二乗法からp値まで。PDF資料の内容をWebで読みやすく整理した学習ページです。</p>
+    <p>回帰分析とは、ある変数の変化から別の変数の動きを説明・予測するための方法です。</p>
   </section>
   <section class="lesson-index">
     <h2>Contents</h2>
