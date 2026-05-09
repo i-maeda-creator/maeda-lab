@@ -1435,18 +1435,10 @@ a {
   stroke-width: 12;
 }
 
-.hm-wave-palm {
+.hm-wave-hand {
   fill: #ffd9c2;
   stroke: #1d1d1f;
-  stroke-linejoin: round;
   stroke-width: 3;
-}
-
-.hm-wave-fingers {
-  fill: none;
-  stroke: #1d1d1f;
-  stroke-linecap: round;
-  stroke-width: 2;
 }
 
 .hm-pencil {

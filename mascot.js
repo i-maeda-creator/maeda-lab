@@ -106,9 +106,6 @@ if (mascot) {
   }
 
   function orient(point) {
-    if (state.direction === -1) {
-      point.rotation = ((point.rotation + 360) % 360) - 180;
-    }
     return point;
   }
 
