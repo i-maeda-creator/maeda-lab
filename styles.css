@@ -250,6 +250,257 @@ a {
   padding: 24px clamp(20px, 6vw, 96px);
 }
 
+.lab-girl {
+  animation: lab-walk 42s linear infinite;
+  bottom: 22px;
+  height: 116px;
+  left: -110px;
+  pointer-events: none;
+  position: fixed;
+  width: 104px;
+  --mascot-scale: 1;
+  z-index: 12;
+}
+
+.lab-girl__body {
+  animation: lab-bob 720ms ease-in-out infinite;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.lab-girl__shadow {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  bottom: 2px;
+  filter: blur(2px);
+  height: 10px;
+  left: 22px;
+  position: absolute;
+  width: 58px;
+}
+
+.lab-girl__hair {
+  background: #1f1f22;
+  border-radius: 22px 22px 14px 14px;
+  height: 42px;
+  left: 31px;
+  position: absolute;
+  top: 5px;
+  width: 42px;
+}
+
+.lab-girl__head {
+  background: #ffd9c8;
+  border: 2px solid #1d1d1f;
+  border-radius: 50%;
+  height: 36px;
+  left: 34px;
+  position: absolute;
+  top: 15px;
+  width: 36px;
+  z-index: 2;
+}
+
+.lab-girl__head::before,
+.lab-girl__head::after {
+  background: #1d1d1f;
+  border-radius: 50%;
+  content: "";
+  height: 3px;
+  position: absolute;
+  top: 17px;
+  width: 3px;
+}
+
+.lab-girl__head::before {
+  left: 11px;
+}
+
+.lab-girl__head::after {
+  right: 11px;
+}
+
+.lab-girl__glasses {
+  border: 1.5px solid #1d1d1f;
+  border-radius: 50%;
+  height: 11px;
+  position: absolute;
+  top: 13px;
+  width: 11px;
+}
+
+.lab-girl__glasses.left {
+  left: 6px;
+}
+
+.lab-girl__glasses.right {
+  right: 6px;
+}
+
+.lab-girl__bridge {
+  background: #1d1d1f;
+  height: 1.5px;
+  left: 17px;
+  position: absolute;
+  top: 18px;
+  width: 4px;
+}
+
+.lab-girl__smile {
+  border-bottom: 1.5px solid #1d1d1f;
+  border-radius: 0 0 999px 999px;
+  bottom: 7px;
+  height: 5px;
+  left: 14px;
+  position: absolute;
+  width: 8px;
+}
+
+.lab-girl__coat {
+  background: #ffffff;
+  border: 2px solid #1d1d1f;
+  border-radius: 16px 16px 10px 10px;
+  height: 50px;
+  left: 29px;
+  position: absolute;
+  top: 48px;
+  width: 46px;
+}
+
+.lab-girl__coat::before {
+  background: #d8ecff;
+  border-left: 2px solid #1d1d1f;
+  content: "";
+  height: 42px;
+  left: 22px;
+  position: absolute;
+  top: 4px;
+  transform: rotate(12deg);
+  width: 2px;
+}
+
+.lab-girl__notebook {
+  background: #8cc8ff;
+  border: 2px solid #1d1d1f;
+  border-radius: 5px;
+  height: 25px;
+  left: 11px;
+  position: absolute;
+  top: 62px;
+  transform: rotate(-10deg);
+  width: 28px;
+}
+
+.lab-girl__notebook::before {
+  background: rgba(255, 255, 255, 0.8);
+  content: "";
+  height: 2px;
+  left: 6px;
+  position: absolute;
+  top: 7px;
+  width: 15px;
+}
+
+.lab-girl__pencil {
+  background: #ffd45a;
+  border: 2px solid #1d1d1f;
+  border-radius: 999px;
+  height: 9px;
+  position: absolute;
+  right: 5px;
+  top: 64px;
+  transform: rotate(-38deg);
+  width: 42px;
+}
+
+.lab-girl__pencil::after {
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid #1d1d1f;
+  border-top: 5px solid transparent;
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: -2px;
+}
+
+.lab-girl__leg {
+  background: #1d1d1f;
+  border-radius: 999px;
+  height: 22px;
+  position: absolute;
+  top: 94px;
+  transform-origin: 50% 0;
+  width: 7px;
+}
+
+.leg-left {
+  animation: lab-step-left 720ms ease-in-out infinite;
+  left: 40px;
+}
+
+.leg-right {
+  animation: lab-step-right 720ms ease-in-out infinite;
+  right: 40px;
+}
+
+@keyframes lab-walk {
+  0% {
+    transform: translateX(0) scale(var(--mascot-scale));
+  }
+
+  100% {
+    transform: translateX(calc(100vw + 220px)) scale(var(--mascot-scale));
+  }
+}
+
+@keyframes lab-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes lab-step-left {
+  0%,
+  100% {
+    transform: rotate(14deg);
+  }
+
+  50% {
+    transform: rotate(-14deg);
+  }
+}
+
+@keyframes lab-step-right {
+  0%,
+  100% {
+    transform: rotate(-14deg);
+  }
+
+  50% {
+    transform: rotate(14deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-girl,
+  .lab-girl__body,
+  .leg-left,
+  .leg-right {
+    animation: none;
+  }
+
+  .lab-girl {
+    left: auto;
+    right: 18px;
+  }
+}
+
 @media (max-width: 1080px) {
   .track-grid,
   .works-grid {
@@ -287,5 +538,11 @@ a {
   .track-grid,
   .works-grid {
     grid-template-columns: 1fr;
+  }
+
+  .lab-girl {
+    bottom: 12px;
+    transform-origin: bottom left;
+    --mascot-scale: 0.82;
   }
 }
