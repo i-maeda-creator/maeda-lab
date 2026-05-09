@@ -1057,6 +1057,102 @@ a {
   width: 132px;
 }
 
+.lab-girl__writing {
+  background: rgba(255, 255, 255, 0.94);
+  border: 2px solid rgba(29, 29, 31, 0.92);
+  border-radius: 999px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+  color: #1d1d1f;
+  font-family: "Meiryo UI", Meiryo, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  left: 92px;
+  letter-spacing: 0;
+  line-height: 1;
+  min-height: 40px;
+  min-width: 0;
+  opacity: 0;
+  padding: 12px 18px;
+  pointer-events: none;
+  position: absolute;
+  top: 54px;
+  transform: translateX(8px) scale(0.96);
+  transition: opacity 180ms ease, transform 180ms ease;
+  white-space: nowrap;
+}
+
+.lab-girl__writing::after {
+  background: #1d1d1f;
+  border-radius: 999px;
+  bottom: -9px;
+  content: "";
+  height: 3px;
+  left: 16px;
+  position: absolute;
+  transform: rotate(-18deg);
+  width: 42px;
+}
+
+.lab-girl.is-writing .lab-girl__writing {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.lab-girl.is-writing-right .lab-girl__writing {
+  left: auto;
+  right: 98px;
+}
+
+.lab-girl.is-writing-right .lab-girl__writing::after {
+  left: auto;
+  right: 16px;
+  transform: rotate(18deg);
+}
+
+.lab-girl.is-writing .hm-pencil {
+  animation: hm-write-pencil 360ms ease-in-out infinite alternate;
+}
+
+.lab-girl__dropped-pencil {
+  background: linear-gradient(90deg, #1d1d1f 0 10px, #ffd47a 10px 24px, #f5ad18 24px 92px, #d8d8dc 92px 102px, #ff5d6c 102px 118px);
+  border: 2px solid #1d1d1f;
+  border-radius: 999px;
+  bottom: 8px;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.22);
+  height: 12px;
+  left: 48px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateY(-64px) rotate(-28deg);
+  transform-origin: 12px 50%;
+  width: 118px;
+}
+
+.lab-girl.is-speeding .hm-leg {
+  animation-duration: 260ms;
+  animation-play-state: running !important;
+}
+
+.lab-girl.is-speeding .hm-head {
+  animation-duration: 300ms;
+  animation-play-state: running !important;
+}
+
+.lab-girl.is-speeding .hm-pencil {
+  animation: hm-pencil-slip 520ms ease-in forwards;
+  animation-play-state: running !important;
+}
+
+.lab-girl.is-pencil-dropped .hm-pencil {
+  opacity: 0;
+}
+
+.lab-girl.is-pencil-dropped .lab-girl__dropped-pencil {
+  animation: hm-dropped-pencil 820ms cubic-bezier(0.2, 0.9, 0.2, 1.05) forwards;
+  opacity: 1;
+}
+
 .handmade-mascot {
   display: block;
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
@@ -1404,6 +1500,46 @@ a {
   83%,
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes hm-write-pencil {
+  from {
+    transform: rotate(-3deg) translate(0, 0);
+  }
+
+  to {
+    transform: rotate(5deg) translate(4px, -3px);
+  }
+}
+
+@keyframes hm-pencil-slip {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(18px, 42px) rotate(38deg);
+  }
+}
+
+@keyframes hm-dropped-pencil {
+  0% {
+    transform: translateY(-64px) rotate(-28deg);
+  }
+
+  58% {
+    transform: translateY(4px) rotate(14deg);
+  }
+
+  78% {
+    transform: translateY(-8px) rotate(-10deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-6deg);
   }
 }
 
