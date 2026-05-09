@@ -251,15 +251,15 @@ a {
 }
 
 .lab-girl {
-  animation: lab-walk 54s linear infinite;
   height: 122px;
   left: 0;
-  pointer-events: none;
+  pointer-events: auto;
   position: fixed;
   top: 0;
   transform-origin: 52px 61px;
   width: 108px;
   --mascot-scale: 1;
+  transform: translate(-124px, calc(100vh - 144px)) rotate(0deg) scale(var(--mascot-scale));
   z-index: 12;
 }
 
@@ -268,6 +268,11 @@ a {
   height: 100%;
   position: relative;
   width: 100%;
+}
+
+.lab-girl:hover .lab-girl__body,
+.lab-girl.is-paused .lab-girl__body {
+  animation: lab-smile-bob 900ms ease-in-out infinite;
 }
 
 .lab-girl__shadow {
@@ -396,6 +401,22 @@ a {
   width: 4px;
 }
 
+.lab-girl__nose {
+  border-bottom: 3px solid transparent;
+  border-left: 5px solid #1d1d1f;
+  border-top: 3px solid transparent;
+  height: 0;
+  position: absolute;
+  right: 1px;
+  top: 22px;
+  width: 0;
+}
+
+.lab-girl:hover .lab-girl__nose,
+.lab-girl.is-paused .lab-girl__nose {
+  opacity: 0;
+}
+
 .lab-girl__cheek {
   background: rgba(255, 124, 124, 0.38);
   border-radius: 50%;
@@ -421,6 +442,15 @@ a {
   left: 16px;
   position: absolute;
   width: 10px;
+}
+
+.lab-girl:hover .lab-girl__smile,
+.lab-girl.is-paused .lab-girl__smile {
+  border-bottom-width: 2px;
+  bottom: 5px;
+  height: 9px;
+  left: 14px;
+  width: 14px;
 }
 
 .lab-girl__coat {
@@ -510,44 +540,6 @@ a {
   right: 40px;
 }
 
-@keyframes lab-walk {
-  0% {
-    transform: translate(-124px, calc(100vh - 144px)) rotate(0deg) scale(var(--mascot-scale));
-  }
-
-  24% {
-    transform: translate(calc(100vw - 88px), calc(100vh - 144px)) rotate(0deg) scale(var(--mascot-scale));
-  }
-
-  25% {
-    transform: translate(calc(100vw - 88px), calc(100vh - 144px)) rotate(-90deg) scale(var(--mascot-scale));
-  }
-
-  49% {
-    transform: translate(calc(100vw - 88px), 58px) rotate(-90deg) scale(var(--mascot-scale));
-  }
-
-  50% {
-    transform: translate(calc(100vw - 88px), 58px) rotate(180deg) scale(var(--mascot-scale));
-  }
-
-  74% {
-    transform: translate(0, 58px) rotate(180deg) scale(var(--mascot-scale));
-  }
-
-  75% {
-    transform: translate(0, 58px) rotate(90deg) scale(var(--mascot-scale));
-  }
-
-  99% {
-    transform: translate(0, calc(100vh - 144px)) rotate(90deg) scale(var(--mascot-scale));
-  }
-
-  100% {
-    transform: translate(-124px, calc(100vh - 144px)) rotate(0deg) scale(var(--mascot-scale));
-  }
-}
-
 @keyframes lab-bob {
   0%,
   100% {
@@ -556,6 +548,17 @@ a {
 
   50% {
     transform: translateY(-3px);
+  }
+}
+
+@keyframes lab-smile-bob {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+
+  50% {
+    transform: translateY(-7px);
   }
 }
 
