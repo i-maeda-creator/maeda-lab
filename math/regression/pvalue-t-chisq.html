@@ -199,12 +199,22 @@ barplot(deviation2,
 → t分布で珍しさを測る
 → その珍しさがp値になる</code></pre>
 <p>結論として、p値は「正しい・間違い」を決める魔法の数字ではありません。<strong>仮定の下で、今回の結果がどれくらい珍しいかを表す数字</strong>です。</p>
-<p>この資料のゴールは、p値を暗記で読むのではなく、データのズレ、ばらつき、分布、検定が一本の線でつながっていると理解することです。</p></article>
+<p>この資料のゴールは、p値を暗記で読むのではなく、データのズレ、ばらつき、分布、検定が一本の線でつながっていると理解することです。</p><section class="lesson-quiz" data-answer="0">
+    <p class="quiz-kicker">Check</p>
+    <h2>まとめテスト</h2>
+    <p class="quiz-question">回帰係数のt値は、ざっくり何を表しますか？</p>
+    <div class="quiz-choices">
+      <button type="button" data-choice="0">係数が標準誤差の何個分だけ0から離れているか</button><button type="button" data-choice="1">目的変数の平均値</button><button type="button" data-choice="2">説明変数の個数</button><button type="button" data-choice="3">残差の最大値</button>
+    </div>
+    <p class="quiz-result" aria-live="polite"></p>
+    <p class="quiz-explanation" hidden>t値は 推定された係数 / 係数の標準誤差 です。0からどれくらい離れているかを標準誤差単位で見ます。</p>
+  </section></article>
       <nav class="lesson-pager">
     <a href="r2-adjusted-r2.html">← R²値 / 自由度調整済みR²値</a>
     <a href="./">目次</a>
     <span></span>
   </nav>
     </main>
+    <script src="regression-quiz.js"></script>
   </body>
 </html>

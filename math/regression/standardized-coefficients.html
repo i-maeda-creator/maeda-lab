@@ -134,12 +134,22 @@ par(mfrow = c(1, 1))</code></pre>
 <h3>符号と大きさを分けて読む</h3>
 <p>標準化回帰係数を見るときは、符号と大きさを分けて考えます。</p>
 <ul><li>プラス: その活動が多いほど契約数も多い傾向</li><li>マイナス: その活動が多いほど契約数は少ない傾向</li><li>絶対値が大きい: 関係が比較的強い</li><li>絶対値が小さい: 関係が比較的弱い</li></ul>
-<p>ただし、標準化回帰係数は因果を証明しません。たとえば、提案書提出数と契約数の関係が強くても、「提案書をたくさん出せば必ず契約が増える」とは言えません。見込みの高い顧客ほど提案書まで進みやすい、という逆向きの関係もありえます。</p></article>
+<p>ただし、標準化回帰係数は因果を証明しません。たとえば、提案書提出数と契約数の関係が強くても、「提案書をたくさん出せば必ず契約が増える」とは言えません。見込みの高い顧客ほど提案書まで進みやすい、という逆向きの関係もありえます。</p><section class="lesson-quiz" data-answer="0">
+    <p class="quiz-kicker">Check</p>
+    <h2>まとめテスト</h2>
+    <p class="quiz-question">標準化回帰係数を見る主な目的はどれですか？</p>
+    <div class="quiz-choices">
+      <button type="button" data-choice="0">単位が違う説明変数の影響を比べやすくする</button><button type="button" data-choice="1">回帰式の切片を必ず0にする</button><button type="button" data-choice="2">p値を計算しないで済ませる</button><button type="button" data-choice="3">外れ値を自動で削除する</button>
+    </div>
+    <p class="quiz-result" aria-live="polite"></p>
+    <p class="quiz-explanation" hidden>標準化すると平均0・標準偏差1の尺度にそろうため、単位が違う変数同士を比較しやすくなります。</p>
+  </section></article>
       <nav class="lesson-pager">
     <a href="regression-ols.html">← 回帰分析と最小二乗法</a>
     <a href="./">目次</a>
     <a href="error-ranges.html">回帰係数の誤差範囲、残差の誤差範囲 →</a>
   </nav>
     </main>
+    <script src="regression-quiz.js"></script>
   </body>
 </html>

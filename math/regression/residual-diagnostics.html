@@ -151,12 +151,22 @@ qqline(sales$residual, col = "red", lwd = 2)</code></pre>
 <p>回帰分析では、係数やp値だけを見て終わりにしないことが大切です。</p>
 <p>残差分析のゴールは、モデルの失敗の仕方を見ることです。</p>
 <ul><li>等分散性: ズレの幅が予測値によって変わりすぎていないか</li><li>独立性: ズレが順番や時間でつながっていないか</li><li>正規性: ズレの分布が極端に歪んでいないか</li></ul>
-<p>結論として、残差分析は「モデルを信じるための儀式」ではなく、<strong>モデルを疑うための点検作業</strong>です。実務では、この疑う力があるほど、回帰分析を安全に使えます。</p></article>
+<p>結論として、残差分析は「モデルを信じるための儀式」ではなく、<strong>モデルを疑うための点検作業</strong>です。実務では、この疑う力があるほど、回帰分析を安全に使えます。</p><section class="lesson-quiz" data-answer="0">
+    <p class="quiz-kicker">Check</p>
+    <h2>まとめテスト</h2>
+    <p class="quiz-question">残差分析でまず見たいこととして最も近いものはどれですか？</p>
+    <div class="quiz-choices">
+      <button type="button" data-choice="0">残差に規則的な形が出ていないか</button><button type="button" data-choice="1">説明変数の単位が全部同じか</button><button type="button" data-choice="2">R²が必ず1に近いか</button><button type="button" data-choice="3">係数がすべて正か</button>
+    </div>
+    <p class="quiz-result" aria-live="polite"></p>
+    <p class="quiz-explanation" hidden>残差が0の周りにランダムに散っているかを見ます。規則的な形があると、モデルが何かを見落としている可能性があります。</p>
+  </section></article>
       <nav class="lesson-pager">
     <a href="error-ranges.html">← 回帰係数の誤差範囲、残差の誤差範囲</a>
     <a href="./">目次</a>
     <a href="r2-adjusted-r2.html">R²値 / 自由度調整済みR²値 →</a>
   </nav>
     </main>
+    <script src="regression-quiz.js"></script>
   </body>
 </html>

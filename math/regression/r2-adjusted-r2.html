@@ -151,12 +151,22 @@ barplot(c(SSR = ssr, SSE = sse),
 <p>ただし、R²値だけでモデルの良し悪しを決めるのは危険です。説明変数を増やすだけでR²値は上がりやすいからです。</p>
 <p>この資料の結論は次の通りです。</p>
 <ul><li>R²値は「目的変数のばらつきをどれくらい説明できたか」</li><li>自由度調整済みR²値は「変数を増やした分のコストも考えた説明力」</li><li>実務では、R²値、調整済みR²値、残差分析、解釈しやすさをセットで見る</li></ul>
-<p>ゴールは、数字を大きくすることではありません。<strong>新しいデータにも使えそうで、現場の判断に役立つモデルを選ぶこと</strong>です。</p></article>
+<p>ゴールは、数字を大きくすることではありません。<strong>新しいデータにも使えそうで、現場の判断に役立つモデルを選ぶこと</strong>です。</p><section class="lesson-quiz" data-answer="0">
+    <p class="quiz-kicker">Check</p>
+    <h2>まとめテスト</h2>
+    <p class="quiz-question">自由度調整済みR²値が必要になる理由はどれですか？</p>
+    <div class="quiz-choices">
+      <button type="button" data-choice="0">説明変数を増やすだけでR²が上がりやすいから</button><button type="button" data-choice="1">R²は必ずマイナスになるから</button><button type="button" data-choice="2">残差分析が不要になるから</button><button type="button" data-choice="3">目的変数の単位を消すため</button>
+    </div>
+    <p class="quiz-result" aria-live="polite"></p>
+    <p class="quiz-explanation" hidden>R²は説明変数を追加すると下がりにくいため、変数を増やしたコストも考える調整済みR²が役立ちます。</p>
+  </section></article>
       <nav class="lesson-pager">
     <a href="residual-diagnostics.html">← 残差分析</a>
     <a href="./">目次</a>
     <a href="pvalue-t-chisq.html">P値、t値、t分布、カイ二乗分布 →</a>
   </nav>
     </main>
+    <script src="regression-quiz.js"></script>
   </body>
 </html>

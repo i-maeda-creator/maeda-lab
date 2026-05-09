@@ -45,6 +45,75 @@ const figureNotes = {
   "06_squared_deviations.svg": "横軸はデータ値、縦軸は平均との差の2乗。平均から遠い値ほど大きく効く。",
 };
 
+const quizzes = {
+  "01_regression_ols.md": {
+    question: "最小二乗法が最小にしようとしているものはどれですか？",
+    choices: [
+      "残差の合計",
+      "残差の2乗の合計",
+      "説明変数の平均",
+      "契約数の最大値",
+    ],
+    answer: 1,
+    explanation: "残差はプラスとマイナスで打ち消し合うため、2乗して合計したものを最小にする直線を選びます。",
+  },
+  "02_standardized_coefficients.md": {
+    question: "標準化回帰係数を見る主な目的はどれですか？",
+    choices: [
+      "単位が違う説明変数の影響を比べやすくする",
+      "回帰式の切片を必ず0にする",
+      "p値を計算しないで済ませる",
+      "外れ値を自動で削除する",
+    ],
+    answer: 0,
+    explanation: "標準化すると平均0・標準偏差1の尺度にそろうため、単位が違う変数同士を比較しやすくなります。",
+  },
+  "03_error_ranges.md": {
+    question: "一般に、信頼区間と予測区間ではどちらが広くなりやすいですか？",
+    choices: [
+      "信頼区間",
+      "予測区間",
+      "必ず同じ幅",
+      "標本数と無関係に決まる",
+    ],
+    answer: 1,
+    explanation: "予測区間は新しい1人のばらつきまで含むため、平均の推定範囲である信頼区間より広くなりやすいです。",
+  },
+  "04_residual_diagnostics.md": {
+    question: "残差分析でまず見たいこととして最も近いものはどれですか？",
+    choices: [
+      "残差に規則的な形が出ていないか",
+      "説明変数の単位が全部同じか",
+      "R²が必ず1に近いか",
+      "係数がすべて正か",
+    ],
+    answer: 0,
+    explanation: "残差が0の周りにランダムに散っているかを見ます。規則的な形があると、モデルが何かを見落としている可能性があります。",
+  },
+  "05_r2_adjusted_r2.md": {
+    question: "自由度調整済みR²値が必要になる理由はどれですか？",
+    choices: [
+      "説明変数を増やすだけでR²が上がりやすいから",
+      "R²は必ずマイナスになるから",
+      "残差分析が不要になるから",
+      "目的変数の単位を消すため",
+    ],
+    answer: 0,
+    explanation: "R²は説明変数を追加すると下がりにくいため、変数を増やしたコストも考える調整済みR²が役立ちます。",
+  },
+  "06_pvalue_t_chisq.md": {
+    question: "回帰係数のt値は、ざっくり何を表しますか？",
+    choices: [
+      "係数が標準誤差の何個分だけ0から離れているか",
+      "目的変数の平均値",
+      "説明変数の個数",
+      "残差の最大値",
+    ],
+    answer: 0,
+    explanation: "t値は 推定された係数 / 係数の標準誤差 です。0からどれくらい離れているかを標準誤差単位で見ます。",
+  },
+};
+
 fs.mkdirSync(outRoot, { recursive: true });
 fs.mkdirSync(figureOut, { recursive: true });
 
@@ -162,6 +231,21 @@ function parseMarkdown(markdown) {
   return html.join("\n");
 }
 
+function quizHtml(file) {
+  const quiz = quizzes[file];
+  if (!quiz) return "";
+  return `<section class="lesson-quiz" data-answer="${quiz.answer}">
+    <p class="quiz-kicker">Check</p>
+    <h2>まとめテスト</h2>
+    <p class="quiz-question">${inline(quiz.question)}</p>
+    <div class="quiz-choices">
+      ${quiz.choices.map((choice, index) => `<button type="button" data-choice="${index}">${inline(choice)}</button>`).join("")}
+    </div>
+    <p class="quiz-result" aria-live="polite"></p>
+    <p class="quiz-explanation" hidden>${inline(quiz.explanation)}</p>
+  </section>`;
+}
+
 function layout({ title, body, nav = "" }) {
   return `<!doctype html>
 <html lang="ja">
@@ -185,6 +269,7 @@ function layout({ title, body, nav = "" }) {
       ${body}
       ${nav}
     </main>
+    <script src="regression-quiz.js"></script>
   </body>
 </html>`;
 }
@@ -222,6 +307,6 @@ for (let index = 0; index < lessons.length; index++) {
     <a href="./">目次</a>
     ${next ? `<a href="${slugFromFile(next[0])}.html">${escapeHtml(next[1])} →</a>` : "<span></span>"}
   </nav>`;
-  const body = `<article class="lesson-article">${content}</article>`;
+  const body = `<article class="lesson-article">${content}${quizHtml(file)}</article>`;
   fs.writeFileSync(path.join(outRoot, `${slugFromFile(file)}.html`), layout({ title: shortTitle, body, nav }), "utf8");
 }
