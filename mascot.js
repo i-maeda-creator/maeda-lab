@@ -2,7 +2,6 @@ const mascot = document.querySelector(".lab-girl");
 
 if (mascot) {
   const turn = mascot.querySelector(".lab-girl__turn");
-  const image = mascot.querySelector(".lab-girl__image");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const state = {
     paused: reduceMotion.matches,
@@ -14,24 +13,14 @@ if (mascot) {
     scale: 1,
   };
 
-  if (image) {
-    image.addEventListener("load", () => {
-      mascot.classList.add("has-image");
-    });
-    image.addEventListener("error", () => {
-      mascot.classList.remove("has-image");
-    });
-  }
-
   function scale() {
     return window.innerWidth <= 760 ? 0.82 : 1;
   }
 
   function mascotSize(s) {
-    const imageLoaded = mascot.classList.contains("has-image");
     return {
-      width: (imageLoaded ? 112 : 108) * s,
-      height: (imageLoaded ? 168 : 122) * s,
+      width: 132 * s,
+      height: 154 * s,
     };
   }
 

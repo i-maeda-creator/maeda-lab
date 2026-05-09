@@ -279,7 +279,7 @@ a {
 }
 
 .lab-girl__image {
-  clip-path: inset(16% 23% 12% 22% round 22px);
+  clip-path: inset(12% 20% 28% 20% round 22px);
   display: none;
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
   height: 270px;
@@ -297,8 +297,8 @@ a {
 }
 
 .lab-girl.has-image {
-  height: 168px;
-  width: 112px;
+  height: 178px;
+  width: 122px;
 }
 
 .lab-girl.has-image .lab-girl__image {
@@ -310,9 +310,9 @@ a {
 }
 
 .lab-girl.has-image .lab-girl__shadow {
-  bottom: -5px;
-  left: 18px;
-  width: 78px;
+  bottom: -6px;
+  left: 20px;
+  width: 82px;
 }
 
 .lab-girl:hover .lab-girl__body,
@@ -322,12 +322,166 @@ a {
 
 .lab-girl:hover .lab-girl__image,
 .lab-girl.is-paused .lab-girl__image {
-  clip-path: inset(0 round 18px);
+  clip-path: inset(0 0 8% 0 round 18px);
   transform: rotate(0deg) scale(1.08);
+}
+
+.lab-girl__image-legs {
+  bottom: 7px;
+  display: none;
+  height: 48px;
+  left: 32px;
+  position: absolute;
+  width: 66px;
+  z-index: 4;
+}
+
+.lab-girl.has-image .lab-girl__image-legs {
+  display: block;
+}
+
+.image-leg {
+  background: #ffd76a;
+  border: 2px solid #1d1d1f;
+  border-radius: 999px;
+  height: 34px;
+  position: absolute;
+  top: 2px;
+  transform-origin: 50% 4px;
+  width: 10px;
+}
+
+.image-leg-left {
+  animation: image-step-left 640ms ease-in-out infinite;
+  left: 17px;
+}
+
+.image-leg-right {
+  animation: image-step-right 640ms ease-in-out infinite;
+  right: 17px;
+}
+
+.image-leg i {
+  background: #f7192f;
+  border: 2px solid #1d1d1f;
+  border-radius: 12px 16px 9px 9px;
+  bottom: -9px;
+  content: "";
+  display: block;
+  height: 15px;
+  position: absolute;
+  right: -9px;
+  width: 26px;
+}
+
+.image-leg i::before {
+  background: #ffffff;
+  border-radius: 999px;
+  content: "";
+  height: 4px;
+  left: 6px;
+  position: absolute;
+  top: 4px;
+  width: 11px;
+}
+
+.lab-girl:hover .image-leg,
+.lab-girl.is-paused .image-leg {
+  animation-play-state: paused;
+}
+
+.lab-girl:hover .image-leg-left,
+.lab-girl.is-paused .image-leg-left {
+  transform: rotate(-6deg) translateY(-2px);
+}
+
+.lab-girl:hover .image-leg-right,
+.lab-girl.is-paused .image-leg-right {
+  transform: rotate(6deg) translateY(-2px);
 }
 
 .lab-girl.has-image .lab-girl__orbit {
   display: none;
+}
+
+.lab-girl__expression {
+  display: none;
+  height: 48px;
+  left: 42px;
+  pointer-events: none;
+  position: absolute;
+  top: 48px;
+  width: 58px;
+  z-index: 5;
+}
+
+.lab-girl.has-image .lab-girl__expression {
+  display: block;
+}
+
+.expression {
+  position: absolute;
+}
+
+.expression-smile {
+  animation: expression-smile 1280ms steps(1, end) infinite;
+  background: #ffffff;
+  border: 2px solid #1d1d1f;
+  border-radius: 0 0 999px 999px;
+  height: 11px;
+  left: 20px;
+  opacity: 0;
+  top: 31px;
+  width: 18px;
+}
+
+.expression-smile::before {
+  background: #ff5b45;
+  border-radius: 0 0 999px 999px;
+  bottom: 0;
+  content: "";
+  height: 6px;
+  left: 4px;
+  position: absolute;
+  width: 8px;
+}
+
+.expression-wink {
+  animation: expression-wink 1280ms steps(1, end) infinite;
+  border-top: 3px solid #1d1d1f;
+  border-radius: 999px;
+  height: 8px;
+  left: 8px;
+  opacity: 0;
+  top: 16px;
+  transform: rotate(-8deg);
+  width: 18px;
+}
+
+.expression-spark {
+  animation: expression-spark 1280ms steps(1, end) infinite;
+  color: #ff4f8b;
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  opacity: 0;
+  right: -6px;
+  text-shadow: 0 2px 0 #ffffff;
+  top: -2px;
+}
+
+.lab-girl:hover .expression-smile,
+.lab-girl.is-paused .expression-smile,
+.lab-girl:hover .expression-spark,
+.lab-girl.is-paused .expression-spark {
+  animation: none;
+  opacity: 1;
+}
+
+.lab-girl:hover .expression-wink,
+.lab-girl.is-paused .expression-wink {
+  animation: none;
+  opacity: 0;
 }
 
 .lab-girl__orbit {
@@ -748,9 +902,90 @@ a {
   }
 }
 
+@keyframes image-step-left {
+  0%,
+  100% {
+    transform: rotate(20deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(-28deg) translateY(-7px);
+  }
+}
+
+@keyframes image-step-right {
+  0%,
+  100% {
+    transform: rotate(-28deg) translateY(-7px);
+  }
+
+  50% {
+    transform: rotate(20deg) translateY(0);
+  }
+}
+
+@keyframes expression-smile {
+  0%,
+  49% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  50%,
+  74% {
+    opacity: 0;
+  }
+
+  75%,
+  100% {
+    opacity: 1;
+    transform: scaleX(1.2);
+  }
+}
+
+@keyframes expression-wink {
+  0%,
+  49% {
+    opacity: 0;
+  }
+
+  50%,
+  74% {
+    opacity: 1;
+  }
+
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes expression-spark {
+  0%,
+  24% {
+    opacity: 0;
+    transform: translateY(0) rotate(-8deg);
+  }
+
+  25%,
+  49% {
+    opacity: 1;
+    transform: translateY(-4px) rotate(8deg);
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lab-girl,
   .lab-girl__body,
+  .image-leg,
+  .expression-smile,
+  .expression-wink,
+  .expression-spark,
   .leg-left,
   .leg-right {
     animation: none;
@@ -812,5 +1047,313 @@ a {
     bottom: 12px;
     transform-origin: bottom left;
     --mascot-scale: 0.82;
+  }
+}
+
+/* Handmade mascot based on the lab character reference. */
+.lab-girl {
+  height: 154px;
+  transform-origin: 78px 77px;
+  width: 132px;
+}
+
+.handmade-mascot {
+  display: block;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
+  height: 154px;
+  left: -23px;
+  overflow: visible;
+  position: absolute;
+  top: -34px;
+  width: 132px;
+  z-index: 4;
+}
+
+.hm-shadow {
+  fill: rgba(0, 0, 0, 0.18);
+}
+
+.hm-hair-back path,
+.hm-hair-front path {
+  fill: #3322a8;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-face {
+  fill: #ffd9c2;
+  stroke: #1d1d1f;
+  stroke-width: 3;
+}
+
+.hm-cap-main,
+.hm-cap-brim {
+  fill: #f7242f;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-cap-label {
+  fill: #1d1d1f;
+  stroke: #ffffff;
+  stroke-width: 3;
+}
+
+.hm-cap text {
+  fill: #ffe34f;
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.hm-wing {
+  fill: #ffffff;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-glasses circle,
+.hm-glasses path {
+  fill: none;
+  stroke: #f7242f;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.hm-eyes ellipse {
+  fill: #5d2ad6;
+  stroke: #1d1d1f;
+  stroke-width: 3;
+}
+
+.hm-eyes circle {
+  fill: #ffffff;
+}
+
+.hm-mouth-open {
+  animation: hm-mouth-open 1280ms steps(1, end) infinite;
+  fill: #e83328;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-mouth-smile,
+.hm-wink {
+  animation: hm-mouth-smile 1280ms steps(1, end) infinite;
+  fill: none;
+  stroke: #1d1d1f;
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.hm-wink {
+  animation-name: hm-wink;
+}
+
+.hm-cheek {
+  fill: rgba(255, 99, 110, 0.35);
+}
+
+.hm-shirt {
+  fill: #f7242f;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-overall,
+.hm-pocket {
+  fill: #1168d8;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-body circle {
+  fill: #ffd632;
+  stroke: #1d1d1f;
+  stroke-width: 3;
+}
+
+.hm-arm path,
+.hm-arm circle {
+  fill: none;
+  stroke: #1d1d1f;
+  stroke-linecap: round;
+  stroke-width: 10;
+}
+
+.hm-arm circle {
+  fill: #ffd9c2;
+  stroke-width: 3;
+}
+
+.hm-pencil {
+  transform-origin: 128px 104px;
+}
+
+.hm-pencil-body {
+  fill: #f5ad18;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-pencil-wood {
+  fill: #ffd47a;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-pencil-tip {
+  fill: #1d1d1f;
+}
+
+.hm-pencil-eraser {
+  fill: #ff5d6c;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-pencil-band {
+  fill: none;
+  stroke: #d8d8dc;
+  stroke-linecap: round;
+  stroke-width: 6;
+}
+
+.hm-leg {
+  transform-origin: 90px 143px;
+}
+
+.hm-leg path:first-child {
+  fill: none;
+  stroke: #ffd76a;
+  stroke-linecap: round;
+  stroke-width: 10;
+}
+
+.hm-shoe {
+  fill: #f7242f;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-leg-front {
+  animation: hm-leg-front 640ms ease-in-out infinite;
+}
+
+.hm-leg-back {
+  animation: hm-leg-back 640ms ease-in-out infinite;
+}
+
+.hm-head {
+  animation: hm-head-bounce 1280ms ease-in-out infinite;
+  transform-origin: 91px 70px;
+}
+
+.lab-girl:hover .hm-leg,
+.lab-girl.is-paused .hm-leg,
+.lab-girl:hover .hm-head,
+.lab-girl.is-paused .hm-head,
+.lab-girl:hover .hm-mouth-open,
+.lab-girl.is-paused .hm-mouth-open,
+.lab-girl:hover .hm-mouth-smile,
+.lab-girl.is-paused .hm-mouth-smile,
+.lab-girl:hover .hm-wink,
+.lab-girl.is-paused .hm-wink {
+  animation-play-state: paused;
+}
+
+.lab-girl:hover .hm-mouth-open,
+.lab-girl.is-paused .hm-mouth-open,
+.lab-girl:hover .hm-wink,
+.lab-girl.is-paused .hm-wink {
+  opacity: 0;
+}
+
+.lab-girl:hover .hm-mouth-smile,
+.lab-girl.is-paused .hm-mouth-smile {
+  opacity: 1;
+}
+
+@keyframes hm-leg-front {
+  0%,
+  100% {
+    transform: rotate(18deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(-22deg) translateY(-8px);
+  }
+}
+
+@keyframes hm-leg-back {
+  0%,
+  100% {
+    transform: rotate(-22deg) translateY(-8px);
+  }
+
+  50% {
+    transform: rotate(18deg) translateY(0);
+  }
+}
+
+@keyframes hm-head-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-3px) rotate(1deg);
+  }
+}
+
+@keyframes hm-mouth-open {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hm-mouth-smile {
+  0%,
+  49% {
+    opacity: 0;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hm-wink {
+  0%,
+  66% {
+    opacity: 0;
+  }
+
+  67%,
+  82% {
+    opacity: 1;
+  }
+
+  83%,
+  100% {
+    opacity: 0;
   }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Maeda Lab | Notes & Works</title>
     <meta name="description" content="IT, accounting, mathematics, physics, and works by Maeda Lab." />
-    <link rel="stylesheet" href="styles.css?v=20260510-mascot-asset" />
+    <link rel="stylesheet" href="styles.css?v=20260510-handmade-mascot" />
   </head>
   <body>
     <header class="site-header">
@@ -87,29 +87,80 @@
           <span class="orbit-item orbit-globe"></span>
           <span class="orbit-item orbit-folder"></span>
         </div>
-        <img class="lab-girl__image" src="assets/maeda-mascot.png" alt="" />
-        <div class="lab-girl__shadow"></div>
-        <div class="lab-girl__body">
-        <div class="lab-girl__cap"><span>maeda</span></div>
-        <div class="lab-girl__hair"></div>
-        <div class="lab-girl__head">
-          <span class="lab-girl__glasses left"></span>
-          <span class="lab-girl__glasses right"></span>
-          <span class="lab-girl__bridge"></span>
-          <span class="lab-girl__nose"></span>
-          <span class="lab-girl__cheek left"></span>
-          <span class="lab-girl__cheek right"></span>
-          <span class="lab-girl__smile"></span>
-        </div>
-        <div class="lab-girl__coat"></div>
-        <div class="lab-girl__notebook"></div>
-        <div class="lab-girl__pencil"></div>
-        <span class="lab-girl__leg leg-left"></span>
-        <span class="lab-girl__leg leg-right"></span>
-        </div>
+        <svg class="handmade-mascot" viewBox="0 0 180 210" role="img">
+          <ellipse class="hm-shadow" cx="92" cy="196" rx="50" ry="10" />
+          <g class="hm-hair-back">
+            <path d="M46 70 C24 96 26 150 48 175 C60 188 75 178 72 156 C70 132 65 106 77 72 Z" />
+            <path d="M113 70 C145 94 150 150 127 178 C114 193 98 181 103 158 C109 130 110 101 98 72 Z" />
+          </g>
+          <g class="hm-leg hm-leg-back">
+            <path d="M103 143 L116 174" />
+            <path class="hm-shoe" d="M106 174 C120 174 130 181 129 190 C114 193 101 190 96 184 C96 178 100 175 106 174 Z" />
+          </g>
+          <g class="hm-leg hm-leg-front">
+            <path d="M76 143 L63 174" />
+            <path class="hm-shoe" d="M56 174 C72 174 81 181 79 190 C64 194 49 190 45 183 C46 177 50 174 56 174 Z" />
+          </g>
+          <g class="hm-body">
+            <path class="hm-shirt" d="M61 94 C75 86 104 86 118 96 L111 134 C99 146 78 146 66 134 Z" />
+            <path class="hm-overall" d="M67 108 L112 108 L108 151 L70 151 Z" />
+            <path class="hm-pocket" d="M82 124 L98 124 L96 138 L84 138 Z" />
+            <circle cx="74" cy="111" r="5" />
+            <circle cx="105" cy="111" r="5" />
+          </g>
+          <g class="hm-arm hm-arm-left">
+            <path d="M64 101 C44 112 34 126 31 142" />
+            <circle cx="31" cy="143" r="7" />
+          </g>
+          <g class="hm-pencil">
+            <path class="hm-pencil-body" d="M98 133 L148 68 L163 78 L113 145 Z" />
+            <path class="hm-pencil-wood" d="M98 133 L88 154 L113 145 Z" />
+            <path class="hm-pencil-tip" d="M88 154 L82 167 L98 161 Z" />
+            <path class="hm-pencil-eraser" d="M148 68 L158 56 L174 66 L163 78 Z" />
+            <path class="hm-pencil-band" d="M143 75 L158 86" />
+          </g>
+          <g class="hm-arm hm-arm-right">
+            <path d="M114 101 C128 107 136 114 143 126" />
+            <circle cx="143" cy="126" r="8" />
+          </g>
+          <g class="hm-head">
+            <path class="hm-face" d="M49 60 C51 35 72 22 95 24 C121 26 137 43 134 69 C131 96 110 109 86 106 C62 103 47 86 49 60 Z" />
+            <g class="hm-hair-front">
+              <path d="M54 58 C62 42 74 34 93 34 C86 48 77 54 63 58 Z" />
+              <path d="M81 34 C95 34 109 39 124 52 C106 52 94 47 81 34 Z" />
+              <path d="M67 43 C72 63 67 75 54 87 C53 67 57 52 67 43 Z" />
+            </g>
+            <g class="hm-glasses">
+              <circle cx="74" cy="69" r="16" />
+              <circle cx="111" cy="69" r="16" />
+              <path d="M90 68 L95 68" />
+            </g>
+            <g class="hm-eyes">
+              <ellipse cx="76" cy="70" rx="7" ry="11" />
+              <ellipse cx="109" cy="70" rx="7" ry="11" />
+              <circle cx="79" cy="65" r="3" />
+              <circle cx="112" cy="65" r="3" />
+            </g>
+            <g class="hm-expression">
+              <path class="hm-mouth-open" d="M84 86 C91 97 103 95 108 85 C101 89 91 89 84 86 Z" />
+              <path class="hm-mouth-smile" d="M84 87 C92 93 101 93 109 87" />
+              <path class="hm-wink" d="M68 69 C73 65 80 65 85 69" />
+              <circle class="hm-cheek left" cx="60" cy="84" r="6" />
+              <circle class="hm-cheek right" cx="121" cy="84" r="6" />
+            </g>
+          </g>
+          <g class="hm-cap">
+            <path class="hm-cap-main" d="M42 47 C61 16 125 15 145 47 C118 38 70 38 42 47 Z" />
+            <path class="hm-cap-brim" d="M35 58 C63 46 121 45 153 57 C122 68 66 68 35 58 Z" />
+            <rect class="hm-cap-label" x="67" y="28" width="55" height="25" rx="9" />
+            <text x="94" y="47" text-anchor="middle">LAB</text>
+            <path class="hm-wing left" d="M38 42 C24 33 18 45 22 58 C12 56 7 66 17 75 C26 82 38 73 43 59 Z" />
+            <path class="hm-wing right" d="M145 43 C162 34 169 47 162 61 C174 58 178 69 167 78 C157 85 146 74 141 60 Z" />
+          </g>
+        </svg>
       </div>
     </div>
 
-    <script src="mascot.js?v=20260510-mascot-asset"></script>
+    <script src="mascot.js?v=20260510-handmade-mascot"></script>
   </body>
 </html>
