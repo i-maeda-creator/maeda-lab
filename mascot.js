@@ -5,6 +5,7 @@ if (mascot) {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const state = {
     paused: reduceMotion.matches,
+    falling: false,
     startedAt: performance.now(),
     pausedAt: 0,
     x: 18,
@@ -92,14 +93,77 @@ if (mascot) {
     }
   }
 
+  function isOnTopEdge() {
+    return state.y < 90 && Math.abs(Math.abs(state.rotation) - 180) < 38;
+  }
+
+  function fallFromTop() {
+    if (state.falling || reduceMotion.matches) return;
+    state.falling = true;
+    state.paused = true;
+    mascot.classList.remove("is-paused");
+    mascot.classList.add("is-falling");
+
+    const start = performance.now();
+    const duration = 920;
+    const s = state.scale;
+    const { height } = mascotSize(s);
+    const from = { x: state.x, y: state.y, rotation: state.rotation };
+    const toY = window.innerHeight - height - 18;
+    const toX = Math.min(Math.max(18, state.x + 22), window.innerWidth - 132 * s - 18);
+
+    function animateFall(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = t * t;
+      const bounce = Math.sin(t * Math.PI) * 34;
+      const point = {
+        x: from.x + (toX - from.x) * t,
+        y: from.y + (toY - from.y) * eased - bounce,
+        rotation: from.rotation + 540 * t,
+        scale: s,
+      };
+      place(point);
+
+      if (t < 1) {
+        requestAnimationFrame(animateFall);
+        return;
+      }
+
+      mascot.classList.remove("is-falling");
+      mascot.classList.add("is-crashed");
+      place({ x: toX, y: toY, rotation: 88, scale: s });
+
+      setTimeout(() => {
+        mascot.classList.remove("is-crashed");
+        mascot.classList.add("is-crying");
+        place({ x: toX, y: toY, rotation: 0, scale: s }, true);
+
+        setTimeout(() => {
+          mascot.classList.remove("is-crying");
+          state.falling = false;
+          state.paused = reduceMotion.matches;
+          state.startedAt = performance.now();
+          if (state.paused) mascot.classList.add("is-paused");
+        }, 1500);
+      }, 720);
+    }
+
+    requestAnimationFrame(animateFall);
+  }
+
   function tick(time) {
-    if (!state.paused && !reduceMotion.matches) {
+    if (!state.paused && !state.falling && !reduceMotion.matches) {
       place(pathPoint(time));
     }
     requestAnimationFrame(tick);
   }
 
   mascot.addEventListener("mouseenter", () => {
+    if (isOnTopEdge()) {
+      fallFromTop();
+      return;
+    }
+    if (state.falling) return;
     state.paused = true;
     state.pausedAt = performance.now();
     mascot.classList.add("is-paused");
@@ -107,6 +171,7 @@ if (mascot) {
   });
 
   mascot.addEventListener("mouseleave", () => {
+    if (state.falling) return;
     state.paused = reduceMotion.matches;
     state.startedAt += performance.now() - state.pausedAt;
     mascot.classList.remove("is-paused");

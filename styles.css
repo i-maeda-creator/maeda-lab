@@ -1158,6 +1158,13 @@ a {
   fill: rgba(255, 99, 110, 0.35);
 }
 
+.hm-tear {
+  fill: #6ecbff;
+  opacity: 0;
+  stroke: #1d1d1f;
+  stroke-width: 1.4;
+}
+
 .hm-shirt {
   fill: #f7242f;
   stroke: #1d1d1f;
@@ -1284,6 +1291,48 @@ a {
   opacity: 1;
 }
 
+.lab-girl.is-falling .hm-leg,
+.lab-girl.is-crashed .hm-leg,
+.lab-girl.is-crying .hm-leg,
+.lab-girl.is-falling .hm-head,
+.lab-girl.is-crashed .hm-head,
+.lab-girl.is-crying .hm-head,
+.lab-girl.is-falling .hm-mouth-open,
+.lab-girl.is-crashed .hm-mouth-open,
+.lab-girl.is-crying .hm-mouth-open,
+.lab-girl.is-falling .hm-mouth-smile,
+.lab-girl.is-crashed .hm-mouth-smile,
+.lab-girl.is-crying .hm-mouth-smile,
+.lab-girl.is-falling .hm-wink,
+.lab-girl.is-crashed .hm-wink,
+.lab-girl.is-crying .hm-wink {
+  animation-play-state: paused;
+}
+
+.lab-girl.is-falling .hm-mouth-open,
+.lab-girl.is-crashed .hm-mouth-open,
+.lab-girl.is-crying .hm-mouth-open {
+  opacity: 1;
+}
+
+.lab-girl.is-falling .hm-mouth-smile,
+.lab-girl.is-crashed .hm-mouth-smile,
+.lab-girl.is-crying .hm-mouth-smile,
+.lab-girl.is-falling .hm-wink,
+.lab-girl.is-crashed .hm-wink,
+.lab-girl.is-crying .hm-wink {
+  opacity: 0;
+}
+
+.lab-girl.is-crying .hm-tear {
+  animation: hm-tear-drop 520ms ease-in-out infinite alternate;
+  opacity: 1;
+}
+
+.lab-girl.is-crying .hm-head {
+  animation: hm-cry-shake 240ms ease-in-out infinite;
+}
+
 @keyframes hm-leg-front {
   0%,
   100% {
@@ -1355,5 +1404,26 @@ a {
   83%,
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes hm-tear-drop {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes hm-cry-shake {
+  0%,
+  100% {
+    transform: translateX(-1px) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateX(1px) rotate(2deg);
   }
 }
