@@ -10,6 +10,7 @@ if (mascot) {
     falling: false,
     writing: false,
     speeding: false,
+    magic: false,
     speed: 1,
     typeTimer: 0,
     startedAt: performance.now(),
@@ -38,6 +39,12 @@ if (mascot) {
 
   function ease(t) {
     return t * t * (3 - 2 * t);
+  }
+
+  function easeOutBack(t) {
+    const c1 = 1.70158;
+    const c3 = c1 + 1;
+    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
   }
 
   function setSpeed(nextSpeed) {
@@ -115,6 +122,10 @@ if (mascot) {
     return state.y > 92 && Math.abs(Math.abs(state.rotation) - 90) < 38;
   }
 
+  function isOnLeftSideEdge() {
+    return state.x < 48 && state.y > 92 && Math.abs(state.rotation - 90) < 38;
+  }
+
   function isOnBottomEdge() {
     const s = state.scale;
     const { height } = mascotSize(s);
@@ -130,7 +141,7 @@ if (mascot) {
   }
 
   function writeNiceMessage() {
-    if (state.writing || state.falling || reduceMotion.matches) return;
+    if (state.writing || state.falling || state.magic || reduceMotion.matches) return;
     state.writing = true;
     state.paused = true;
     state.pausedAt = performance.now();
@@ -161,7 +172,7 @@ if (mascot) {
   }
 
   function speedUpAndDropPencil() {
-    if (state.speeding || state.falling || state.writing || reduceMotion.matches) return;
+    if (state.speeding || state.falling || state.writing || state.magic || reduceMotion.matches) return;
     state.speeding = true;
     setSpeed(3.8);
     mascot.classList.add("is-speeding");
@@ -233,8 +244,141 @@ if (mascot) {
     requestAnimationFrame(animateFall);
   }
 
+  function landingPoint() {
+    const s = state.scale;
+    const { width, height } = mascotSize(s);
+    const heroTitle = document.querySelector(".hero h1");
+    const brand = document.querySelector(".brand");
+    const target = heroTitle && heroTitle.getBoundingClientRect().top > -20
+      ? heroTitle
+      : brand;
+    const rect = target.getBoundingClientRect();
+    const letterX = rect.left + Math.min(rect.width * 0.06, 34);
+    const letterTop = rect.top + Math.min(rect.height * 0.18, 18);
+    return {
+      x: Math.min(Math.max(8, letterX - width * 0.42), window.innerWidth - width - 8),
+      y: Math.min(Math.max(8, letterTop - height + 12), window.innerHeight - height - 18),
+      scale: s,
+    };
+  }
+
+  function magicFlightFromLeft() {
+    if (state.magic || state.falling || state.writing || state.speeding || reduceMotion.matches) return;
+    clearWriting();
+    state.magic = true;
+    state.paused = true;
+    mascot.classList.remove("is-paused", "is-crying", "is-crashed", "is-falling");
+    mascot.classList.add("is-magic-flying");
+
+    const start = performance.now();
+    const s = state.scale;
+    const { height } = mascotSize(s);
+    const from = { x: state.x, y: state.y };
+    const land = landingPoint();
+    const centerX = window.innerWidth * 0.52;
+    const centerY = Math.max(92, window.innerHeight * 0.37);
+    const radiusX = Math.max(150, window.innerWidth * 0.34);
+    const radiusY = Math.max(86, window.innerHeight * 0.22);
+    const liftDuration = 900;
+    const loopDuration = 1850;
+    const landDuration = 780;
+    const total = liftDuration + loopDuration + landDuration;
+
+    function fly(now) {
+      const elapsed = now - start;
+
+      if (elapsed < liftDuration) {
+        const t = ease(elapsed / liftDuration);
+        const wave = Math.sin(t * Math.PI * 2) * 18;
+        place({
+          x: from.x + (window.innerWidth * 0.16 - from.x) * t + wave,
+          y: from.y - Math.min(210, from.y - 28) * t - Math.sin(t * Math.PI) * 52,
+          rotation: 55 - 34 * t,
+          scale: s,
+        });
+        requestAnimationFrame(fly);
+        return;
+      }
+
+      if (elapsed < liftDuration + loopDuration) {
+        const t = (elapsed - liftDuration) / loopDuration;
+        const angle = Math.PI * 1.18 + Math.PI * 2.05 * t;
+        const wobble = Math.sin(t * Math.PI * 8) * 10;
+        place({
+          x: centerX + Math.cos(angle) * radiusX - 66 * s,
+          y: centerY + Math.sin(angle) * radiusY - height * 0.54 + wobble,
+          rotation: 22 + Math.cos(angle) * 18,
+          scale: s,
+        });
+        requestAnimationFrame(fly);
+        return;
+      }
+
+      const t = Math.min(1, (elapsed - liftDuration - loopDuration) / landDuration);
+      const eased = easeOutBack(t);
+      const currentAngle = Math.PI * 1.18 + Math.PI * 2.05;
+      const sx = centerX + Math.cos(currentAngle) * radiusX - 66 * s;
+      const sy = centerY + Math.sin(currentAngle) * radiusY - height * 0.54;
+      place({
+        x: sx + (land.x - sx) * eased,
+        y: sy + (land.y - sy) * ease(t) - Math.sin(t * Math.PI) * 38,
+        rotation: angleBetween(18, 0, ease(t)),
+        scale: s,
+      }, t > 0.86);
+
+      if (t < 1) {
+        requestAnimationFrame(fly);
+        return;
+      }
+
+      place({ x: land.x, y: land.y, rotation: 0, scale: s }, true);
+      mascot.classList.remove("is-magic-flying");
+      mascot.classList.add("is-waving");
+
+      window.setTimeout(() => {
+        mascot.classList.remove("is-waving");
+        mascot.classList.add("is-jumping");
+        const jumpStart = performance.now();
+        const bottomY = window.innerHeight - height - 18;
+        const startPoint = { x: land.x, y: land.y };
+        const jumpX = Math.min(window.innerWidth - 132 * s - 18, land.x + 96);
+
+        function jump(nowJump) {
+          const jumpT = Math.min(1, (nowJump - jumpStart) / 820);
+          place({
+            x: startPoint.x + (jumpX - startPoint.x) * jumpT,
+            y: startPoint.y + (bottomY - startPoint.y) * (jumpT * jumpT) - Math.sin(jumpT * Math.PI) * 58,
+            rotation: 24 + 250 * jumpT,
+            scale: s,
+          });
+
+          if (jumpT < 1) {
+            requestAnimationFrame(jump);
+            return;
+          }
+
+          mascot.classList.remove("is-jumping");
+          mascot.classList.add("is-laughing");
+          place({ x: jumpX, y: bottomY, rotation: 88, scale: s });
+
+          window.setTimeout(() => {
+            mascot.classList.remove("is-laughing");
+            state.magic = false;
+            state.paused = reduceMotion.matches;
+            state.startedAt = performance.now();
+            if (state.paused) mascot.classList.add("is-paused");
+          }, 1700);
+        }
+
+        requestAnimationFrame(jump);
+      }, 1050);
+    }
+
+    requestAnimationFrame(fly);
+  }
+
   function tick(time) {
-    if (!state.paused && !state.falling && !state.writing && !reduceMotion.matches) {
+    if (!state.paused && !state.falling && !state.writing && !state.magic && !reduceMotion.matches) {
       place(pathPoint(time));
     }
     requestAnimationFrame(tick);
@@ -245,6 +389,10 @@ if (mascot) {
       fallFromTop();
       return;
     }
+    if (isOnLeftSideEdge()) {
+      magicFlightFromLeft();
+      return;
+    }
     if (isOnSideEdge()) {
       writeNiceMessage();
       return;
@@ -253,7 +401,7 @@ if (mascot) {
       speedUpAndDropPencil();
       return;
     }
-    if (state.falling || state.writing || state.speeding) return;
+    if (state.falling || state.writing || state.speeding || state.magic) return;
     state.paused = true;
     state.pausedAt = performance.now();
     mascot.classList.add("is-paused");
@@ -261,7 +409,7 @@ if (mascot) {
   });
 
   mascot.addEventListener("mouseleave", () => {
-    if (state.falling || state.speeding) return;
+    if (state.falling || state.speeding || state.magic) return;
     if (state.writing) return;
     state.paused = reduceMotion.matches;
     state.startedAt += performance.now() - state.pausedAt;

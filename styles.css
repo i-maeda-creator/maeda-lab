@@ -1129,6 +1129,105 @@ a {
   width: 118px;
 }
 
+.lab-girl__magic-trail {
+  inset: -26px -38px -18px -48px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: scale(0.85);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.lab-girl__magic-trail span {
+  background: radial-gradient(circle, #fff 0 18%, #77d8ff 20% 42%, rgba(130, 100, 255, 0) 72%);
+  border-radius: 999px;
+  filter: drop-shadow(0 0 10px rgba(0, 122, 255, 0.72));
+  height: 18px;
+  position: absolute;
+  width: 18px;
+}
+
+.lab-girl__magic-trail span:nth-child(1) {
+  animation: hm-magic-spark 820ms ease-in-out infinite;
+  left: 18px;
+  top: 106px;
+}
+
+.lab-girl__magic-trail span:nth-child(2) {
+  animation: hm-magic-spark 920ms 120ms ease-in-out infinite;
+  left: 58px;
+  top: 34px;
+}
+
+.lab-girl__magic-trail span:nth-child(3) {
+  animation: hm-magic-spark 760ms 220ms ease-in-out infinite;
+  right: 22px;
+  top: 76px;
+}
+
+.lab-girl.is-magic-flying .lab-girl__magic-trail,
+.lab-girl.is-jumping .lab-girl__magic-trail {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lab-girl.is-magic-flying .hm-pencil {
+  animation: hm-wand-glow 520ms ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 7px rgba(0, 122, 255, 0.74)) drop-shadow(0 0 16px rgba(255, 214, 90, 0.65));
+}
+
+.lab-girl.is-magic-flying .hm-pencil-body {
+  fill: #ffe36f;
+}
+
+.lab-girl.is-magic-flying .hm-pencil-eraser {
+  fill: #7dc7ff;
+}
+
+.lab-girl.is-magic-flying .hm-leg {
+  animation: hm-fly-leg 620ms ease-in-out infinite alternate;
+}
+
+.lab-girl.is-magic-flying .hm-head {
+  animation: hm-fly-head 640ms ease-in-out infinite;
+}
+
+.lab-girl.is-waving .hm-arm-left {
+  animation: hm-wave-arm 360ms ease-in-out infinite alternate;
+  transform-origin: 64px 101px;
+}
+
+.lab-girl.is-waving .hm-mouth-open,
+.lab-girl.is-laughing .hm-mouth-open {
+  opacity: 1;
+}
+
+.lab-girl.is-waving .hm-mouth-smile,
+.lab-girl.is-waving .hm-wink,
+.lab-girl.is-laughing .hm-mouth-smile,
+.lab-girl.is-laughing .hm-wink {
+  opacity: 0;
+}
+
+.lab-girl.is-jumping .hm-pencil {
+  animation: hm-wand-glow 420ms ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 7px rgba(0, 122, 255, 0.65));
+}
+
+.lab-girl.is-laughing .hm-head {
+  animation: hm-laugh-head 220ms ease-in-out infinite;
+}
+
+.lab-girl.is-laughing .hm-leg {
+  animation-play-state: paused;
+  transform: rotate(74deg) translate(2px, 2px);
+}
+
+.lab-girl.is-laughing .hm-tear {
+  animation: hm-laugh-tear 620ms ease-in-out infinite alternate;
+  opacity: 1;
+}
+
 .lab-girl.is-speeding .hm-leg {
   animation-duration: 260ms;
   animation-play-state: running !important;
@@ -1429,6 +1528,41 @@ a {
   animation: hm-cry-shake 240ms ease-in-out infinite;
 }
 
+.lab-girl.is-magic-flying .hm-leg,
+.lab-girl.is-magic-flying .hm-head,
+.lab-girl.is-magic-flying .hm-mouth-open,
+.lab-girl.is-magic-flying .hm-mouth-smile,
+.lab-girl.is-magic-flying .hm-wink,
+.lab-girl.is-waving .hm-mouth-open,
+.lab-girl.is-waving .hm-mouth-smile,
+.lab-girl.is-waving .hm-wink,
+.lab-girl.is-jumping .hm-leg,
+.lab-girl.is-jumping .hm-head,
+.lab-girl.is-laughing .hm-head,
+.lab-girl.is-laughing .hm-mouth-open,
+.lab-girl.is-laughing .hm-mouth-smile,
+.lab-girl.is-laughing .hm-wink {
+  animation-play-state: running !important;
+}
+
+.lab-girl.is-magic-flying .hm-mouth-open,
+.lab-girl.is-waving .hm-mouth-open,
+.lab-girl.is-jumping .hm-mouth-open,
+.lab-girl.is-laughing .hm-mouth-open {
+  opacity: 1 !important;
+}
+
+.lab-girl.is-magic-flying .hm-mouth-smile,
+.lab-girl.is-magic-flying .hm-wink,
+.lab-girl.is-waving .hm-mouth-smile,
+.lab-girl.is-waving .hm-wink,
+.lab-girl.is-jumping .hm-mouth-smile,
+.lab-girl.is-jumping .hm-wink,
+.lab-girl.is-laughing .hm-mouth-smile,
+.lab-girl.is-laughing .hm-wink {
+  opacity: 0 !important;
+}
+
 @keyframes hm-leg-front {
   0%,
   100% {
@@ -1510,6 +1644,85 @@ a {
 
   to {
     transform: rotate(5deg) translate(4px, -3px);
+  }
+}
+
+@keyframes hm-magic-spark {
+  0% {
+    opacity: 0.2;
+    transform: translate(0, 0) scale(0.55);
+  }
+
+  45% {
+    opacity: 1;
+    transform: translate(10px, -14px) scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(24px, -28px) scale(0.35);
+  }
+}
+
+@keyframes hm-wand-glow {
+  from {
+    transform: translate(-2px, 1px) rotate(-5deg);
+  }
+
+  to {
+    transform: translate(5px, -4px) rotate(8deg);
+  }
+}
+
+@keyframes hm-fly-leg {
+  from {
+    transform: rotate(54deg) translate(2px, -3px);
+  }
+
+  to {
+    transform: rotate(82deg) translate(5px, 3px);
+  }
+}
+
+@keyframes hm-fly-head {
+  0%,
+  100% {
+    transform: translateY(-2px) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(2px) rotate(3deg);
+  }
+}
+
+@keyframes hm-wave-arm {
+  from {
+    transform: rotate(-18deg) translateY(-2px);
+  }
+
+  to {
+    transform: rotate(30deg) translateY(-8px);
+  }
+}
+
+@keyframes hm-laugh-head {
+  0%,
+  100% {
+    transform: translate(-2px, 1px) rotate(-5deg);
+  }
+
+  50% {
+    transform: translate(2px, -2px) rotate(5deg);
+  }
+}
+
+@keyframes hm-laugh-tear {
+  from {
+    transform: translate(0, 0) scale(0.75);
+  }
+
+  to {
+    transform: translate(4px, 8px) scale(1.05);
   }
 }
 
