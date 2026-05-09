@@ -12,6 +12,7 @@ if (mascot) {
     speeding: false,
     magic: false,
     speed: 1,
+    direction: 1,
     typeTimer: 0,
     startedAt: performance.now(),
     pausedAt: 0,
@@ -64,7 +65,8 @@ if (mascot) {
     const right = window.innerWidth - width + 18;
     const bottom = window.innerHeight - height - inset;
     const duration = 54000 / state.speed;
-    const progress = ((time - state.startedAt) % duration) / duration;
+    const rawProgress = ((time - state.startedAt) % duration) / duration;
+    const progress = state.direction === -1 ? (1 - rawProgress) % 1 : rawProgress;
     const bottomLen = right - left;
     const rightLen = bottom - top;
     const topLen = right;
@@ -77,7 +79,7 @@ if (mascot) {
       const rotation = d > bottomLen * (1 - corner)
         ? angleBetween(0, -90, ease((d - bottomLen * (1 - corner)) / (bottomLen * corner)))
         : 0;
-      return { x: left + d, y: bottom, rotation, scale: s };
+      return orient({ x: left + d, y: bottom, rotation, scale: s });
     }
     d -= bottomLen;
 
@@ -85,7 +87,7 @@ if (mascot) {
       const rotation = d > rightLen * (1 - corner)
         ? angleBetween(-90, 180, ease((d - rightLen * (1 - corner)) / (rightLen * corner)))
         : -90;
-      return { x: right, y: bottom - d, rotation, scale: s };
+      return orient({ x: right, y: bottom - d, rotation, scale: s });
     }
     d -= rightLen;
 
@@ -93,14 +95,52 @@ if (mascot) {
       const rotation = d > topLen * (1 - corner)
         ? angleBetween(180, 90, ease((d - topLen * (1 - corner)) / (topLen * corner)))
         : 180;
-      return { x: right - d, y: top, rotation, scale: s };
+      return orient({ x: right - d, y: top, rotation, scale: s });
     }
     d -= topLen;
 
     const rotation = d > leftLen * (1 - corner)
       ? angleBetween(90, 0, ease((d - leftLen * (1 - corner)) / (leftLen * corner)))
       : 90;
-    return { x: 0, y: top + d, rotation, scale: s };
+    return orient({ x: 0, y: top + d, rotation, scale: s });
+  }
+
+  function orient(point) {
+    if (state.direction === -1) {
+      point.rotation = ((point.rotation + 360) % 360) - 180;
+    }
+    return point;
+  }
+
+  function syncPathTo(point) {
+    const now = performance.now();
+    const s = point.scale || state.scale || scale();
+    const { width, height } = mascotSize(s);
+    const inset = 18;
+    const top = 62;
+    const left = -width - 18;
+    const right = window.innerWidth - width + 18;
+    const bottom = window.innerHeight - height - inset;
+    const bottomLen = right - left;
+    const rightLen = bottom - top;
+    const topLen = right;
+    const leftLen = bottom - top;
+    const total = bottomLen + rightLen + topLen + leftLen;
+    let d;
+
+    if (Math.abs(point.y - bottom) < 54) {
+      d = Math.min(Math.max(point.x - left, 0), bottomLen);
+    } else if (Math.abs(point.x - right) < 54) {
+      d = bottomLen + Math.min(Math.max(bottom - point.y, 0), rightLen);
+    } else if (Math.abs(point.y - top) < 54) {
+      d = bottomLen + rightLen + Math.min(Math.max(right - point.x, 0), topLen);
+    } else {
+      d = bottomLen + rightLen + topLen + Math.min(Math.max(point.y - top, 0), leftLen);
+    }
+
+    const forwardProgress = d / total;
+    const rawProgress = state.direction === -1 ? (1 - forwardProgress) % 1 : forwardProgress;
+    state.startedAt = now - rawProgress * (54000 / state.speed);
   }
 
   function place(point, front = false) {
@@ -115,22 +155,22 @@ if (mascot) {
   }
 
   function isOnTopEdge() {
-    return state.y < 90 && Math.abs(Math.abs(state.rotation) - 180) < 38;
+    return state.y < 90;
   }
 
   function isOnSideEdge() {
-    return state.y > 92 && Math.abs(Math.abs(state.rotation) - 90) < 38;
+    return state.y > 92 && (state.x < 54 || state.x > window.innerWidth - 190);
   }
 
   function isOnLeftSideEdge() {
-    return state.x < 48 && state.y > 92 && Math.abs(state.rotation - 90) < 38;
+    return state.x < 54 && state.y > 92;
   }
 
   function isOnBottomEdge() {
     const s = state.scale;
     const { height } = mascotSize(s);
     const bottom = window.innerHeight - height - 18;
-    return Math.abs(state.y - bottom) < 42 && Math.abs(state.rotation) < 38;
+    return Math.abs(state.y - bottom) < 42;
   }
 
   function clearWriting() {
@@ -235,7 +275,8 @@ if (mascot) {
           mascot.classList.remove("is-crying");
           state.falling = false;
           state.paused = reduceMotion.matches;
-          state.startedAt = performance.now();
+          state.direction *= -1;
+          syncPathTo({ x: toX, y: toY, rotation: 0, scale: s });
           if (state.paused) mascot.classList.add("is-paused");
         }, 1500);
       }, 720);
@@ -357,20 +398,27 @@ if (mascot) {
           }
 
           mascot.classList.remove("is-jumping");
-          mascot.classList.add("is-laughing");
+          mascot.classList.add("is-crashed");
           place({ x: jumpX, y: bottomY, rotation: 88, scale: s });
 
           window.setTimeout(() => {
-            mascot.classList.remove("is-laughing");
-            state.magic = false;
-            state.paused = reduceMotion.matches;
-            state.startedAt = performance.now();
-            if (state.paused) mascot.classList.add("is-paused");
-          }, 1700);
+            mascot.classList.remove("is-crashed");
+            mascot.classList.add("is-laughing");
+            place({ x: jumpX, y: bottomY, rotation: 0, scale: s }, true);
+
+            window.setTimeout(() => {
+              mascot.classList.remove("is-laughing");
+              state.magic = false;
+              state.paused = reduceMotion.matches;
+              state.direction *= -1;
+              syncPathTo({ x: jumpX, y: bottomY, rotation: 0, scale: s });
+              if (state.paused) mascot.classList.add("is-paused");
+            }, 1700);
+          }, 560);
         }
 
         requestAnimationFrame(jump);
-      }, 1450);
+      }, 3000);
     }
 
     requestAnimationFrame(fly);

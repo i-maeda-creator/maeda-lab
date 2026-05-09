@@ -1204,13 +1204,18 @@ a {
 }
 
 .lab-girl.is-waving .hm-arm-left {
-  animation: hm-big-bye-wave 620ms ease-in-out infinite;
-  transform-origin: 64px 101px;
+  opacity: 0;
 }
 
 .lab-girl.is-waving .hm-arm-right {
   animation: hm-support-wave 620ms ease-in-out infinite;
   transform-origin: 114px 101px;
+}
+
+.lab-girl.is-waving .hm-wave-arm {
+  animation: hm-big-bye-wave 720ms ease-in-out infinite;
+  opacity: 1;
+  transform-origin: 62px 100px;
 }
 
 .lab-girl.is-waving .hm-mouth-open,
@@ -1408,6 +1413,40 @@ a {
 .hm-arm circle {
   fill: #ffd9c2;
   stroke-width: 3;
+}
+
+.hm-wave-arm {
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: 62px 100px;
+}
+
+.hm-wave-sleeve {
+  fill: none;
+  stroke: #f7242f;
+  stroke-linecap: round;
+  stroke-width: 13;
+}
+
+.hm-wave-forearm {
+  fill: none;
+  stroke: #ffd9c2;
+  stroke-linecap: round;
+  stroke-width: 12;
+}
+
+.hm-wave-palm {
+  fill: #ffd9c2;
+  stroke: #1d1d1f;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.hm-wave-fingers {
+  fill: none;
+  stroke: #1d1d1f;
+  stroke-linecap: round;
+  stroke-width: 2;
 }
 
 .hm-pencil {
@@ -1743,13 +1782,20 @@ a {
 }
 
 @keyframes hm-big-bye-wave {
-  0%,
-  100% {
-    transform: rotate(-118deg) translate(-7px, -10px);
+  0% {
+    transform: rotate(-4deg) translate(-2px, -2px);
   }
 
-  50% {
-    transform: rotate(-58deg) translate(-4px, -18px);
+  28% {
+    transform: rotate(18deg) translate(3px, -9px);
+  }
+
+  58% {
+    transform: rotate(-20deg) translate(-5px, -4px);
+  }
+
+  100% {
+    transform: rotate(10deg) translate(1px, -8px);
   }
 }
 
