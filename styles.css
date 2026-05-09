@@ -1172,8 +1172,9 @@ a {
 }
 
 .lab-girl.is-magic-flying .hm-pencil {
-  animation: hm-wand-glow 520ms ease-in-out infinite alternate;
+  animation: hm-ride-wand 860ms ease-in-out infinite alternate;
   filter: drop-shadow(0 0 7px rgba(0, 122, 255, 0.74)) drop-shadow(0 0 16px rgba(255, 214, 90, 0.65));
+  transform-origin: 115px 145px;
 }
 
 .lab-girl.is-magic-flying .hm-pencil-body {
@@ -1185,16 +1186,31 @@ a {
 }
 
 .lab-girl.is-magic-flying .hm-leg {
-  animation: hm-fly-leg 620ms ease-in-out infinite alternate;
+  animation: hm-ride-leg 780ms ease-in-out infinite alternate;
 }
 
 .lab-girl.is-magic-flying .hm-head {
-  animation: hm-fly-head 640ms ease-in-out infinite;
+  animation: hm-fly-head 960ms ease-in-out infinite;
+}
+
+.lab-girl.is-magic-flying .hm-body {
+  animation: hm-ride-body 960ms ease-in-out infinite;
+  transform-origin: 90px 126px;
+}
+
+.lab-girl.is-magic-flying .hm-arm-right {
+  animation: hm-hold-wand 860ms ease-in-out infinite alternate;
+  transform-origin: 114px 101px;
 }
 
 .lab-girl.is-waving .hm-arm-left {
-  animation: hm-wave-arm 360ms ease-in-out infinite alternate;
+  animation: hm-big-bye-wave 620ms ease-in-out infinite;
   transform-origin: 64px 101px;
+}
+
+.lab-girl.is-waving .hm-arm-right {
+  animation: hm-support-wave 620ms ease-in-out infinite;
+  transform-origin: 114px 101px;
 }
 
 .lab-girl.is-waving .hm-mouth-open,
@@ -1674,13 +1690,44 @@ a {
   }
 }
 
-@keyframes hm-fly-leg {
+@keyframes hm-ride-wand {
   from {
-    transform: rotate(54deg) translate(2px, -3px);
+    transform: translate(-50px, 36px) rotate(37deg) scale(1.22);
   }
 
   to {
-    transform: rotate(82deg) translate(5px, 3px);
+    transform: translate(-45px, 31px) rotate(42deg) scale(1.22);
+  }
+}
+
+@keyframes hm-ride-leg {
+  from {
+    transform: rotate(66deg) translate(8px, 1px);
+  }
+
+  to {
+    transform: rotate(88deg) translate(10px, 6px);
+  }
+}
+
+@keyframes hm-ride-body {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(-2deg);
+  }
+}
+
+@keyframes hm-hold-wand {
+  from {
+    transform: rotate(18deg) translate(2px, 0);
+  }
+
+  to {
+    transform: rotate(26deg) translate(5px, -2px);
   }
 }
 
@@ -1695,13 +1742,25 @@ a {
   }
 }
 
-@keyframes hm-wave-arm {
-  from {
-    transform: rotate(-18deg) translateY(-2px);
+@keyframes hm-big-bye-wave {
+  0%,
+  100% {
+    transform: rotate(-118deg) translate(-7px, -10px);
   }
 
-  to {
-    transform: rotate(30deg) translateY(-8px);
+  50% {
+    transform: rotate(-58deg) translate(-4px, -18px);
+  }
+}
+
+@keyframes hm-support-wave {
+  0%,
+  100% {
+    transform: rotate(8deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(18deg) translateY(-3px);
   }
 }
 

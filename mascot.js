@@ -277,23 +277,22 @@ if (mascot) {
     const land = landingPoint();
     const centerX = window.innerWidth * 0.52;
     const centerY = Math.max(92, window.innerHeight * 0.37);
-    const radiusX = Math.max(150, window.innerWidth * 0.34);
-    const radiusY = Math.max(86, window.innerHeight * 0.22);
-    const liftDuration = 900;
-    const loopDuration = 1850;
-    const landDuration = 780;
-    const total = liftDuration + loopDuration + landDuration;
+    const radiusX = Math.max(180, window.innerWidth * 0.38);
+    const radiusY = Math.max(110, window.innerHeight * 0.26);
+    const liftDuration = 1450;
+    const loopDuration = 5200;
+    const landDuration = 1350;
 
     function fly(now) {
       const elapsed = now - start;
 
       if (elapsed < liftDuration) {
         const t = ease(elapsed / liftDuration);
-        const wave = Math.sin(t * Math.PI * 2) * 18;
+        const wave = Math.sin(t * Math.PI * 2) * 14;
         place({
-          x: from.x + (window.innerWidth * 0.16 - from.x) * t + wave,
-          y: from.y - Math.min(210, from.y - 28) * t - Math.sin(t * Math.PI) * 52,
-          rotation: 55 - 34 * t,
+          x: from.x + (window.innerWidth * 0.18 - from.x) * t + wave,
+          y: from.y - Math.min(240, from.y - 30) * t - Math.sin(t * Math.PI) * 62,
+          rotation: 48 - 25 * t,
           scale: s,
         });
         requestAnimationFrame(fly);
@@ -302,12 +301,12 @@ if (mascot) {
 
       if (elapsed < liftDuration + loopDuration) {
         const t = (elapsed - liftDuration) / loopDuration;
-        const angle = Math.PI * 1.18 + Math.PI * 2.05 * t;
-        const wobble = Math.sin(t * Math.PI * 8) * 10;
+        const angle = Math.PI * 1.15 + Math.PI * 2.12 * t;
+        const wobble = Math.sin(t * Math.PI * 10) * 8;
         place({
           x: centerX + Math.cos(angle) * radiusX - 66 * s,
           y: centerY + Math.sin(angle) * radiusY - height * 0.54 + wobble,
-          rotation: 22 + Math.cos(angle) * 18,
+          rotation: 18 + Math.cos(angle) * 13,
           scale: s,
         });
         requestAnimationFrame(fly);
@@ -316,13 +315,13 @@ if (mascot) {
 
       const t = Math.min(1, (elapsed - liftDuration - loopDuration) / landDuration);
       const eased = easeOutBack(t);
-      const currentAngle = Math.PI * 1.18 + Math.PI * 2.05;
+      const currentAngle = Math.PI * 1.15 + Math.PI * 2.12;
       const sx = centerX + Math.cos(currentAngle) * radiusX - 66 * s;
       const sy = centerY + Math.sin(currentAngle) * radiusY - height * 0.54;
       place({
         x: sx + (land.x - sx) * eased,
-        y: sy + (land.y - sy) * ease(t) - Math.sin(t * Math.PI) * 38,
-        rotation: angleBetween(18, 0, ease(t)),
+        y: sy + (land.y - sy) * ease(t) - Math.sin(t * Math.PI) * 44,
+        rotation: angleBetween(14, 0, ease(t)),
         scale: s,
       }, t > 0.86);
 
@@ -371,7 +370,7 @@ if (mascot) {
         }
 
         requestAnimationFrame(jump);
-      }, 1050);
+      }, 1450);
     }
 
     requestAnimationFrame(fly);
