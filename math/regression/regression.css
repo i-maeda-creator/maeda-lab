@@ -1,10 +1,10 @@
 :root {
-  --ink: #f4f4f5;
-  --muted: #c7c7cc;
-  --paper: #050506;
-  --panel: #111114;
-  --line: rgba(255, 255, 255, 0.14);
-  --accent: #7ab7ff;
+  --ink: #ffffff;
+  --muted: #eeeeee;
+  --paper: #15161a;
+  --panel: #202126;
+  --line: rgba(255, 255, 255, 0.22);
+  --accent: #8cc8ff;
   --accent-soft: rgba(122, 183, 255, 0.16);
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
@@ -15,7 +15,7 @@ html {
 
 body {
   background:
-    radial-gradient(circle at 50% -10%, rgba(122, 183, 255, 0.14), transparent 28rem),
+    radial-gradient(circle at 50% -10%, rgba(140, 200, 255, 0.16), transparent 30rem),
     var(--paper);
   color: var(--ink);
   font-family: "Meiryo UI", Meiryo, "Yu Gothic UI", "Yu Gothic", sans-serif;
@@ -23,7 +23,7 @@ body {
 }
 
 .site-header {
-  background: rgba(5, 5, 6, 0.78);
+  background: rgba(21, 22, 26, 0.82);
   border-bottom: 1px solid var(--line);
 }
 
@@ -34,11 +34,11 @@ body {
 
 .brand-mark {
   background: #f4f4f5;
-  color: #050506;
+  color: #15161a;
 }
 
 .nav a {
-  color: #b8b8bf;
+  color: #eeeeee;
 }
 
 .nav a:hover {
@@ -120,7 +120,7 @@ body {
 }
 
 .lesson-list a:hover {
-  background: #18181d;
+  background: #292b31;
 }
 
 .lesson-list a span {
@@ -135,7 +135,7 @@ body {
 }
 
 .planned-grid span {
-  color: var(--muted);
+  color: #f0f0f0;
   padding: 16px;
 }
 
@@ -173,9 +173,9 @@ body {
 
 .lesson-article p,
 .lesson-article li {
-  color: var(--muted);
-  font-size: 1.02rem;
-  line-height: 2;
+  color: #f2f2f3;
+  font-size: 1.06rem;
+  line-height: 2.05;
 }
 
 .lesson-article p {
@@ -195,8 +195,8 @@ body {
 }
 
 .lesson-article code {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 6px;
   color: #ffffff;
   font-family: Consolas, "Cascadia Mono", monospace;
@@ -204,7 +204,7 @@ body {
 }
 
 .lesson-article pre {
-  background: #111114;
+  background: #202126;
   border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow: none;
@@ -224,6 +224,92 @@ body {
   border: 0;
   border-top: 1px solid var(--line);
   margin: 40px 0;
+}
+
+.lesson-quiz {
+  background: #202126;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  margin-top: 56px;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.quiz-kicker {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.lesson-quiz h2 {
+  border: 0;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+.quiz-question {
+  color: #fff;
+  font-weight: 700;
+}
+
+.quiz-choices {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.quiz-choices button {
+  background: #292b31;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 13px 14px;
+  text-align: left;
+}
+
+.quiz-choices button:hover {
+  background: #33353d;
+}
+
+.quiz-choices button:disabled {
+  cursor: default;
+  opacity: 0.82;
+}
+
+.quiz-choices button.is-correct {
+  background: rgba(57, 197, 120, 0.18);
+  border-color: rgba(57, 197, 120, 0.8);
+}
+
+.quiz-choices button.is-wrong {
+  background: rgba(255, 92, 92, 0.18);
+  border-color: rgba(255, 92, 92, 0.8);
+}
+
+.quiz-result {
+  font-weight: 700;
+  margin: 16px 0 0;
+}
+
+.quiz-result.is-correct {
+  color: #64d98a;
+}
+
+.quiz-result.is-wrong {
+  color: #ff8a8a;
+}
+
+.quiz-explanation {
+  color: #f2f2f3;
+  line-height: 1.8;
+  margin: 8px 0 0;
 }
 
 .lesson-figure {
@@ -279,7 +365,7 @@ body {
 }
 
 .lesson-pager a:hover {
-  background: #18181d;
+  background: #292b31;
 }
 
 @media (max-width: 760px) {
