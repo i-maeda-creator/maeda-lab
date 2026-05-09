@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>P値、t値、t分布、カイ二乗分布 | Maeda Lab</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="regression.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../index.html"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="../../index.html#study">Study</a>
+        <a href="./">Regression</a>
+        <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+    <main class="lesson-shell">
+      <article class="lesson-article"><h1>6. p値から分布まで: 検定の考え方を一本の線でつなぐ</h1>
+<h2>この資料で学ぶこと</h2>
+<p>回帰分析の結果を見ると、p値が出てきます。</p>
+<p>しかし、p値だけを暗記すると、途中の考え方が見えなくなりがちです。</p>
+<p>この資料では、次の流れを一つにつなげます。</p>
+<pre><code class="language-text">偏差の2乗 → カイ二乗分布 → t分布 → t値 → p値</code></pre>
+<p>細かい数式を完全に証明することが目的ではありません。</p>
+<p>ゴールは、回帰分析のp値が「なんとなく出てきた数字」ではなく、<strong>データのばらつきと確率分布から生まれる判断材料</strong>だと理解することです。</p>
+<hr>
+<h2>A. 理論理解と説明</h2>
+<h3>p値とは</h3>
+<p>p値は、ざっくりいうと、</p>
+<pre><code class="language-text">本当は効果がないと仮定したとき、今回くらい極端な結果が出る確率</code></pre>
+<p>です。</p>
+<p>営業の例で言えば、架電数の回帰係数について、</p>
+<pre><code class="language-text">本当は架電数と契約数に関係がない</code></pre>
+<p>と仮定します。</p>
+<p>そのうえで、今回のデータのように大きな係数が出るのはどれくらい珍しいかを見ます。珍しければ、p値は小さくなります。</p>
+<h3>t値とは</h3>
+<p>回帰係数の検定では、よくt値を使います。</p>
+<pre><code class="language-text">t値 = 推定された係数 / 係数の標準誤差</code></pre>
+<p>標準誤差は、推定された係数のブレやすさです。</p>
+<p>つまりt値は、</p>
+<pre><code class="language-text">推定された係数が、標準誤差の何個分だけ0から離れているか</code></pre>
+<p>を表します。</p>
+<p>t値が大きいほど、係数は0から遠いです。だから、「本当に効果がない」という仮定の下では起こりにくい結果だと考えます。</p>
+<h3>t分布とは</h3>
+<p>t値を判断するために使う分布がt分布です。</p>
+<p>t分布は、正規分布に似た山型の分布ですが、サンプルサイズが小さいときは両端が少し厚くなります。</p>
+<p>これは、標準偏差を母集団の本当の値ではなく、サンプルから推定しているためです。データ数が少ないほど、ばらつきの推定も不安定になります。</p>
+<h3>カイ二乗分布とは</h3>
+<p>カイ二乗分布は、標準正規分布に従う値を2乗して足したものから生まれる分布です。</p>
+<p>たとえば、</p>
+<pre><code class="language-text">Z1, Z2, Z3 が標準正規分布に従う</code></pre>
+<p>とします。</p>
+<p>このとき、</p>
+<pre><code class="language-text">Z1^2 + Z2^2 + Z3^2</code></pre>
+<p>は自由度3のカイ二乗分布に従います。</p>
+<p>ポイントは、<strong>偏差を2乗して足すと、ばらつきの大きさを表す量になる</strong>ということです。</p>
+<h3>偏差の2乗から検定へ</h3>
+<p>偏差とは、平均からのズレです。</p>
+<pre><code class="language-text">偏差 = データ - 平均</code></pre>
+<p>偏差はプラスにもマイナスにもなるので、そのまま足すと打ち消し合います。そこで2乗します。</p>
+<pre><code class="language-text">偏差の2乗 = (データ - 平均)^2</code></pre>
+<p>回帰分析でも、残差の2乗を足してモデルのズレを測ります。</p>
+<p>この「ズレを2乗して足す」という考え方が、分散、カイ二乗分布、t分布、p値へとつながっています。</p>
+<hr>
+<h2>B. 実践: Rによるモデル構築</h2>
+<p>営業活動データを使って、回帰係数のt値とp値を見ます。</p>
+<pre><code class="language-r">set.seed(123)
+
+n &lt;- 80
+calls &lt;- runif(n, 40, 180)
+meetings &lt;- runif(n, 5, 35)
+proposals &lt;- runif(n, 1, 18)
+
+contracts &lt;- 0.5 +
+  0.01 * calls +
+  0.18 * meetings +
+  0.45 * proposals +
+  rnorm(n, 0, 1.5)
+
+sales &lt;- data.frame(contracts, calls, meetings, proposals)
+
+model &lt;- lm(contracts ~ calls + meetings + proposals, data = sales)
+summary(model)</code></pre>
+<p><code>summary(model)</code> の係数表には、次の列があります。</p>
+<ul><li><code>Estimate</code>: 推定された係数</li><li><code>Std. Error</code>: 係数の標準誤差</li><li><code>t value</code>: t値</li><li><code>Pr(&gt;|t|)</code>: p値</li></ul>
+<p>自分でt値を計算することもできます。</p>
+<pre><code class="language-r">coef_table &lt;- summary(model)$coefficients
+
+estimate &lt;- coef_table["proposals", "Estimate"]
+std_error &lt;- coef_table["proposals", "Std. Error"]
+
+t_value &lt;- estimate / std_error
+t_value</code></pre>
+<p>p値はt分布を使って計算できます。</p>
+<pre><code class="language-r">df &lt;- df.residual(model)
+p_value &lt;- 2 * pt(-abs(t_value), df = df)
+p_value</code></pre>
+<p><code>2 *</code> がついているのは、プラス方向にもマイナス方向にも極端な結果を考える両側検定だからです。</p>
+<hr>
+<h2>C. シミュレーションと可視化</h2>
+<h3>t分布とp値を可視化する</h3>
+<pre><code class="language-r"># 見方を学ぶため、ここでは説明用に t = 2 の例を描く
+t_example &lt;- 2
+
+x &lt;- seq(-4, 4, length.out = 400)
+y &lt;- dt(x, df = df)
+
+plot(x, y, type = "l",
+      main = "t分布とp値の見方",
+      xlab = "t値",
+      ylab = "密度",
+      lwd = 2,
+      col = "steelblue")
+
+right &lt;- x[x &gt;= t_example]
+left &lt;- x[x &lt;= -t_example]
+
+polygon(c(right, rev(right)),
+        c(dt(right, df = df), rep(0, length(right))),
+        col = rgb(1, 0, 0, 0.35),
+        border = NA)
+polygon(c(left, rev(left)),
+        c(dt(left, df = df), rep(0, length(left))),
+        col = rgb(1, 0, 0, 0.35),
+        border = NA)
+
+lines(x, y, col = "steelblue", lwd = 2)
+abline(v = c(-t_example, t_example), col = "red", lwd = 2)
+legend("topright",
+       legend = c("t分布", "p値の面積", "±t値"),
+       col = c("steelblue", rgb(1, 0, 0, 0.35), "red"),
+       lwd = c(2, 8, 2),
+       bty = "n")</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/06_t_distribution.svg" alt="t分布とp値">
+          <figcaption>
+            <strong>t分布とp値</strong>
+            <span>横軸はt値、縦軸は密度。赤い両端の面積が両側検定のp値。</span>
+          </figcaption>
+        </figure>
+<p>図1: t分布とp値の見方。青い線がt分布、赤い縦線が <code>±t</code>、赤く塗った両端の面積がp値です。</p>
+<p>赤く塗った両端の面積がp値です。p値が小さいということは、「効果がない」と仮定したときに、今回ほど極端なt値が出にくいという意味です。</p>
+<p>ここでは見方をわかりやすくするために <code>t = 2</code> の例を描いています。実際の回帰結果のt値は、<code>summary(model)</code> の <code>t value</code> で確認します。</p>
+<h3>カイ二乗分布を可視化する</h3>
+<pre><code class="language-r">x &lt;- seq(0, 20, length.out = 200)
+plot(x, dchisq(x, df = 1), type = "l",
+     main = "カイ二乗分布",
+     xlab = "値",
+     ylab = "密度")
+lines(x, dchisq(x, df = 3), col = "blue")
+lines(x, dchisq(x, df = 8), col = "red")
+legend("topright",
+       legend = c("df=1", "df=3", "df=8"),
+       col = c("black", "blue", "red"),
+       lty = 1,
+       bty = "n")</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/06_chisq_distribution.svg" alt="カイ二乗分布">
+          <figcaption>
+            <strong>カイ二乗分布</strong>
+            <span>横軸はカイ二乗値、縦軸は密度。自由度が大きいほど山は右へ移動する。</span>
+          </figcaption>
+        </figure>
+<p>図2: 自由度ごとのカイ二乗分布。横軸は値、縦軸は密度です。</p>
+<p>カイ二乗分布は、2乗したズレを足し合わせた量と関係します。自由度が大きくなるほど、分布の山は右に移動します。</p>
+<h3>偏差の2乗を可視化する</h3>
+<pre><code class="language-r">x &lt;- c(3, 4, 5, 6, 12)
+m &lt;- mean(x)
+deviation2 &lt;- (x - m)^2
+
+barplot(deviation2,
+        names.arg = x,
+        main = "偏差の2乗",
+        xlab = "データ",
+        ylab = "(データ - 平均)^2",
+        col = "steelblue")</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/06_squared_deviations.svg" alt="偏差の2乗">
+          <figcaption>
+            <strong>偏差の2乗</strong>
+            <span>横軸はデータ値、縦軸は平均との差の2乗。平均から遠い値ほど大きく効く。</span>
+          </figcaption>
+        </figure>
+<p>図3: 偏差の2乗。平均から遠いデータほど値が大きくなります。</p>
+<p>平均から遠い値ほど、偏差の2乗は大きくなります。2乗することで、大きなズレが強く効くようになります。</p>
+<hr>
+<h2>まとめ: この資料のオチ</h2>
+<p>p値は、単独で突然出てくる数字ではありません。</p>
+<p>流れは次のようにつながっています。</p>
+<pre><code class="language-text">データのズレを見る
+→ ズレを2乗してばらつきの大きさを測る
+→ ばらつきの推定にはカイ二乗分布が関係する
+→ 係数を標準誤差で割るとt値になる
+→ t分布で珍しさを測る
+→ その珍しさがp値になる</code></pre>
+<p>結論として、p値は「正しい・間違い」を決める魔法の数字ではありません。<strong>仮定の下で、今回の結果がどれくらい珍しいかを表す数字</strong>です。</p>
+<p>この資料のゴールは、p値を暗記で読むのではなく、データのズレ、ばらつき、分布、検定が一本の線でつながっていると理解することです。</p></article>
+      <nav class="lesson-pager">
+    <a href="r2-adjusted-r2.html">← R²値 / 自由度調整済みR²値</a>
+    <a href="./">目次</a>
+    <span></span>
+  </nav>
+    </main>
+  </body>
+</html>

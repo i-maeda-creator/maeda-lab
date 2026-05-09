@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>回帰分析と最小二乗法 | Maeda Lab</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="regression.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../index.html"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="../../index.html#study">Study</a>
+        <a href="./">Regression</a>
+        <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+    <main class="lesson-shell">
+      <article class="lesson-article"><h1>1. 回帰分析と最小二乗法</h1>
+<h2>この資料の具体例</h2>
+<p>この資料では、<strong>営業活動と契約数</strong>を例にします。</p>
+<p>ある会社で、営業担当者ごとに次のデータを集めたとします。</p>
+<ul><li>月間の架電数</li><li>月間の契約数</li></ul>
+<p>知りたいことはシンプルです。</p>
+<pre><code class="language-text">架電数が多い人ほど、契約数は多いのか</code></pre>
+<p>契約数は架電数だけで決まるわけではありません。商品力、相手企業の予算、営業担当者の経験、タイミングなども関係します。</p>
+<p>それでも、「平均的には、架電数が増えると契約数はどれくらい増えるのか」を知りたい場面があります。これが回帰分析の出番です。</p>
+<hr>
+<h2>A. 理論理解と説明</h2>
+<h3>回帰分析とは</h3>
+<p>回帰分析は、ある数値から別の数値を説明・予測する方法です。</p>
+<p>この例では、</p>
+<ul><li>説明する側: 架電数</li><li>説明される側: 契約数</li></ul>
+<p>です。</p>
+<p>単回帰分析では、次のような式を作ります。</p>
+<pre><code class="language-text">契約数 = a + b × 架電数 + e</code></pre>
+<ul><li><code>a</code>: 切片</li><li><code>b</code>: 回帰係数、傾き</li><li><code>e</code>: 誤差、説明しきれない部分</li></ul>
+<p>たとえば、結果が次のようになったとします。</p>
+<pre><code class="language-text">契約数 = 1.2 + 0.04 × 架電数</code></pre>
+<p>このとき、<code>0.04</code> は「架電数が1件増えると、契約数が平均的に0.04件増える」という意味です。</p>
+<p>1件あたりだと小さく見えますが、25件増えれば、</p>
+<pre><code class="language-text">0.04 × 25 = 1</code></pre>
+<p>なので、平均的には契約が約1件増えるイメージです。</p>
+<h3>最小二乗法とは</h3>
+<p>回帰分析では、データにできるだけ合う直線を引きます。</p>
+<p>各営業担当者について、</p>
+<pre><code class="language-text">残差 = 実際の契約数 - 予測された契約数</code></pre>
+<p>を計算します。</p>
+<p>最小二乗法とは、<strong>残差の2乗の合計がいちばん小さくなるように直線を決める方法</strong>です。</p>
+<pre><code class="language-text">最小にしたいもの = Σ(実際の契約数 - 予測された契約数)^2</code></pre>
+<p>2乗する理由は、プラスとマイナスのズレが打ち消し合わないようにするためです。また、大きなズレを強く評価できます。</p>
+<p>回帰直線は、すべての点を通る線ではありません。データ全体の「平均的な流れ」を表す線です。</p>
+<hr>
+<h2>B. 実践: Rによるモデル構築</h2>
+<p>次のコードでは、架電数から契約数を予測する単回帰モデルを作ります。</p>
+<pre><code class="language-r">calls &lt;- c(40, 55, 60, 70, 80, 95, 100, 115, 130, 145, 150, 165)
+contracts &lt;- c(2, 3, 3, 4, 4, 5, 5, 6, 7, 7, 8, 9)
+
+sales &lt;- data.frame(calls, contracts)
+
+model &lt;- lm(contracts ~ calls, data = sales)
+summary(model)</code></pre>
+<p><code>lm()</code> は linear model の略です。</p>
+<pre><code class="language-r">lm(contracts ~ calls, data = sales)</code></pre>
+<p>は、「<code>contracts</code> を <code>calls</code> で説明する」という意味です。</p>
+<p><code>summary(model)</code> では、まず次の2つを見ます。</p>
+<ul><li><code>(Intercept)</code>: 切片</li><li><code>calls</code>: 架電数の回帰係数</li></ul>
+<h3>Rで可視化する</h3>
+<p>Rの強みは、モデルを作るだけでなく、結果をすぐ図にできることです。</p>
+<pre><code class="language-r">plot(sales$calls, sales$contracts,
+     xlab = "月間架電数",
+     ylab = "月間契約数",
+     main = "架電数と契約数の回帰分析",
+     pch = 19)
+abline(model, col = "red", lwd = 2)</code></pre>
+<p>この図では、点が実際の営業担当者、赤い線が回帰直線です。点が赤い線に近いほど、モデルの予測と実績が近いことを表します。</p>
+
+        <figure class="lesson-figure">
+          <img src="figures/01_scatter_fit.svg" alt="架電数と契約数の散布図">
+          <figcaption>
+            <strong>架電数と契約数の散布図</strong>
+            <span>横軸は月間架電数、縦軸は月間契約数。点は担当者、線は最小二乗法で引いた回帰直線。</span>
+          </figcaption>
+        </figure>
+<hr>
+<h2>C. サンプルデータによるシミュレーション</h2>
+<p>次は、「本当は架電数25件あたり契約が1件増える」という世界を作ってみます。</p>
+<pre><code class="language-r">set.seed(123)
+
+n &lt;- 60
+calls &lt;- runif(n, min = 30, max = 180)
+error &lt;- rnorm(n, mean = 0, sd = 1.2)
+
+contracts &lt;- 1.0 + 0.04 * calls + error
+
+sales_sim &lt;- data.frame(calls, contracts)
+
+model_sim &lt;- lm(contracts ~ calls, data = sales_sim)
+summary(model_sim)</code></pre>
+<p>ここで本当の式は、</p>
+<pre><code class="language-text">契約数 = 1.0 + 0.04 × 架電数 + ランダムな誤差</code></pre>
+<p>です。</p>
+<p>シミュレーション結果も可視化します。</p>
+<pre><code class="language-r">plot(sales_sim$calls, sales_sim$contracts,
+     xlab = "月間架電数",
+     ylab = "月間契約数",
+     main = "シミュレーション: 本当の傾きは0.04",
+     pch = 19)
+abline(model_sim, col = "red", lwd = 2)</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/01_sim_scatter_fit.svg" alt="シミュレーションの散布図と回帰直線">
+          <figcaption>
+            <strong>シミュレーションの散布図と回帰直線</strong>
+            <span>横軸は月間架電数、縦軸は月間契約数。真の傾き0.04を持つデータから推定した直線。</span>
+          </figcaption>
+        </figure>
+<p>さらに、実際の値と予測値のズレも見ます。</p>
+<pre><code class="language-r">sales_sim$predicted &lt;- fitted(model_sim)
+sales_sim$residual &lt;- residuals(model_sim)
+
+plot(sales_sim$predicted, sales_sim$residual,
+     xlab = "予測された契約数",
+     ylab = "残差",
+     main = "予測値と残差",
+     pch = 19)
+abline(h = 0, col = "red", lwd = 2)</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/01_residuals.svg" alt="予測値と残差">
+          <figcaption>
+            <strong>予測値と残差</strong>
+            <span>横軸は予測値、縦軸は残差。0の上下にランダムに散るほど直線モデルとして自然。</span>
+          </figcaption>
+        </figure>
+<p>残差が0の上下にランダムに散らばっていれば、直線モデルとしては悪くなさそうです。曲線の形が見える場合は、直線だけでは説明しきれていない可能性があります。</p>
+<h3>実務での使い方</h3>
+<p>この分析は、たとえば次のような判断に使えます。</p>
+<ul><li>架電数を増やす施策に意味がありそうか</li><li>目標契約数から逆算して、どれくらいの活動量が必要か</li><li>架電数だけでは説明できない営業担当者を見つける</li></ul>
+<p>ただし、「架電数だけを増やせば必ず契約が増える」とは限りません。回帰分析は、答えを出す機械ではなく、判断の材料を増やす道具です。</p></article>
+      <nav class="lesson-pager">
+    <span></span>
+    <a href="./">目次</a>
+    <a href="standardized-coefficients.html">標準化回帰係数 →</a>
+  </nav>
+    </main>
+  </body>
+</html>

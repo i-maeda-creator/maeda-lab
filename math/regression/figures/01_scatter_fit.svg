@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430">
+    <rect width="100%" height="100%" fill="#fff"/>
+    
+    <line x1="70" y1="368" x2="736" y2="368" stroke="#344054"/>
+    <line x1="70" y1="52" x2="70" y2="368" stroke="#344054"/>
+    <text x="380" y="414" text-anchor="middle" font-size="18">月間架電数</text>
+    <text transform="translate(20 215) rotate(-90)" text-anchor="middle" font-size="18">月間契約数</text>
+    <text x="380" y="28" text-anchor="middle" font-size="22" font-weight="700">架電数と契約数の回帰分析</text>
+      <line x1="70" y1="368" x2="70" y2="373" stroke="#344054"/>
+      <text x="70" y="392" text-anchor="middle" font-size="13">40</text>
+      <line x1="65" y1="368" x2="70" y2="368" stroke="#344054"/>
+      <text x="60" y="372" text-anchor="end" font-size="13">2</text>
+      <line x1="236.5" y1="368" x2="236.5" y2="373" stroke="#344054"/>
+      <text x="236.5" y="392" text-anchor="middle" font-size="13">71.3</text>
+      <line x1="65" y1="289" x2="70" y2="289" stroke="#344054"/>
+      <text x="60" y="293" text-anchor="end" font-size="13">3.8</text>
+      <line x1="403" y1="368" x2="403" y2="373" stroke="#344054"/>
+      <text x="403" y="392" text-anchor="middle" font-size="13">102.5</text>
+      <line x1="65" y1="210" x2="70" y2="210" stroke="#344054"/>
+      <text x="60" y="214" text-anchor="end" font-size="13">5.5</text>
+      <line x1="569.5" y1="368" x2="569.5" y2="373" stroke="#344054"/>
+      <text x="569.5" y="392" text-anchor="middle" font-size="13">133.8</text>
+      <line x1="65" y1="131" x2="70" y2="131" stroke="#344054"/>
+      <text x="60" y="135" text-anchor="end" font-size="13">7.3</text>
+      <line x1="736" y1="368" x2="736" y2="373" stroke="#344054"/>
+      <text x="736" y="392" text-anchor="middle" font-size="13">165</text>
+      <line x1="65" y1="52" x2="70" y2="52" stroke="#344054"/>
+      <text x="60" y="56" text-anchor="end" font-size="13">9</text><polyline points="70,365.4424322708842 736,67.18715368087754" fill="none" stroke="#d64545" stroke-width="3" stroke-dasharray=""/><circle cx="70" cy="368" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="149.92000000000002" cy="322.8571428571429" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="176.56" cy="322.8571428571429" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="229.84" cy="277.7142857142857" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="283.12" cy="277.7142857142857" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="363.04" cy="232.57142857142858" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="389.68" cy="232.57142857142858" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="469.59999999999997" cy="187.42857142857144" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="549.52" cy="142.28571428571428" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="629.4399999999999" cy="142.28571428571428" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="656.08" cy="97.14285714285717" r="4.5" fill="#2364aa" opacity="0.82"/><circle cx="736" cy="52" r="4.5" fill="#2364aa" opacity="0.82"/>
+  </svg>

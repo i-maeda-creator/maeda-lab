@@ -1,5 +1,6 @@
 const detailTitle = document.querySelector("#detailTitle");
 const detailText = document.querySelector("#detailText");
+const detailLink = document.querySelector("#detailLink");
 
 const trackDetails = {
   IT: {
@@ -10,6 +11,8 @@ const trackDetails = {
   },
   Mathematics: {
     text: "Proofs, numbers, probability, and linear algebra.",
+    href: "math/regression/",
+    linkText: "Regression Analysis",
   },
   Competition: {
     text: "AtCoder, Kaggle, notebooks, and experiments.",
@@ -24,6 +27,13 @@ function setTrackDetail(track) {
   if (!item) return;
   detailTitle.textContent = track;
   detailText.textContent = item.text;
+  if (item.href) {
+    detailLink.hidden = false;
+    detailLink.href = item.href;
+    detailLink.textContent = item.linkText;
+  } else {
+    detailLink.hidden = true;
+  }
 }
 
 document.querySelectorAll(".track-card").forEach((card) => {

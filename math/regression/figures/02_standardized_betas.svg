@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430">
+    <rect width="100%" height="100%" fill="#fff"/>
+    <text x="380" y="30" text-anchor="middle" font-size="22" font-weight="700">標準化回帰係数の比較</text>
+    <line x1="80" y1="341.5049727005104" x2="730" y2="341.5049727005104" stroke="#344054"/>
+    <line x1="80" y1="55" x2="80" y2="358" stroke="#344054"/>
+    <text transform="translate(24 215) rotate(-90)" text-anchor="middle" font-size="18">標準化回帰係数</text>
+    <rect x="138.49999999999997" y="288.5774516906105" width="99.66666666666667" height="52.92752100989992" fill="#2364aa"/>
+      <text x="188.33333333333331" y="396" text-anchor="middle" font-size="16">架電数</text>
+      <text x="188.33333333333331" y="280.5774516906105" text-anchor="middle" font-size="15" font-weight="700">0.16</text><rect x="355.1666666666667" y="186.93603257609192" width="99.66666666666667" height="154.56894012441848" fill="#2f855a"/>
+      <text x="405" y="396" text-anchor="middle" font-size="16">商談数</text>
+      <text x="405" y="178.93603257609192" text-anchor="middle" font-size="15" font-weight="700">0.47</text><rect x="571.8333333333333" y="81.39204367918336" width="99.66666666666667" height="260.11292902132703" fill="#d64545"/>
+      <text x="621.6666666666666" y="396" text-anchor="middle" font-size="16">提案書</text>
+      <text x="621.6666666666666" y="73.39204367918336" text-anchor="middle" font-size="15" font-weight="700">0.79</text>
+  </svg>

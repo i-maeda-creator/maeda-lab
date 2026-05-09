@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430">
+  <rect width="100%" height="100%" fill="#fff"/>
+  <text x="380" y="30" text-anchor="middle" font-size="22" font-weight="700">偏差の2乗</text>
+  <line x1="80" y1="358" x2="730" y2="358" stroke="#344054"/>
+  <line x1="80" y1="55" x2="80" y2="358" stroke="#344054"/>
+  <text transform="translate(22 215) rotate(-90)" text-anchor="middle" font-size="18">(データ - 平均)^2</text>
+  <line x1="75" y1="358" x2="80" y2="358" stroke="#344054"/>
+      <text x="70" y="362" text-anchor="end" font-size="13">0</text><line x1="75" y1="282.25" x2="80" y2="282.25" stroke="#344054"/>
+      <text x="70" y="286.25" text-anchor="end" font-size="13">10</text><line x1="75" y1="206.5" x2="80" y2="206.5" stroke="#344054"/>
+      <text x="70" y="210.5" text-anchor="end" font-size="13">21</text><line x1="75" y1="130.75" x2="80" y2="130.75" stroke="#344054"/>
+      <text x="70" y="134.75" text-anchor="end" font-size="13">31</text><line x1="75" y1="55" x2="80" y2="55" stroke="#344054"/>
+      <text x="70" y="59" text-anchor="end" font-size="13">41</text><rect x="115.75" y="292.1304347826087" width="58.5" height="65.86956521739131" fill="#2364aa"/>
+    <text x="145" y="396" text-anchor="middle" font-size="16">3</text>
+    <text x="145" y="284.1304347826087" text-anchor="middle" font-size="14">9.0</text><rect x="245.75" y="328.72463768115944" width="58.5" height="29.275362318840564" fill="#2364aa"/>
+    <text x="275" y="396" text-anchor="middle" font-size="16">4</text>
+    <text x="275" y="320.72463768115944" text-anchor="middle" font-size="14">4.0</text><rect x="375.75" y="350.6811594202899" width="58.5" height="7.318840579710127" fill="#2364aa"/>
+    <text x="405" y="396" text-anchor="middle" font-size="16">5</text>
+    <text x="405" y="342.6811594202899" text-anchor="middle" font-size="14">1.0</text><rect x="505.75" y="358" width="58.5" height="0" fill="#2364aa"/>
+    <text x="535" y="396" text-anchor="middle" font-size="16">6</text>
+    <text x="535" y="350" text-anchor="middle" font-size="14">0.0</text><rect x="635.75" y="94.52173913043481" width="58.5" height="263.4782608695652" fill="#d64545"/>
+    <text x="665" y="396" text-anchor="middle" font-size="16">12</text>
+    <text x="665" y="86.52173913043481" text-anchor="middle" font-size="14">36.0</text>
+  </svg>

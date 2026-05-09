@@ -237,6 +237,14 @@ a {
   margin: 10px 0 0;
 }
 
+.detail-link {
+  color: var(--accent);
+  display: inline-flex;
+  font-weight: 650;
+  margin-top: 16px;
+  text-decoration: none;
+}
+
 .works-grid span {
   color: var(--muted);
   display: block;

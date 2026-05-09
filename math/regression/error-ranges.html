@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>回帰係数の誤差範囲、残差の誤差範囲 | Maeda Lab</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="regression.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../index.html"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="../../index.html#study">Study</a>
+        <a href="./">Regression</a>
+        <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+    <main class="lesson-shell">
+      <article class="lesson-article"><h1>3. 回帰係数の誤差範囲、残差の誤差範囲</h1>
+<h2>この資料の具体例</h2>
+<p>この資料では、<strong>営業活動と契約数</strong>を例にします。</p>
+<p>営業部門で、架電数から契約数を予測するモデルを作ったとします。</p>
+<pre><code class="language-text">契約数 = 0.8 + 0.04 × 架電数</code></pre>
+<p>架電数が100件なら、</p>
+<pre><code class="language-text">0.8 + 0.04 × 100 = 4.8</code></pre>
+<p>なので、契約数は約4.8件と予測できます。</p>
+<p>でも実務では、ぴったり4.8件になるとは考えません。実際の契約数は、3件かもしれないし、6件かもしれません。</p>
+<p>そこで必要になるのが、誤差範囲の考え方です。</p>
+<hr>
+<h2>A. 理論理解と説明</h2>
+<h3>推定値にはブレがある</h3>
+<p>回帰分析で得られる係数は、データから計算した推定値です。</p>
+<p>ある月の営業データでは、架電数の係数が <code>0.04</code> になったとします。</p>
+<p>しかし、別の月のデータで分析したら、<code>0.035</code> かもしれません。<code>0.047</code> かもしれません。</p>
+<p>データには偶然のばらつきがあります。だから、係数にも不確かさがあります。</p>
+<h3>回帰係数の標準誤差</h3>
+<p>回帰係数の標準誤差は、</p>
+<pre><code class="language-text">推定された係数が、どれくらいブレそうか</code></pre>
+<p>を表します。</p>
+<p>Rの <code>summary(model)</code> では、<code>Std. Error</code> という列に出ます。</p>
+<p>標準誤差が小さいほど、係数の推定は安定しています。標準誤差が大きいほど、係数の推定は不安定です。</p>
+<h3>回帰係数の信頼区間</h3>
+<p>信頼区間は、係数のもっともらしい範囲です。</p>
+<p>たとえば、架電数の係数について、</p>
+<pre><code class="language-text">95%信頼区間: 0.030 から 0.050</code></pre>
+<p>となったとします。</p>
+<p>これは、「架電数1件あたりの効果は、だいたい0.03から0.05件くらいの範囲で考えるのが自然」と読めます。</p>
+<h3>残差の誤差範囲</h3>
+<p>残差は、</p>
+<pre><code class="language-text">残差 = 実際の契約数 - 予測された契約数</code></pre>
+<p>です。</p>
+<p>残差が大きいほど、予測が外れています。</p>
+<p>Rの <code>summary(model)</code> では、<code>Residual standard error</code> が表示されます。これは、残差の代表的な大きさです。</p>
+<h3>信頼区間と予測区間</h3>
+<p>回帰分析では、区間には大きく2種類あります。</p>
+<pre><code class="language-text">信頼区間: 平均的な契約数の推定範囲
+予測区間: 新しい1人の契約数の予測範囲</code></pre>
+<p>普通、予測区間の方が広くなります。1人の結果には、個人差や偶然のズレが入るからです。</p>
+<hr>
+<h2>B. 実践: Rによるモデル構築</h2>
+<p>まず、サンプルデータを作ります。</p>
+<pre><code class="language-r">set.seed(123)
+
+n &lt;- 60
+calls &lt;- runif(n, min = 30, max = 180)
+error &lt;- rnorm(n, mean = 0, sd = 1.2)
+
+contracts &lt;- 1.0 + 0.04 * calls + error
+
+sales &lt;- data.frame(calls, contracts)
+
+model &lt;- lm(contracts ~ calls, data = sales)
+summary(model)</code></pre>
+<p>係数の信頼区間を見ます。</p>
+<pre><code class="language-r">confint(model, level = 0.95)</code></pre>
+<p>予測値と残差を取り出します。</p>
+<pre><code class="language-r">sales$predicted &lt;- fitted(model)
+sales$residual &lt;- residuals(model)
+
+head(sales)</code></pre>
+<hr>
+<h2>C. サンプルデータによるシミュレーションと可視化</h2>
+<h3>残差を可視化する</h3>
+<p>残差の分布をヒストグラムで見ます。</p>
+<pre><code class="language-r">hist(sales$residual,
+     breaks = 10,
+     main = "残差の分布",
+     xlab = "残差",
+     col = "gray")</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/03_residual_hist.svg" alt="残差の分布">
+          <figcaption>
+            <strong>残差の分布</strong>
+            <span>横軸は残差、縦軸は度数。残差が0付近に集まるか、極端なズレがないかを見る。</span>
+          </figcaption>
+        </figure>
+<p>予測値と残差の関係も見ます。</p>
+<pre><code class="language-r">plot(sales$predicted, sales$residual,
+     xlab = "予測された契約数",
+     ylab = "残差",
+     main = "予測値と残差",
+     pch = 19)
+abline(h = 0, col = "red", lwd = 2)</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/03_residual_scatter.svg" alt="予測値と残差">
+          <figcaption>
+            <strong>予測値と残差</strong>
+            <span>横軸は予測値、縦軸は残差。ばらつきが扇形に広がる場合は等分散性に注意。</span>
+          </figcaption>
+        </figure>
+<p>残差が0の上下にランダムに散らばっていれば、直線モデルとしては悪くなさそうです。曲線の形が見える、右に行くほどばらつきが大きい、極端に離れた点がある、といった場合は注意が必要です。</p>
+<h3>信頼区間と予測区間を可視化する</h3>
+<p>新しい架電数に対して、信頼区間と予測区間を出します。</p>
+<pre><code class="language-r">new_sales &lt;- data.frame(calls = seq(30, 180, length.out = 100))
+
+conf &lt;- predict(model, newdata = new_sales, interval = "confidence")
+pred &lt;- predict(model, newdata = new_sales, interval = "prediction")
+
+plot(sales$calls, sales$contracts,
+     xlab = "月間架電数",
+     ylab = "月間契約数",
+     main = "信頼区間と予測区間",
+     pch = 19)
+
+lines(new_sales$calls, conf[, "fit"], col = "red", lwd = 2)
+lines(new_sales$calls, conf[, "lwr"], col = "blue", lty = 2)
+lines(new_sales$calls, conf[, "upr"], col = "blue", lty = 2)
+lines(new_sales$calls, pred[, "lwr"], col = "darkgreen", lty = 3)
+lines(new_sales$calls, pred[, "upr"], col = "darkgreen", lty = 3)
+
+legend("topleft",
+       legend = c("回帰直線", "信頼区間", "予測区間"),
+       col = c("red", "blue", "darkgreen"),
+       lty = c(1, 2, 3),
+       bty = "n")</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/03_intervals.svg" alt="信頼区間と予測区間">
+          <figcaption>
+            <strong>信頼区間と予測区間</strong>
+            <span>青の破線は平均予測の信頼区間、緑の点線は新しい観測値の予測区間。予測区間の方が広い。</span>
+          </figcaption>
+        </figure>
+<p>青い線が平均的な契約数の信頼区間、緑の線が新しい1人の契約数の予測区間です。予測区間の方が広いことがわかります。</p>
+<h3>係数のブレを可視化する</h3>
+<p>同じ条件で何度もデータを作ると、推定された回帰係数がどれくらいブレるかを見られます。</p>
+<pre><code class="language-r">set.seed(123)
+
+B &lt;- 1000
+n &lt;- 60
+
+slopes &lt;- numeric(B)
+
+for (i in 1:B) {
+  calls &lt;- runif(n, 30, 180)
+  error &lt;- rnorm(n, 0, 1.2)
+  contracts &lt;- 1.0 + 0.04 * calls + error
+
+  m &lt;- lm(contracts ~ calls)
+  slopes[i] &lt;- coef(m)[2]
+}
+
+hist(slopes,
+     breaks = 30,
+     main = "推定された架電数係数の分布",
+     xlab = "推定された係数",
+     col = "skyblue")
+abline(v = 0.04, col = "red", lwd = 2)
+
+mean(slopes)
+sd(slopes)</code></pre>
+
+        <figure class="lesson-figure">
+          <img src="figures/03_slope_distribution.svg" alt="推定された係数の分布">
+          <figcaption>
+            <strong>推定された係数の分布</strong>
+            <span>横軸は推定された傾き。繰り返し標本を取ると係数推定値がどれくらい揺れるかを示す。</span>
+          </figcaption>
+        </figure>
+<p>本当の係数は <code>0.04</code> です。シミュレーションを1000回行うと、推定された係数は <code>0.04</code> の周りに分布します。</p>
+<p>この分布の広がりが、「回帰係数には誤差範囲がある」ということを表しています。</p></article>
+      <nav class="lesson-pager">
+    <a href="standardized-coefficients.html">← 標準化回帰係数</a>
+    <a href="./">目次</a>
+    <a href="residual-diagnostics.html">残差分析 →</a>
+  </nav>
+    </main>
+  </body>
+</html>
