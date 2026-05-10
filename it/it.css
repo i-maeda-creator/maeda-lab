@@ -255,6 +255,162 @@ h1 span {
   margin-bottom: 6px;
 }
 
+.story-content strong {
+  color: #fff;
+}
+
+.story-block {
+  background: linear-gradient(135deg, rgba(140, 200, 255, 0.12), rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  margin-bottom: 30px;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.real-gallery {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 30px 0 36px;
+}
+
+.real-gallery figure {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.real-gallery img {
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.real-gallery figcaption {
+  color: #f2f2f3;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  padding: 12px 14px 14px;
+}
+
+.term-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 20px 0 34px;
+}
+
+.term-grid div,
+.practical-note,
+.quiz-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(16px, 3vw, 24px);
+}
+
+.term-grid span {
+  color: var(--accent);
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.term-grid p,
+.practical-note p {
+  margin: 0;
+}
+
+.quiz-card {
+  margin: 34px 0;
+}
+
+.quiz-label {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.quiz-card h2 {
+  border: 0;
+  font-size: clamp(1.18rem, 2vw, 1.52rem);
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.quiz-options button {
+  background: #292b31;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 13px 15px;
+  text-align: left;
+}
+
+.quiz-options button:hover {
+  background: #33353d;
+}
+
+.quiz-options button:disabled {
+  cursor: default;
+  opacity: 0.86;
+}
+
+.quiz-options button.is-correct {
+  background: rgba(57, 197, 120, 0.18);
+  border-color: rgba(57, 197, 120, 0.82);
+}
+
+.quiz-options button.is-wrong {
+  background: rgba(255, 92, 92, 0.18);
+  border-color: rgba(255, 92, 92, 0.86);
+}
+
+.quiz-result {
+  font-weight: 700;
+  margin: 16px 0 0;
+}
+
+.quiz-result.is-correct {
+  color: var(--green);
+}
+
+.quiz-result.is-wrong {
+  color: #ff9a9a;
+}
+
+.quiz-explain {
+  color: #f2f2f3;
+  line-height: 1.9;
+  margin: 8px 0 0;
+}
+
+.practical-note h2 {
+  border: 0;
+  color: var(--accent);
+  font-size: 1rem;
+  margin: 0 0 10px;
+  padding: 0;
+  text-transform: uppercase;
+}
+
 .diagram-card {
   background: #f7f7f8;
   border: 1px solid var(--line);
@@ -330,6 +486,42 @@ h1 span {
   stroke-width: 4;
 }
 
+.l1-diagram .device rect {
+  fill: #eef6ff;
+  stroke: rgba(17, 17, 20, 0.12);
+}
+
+.l1-diagram .device circle,
+.l1-diagram .device path {
+  fill: none;
+  stroke: #17171a;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.l1-diagram .medium-line path {
+  fill: none;
+  stroke: #5ea7ff;
+  stroke-linecap: round;
+  stroke-width: 8;
+}
+
+.l1-diagram .medium-line circle {
+  fill: #64d98a;
+  stroke: #17171a;
+  stroke-width: 2;
+}
+
+.l1-diagram .signal-tags rect {
+  fill: #f2f2f4;
+}
+
+.l1-diagram .diagram-note {
+  fill: #4b4b52;
+  font-size: 15px;
+  font-weight: 700;
+}
+
 .lesson-list.compact {
   margin-top: 18px;
 }
@@ -397,7 +589,9 @@ h1 span {
 
 @media (max-width: 880px) {
   .chapter-grid,
-  .lesson {
+  .lesson,
+  .real-gallery,
+  .term-grid {
     grid-template-columns: 1fr;
   }
 

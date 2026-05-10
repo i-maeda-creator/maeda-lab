@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>L1 Physical Layer | Network</title>
     <meta name="description" content="L1 Physical Layer notes for Maeda Lab." />
-    <link rel="stylesheet" href="it.css?v=20260509-network-diagrams" />
+    <link rel="stylesheet" href="it.css?v=20260510-l1-story" />
   </head>
   <body>
     <header class="site-header">
@@ -18,34 +18,214 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="hero story-hero">
         <p class="eyebrow">01-1 / Network</p>
-        <h1>L1 Physical Layer</h1>
-        <p class="lead">L1は、データを電気信号、光信号、無線信号として運ぶ層。ここではIPアドレスやHTTPではなく、信号が物理的に届くかを見る。</p>
+        <h1>L1 Physical Layer <span>通信は、まず現実世界を通ります。</span></h1>
+        <p class="lead">
+          カフェでWi-Fiにつないで、Webページを開く。画面では一瞬の出来事ですが、その裏側では電波、銅線、光ファイバーが小さな信号を運んでいます。
+          L1は、その最初の足場を担当する層です。
+        </p>
       </section>
 
       <section class="lesson">
-        <article class="content">
-          <h2>このページで扱うこと</h2>
-          <p>ここには今後、LANケーブル、光ファイバー、無線、ビット、帯域、ノイズ、規格、コネクタなどを整理していきます。</p>
-          <ul>
-            <li>Cable: LANケーブル、光ファイバー。</li>
-            <li>Signal: 電気、光、電波。</li>
-            <li>Bit: 0と1の最小単位。</li>
-            <li>Bandwidth: 一定時間に送れる量。</li>
-            <li>Noise: 信号を乱す要因。</li>
-          </ul>
+        <article class="content story-content">
+          <section class="story-block opening">
+            <p>
+              では、スマホがWebサイトを見る場面から始めましょう。
+              ブラウザにURLを入れると、HTTPやDNSという言葉を思い浮かべたくなります。
+              もちろんそれらも大切です。ですが、その前にもっと地味で、もっと現実的な条件があります。
+            </p>
+            <p>
+              <strong>信号が、相手まで届けること。</strong>
+              L1 Physical Layerは、この「届く」を成立させるための層です。
+            </p>
+          </section>
+
+          <section class="real-gallery" aria-label="Real network objects">
+            <figure>
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/RJ45_Ethernet_Cable.jpg?width=900" alt="RJ45 Ethernet cable" />
+              <figcaption>LANケーブルのコネクタ。PCやルーターに差す、かなり現実的なL1の入口です。Photo: Khairil Yusof, CC BY 2.0.</figcaption>
+            </figure>
+            <figure>
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fiber_optic_illuminated.jpg?width=900" alt="Illuminated fiber optic cable" />
+              <figcaption>光ファイバー。長距離通信では、電気ではなく光として情報を運びます。Photo: Hustvedt, CC BY-SA 3.0.</figcaption>
+            </figure>
+          </section>
+
+          <h2>まず、用語を短く押さえます</h2>
+          <div class="term-grid">
+            <div>
+              <span>Bit</span>
+              <p>0か1の最小単位です。ただしL1では、まだ「文字」ではなく、電圧・光・電波の変化として扱います。</p>
+            </div>
+            <div>
+              <span>Signal</span>
+              <p>データを現実世界で運ぶための姿です。銅線なら電気、光ファイバーなら光、Wi-Fiなら電波です。</p>
+            </div>
+            <div>
+              <span>Medium</span>
+              <p>信号が通る道です。LANケーブル、光ファイバー、空間などが入ります。</p>
+            </div>
+            <div>
+              <span>Noise</span>
+              <p>信号を乱すものです。距離、電磁波、曲げ、劣化、障害物などが原因になります。</p>
+            </div>
+          </div>
+
+          <div class="quiz-card" id="quiz" data-quiz>
+            <p class="quiz-label">Quick Quiz 1</p>
+            <h2>スマホでWebページを見るとき、一番最初に必要なのはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">HTTPリクエストを作ること</button>
+              <button type="button" data-correct="false">DNSで名前解決すること</button>
+              <button type="button" data-correct="true">電波やケーブルで信号を送れること</button>
+              <button type="button" data-correct="false">HTMLを画面に描画すること</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>
+              答えは「信号を送れること」です。HTTPもDNSも、信号が通る道があって初めて働きます。
+              実務でも、Webが見えない原因が「LANケーブルが抜けている」「Wi-Fiが弱い」だった、ということは普通にあります。
+            </p>
+          </div>
+
+          <h2>L1は「意味」ではなく「形」を運びます</h2>
+          <p>
+            ここで大事なのは、L1はメッセージの意味を理解していない、という点です。
+            「これはログイン情報です」「これは画像です」といった判断はしません。
+            L1が見るのは、電圧が高いか低いか、光があるかないか、電波の変化がどうなっているか、という物理的な形です。
+          </p>
+
+          <figure class="diagram-card l1-diagram" aria-label="L1 signal diagram">
+            <svg viewBox="0 0 820 430" role="img">
+              <title>L1 signal journey</title>
+              <rect x="20" y="20" width="780" height="390" rx="30" class="diagram-shell" />
+              <text x="56" y="72" class="diagram-title">L1 Physical Layer</text>
+              <g class="device">
+                <rect x="70" y="140" width="130" height="94" rx="18" />
+                <rect x="104" y="246" width="62" height="12" rx="6" />
+                <text x="92" y="292">PC / Phone</text>
+              </g>
+              <g class="medium-line">
+                <path d="M220 188 C300 120 360 120 430 188 S570 256 650 188" />
+                <circle cx="276" cy="162" r="7" />
+                <circle cx="394" cy="164" r="7" />
+                <circle cx="522" cy="212" r="7" />
+                <circle cx="632" cy="190" r="7" />
+              </g>
+              <g class="device">
+                <rect x="650" y="140" width="110" height="94" rx="18" />
+                <circle cx="681" cy="172" r="8" />
+                <circle cx="710" cy="172" r="8" />
+                <path d="M675 214 L735 214" />
+                <text x="656" y="292">Router</text>
+              </g>
+              <g class="signal-tags">
+                <rect x="252" y="300" width="96" height="38" rx="12" />
+                <text x="276" y="325">Electric</text>
+                <rect x="366" y="300" width="76" height="38" rx="12" />
+                <text x="391" y="325">Light</text>
+                <rect x="460" y="300" width="90" height="38" rx="12" />
+                <text x="482" y="325">Radio</text>
+              </g>
+              <text x="56" y="372" class="diagram-note">Bits become physical signals. The meaning is handled by upper layers.</text>
+            </svg>
+            <figcaption>
+              L1では、bitが電気・光・電波などの信号として運ばれます。上位層が意味を扱い、L1は現実世界で通れる形にします。
+            </figcaption>
+          </figure>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 2</p>
+            <h2>L1が直接扱うものとして、一番近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">IPアドレス</button>
+              <button type="button" data-correct="true">電気信号や光信号</button>
+              <button type="button" data-correct="false">HTTPヘッダー</button>
+              <button type="button" data-correct="false">JSONデータ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>
+              正解は「電気信号や光信号」です。IPアドレスはL3、HTTPはもっと上の層で考えます。
+              切り分けでは、この層の違いを混ぜないことが重要です。
+            </p>
+          </div>
+
+          <h2>現場では、L1の問題はとても地味です</h2>
+          <p>
+            ネットワーク障害と聞くと、設定ミスやサーバー障害を想像しがちです。
+            しかし実際には、L1の問題もよくあります。
+            ケーブルが抜けている、コネクタの爪が折れている、光ファイバーを強く曲げすぎている、Wi-Fiの電波が壁で弱くなっている。
+            どれも派手ではありませんが、通信は止まります。
+          </p>
+
+          <div class="practical-note">
+            <h2>Practical Note</h2>
+            <p>
+              「インターネットにつながりません」と言われたら、いきなりアプリやDNSを疑う前に、まずリンクランプ、ケーブル、Wi-Fiの強さを見ます。
+              現場では、難しい原因よりも、目の前の物理が原因だったということがあります。
+            </p>
+          </div>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 3</p>
+            <h2>会議室だけWi-Fiが不安定です。L1としてまず疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">HTTPのメソッド</button>
+              <button type="button" data-correct="false">データベースのインデックス</button>
+              <button type="button" data-correct="true">壁や距離による電波の弱さ</button>
+              <button type="button" data-correct="false">HTMLのタグ構造</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>
+              正解は「壁や距離による電波の弱さ」です。Wi-Fiは空間を通る電波なので、壁、金属棚、人の多さ、電子レンジなどの影響を受けます。
+              便利な無線も、最後はかなり物理です。
+            </p>
+          </div>
+
+          <h2>このページの落ち</h2>
+          <p>
+            インターネットは、クラウドやAIのような派手な言葉で語られます。
+            ですが、その最初の一歩は、電気が流れること、光が届くこと、電波が飛ぶことです。
+            つまりネットワークは、思ったよりもずっと現実世界に足をつけています。
+          </p>
+          <p>
+            次はL2です。L1で信号が届くようになったら、今度は「同じ場所にいる相手をどう見分けるか」を考えます。
+            ここで登場するのがMACアドレスです。
+          </p>
         </article>
+
         <aside class="side-panel">
-          <span class="status seed">Seed</span>
+          <span class="status ready">Story Draft</span>
           <h2>Network</h2>
           <a href="network.html">Overview</a>
           <a href="network-l1.html">L1 Physical</a>
           <a href="network-l2.html">L2 Data Link</a>
+          <h2>Flow</h2>
+          <a href="#top">Opening</a>
+          <a href="#quiz">Quizzes</a>
         </aside>
       </section>
     </main>
 
     <footer class="site-footer"><span>Maeda Lab</span></footer>
+    <script>
+      document.querySelectorAll("[data-quiz]").forEach((quiz) => {
+        const result = quiz.querySelector(".quiz-result");
+        const explanation = quiz.querySelector(".quiz-explain");
+        quiz.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", () => {
+            const correct = button.dataset.correct === "true";
+            quiz.querySelectorAll("button").forEach((item) => {
+              item.disabled = true;
+              item.classList.toggle("is-correct", item.dataset.correct === "true");
+            });
+            button.classList.add(correct ? "selected-correct" : "is-wrong");
+            result.textContent = correct ? "正解です。" : "惜しいです。正解は緑の選択肢です。";
+            result.classList.add(correct ? "is-correct" : "is-wrong");
+            explanation.hidden = false;
+          });
+        });
+      });
+    </script>
   </body>
 </html>
