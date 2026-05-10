@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>L4 Transport Layer | Network</title>
+    <meta name="description" content="L4 Transport Layer notes for Maeda Lab." />
+    <link rel="stylesheet" href="it.css?v=20260510-l123" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="network.html">Network</a>
+        <a href="index.html">IT</a>
+        <a href="../index.html#notes">Notes</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero story-hero">
+        <p class="eyebrow">01-4 / Network</p>
+        <h1>L4 Transport Layer <span>アプリに届く前に、会話の入口を決めます。</span></h1>
+        <p class="lead">
+          L3でサーバーの住所までは進めました。L4ではTCP/UDPとポート番号を使って、
+          そのサーバーのどのアプリへ届けるかを考えます。
+        </p>
+      </section>
+
+      <section class="lesson">
+        <article class="content story-content">
+          <section class="story-block opening">
+            <p>
+              カフェのレジ端末がクラウドの注文管理システムへアクセスします。
+              IPアドレスでサーバーまでは行けても、同じサーバーにはWeb、SSH、DBなど複数の入口があります。
+              ポート番号は、建物の中の受付窓口のようなものです。
+            </p>
+          </section>
+
+          <section class="score-board" aria-live="polite">
+            <div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div>
+            <div><span>正答率</span><strong data-score-rate>0%</strong></div>
+            <div><span>偏差値風</span><strong data-score-dev>--</strong></div>
+            <p data-score-message>クイズに答えると、このページ内での正答率と偏差値風スコアが出ます。</p>
+          </section>
+
+          <h2>TCPとUDPをまず分けましょう</h2>
+          <p>
+            TCPは、通信を始める前に接続を作り、届かなかったデータを再送できます。
+            HTTPS、SSH、メールのように、順序や信頼性が大切な通信でよく使われます。
+            UDPは接続を作る手続きが軽く、DNS、音声、動画、オンラインゲームのようにリアルタイム性が大切な通信で登場します。
+          </p>
+
+          <figure class="diagram-card journey-diagram" aria-label="TCP and UDP comparison">
+            <svg viewBox="0 0 900 430" role="img">
+              <title>TCPとUDP</title>
+              <rect x="20" y="20" width="860" height="390" rx="30" class="diagram-shell" />
+              <text x="54" y="72" class="diagram-title">L4: 会話の方式と入口を決めます</text>
+              <g class="journey-node">
+                <rect x="70" y="125" width="300" height="185" rx="22" />
+                <text x="100" y="170">TCP</text>
+                <text x="100" y="215">接続を作る</text>
+                <text x="100" y="250">再送・順序を意識</text>
+                <text x="100" y="285">例: HTTPS, SSH</text>
+              </g>
+              <g class="journey-node">
+                <rect x="530" y="125" width="300" height="185" rx="22" />
+                <text x="560" y="170">UDP</text>
+                <text x="560" y="215">手続きが軽い</text>
+                <text x="560" y="250">遅延を小さくしやすい</text>
+                <text x="560" y="285">例: DNS, 音声</text>
+              </g>
+              <text x="98" y="360" class="diagram-note">用途に合わせて選ぶのがL4の感覚です。</text>
+            </svg>
+            <figcaption>TCPは信頼性、UDPは軽さ。L4では通信の会話の性格が決まります。</figcaption>
+          </figure>
+
+          <div class="quiz-card" id="quiz" data-quiz>
+            <p class="quiz-label">Quick Quiz 1</p>
+            <h2>L4で、アプリの入口を示す番号はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">MACアドレス</button>
+              <button type="button" data-correct="true">ポート番号</button>
+              <button type="button" data-correct="false">SSID</button>
+              <button type="button" data-correct="false">HTMLタグ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はポート番号です。IPアドレスでサーバーへ行き、ポート番号でその中のサービスを選びます。</p>
+          </div>
+
+          <h2>代表的なポート番号は、現場でも試験でも使います</h2>
+          <div class="address-table">
+            <table>
+              <thead><tr><th>用途</th><th>代表例</th><th>実務で見るポイント</th></tr></thead>
+              <tbody>
+                <tr><td>Web</td><td>TCP 80 / 443</td><td>HTTPS化、証明書、リバースプロキシ</td></tr>
+                <tr><td>DNS</td><td>UDP/TCP 53</td><td>名前解決、応答サイズ、TCPへの切替</td></tr>
+                <tr><td>SSH</td><td>TCP 22</td><td>管理通信、接続元制限、鍵認証</td></tr>
+                <tr><td>DB</td><td>TCP 3306 / 5432など</td><td>外部公開しない、アプリサーバーだけ許可</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 2</p>
+            <h2>HTTPSでよく使われるポート番号はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">22</button>
+              <button type="button" data-correct="false">53</button>
+              <button type="button" data-correct="true">443</button>
+              <button type="button" data-correct="false">3306</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解は443です。HTTPの80番とセットで覚えるとWeb通信の切り分けがしやすいです。</p>
+          </div>
+
+          <h2>TCPは、3ウェイハンドシェイクで会話を始めます</h2>
+          <p>
+            TCPでは、SYN、SYN/ACK、ACKという流れで接続を作ります。
+            実務では、SYNが出ているか、SYN/ACKが返っているかを見るだけで原因を絞れます。
+          </p>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 3</p>
+            <h2>TCPで通信開始時に行う代表的な手順はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">3ウェイハンドシェイク</button>
+              <button type="button" data-correct="false">決算整理</button>
+              <button type="button" data-correct="false">画像圧縮</button>
+              <button type="button" data-correct="false">HTML整形</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。SYN、SYN/ACK、ACKの流れを見ると、L4の疎通がかなり切り分けられます。</p>
+          </div>
+
+          <h2>L4で実際に関わる会社・人を見てみましょう</h2>
+          <div class="address-table">
+            <table>
+              <thead><tr><th>関係者</th><th>具体例</th><th>見ているもの</th></tr></thead>
+              <tbody>
+                <tr><td>ロードバランサ/ADC</td><td>F5、A10 Networks、Citrix、AWS ELBなど</td><td>TCP接続、ヘルスチェック、負荷分散</td></tr>
+                <tr><td>ファイアウォール運用</td><td>Fortinet、Palo Alto Networks、Ciscoなど</td><td>ポート許可、セッション、NAT、ログ</td></tr>
+                <tr><td>サーバー担当</td><td>Linux/Windows、クラウド運用</td><td>待受ポート、プロセス、OSファイアウォール</td></tr>
+                <tr><td>アプリ開発者</td><td>Web/API開発チーム</td><td>タイムアウト、リトライ、接続プール</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="quiz-card field" data-quiz>
+            <p class="quiz-label">Field Quiz A</p>
+            <h2>pingは通るのにHTTPSだけ接続できません。L4としてまず確認したいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">TCP 443番が待ち受けているか、FWで許可されているか</button>
+              <button type="button" data-correct="false">ケーブルの色</button>
+              <button type="button" data-correct="false">会計年度</button>
+              <button type="button" data-correct="false">画像サイズ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。pingはICMPなので、TCP 443が通ることを保証しません。ポート単位で見ます。</p>
+          </div>
+
+          <div class="quiz-card field" data-quiz>
+            <p class="quiz-label">Field Quiz B</p>
+            <h2>UDPが向きやすい用途として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">銀行振込の確定処理</button>
+              <button type="button" data-correct="true">音声通話やリアルタイム性が大切な通信</button>
+              <button type="button" data-correct="false">監査証跡の保存</button>
+              <button type="button" data-correct="false">請求書PDFの保管</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。リアルタイム通信では、完全な再送より今のデータを素早く届ける方が大切なことがあります。</p>
+          </div>
+
+          <h2>応用です。L4のトラブルを切り分けます</h2>
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 6</p>
+            <h2>サーバー内から localhost:443 は応答しますが、外部から443番に接続できません。次に疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">OSファイアウォール、クラウドSG、ネットワークFWの許可</button>
+              <button type="button" data-correct="false">HTMLの文法</button>
+              <button type="button" data-correct="false">画像の圧縮率</button>
+              <button type="button" data-correct="false">ページタイトル</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。サーバー内部では待受できているので、外から入る経路上のL4許可を疑います。</p>
+          </div>
+
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 7</p>
+            <h2>APIがたまにtimeoutします。L4/L7の境目として見たいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">接続タイムアウト、リトライ、LBのアイドルタイムアウト</button>
+              <button type="button" data-correct="false">フォントの種類</button>
+              <button type="button" data-correct="false">机の配置</button>
+              <button type="button" data-correct="false">画像拡張子</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。タイムアウトはネットワークだけでもアプリだけでもなく、LBや接続プールの設定が絡むことがあります。</p>
+          </div>
+
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 8</p>
+            <h2>DNSは引けてpingも通ります。しかしSSHだけつながりません。最もL4らしい確認はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">TCP 22番の待受と許可ルール</button>
+              <button type="button" data-correct="false">Webページのタイトル</button>
+              <button type="button" data-correct="false">MACアドレス表だけ</button>
+              <button type="button" data-correct="false">仕訳帳</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。到達性があっても、特定ポートが閉じていればSSHはつながりません。</p>
+          </div>
+
+          <h2>最後に、IPAの試験っぽくまとめて確認しましょう</h2>
+          <div class="quiz-card exam" data-quiz>
+            <p class="quiz-label">IPA Style Test 1</p>
+            <h2>TCPの特徴として最も適切なものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">コネクションを確立し、順序制御や再送制御を行う</button>
+              <button type="button" data-correct="false">MACアドレスだけで経路制御する</button>
+              <button type="button" data-correct="false">画像を自動生成する</button>
+              <button type="button" data-correct="false">勘定科目を分類する</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はTCPの信頼性に関する説明です。UDPとの違いとしてよく問われます。</p>
+          </div>
+
+          <div class="quiz-card exam" data-quiz>
+            <p class="quiz-label">IPA Style Test 2</p>
+            <h2>DNSの問い合わせでよく使われるポート番号として適切なものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">22</button>
+              <button type="button" data-correct="true">53</button>
+              <button type="button" data-correct="false">443</button>
+              <button type="button" data-correct="false">3306</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解は53番です。DNSはUDP 53が有名ですが、条件によってTCP 53も使います。</p>
+          </div>
+
+          <h2>ネットワークスペシャリスト級チャレンジです</h2>
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Challenge 1</p>
+            <h2>数分放置すると次の操作で失敗します。認証エラーではなく接続断です。L4付近で疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">LBやFWのアイドルタイムアウトとアプリ側の接続維持設定の不整合</button>
+              <button type="button" data-correct="false">端末の壁紙サイズ</button>
+              <button type="button" data-correct="false">LANケーブルの色</button>
+              <button type="button" data-correct="false">HTMLのalt属性</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。一定時間後に失敗する問題は、TCP接続、LB/FWのタイムアウト、アプリのセッションが絡むことがあります。</p>
+          </div>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Challenge 2</p>
+            <h2>FWログにはTCP SYNの許可ログがありますが、SYN/ACKが戻りません。サーバー側では対象ポートの待受プロセスが起動していません。妥当な説明はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">FWが必ず原因である</button>
+              <button type="button" data-correct="true">経路やFWだけでなく、サーバー側の待受ポートも確認すべきである</button>
+              <button type="button" data-correct="false">DNSが成功していればTCP接続も必ず成功する</button>
+              <button type="button" data-correct="false">UDPに変えれば必ず解決する</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。SYNが許可されても、サーバー側で待ち受けていなければ接続できません。L4では経路、FW、待受プロセスをセットで見ます。</p>
+          </div>
+
+          <h2>このページの落ち</h2>
+          <p>
+            L4は、アプリの直前にある交通整理です。
+            IPアドレスだけでは「どの建物か」までしか分かりません。
+            ポート番号、TCP/UDP、接続状態を見て、ようやく「どの窓口で、どう会話しているか」が分かります。
+          </p>
+        </article>
+
+        <aside class="side-panel">
+          <span class="status ready">Story Note</span>
+          <h2>Network</h2>
+          <a href="network.html">Overview</a>
+          <a href="network-l1.html">L1 Physical</a>
+          <a href="network-l2.html">L2 Data Link</a>
+          <a href="network-l3.html">L3 Network</a>
+          <a href="network-l4.html">L4 Transport</a>
+          <a href="network-l5-7.html">L5-7 Application</a>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Maeda Lab</span></footer>
+    <script src="it-quiz.js?v=20260510-l123"></script>
+  </body>
+</html>
