@@ -340,6 +340,45 @@
             <p class="quiz-explain" hidden>正解はVLANです。同じ物理機器を使いながら、L2ネットワークを論理的に分割できます。</p>
           </div>
 
+          <h2>ネットワークスペシャリスト級チャレンジです</h2>
+          <p>
+            L2の難問は、単にMACアドレスやVLANを知っているだけでは解けません。
+            どのフレームがどのポートから入り、どのVLANに属し、どこで捨てられるかを追う必要があります。
+            ここでは、設計ミスと現場ミスが混ざった問題にしてみます。
+          </p>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Challenge 1</p>
+            <h2>アクセスポイントの上位ポートを交換したところ、社内SSIDは使えますがゲストSSIDだけ通信できません。APは複数SSIDをVLANタグ付きで上位スイッチへ渡す設計です。原因として最も疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">ゲスト端末の画面輝度が低い</button>
+              <button type="button" data-correct="true">交換後ポートでゲスト用VLANが許可されていない</button>
+              <button type="button" data-correct="false">DNSサーバーの時刻同期がずれている</button>
+              <button type="button" data-correct="false">ルーターのNATテーブルが満杯である</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>
+              正解です。複数SSIDをVLANタグで運ぶなら、上位ポートは必要なVLANを通す設定になっている必要があります。
+              社内SSIDだけ生きているなら、物理断ではなく、特定VLANだけ通っていない可能性が高いです。
+            </p>
+          </div>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Challenge 2</p>
+            <h2>フロアスイッチ増設後、全体の通信が断続的に遅くなりました。CPU使用率が高いスイッチがあり、MACアドレス表が短時間で大きく変動しています。L2として最も疑うべきものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">L2ループやSTP設定不備によるブロードキャストストーム</button>
+              <button type="button" data-correct="false">Webブラウザのフォント設定</button>
+              <button type="button" data-correct="false">会計システムの締め処理</button>
+              <button type="button" data-correct="false">グローバルIPアドレスの枯渇</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>
+              正解です。MACアドレス表が揺れる、スイッチCPUが高い、全体が不安定という条件は、L2ループを強く疑います。
+              ネットワークスペシャリストでは、STP、冗長配線、ポート設定、障害時の経路変化を図から追う問題がよく効きます。
+            </p>
+          </div>
+
           <h2>このページの落ち</h2>
           <p>
             L2は、ケーブルの先にいる相手を見分ける層です。

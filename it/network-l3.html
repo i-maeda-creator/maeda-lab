@@ -352,6 +352,45 @@
             <p class="quiz-explain" hidden>正解はNATです。プライベートIPアドレスを、外向きに使えるグローバルIPアドレスへ変換します。</p>
           </div>
 
+          <h2>ネットワークスペシャリスト級チャレンジです</h2>
+          <p>
+            L3の難問は、通信の片道だけを見ていると間違えます。
+            行きの経路、戻りの経路、NAT、ファイアウォール、VPN、DNSを分けて考える必要があります。
+            ここはかなり本気の問題です。すぐ解けなくて普通、むしろ解けるようになるために読む場所です。
+          </p>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Challenge 1</p>
+            <h2>拠点Aから拠点Bのサーバーへpingは届きますが、拠点Bから拠点Aへの応答が途中で戻りません。拠点間VPNは確立済みで、拠点B側のサーバーログには要求が届いています。L3として最も疑うべきものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">拠点Aの端末の画面解像度</button>
+              <button type="button" data-correct="true">戻り経路のルーティング、またはファイアウォールの戻り通信許可</button>
+              <button type="button" data-correct="false">LANケーブルの色</button>
+              <button type="button" data-correct="false">HTMLの見出しレベル</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>
+              正解です。要求がサーバーに届いているなら、行きの経路だけでなく戻りの経路を確認します。
+              ネットワークスペシャリストでは、非対称経路、戻りルート不足、ファイアウォールのステート、VPN側の経路広告が絡む問題が難所になります。
+            </p>
+          </div>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Challenge 2</p>
+            <h2>社内端末からクラウド上の業務システムへ接続できません。宛先IPへtracerouteすると社内FWまでは到達し、その先で止まります。FWログには許可ログがありますが、NAT変換ログがありません。原因として最も近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">端末の壁紙が高解像度である</button>
+              <button type="button" data-correct="false">スイッチのMACアドレス表が多い</button>
+              <button type="button" data-correct="true">FWで通信許可はされているが、送信元NATの対象から漏れている</button>
+              <button type="button" data-correct="false">DNS名に大文字が含まれている</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>
+              正解です。FWで許可されていても、インターネットへ出る通信では送信元NATが必要な構成があります。
+              許可ログだけ見て安心すると外します。許可、NAT、ルート、戻り通信を別々に確認するのがL3の実務です。
+            </p>
+          </div>
+
           <h2>このページの落ち</h2>
           <p>
             L3は、ネットワークの外へ出るための道案内です。
