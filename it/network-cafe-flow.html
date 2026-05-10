@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cafe Network Flow | Network</title>
+    <meta name="description" content="End-to-end cafe network communication flow for Maeda Lab." />
+    <link rel="stylesheet" href="it.css?v=20260510-l123" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="network.html">Network</a>
+        <a href="index.html">IT</a>
+        <a href="../index.html#notes">Notes</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero story-hero">
+        <p class="eyebrow">01-6 / Network</p>
+        <h1>Cafe Network Flow <span>カフェで注文画面が開くまでを、最初から最後まで追います。</span></h1>
+        <p class="lead">
+          L1からL7までを別々に学んだあと、最後に一つの通信としてつなげます。
+          カフェのレジ端末がクラウドの注文管理画面を開くまでを、現場の切り分け目線で見ていきます。
+        </p>
+      </section>
+
+      <section class="lesson">
+        <article class="content story-content">
+          <section class="story-block opening">
+            <p>
+              朝のカフェです。スタッフがレジ端末を起動し、注文管理画面を開きます。
+              画面にはログインフォームが出るだけですが、その裏ではケーブル、Wi-Fi、スイッチ、ルーター、DNS、TLS、HTTP、サーバーが順番に働いています。
+            </p>
+            <p>
+              ネットワークの面白いところは、どれか一つが欠けると「ただ開かない」に見えることです。
+              だからこそ、層ごとに何が起きているかを分けて見ます。
+            </p>
+          </section>
+
+          <section class="score-board" aria-live="polite">
+            <div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div>
+            <div><span>正答率</span><strong data-score-rate>0%</strong></div>
+            <div><span>偏差値風</span><strong data-score-dev>--</strong></div>
+            <p data-score-message>クイズに答えると、このページ内での正答率と偏差値風スコアが出ます。</p>
+          </section>
+
+          <h2>全体像を一枚で見ましょう</h2>
+          <figure class="diagram-card journey-diagram" aria-label="Cafe network end to end flow">
+            <svg viewBox="0 0 960 560" role="img">
+              <title>カフェ通信の一気通貫</title>
+              <rect x="20" y="20" width="920" height="520" rx="30" class="diagram-shell" />
+              <text x="54" y="72" class="diagram-title">レジ端末からクラウド注文管理まで</text>
+              <g class="journey-node">
+                <rect x="60" y="150" width="125" height="82" rx="18" />
+                <text x="90" y="184">レジ端末</text>
+                <text x="82" y="216">ブラウザ</text>
+              </g>
+              <g class="journey-node">
+                <rect x="225" y="150" width="125" height="82" rx="18" />
+                <text x="256" y="184">AP</text>
+                <text x="238" y="216">Wi-Fi</text>
+              </g>
+              <g class="journey-node">
+                <rect x="390" y="150" width="125" height="82" rx="18" />
+                <text x="420" y="184">スイッチ</text>
+                <text x="415" y="216">VLAN</text>
+              </g>
+              <g class="journey-node">
+                <rect x="555" y="150" width="125" height="82" rx="18" />
+                <text x="585" y="184">ルーター</text>
+                <text x="584" y="216">NAT/FW</text>
+              </g>
+              <g class="journey-node">
+                <rect x="720" y="150" width="150" height="82" rx="18" />
+                <text x="750" y="184">クラウド</text>
+                <text x="740" y="216">LB / Web</text>
+              </g>
+              <path class="journey-line cable" d="M185 191 C202 191 208 191 225 191" />
+              <path class="journey-line cable" d="M350 191 C367 191 373 191 390 191" />
+              <path class="journey-line fiber" d="M515 191 C532 191 538 191 555 191" />
+              <path class="journey-line fiber" d="M680 191 C700 191 705 191 720 191" />
+              <text x="70" y="310" class="diagram-note">L1: 電波、ケーブル、光、電源、MDF</text>
+              <text x="70" y="345" class="diagram-note">L2: MAC、VLAN、スイッチ、AP</text>
+              <text x="70" y="380" class="diagram-note">L3: IP、ゲートウェイ、ルーティング、NAT</text>
+              <text x="70" y="415" class="diagram-note">L4: TCP/UDP、ポート、FW、LB</text>
+              <text x="70" y="450" class="diagram-note">L5-7: DNS、TLS、HTTP、認証、API、ログ</text>
+            </svg>
+            <figcaption>画面が開くまでに、物理からアプリまでが連続して動きます。</figcaption>
+          </figure>
+
+          <h2>1. まずL1です。信号が届かなければ何も始まりません</h2>
+          <p>
+            レジ端末がWi-Fiでつながるなら電波、APがPoEで動くならLANケーブルと給電、店舗から外へ出るならONUや光回線が関わります。
+            電源、ケーブル、MDF、ONU、APのランプ。地味ですが、最初にここを見ないと遠回りになります。
+          </p>
+
+          <h2>2. 次にL2です。同じ店内で誰に渡すかを決めます</h2>
+          <p>
+            APからスイッチへ入り、レジ端末の通信は業務用VLANへ流れます。
+            客用Wi-Fiとレジ端末が同じネットワークにいると危険なので、VLANで分けます。
+            ここでポート設定やタグVLANを間違えると、電波は強いのに業務システムだけ見えない、という状態になります。
+          </p>
+
+          <h2>3. L3では、店の外へ出る道を選びます</h2>
+          <p>
+            レジ端末は宛先が店内ではないと判断し、デフォルトゲートウェイへ送ります。
+            ルーターはNATを行い、必要ならVPNや閉域網、インターネット回線へ流します。
+            ここではIPアドレス、サブネット、ルート、NAT、FWの責任分界点を見ます。
+          </p>
+
+          <h2>4. L4では、クラウド側のどの窓口へ行くかを決めます</h2>
+          <p>
+            注文管理画面なら多くの場合TCP 443番です。
+            FWで443番が許可され、LBのリスナーが受け、正常なWebサーバーへ振り分けます。
+            pingが通っても443番が閉じていれば、ブラウザでは「開かない」に見えます。
+          </p>
+
+          <h2>5. L5-7では、人が見る画面の話になります</h2>
+          <p>
+            DNSでドメイン名をIPに変換し、TLSで証明書を確認し、HTTPでリクエストを送ります。
+            ログインではCookie、セッション、認証基盤、API Gateway、DB接続が関係します。
+            ここまで来ると、ネットワーク担当、アプリ担当、認証基盤担当、クラウド担当が一緒に調べることも多いです。
+          </p>
+
+          <h2>切り分けのコツは、質問を層ごとに変えることです</h2>
+          <div class="address-table">
+            <table>
+              <thead><tr><th>見え方</th><th>まず考える層</th><th>確認すること</th></tr></thead>
+              <tbody>
+                <tr><td>APのランプが消えている</td><td>L1</td><td>電源、PoE、ケーブル、AP故障</td></tr>
+                <tr><td>客用Wi-Fiは見えるがレジだけ社内へ行けない</td><td>L2</td><td>VLAN、SSID、スイッチポート</td></tr>
+                <tr><td>店内プリンタは見えるがクラウドへ行けない</td><td>L3</td><td>ゲートウェイ、NAT、上流回線、ルート</td></tr>
+                <tr><td>pingは通るがHTTPSだけ失敗</td><td>L4</td><td>TCP 443、FW、LB、待受ポート</td></tr>
+                <tr><td>ログイン後だけ403</td><td>L7</td><td>認可、Cookie、WAF、セッション</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>ネットワークスペシャリスト級まとめテストです</h2>
+          <p>
+            ここからは一気通貫の切り分け問題です。
+            正解以外もそれっぽくしています。ログ、到達範囲、層の違いを見て判断してください。
+          </p>
+
+          <div class="quiz-card exam hard" id="quiz" data-quiz>
+            <p class="quiz-label">Network Specialist Final 1</p>
+            <h2>レジ端末はAPへ接続済みで、DHCPでIPも取得しています。店内プリンタには接続できますが、クラウド注文管理だけ開けません。まず優先して確認する組合せとして最も妥当なのはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">APの電波強度とLANケーブルの断線だけ</button>
+              <button type="button" data-correct="true">デフォルトゲートウェイ、NAT、上流回線、FWの外向き許可</button>
+              <button type="button" data-correct="false">プリンタのトナー残量とHTTPステータス404</button>
+              <button type="button" data-correct="false">スイッチのMACアドレス表だけ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。店内プリンタへ行けるならL1/L2はかなり生きています。外へ出るL3/NAT/FWを優先します。</p>
+          </div>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Final 2</p>
+            <h2>注文管理のURLにアクセスすると、DNSは正常に名前解決され、TCP 443の接続も成立します。しかしブラウザでは証明書警告が出ます。最も関係が深い層と確認対象はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">L1、光ファイバーの損失</button>
+              <button type="button" data-correct="false">L2、VLANタグの許可</button>
+              <button type="button" data-correct="true">L5-7、証明書の期限、SAN、中間証明書、信頼チェーン</button>
+              <button type="button" data-correct="false">L3、デフォルトゲートウェイだけ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。TCP 443まで成立しているので、TLS証明書の検証を見ます。</p>
+          </div>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Final 3</p>
+            <h2>新しいAPへ交換後、客用SSIDは使えますが業務用SSIDだけクラウドへ出られません。APの上位スイッチポートはタグVLANを使う設計です。最も疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">クラウド側WebサーバーのCPUだけ</button>
+              <button type="button" data-correct="true">上位ポートで業務用VLANが許可されているか、SSIDとVLANの対応が正しいか</button>
+              <button type="button" data-correct="false">DNSのTTLが長すぎることだけ</button>
+              <button type="button" data-correct="false">HTTP 500が返っていることだけ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。特定SSIDだけなら、SSIDとVLAN、タグ許可、スイッチポート設定を疑います。</p>
+          </div>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Final 4</p>
+            <h2>LB配下のWebサーバーで、ヘルスチェックは成功しています。しかし利用者のPOSTリクエストだけtimeoutします。次に見るべき観点として最も妥当なのはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">ヘルスチェック成功なのでL4/L7の調査は不要</button>
+              <button type="button" data-correct="true">ヘルスチェックのパスと実通信のパス、リクエストサイズ、アイドルタイムアウト、バックエンドログ</button>
+              <button type="button" data-correct="false">APの電波強度だけ</button>
+              <button type="button" data-correct="false">MDFの配線順だけ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。ヘルスチェックと実通信は同じ条件とは限りません。L4のtimeoutとL7の処理時間を両方見ます。</p>
+          </div>
+
+          <div class="quiz-card exam hard" data-quiz>
+            <p class="quiz-label">Network Specialist Final 5</p>
+            <h2>一部店舗だけ注文管理画面が古い表示のままです。クラウドのオリジンサーバーログには、その店舗からの最新リクエストが残っていません。最も疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">CDN、プロキシ、ブラウザキャッシュ、DNS切替後のTTL</button>
+              <button type="button" data-correct="false">レジ端末のIPアドレスがプライベートアドレスであることだけ</button>
+              <button type="button" data-correct="false">L2ループだけ</button>
+              <button type="button" data-correct="false">TCP 22番のSSH接続だけ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。オリジンにログがないなら、手前のCDNやプロキシ、キャッシュが応答している可能性があります。</p>
+          </div>
+
+          <h2>このページの落ち</h2>
+          <p>
+            通信は、一本の線ではなく、たくさんの担当者がリレーする駅伝のようなものです。
+            どこかで止まったら、怒るより先に、どの層で止まったかを見ます。
+            それができると、「ネットが悪いです」が、かなり具体的な調査に変わります。
+          </p>
+        </article>
+
+        <aside class="side-panel">
+          <span class="status ready">Story Note</span>
+          <h2>Network</h2>
+          <a href="network.html">Overview</a>
+          <a href="network-l1.html">L1 Physical</a>
+          <a href="network-l2.html">L2 Data Link</a>
+          <a href="network-l3.html">L3 Network</a>
+          <a href="network-l4.html">L4 Transport</a>
+          <a href="network-l5-7.html">L5-7 Application</a>
+          <a href="network-cafe-flow.html">Cafe Flow</a>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Maeda Lab</span></footer>
+    <script src="it-quiz.js?v=20260510-l123"></script>
+  </body>
+</html>

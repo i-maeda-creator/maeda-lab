@@ -91,9 +91,9 @@
             <h2>ドメイン名をIPアドレスに対応させる仕組みはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">DNS</button>
-              <button type="button" data-correct="false">VLAN</button>
-              <button type="button" data-correct="false">STP</button>
-              <button type="button" data-correct="false">MDF</button>
+              <button type="button" data-correct="false">DHCP</button>
+              <button type="button" data-correct="false">ARP</button>
+              <button type="button" data-correct="false">hostsファイルだけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はDNSです。URLを開く前に、まず名前からIPアドレスを調べる必要があります。</p>
@@ -121,10 +121,10 @@
             <p class="quiz-label">Quick Quiz 2</p>
             <h2>HTTPステータスコード404の意味として近いものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">成功</button>
+              <button type="button" data-correct="false">アクセス権限がない</button>
               <button type="button" data-correct="true">見つからない</button>
-              <button type="button" data-correct="false">暗号化成功</button>
-              <button type="button" data-correct="false">MAC学習完了</button>
+              <button type="button" data-correct="false">サーバー内部エラー</button>
+              <button type="button" data-correct="false">別URLへの転送</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解は「見つからない」です。URLやルーティング、公開設定の確認につながります。</p>
@@ -140,10 +140,10 @@
             <p class="quiz-label">Quick Quiz 3</p>
             <h2>HTTPSで、通信の暗号化や証明書確認に関係が深いものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">ARP</button>
-              <button type="button" data-correct="false">STP</button>
+              <button type="button" data-correct="false">DNSSEC</button>
+              <button type="button" data-correct="false">OAuth</button>
               <button type="button" data-correct="true">TLS</button>
-              <button type="button" data-correct="false">MDF</button>
+              <button type="button" data-correct="false">WAF</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はTLSです。HTTPSはHTTPをTLSで保護している、と考えると整理しやすいです。</p>
@@ -167,9 +167,9 @@
             <h2>証明書の期限切れで起きやすい現象はどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">ブラウザで安全ではないという警告が出る</button>
-              <button type="button" data-correct="false">LANケーブルが抜ける</button>
-              <button type="button" data-correct="false">VLAN IDが自動で変わる</button>
-              <button type="button" data-correct="false">MDFが増える</button>
+              <button type="button" data-correct="false">HTTP 404として処理される</button>
+              <button type="button" data-correct="false">DNSのAレコードが自動削除される</button>
+              <button type="button" data-correct="false">TCP 3ウェイハンドシェイクが必ず失敗する</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。証明書の期限や名前の不一致は、HTTPSでよくある実務トラブルです。</p>
@@ -179,10 +179,10 @@
             <p class="quiz-label">Field Quiz B</p>
             <h2>APIだけ500エラーになるとき、まず見たいものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">APの電波強度だけ</button>
+              <button type="button" data-correct="false">TLS証明書の期限だけ</button>
               <button type="button" data-correct="true">アプリログ、DB接続、リクエスト内容</button>
-              <button type="button" data-correct="false">ケーブルカテゴリだけ</button>
-              <button type="button" data-correct="false">スイッチの筐体色</button>
+              <button type="button" data-correct="false">DNSのTTLだけ</button>
+              <button type="button" data-correct="false">LBのヘルスチェック結果だけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。500はアプリ側の内部エラーを示すことが多いので、ログと依存先を確認します。</p>
@@ -194,9 +194,9 @@
             <h2>IPアドレスを直接指定するとつながりますが、ドメイン名ではつながりません。まず疑いやすいものはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">DNSの名前解決</button>
-              <button type="button" data-correct="false">L2ループ</button>
-              <button type="button" data-correct="false">MDFの鍵</button>
-              <button type="button" data-correct="false">画像のalt属性</button>
+              <button type="button" data-correct="false">TCP 443の待受だけ</button>
+              <button type="button" data-correct="false">TLS証明書の期限だけ</button>
+              <button type="button" data-correct="false">HTTP 500のアプリログだけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。IPで届くなら、次は名前解決を疑います。</p>
@@ -207,9 +207,9 @@
             <h2>ログイン後だけ403になります。L7としてまず見たいものはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">認可、Cookie、セッション、WAFルール</button>
-              <button type="button" data-correct="false">光ファイバーの曲げ半径だけ</button>
-              <button type="button" data-correct="false">スイッチのLED色だけ</button>
-              <button type="button" data-correct="false">IPアドレスの桁数だけ</button>
+              <button type="button" data-correct="false">DNSの名前解決だけ</button>
+              <button type="button" data-correct="false">TCP 3ウェイハンドシェイクだけ</button>
+              <button type="button" data-correct="false">VLANタグの許可だけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。ログイン後だけなら、認証よりも認可やセッション、WAFの判定が関係することがあります。</p>
@@ -220,9 +220,9 @@
             <h2>HTTPS化した直後、一部ブラウザだけ証明書エラーになります。疑いやすいものはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">中間証明書不足や古いTLS設定</button>
-              <button type="button" data-correct="false">VLANのブロードキャスト</button>
-              <button type="button" data-correct="false">LANケーブルの色</button>
-              <button type="button" data-correct="false">DNSサーバーのラック位置</button>
+              <button type="button" data-correct="false">DNSのTTLだけが短いこと</button>
+              <button type="button" data-correct="false">HTTPステータスが200であること</button>
+              <button type="button" data-correct="false">サーバーのポート443が開いていることだけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。一部環境だけ失敗するTLS問題は、中間証明書や対応バージョンの差が効くことがあります。</p>
@@ -233,10 +233,10 @@
             <p class="quiz-label">IPA Style Test 1</p>
             <h2>HTTPステータスコード500の説明として近いものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">成功</button>
-              <button type="button" data-correct="false">見つからない</button>
+              <button type="button" data-correct="false">認証が必要</button>
+              <button type="button" data-correct="false">リダイレクト</button>
               <button type="button" data-correct="true">サーバー内部エラー</button>
-              <button type="button" data-correct="false">MAC学習完了</button>
+              <button type="button" data-correct="false">キャッシュから応答</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はサーバー内部エラーです。アプリログや依存先を確認します。</p>
@@ -247,9 +247,9 @@
             <h2>HTTPSでサーバー証明書の検証に失敗したとき、利用者側で起きやすいことはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">ブラウザが警告を表示する</button>
-              <button type="button" data-correct="false">L2スイッチが再起動する</button>
-              <button type="button" data-correct="false">IPアドレスが必ず169.254になる</button>
-              <button type="button" data-correct="false">MDFの配線が変わる</button>
+              <button type="button" data-correct="false">HTTP 404として扱われる</button>
+              <button type="button" data-correct="false">DNSの名前解決が必ず失敗する</button>
+              <button type="button" data-correct="false">TCP 443のSYNが必ず破棄される</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。証明書の期限、名前、信頼チェーンはHTTPSの重要ポイントです。</p>
@@ -261,9 +261,9 @@
             <h2>CDN導入後、一部地域だけ古い画面が表示されます。サーバー本体のログには新しいリクエストが来ていません。疑いやすいものはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">CDNやブラウザキャッシュ、TTL、キャッシュキーの設定</button>
-              <button type="button" data-correct="false">MDF内の光融着だけ</button>
-              <button type="button" data-correct="false">スイッチのSTPだけ</button>
-              <button type="button" data-correct="false">端末のMACアドレスだけ</button>
+              <button type="button" data-correct="false">TLS証明書のSANだけ</button>
+              <button type="button" data-correct="false">API Gatewayの認証設定だけ</button>
+              <button type="button" data-correct="false">DB接続プールの上限だけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。CDNが応答している場合、オリジンサーバーにログが残らないことがあります。キャッシュの設計を見ます。</p>
@@ -273,10 +273,10 @@
             <p class="quiz-label">Network Specialist Challenge 2</p>
             <h2>API Gateway経由のAPIだけ401になり、直接アプリへ送ると200になります。最も疑いやすいものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">LANケーブルのカテゴリ</button>
+              <button type="button" data-correct="false">CDNのキャッシュTTL</button>
               <button type="button" data-correct="true">Gateway側の認証設定、トークン検証、ヘッダー転送</button>
-              <button type="button" data-correct="false">L1の電源ランプ</button>
-              <button type="button" data-correct="false">VLANタグの有無だけ</button>
+              <button type="button" data-correct="false">TLS証明書の期限だけ</button>
+              <button type="button" data-correct="false">LBのアイドルタイムアウトだけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。401は認証まわりです。Gatewayを通したときだけなら、トークン検証やヘッダーの渡し方を確認します。</p>
@@ -299,6 +299,7 @@
           <a href="network-l3.html">L3 Network</a>
           <a href="network-l4.html">L4 Transport</a>
           <a href="network-l5-7.html">L5-7 Application</a>
+          <a href="network-cafe-flow.html">Cafe Flow</a>
         </aside>
       </section>
     </main>
