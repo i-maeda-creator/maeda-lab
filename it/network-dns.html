@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DNS | Network Focus</title>
+    <meta name="description" content="DNS focused network note for Maeda Lab." />
+    <link rel="stylesheet" href="it.css?v=20260510-l123" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation"><a href="network.html">Network</a><a href="index.html">IT</a><a href="../index.html#notes">Notes</a></nav>
+    </header>
+    <main id="top">
+      <section class="hero story-hero">
+        <p class="eyebrow">Focus 01 / Network</p>
+        <h1>DNS <span>名前から住所を探す、インターネットの案内係です。</span></h1>
+        <p class="lead">ブラウザにURLを入れると、まず「その名前はどのIPアドレスか」を調べます。DNSは画面が開く前の、静かな最初の仕事です。</p>
+      </section>
+      <section class="lesson">
+        <article class="content story-content">
+          <section class="story-block opening">
+            <p>カフェのスタッフが <strong>order.maeda-lab.example</strong> を開きます。人間には名前が分かりやすいですが、ネットワークは最終的にIPアドレスで相手へ向かいます。DNSは、店名から住所を調べる電話帳のように働きます。</p>
+          </section>
+          <section class="score-board" aria-live="polite"><div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div><div><span>正答率</span><strong data-score-rate>0%</strong></div><div><span>偏差値風</span><strong data-score-dev>--</strong></div><p data-score-message>クイズに答えるとスコアが出ます。</p></section>
+          <h2>DNSの流れを見ましょう</h2>
+          <figure class="diagram-card journey-diagram" aria-label="DNS flow">
+            <svg viewBox="0 0 900 420" role="img">
+              <title>DNS名前解決</title><rect x="20" y="20" width="860" height="380" rx="30" class="diagram-shell" /><text x="54" y="72" class="diagram-title">名前解決: 名前をIPアドレスへ</text>
+              <g class="journey-node"><rect x="60" y="155" width="130" height="82" rx="18" /><text x="92" y="190">端末</text><text x="82" y="220">ブラウザ</text></g>
+              <g class="journey-node"><rect x="255" y="155" width="150" height="82" rx="18" /><text x="282" y="190">再帰DNS</text><text x="276" y="220">問い合わせ</text></g>
+              <g class="journey-node"><rect x="470" y="155" width="150" height="82" rx="18" /><text x="500" y="190">権威DNS</text><text x="493" y="220">正式回答</text></g>
+              <g class="journey-node"><rect x="685" y="155" width="150" height="82" rx="18" /><text x="718" y="190">Web</text><text x="706" y="220">IPへ接続</text></g>
+              <path class="journey-line cable" d="M190 196 C220 196 230 196 255 196" /><path class="journey-line cable" d="M405 196 C435 196 445 196 470 196" /><path class="journey-line fiber" d="M620 196 C650 196 660 196 685 196" />
+              <text x="82" y="320" class="diagram-note">TTLが長いと古い答えが残り、短いと切替は早いが問い合わせが増えます。</text>
+            </svg>
+            <figcaption>再帰DNSが調べ、権威DNSが正式な答えを持ちます。キャッシュとTTLが実務の鍵です。</figcaption>
+          </figure>
+          <h2>実務で見るレコード</h2>
+          <div class="address-table"><table><thead><tr><th>レコード</th><th>役割</th><th>現場の例</th></tr></thead><tbody>
+            <tr><td>A / AAAA</td><td>名前をIPv4/IPv6へ</td><td>Webサーバーの向き先</td></tr>
+            <tr><td>CNAME</td><td>別名へ向ける</td><td>CDNやSaaSへ接続</td></tr>
+            <tr><td>MX</td><td>メール配送先</td><td>Google WorkspaceやMicrosoft 365</td></tr>
+            <tr><td>TXT</td><td>文字情報</td><td>SPF、DKIM、所有確認</td></tr>
+            <tr><td>NS</td><td>権威DNSを示す</td><td>ドメイン管理の委任</td></tr>
+          </tbody></table></div>
+          <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>DNSで名前をIPv4アドレスへ対応させる代表的なレコードはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">Aレコード</button><button type="button" data-correct="false">MXレコード</button><button type="button" data-correct="false">TXTレコード</button><button type="button" data-correct="false">NSレコード</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>Aレコードは名前をIPv4アドレスへ対応させます。IPv6ならAAAAです。</p></div>
+          <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>サーバー移行後、一部店舗だけ古いIPへ接続しています。まず疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">DNSキャッシュとTTL</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">TCP 22番の待受だけ</button><button type="button" data-correct="false">証明書のSANだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>古い答えが残る典型例です。TTL、再帰DNS、端末やブラウザのキャッシュを見ます。</p></div>
+          <div class="quiz-card exam hard" data-quiz><p class="quiz-label">Network Specialist Challenge</p><h2>CDNへCNAMEを向けましたが、ルートドメインだけ設定できません。実務で確認したいことはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">DNS事業者がALIAS/ANAMEやCNAME flatteningを提供しているか</button><button type="button" data-correct="false">APの電波強度</button><button type="button" data-correct="false">VLANタグの許可</button><button type="button" data-correct="false">TCPの再送回数だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>ルートドメインに通常のCNAMEを置けない制約が絡みます。DNS事業者の機能確認が必要です。</p></div>
+          <h2>このページの落ち</h2><p>DNSは地味ですが、画面が開く前に必ず働いています。名前が間違えば、どれだけサーバーが元気でも誰もたどり着けません。</p>
+        </article>
+        <aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-dns.html">DNS</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-ip-address.html">IP Address</a><a href="network-voice.html">Voice</a></aside>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script>
+  </body>
+</html>
