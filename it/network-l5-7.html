@@ -22,8 +22,8 @@
         <p class="eyebrow">01-5 / Network</p>
         <h1>L5-7 Application Side <span>人が見る通信は、だいたいここで起きています。</span></h1>
         <p class="lead">
-          L5、L6、L7は、現代の学習ではまとめてアプリ側の通信として見ると分かりやすいです。
-          DNS、HTTP、TLS、API、認証、プロキシ、ログを通して、実際のWeb通信を追います。
+          L5、L6、L7は、利用者が「画面を開く」「ログインする」「注文する」と感じる部分に近い層です。
+          カフェの注文管理画面を例に、セッション、表現、アプリケーションがそれぞれ何をしているかを整理します。
         </p>
       </section>
 
@@ -52,6 +52,118 @@
             OSIではL5がセッション、L6がプレゼンテーション、L7がアプリケーションです。
             ただし実務では、HTTP、TLS、DNS、API、認証、Cookie、プロキシのような具体的な仕組みで考えることが多いです。
           </p>
+
+          <h2>まず「アプリ」とは何かをはっきりさせましょう</h2>
+          <p>
+            ここでいうアプリは、スマホのアイコンだけを指す言葉ではありません。
+            利用者の目的を実現する仕組み全体です。
+            カフェなら、注文管理画面、在庫確認画面、売上レポート、ログイン画面、API、認証サーバー、管理者画面まで含めて「アプリ側」と考えると分かりやすいです。
+          </p>
+          <p>
+            L1からL4までは「信号を届ける」「相手を見分ける」「ネットワークをまたぐ」「ポートへ届ける」という話でした。
+            L5-7では、その通信を使って、利用者が意味のある操作をします。
+            たとえば「アイスラテを1つ注文する」という操作が、HTTPリクエスト、JSON、認証情報、DB更新、レスポンスとして流れていきます。
+          </p>
+
+          <figure class="diagram-card journey-diagram" aria-label="L5 L6 L7 cafe order diagram">
+            <svg viewBox="0 0 900 520" role="img">
+              <title>L5 L6 L7の役割</title>
+              <rect x="20" y="20" width="860" height="480" rx="30" class="diagram-shell" />
+              <text x="54" y="72" class="diagram-title">カフェの注文画面で見る L5 / L6 / L7</text>
+              <g class="journey-node">
+                <rect x="70" y="130" width="230" height="95" rx="20" />
+                <text x="100" y="170">L7 Application</text>
+                <text x="100" y="205">注文、ログイン、API</text>
+              </g>
+              <g class="journey-node">
+                <rect x="335" y="130" width="230" height="95" rx="20" />
+                <text x="365" y="170">L6 Presentation</text>
+                <text x="365" y="205">JSON、文字コード、TLS</text>
+              </g>
+              <g class="journey-node">
+                <rect x="600" y="130" width="230" height="95" rx="20" />
+                <text x="630" y="170">L5 Session</text>
+                <text x="630" y="205">ログイン状態、Cookie</text>
+              </g>
+              <path class="journey-line cable" d="M300 178 C318 178 320 178 335 178" />
+              <path class="journey-line cable" d="M565 178 C583 178 585 178 600 178" />
+              <text x="78" y="300" class="diagram-note">L7: 「注文する」「ログインする」など、アプリの意味を扱います。</text>
+              <text x="78" y="340" class="diagram-note">L6: データをどう表すか。JSON、文字コード、圧縮、暗号化を意識します。</text>
+              <text x="78" y="380" class="diagram-note">L5: 会話の状態。ログイン中か、セッションが続いているかを意識します。</text>
+              <text x="78" y="440" class="diagram-note">現代のWebでは、この3つがHTTP/TLS/Cookie/APIの中に混ざって見えます。</text>
+            </svg>
+            <figcaption>OSIの名前だけで覚えるより、カフェの操作に対応させると見えやすくなります。</figcaption>
+          </figure>
+
+          <h2>L5 Sessionは、会話の状態を保つ層です</h2>
+          <p>
+            カフェのスタッフが注文管理画面にログインしたあと、画面を移動するたびに毎回IDとパスワードを入力していたら大変です。
+            そこで、ログイン済みであることを一定時間覚えておきます。
+            これがセッションの感覚です。
+          </p>
+          <p>
+            実際のWebでは、Cookie、セッションID、アクセストークン、リフレッシュトークン、SSOなどが関わります。
+            「ログイン直後は使えるのに、しばらく放置すると失敗する」「別タブではログイン済みなのに、この画面だけ403になる」という相談は、L5的な見方が効きます。
+          </p>
+
+          <h2>L6 Presentationは、データの形を整える層です</h2>
+          <p>
+            レジ端末が「アイスラテ1個、サイズM」と送るとき、コンピューター同士は人間の自然文で話しているわけではありません。
+            JSON、文字コード、日時の形式、数値、画像、圧縮、暗号化のような形にして送ります。
+            その「表し方」を扱うのがL6のイメージです。
+          </p>
+          <p>
+            たとえば、APIが期待するJSON形式と違う、文字コードがずれて文字化けする、時刻がUTCとJSTでずれる、TLS証明書の検証に失敗する。
+            こういう問題は「ネットワークはつながっているのに、データの意味が正しく伝わらない」状態です。
+          </p>
+
+          <h2>L7 Applicationは、利用者の目的に一番近い層です</h2>
+          <p>
+            L7は、アプリケーションプロトコルの層です。
+            WebならHTTP、名前解決ならDNS、メールならSMTP/IMAP、ファイル転送ならSFTPやHTTP APIなどが出てきます。
+            カフェの注文管理では、ブラウザがHTTPで画面を取りに行き、APIへ注文データを送り、サーバーがステータスコードやJSONを返します。
+          </p>
+          <p>
+            ここでは「通信できるか」だけでなく、「権限があるか」「注文データが正しいか」「在庫DBに書けるか」「WAFに止められていないか」を見ます。
+            利用者から見ると全部「画面が変」ですが、L7では意味のある処理のどこで失敗したかを追います。
+          </p>
+
+          <div class="address-table">
+            <table>
+              <thead><tr><th>層</th><th>カフェでの例</th><th>実務で見るもの</th><th>失敗の見え方</th></tr></thead>
+              <tbody>
+                <tr><td>L5 Session</td><td>ログイン状態を保つ</td><td>Cookie、セッションID、トークン、SSO</td><td>放置後にログアウト、403、401</td></tr>
+                <tr><td>L6 Presentation</td><td>注文データをJSONで送る</td><td>JSON、文字コード、圧縮、TLS、日時形式</td><td>文字化け、証明書警告、形式エラー</td></tr>
+                <tr><td>L7 Application</td><td>注文APIを呼ぶ</td><td>HTTP、DNS、API、認証、WAF、アプリログ</td><td>404、500、ログイン不可、API失敗</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 0</p>
+            <h2>カフェの注文管理画面で「ログイン状態が続くか」を考えるとき、最も近い層はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">L5 Session</button>
+              <button type="button" data-correct="false">L6 Presentation</button>
+              <button type="button" data-correct="false">L7 Application</button>
+              <button type="button" data-correct="false">L1 Physical</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はL5 Sessionです。CookieやセッションID、トークンでログイン状態を保つイメージです。</p>
+          </div>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 0.5</p>
+            <h2>注文APIに送るJSONの形、文字コード、TLS暗号化を考えるとき、最も近い層はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">L5 Session</button>
+              <button type="button" data-correct="true">L6 Presentation</button>
+              <button type="button" data-correct="false">L2 Data Link</button>
+              <button type="button" data-correct="false">L3 Network</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はL6 Presentationです。データをどう表すか、どう暗号化するか、どう解釈するかの層です。</p>
+          </div>
 
           <figure class="diagram-card journey-diagram" aria-label="Application side request flow">
             <svg viewBox="0 0 900 460" role="img">
@@ -103,6 +215,12 @@
           <p>
             ブラウザはサーバーへリクエストを送り、サーバーはレスポンスを返します。
             200、301、403、404、500のようなステータスコードは、アプリ側の切り分けでとても役立ちます。
+            カフェなら、注文一覧を開くGET、注文を登録するPOST、注文内容を更新するPUT/PATCH、取り消すDELETEのように、操作の意味がHTTPの形に乗ります。
+          </p>
+          <p>
+            つまりL7では、「通信が届いたか」だけでは足りません。
+            どのURLへ、どのHTTPメソッドで、どのヘッダーと本文を送り、どんなステータスコードとレスポンスが返ったかを見ます。
+            ここまで来ると、ネットワークの話でありながら、かなりアプリ開発の話に近づきます。
           </p>
           <div class="address-table">
             <table>
@@ -134,6 +252,12 @@
           <p>
             TLSは通信を暗号化し、証明書によって相手の正しさを確認します。
             証明書期限切れ、CN/SAN不一致、中間証明書不足、古いTLSバージョンは、実務でよく出るトラブルです。
+            カフェのレジ端末が本物の注文管理サーバーと話しているかを確認し、途中で盗み見されにくい形にする役割があります。
+          </p>
+          <p>
+            ここで大切なのは、TLSが「ただ暗号化するだけ」ではないことです。
+            サーバー証明書を検証し、対応する暗号スイートやTLSバージョンを決め、暗号化された通信路を作ります。
+            だから証明書の設定ミスは、L1からL4が正常でも、利用者には大きな障害として見えます。
           </p>
 
           <div class="quiz-card" data-quiz>
