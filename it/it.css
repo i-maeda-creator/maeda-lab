@@ -321,6 +321,10 @@ h1 span {
   margin: 30px 0 36px;
 }
 
+.real-gallery.single {
+  grid-template-columns: 1fr;
+}
+
 .real-gallery figure {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -621,6 +625,37 @@ h1 span {
   fill: #5f6068;
   font-size: 14px;
   font-weight: 700;
+}
+
+.address-table {
+  background: #f7f7f8;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  color: #15161a;
+  margin: 26px 0;
+  overflow: hidden;
+}
+
+.address-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.address-table th,
+.address-table td {
+  border-bottom: 1px solid rgba(21, 22, 26, 0.1);
+  padding: 13px 15px;
+  text-align: left;
+}
+
+.address-table th {
+  background: #fff;
+  color: #4b4b52;
+  font-size: 0.88rem;
+}
+
+.address-table tr:last-child td {
+  border-bottom: 0;
 }
 
 .lesson-list.compact {

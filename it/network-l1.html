@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>L1 Physical Layer | Network</title>
     <meta name="description" content="L1 Physical Layer notes for Maeda Lab." />
-    <link rel="stylesheet" href="it.css?v=20260510-l1-score" />
+    <link rel="stylesheet" href="it.css?v=20260510-l123" />
   </head>
   <body>
     <header class="site-header">
@@ -43,15 +43,15 @@
 
           <section class="score-board" aria-live="polite">
             <div>
-              <span>Score</span>
+              <span>正答数</span>
               <strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small>
             </div>
             <div>
-              <span>Accuracy</span>
+              <span>正答率</span>
               <strong data-score-rate>0%</strong>
             </div>
             <div>
-              <span>Deviation</span>
+              <span>偏差値風</span>
               <strong data-score-dev>--</strong>
             </div>
             <p data-score-message>クイズに答えると、このページ内での正答率と偏差値風スコアが出ます。</p>
@@ -67,26 +67,26 @@
 
           <figure class="diagram-card journey-diagram" aria-label="Cafe Wi-Fi physical route">
             <svg viewBox="0 0 900 500" role="img">
-              <title>Cafe Wi-Fi Physical Route</title>
+              <title>カフェWi-Fiの物理経路</title>
               <rect x="20" y="20" width="860" height="460" rx="30" class="diagram-shell" />
-              <text x="54" y="72" class="diagram-title">Cafe Wi-Fi: physical route first</text>
+              <text x="54" y="72" class="diagram-title">カフェWi-Fiの物理経路</text>
               <g class="journey-node">
                 <rect x="54" y="138" width="112" height="86" rx="18" />
-                <text x="82" y="186">Phone</text>
+                <text x="84" y="186">スマホ</text>
               </g>
               <g class="journey-node">
                 <rect x="220" y="118" width="128" height="126" rx="20" />
                 <path d="M250 166 C278 136 308 136 336 166" />
                 <path d="M264 182 C282 164 304 164 322 182" />
                 <circle cx="294" cy="204" r="7" />
-                <text x="242" y="274">Wi-Fi AP</text>
+                <text x="236" y="274">アクセスポイント</text>
               </g>
               <g class="journey-node">
                 <rect x="402" y="138" width="128" height="86" rx="18" />
                 <circle cx="430" cy="176" r="7" />
                 <circle cx="456" cy="176" r="7" />
                 <path d="M424 206 L510 206" />
-                <text x="424" y="274">Router / ONU</text>
+                <text x="416" y="274">ルーター / ONU</text>
               </g>
               <g class="journey-node">
                 <rect x="582" y="118" width="118" height="126" rx="20" />
@@ -96,7 +96,7 @@
               <g class="journey-node">
                 <rect x="746" y="138" width="102" height="86" rx="18" />
                 <path d="M772 182 C790 160 806 160 824 182" />
-                <text x="760" y="274">Carrier</text>
+                <text x="760" y="274">回線事業者</text>
               </g>
               <path class="journey-line radio" d="M168 178 C190 150 205 150 222 166" />
               <path class="journey-line cable" d="M350 182 C376 182 380 182 404 182" />
@@ -104,13 +104,13 @@
               <path class="journey-line fiber" d="M702 182 C724 162 734 162 748 178" />
               <g class="journey-tags">
                 <rect x="118" y="332" width="112" height="42" rx="12" />
-                <text x="145" y="359">Radio</text>
+                <text x="146" y="359">電波</text>
                 <rect x="324" y="332" width="116" height="42" rx="12" />
-                <text x="350" y="359">Copper</text>
+                <text x="350" y="359">銅線</text>
                 <rect x="538" y="332" width="108" height="42" rx="12" />
-                <text x="568" y="359">Fiber</text>
+                <text x="560" y="359">光ファイバー</text>
               </g>
-              <text x="54" y="426" class="diagram-note">Before HTTP and DNS, the signal needs a real path: radio, copper cable, or fiber.</text>
+              <text x="54" y="426" class="diagram-note">HTTPやDNSの前に、信号は電波・銅線・光ファイバーという現実の道を通ります。</text>
             </svg>
             <figcaption>
               カフェのWi-Fiも、最後は物理的な経路を通ります。店内では電波、機器間ではLANケーブル、外へ出ると光ファイバーが使われることがあります。
@@ -189,13 +189,13 @@
 
           <figure class="diagram-card l1-diagram" aria-label="L1 signal diagram">
             <svg viewBox="0 0 820 430" role="img">
-              <title>L1 signal journey</title>
+              <title>ビットが物理信号になる流れ</title>
               <rect x="20" y="20" width="780" height="390" rx="30" class="diagram-shell" />
-              <text x="56" y="72" class="diagram-title">Bits become physical signals</text>
+              <text x="56" y="72" class="diagram-title">ビットは物理信号になります</text>
               <g class="device">
                 <rect x="70" y="140" width="130" height="94" rx="18" />
                 <rect x="104" y="246" width="62" height="12" rx="6" />
-                <text x="92" y="292">PC / Phone</text>
+                <text x="92" y="292">PC / スマホ</text>
               </g>
               <g class="medium-line">
                 <path d="M220 188 C300 120 360 120 430 188 S570 256 650 188" />
@@ -209,17 +209,17 @@
                 <circle cx="681" cy="172" r="8" />
                 <circle cx="710" cy="172" r="8" />
                 <path d="M675 214 L735 214" />
-                <text x="656" y="292">Router</text>
+                <text x="656" y="292">ルーター</text>
               </g>
               <g class="signal-tags">
                 <rect x="252" y="300" width="96" height="38" rx="12" />
-                <text x="276" y="325">Electric</text>
+                <text x="276" y="325">電気</text>
                 <rect x="366" y="300" width="76" height="38" rx="12" />
-                <text x="391" y="325">Light</text>
+                <text x="391" y="325">光</text>
                 <rect x="460" y="300" width="90" height="38" rx="12" />
-                <text x="482" y="325">Radio</text>
+                <text x="482" y="325">電波</text>
               </g>
-              <text x="56" y="372" class="diagram-note">L1 does not read meaning. It carries physical changes.</text>
+              <text x="56" y="372" class="diagram-note">L1は意味を読みません。電気・光・電波の変化として運びます。</text>
             </svg>
             <figcaption>
               L1では、bitが電気・光・電波などの信号として運ばれます。意味を読むのではなく、現実世界を通れる形にします。
@@ -276,25 +276,35 @@
             ここでも、話はまだかなり物理です。
           </p>
 
+          <section class="real-gallery single" aria-label="Real MDF photo">
+            <figure>
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gigantic_main_distribution_frame_MDF_at_a_central_office.jpg?width=1000" alt="MDF main distribution frame" />
+              <figcaption>
+                MDFの実物例です。大量の回線を集約して、どこへつなぐかを管理する設備です。
+                Photo: Vivien Gueant, CC BY-SA 3.0.
+              </figcaption>
+            </figure>
+          </section>
+
           <figure class="diagram-card building-diagram" aria-label="Building MDF route">
             <svg viewBox="0 0 820 420" role="img">
-              <title>Building MDF route</title>
+              <title>ビル内のMDF経路</title>
               <rect x="20" y="20" width="780" height="380" rx="30" class="diagram-shell" />
-              <text x="56" y="72" class="diagram-title">Building route: cafe to carrier</text>
+              <text x="56" y="72" class="diagram-title">ビル内の経路: カフェから回線事業者へ</text>
               <rect x="70" y="120" width="160" height="190" rx="18" class="building-box" />
-              <text x="102" y="158">Cafe</text>
+              <text x="102" y="158">カフェ</text>
               <rect x="112" y="188" width="78" height="54" rx="12" class="mini-device" />
-              <text x="112" y="270">Router</text>
+              <text x="112" y="270">ルーター</text>
               <rect x="332" y="112" width="156" height="206" rx="18" class="building-box" />
               <text x="384" y="152">MDF</text>
               <path d="M372 190 L448 190 M372 220 L448 220 M372 250 L448 250" class="rack-lines" />
               <rect x="602" y="130" width="148" height="162" rx="18" class="building-box" />
-              <text x="628" y="170">Carrier</text>
-              <text x="622" y="206">NTT etc.</text>
+              <text x="628" y="170">回線事業者</text>
+              <text x="622" y="206">NTTなど</text>
               <path d="M198 214 C258 214 286 214 334 214" class="diagram-line" />
               <path d="M490 214 C536 214 560 214 604 214" class="diagram-line fiber-line" />
-              <text x="238" y="194" class="diagram-small">in-building cable</text>
-              <text x="512" y="194" class="diagram-small">optical line</text>
+              <text x="238" y="194" class="diagram-small">ビル内配線</text>
+              <text x="512" y="194" class="diagram-small">光回線</text>
             </svg>
             <figcaption>
               MDFは、ビルに入ってくる回線と、各部屋・店舗への配線をつなぐ場所です。
@@ -443,6 +453,7 @@
           <a href="network.html">Overview</a>
           <a href="network-l1.html">L1 Physical</a>
           <a href="network-l2.html">L2 Data Link</a>
+          <a href="network-l3.html">L3 Network</a>
           <h2>Flow</h2>
           <a href="#top">Opening</a>
           <a href="#quiz">Quizzes</a>
@@ -451,63 +462,6 @@
     </main>
 
     <footer class="site-footer"><span>Maeda Lab</span></footer>
-    <script>
-      const quizzes = Array.from(document.querySelectorAll("[data-quiz]"));
-      const score = {
-        answered: 0,
-        correct: 0,
-        total: quizzes.length,
-      };
-      const scoreCorrect = document.querySelector("[data-score-correct]");
-      const scoreTotal = document.querySelector("[data-score-total]");
-      const scoreRate = document.querySelector("[data-score-rate]");
-      const scoreDev = document.querySelector("[data-score-dev]");
-      const scoreMessage = document.querySelector("[data-score-message]");
-
-      function updateScore() {
-        const rate = score.answered ? score.correct / score.answered : 0;
-        const percent = Math.round(rate * 100);
-        const deviation = score.answered ? Math.round(Math.max(30, Math.min(70, 50 + (rate - 0.6) * 50))) : "--";
-        scoreCorrect.textContent = score.correct;
-        scoreTotal.textContent = score.total;
-        scoreRate.textContent = `${percent}%`;
-        scoreDev.textContent = deviation;
-
-        if (!score.answered) {
-          scoreMessage.textContent = "クイズに答えると、このページ内での正答率と偏差値風スコアが出ます。";
-        } else if (score.answered < score.total) {
-          scoreMessage.textContent = `${score.answered}問回答済みです。あと${score.total - score.answered}問あります。`;
-        } else if (rate >= 0.8) {
-          scoreMessage.textContent = "かなり良いです。L1の切り分け感覚がつかめています。";
-        } else if (rate >= 0.6) {
-          scoreMessage.textContent = "いい感じです。間違えた問題の解説を読むと、現場感がさらに増します。";
-        } else {
-          scoreMessage.textContent = "まだ伸びます。L1は、まず物理を見るという感覚から整えていきましょう。";
-        }
-      }
-
-      updateScore();
-
-      quizzes.forEach((quiz) => {
-        const result = quiz.querySelector(".quiz-result");
-        const explanation = quiz.querySelector(".quiz-explain");
-        quiz.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            const correct = button.dataset.correct === "true";
-            score.answered += 1;
-            if (correct) score.correct += 1;
-            quiz.querySelectorAll("button").forEach((item) => {
-              item.disabled = true;
-              item.classList.toggle("is-correct", item.dataset.correct === "true");
-            });
-            button.classList.add(correct ? "selected-correct" : "is-wrong");
-            result.textContent = correct ? "正解です。" : "惜しいです。正解は緑の選択肢です。";
-            result.classList.add(correct ? "is-correct" : "is-wrong");
-            explanation.hidden = false;
-            updateScore();
-          });
-        });
-      });
-    </script>
+    <script src="it-quiz.js?v=20260510-l123"></script>
   </body>
 </html>

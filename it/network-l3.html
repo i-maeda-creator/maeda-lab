@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>L3 Network Layer | Network</title>
+    <meta name="description" content="L3 Network Layer notes for Maeda Lab." />
+    <link rel="stylesheet" href="it.css?v=20260510-l123" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="network.html">Network</a>
+        <a href="index.html">IT</a>
+        <a href="../index.html#notes">Notes</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero story-hero">
+        <p class="eyebrow">01-3 / Network</p>
+        <h1>L3 Network Layer <span>カフェの外へ出るには、住所と道案内が必要です。</span></h1>
+        <p class="lead">
+          L2で店内の相手は見分けられるようになりました。では、別の街にあるサーバーへ行くにはどうするのでしょうか。
+          L3では、IPアドレスとルーティングを使って、ネットワークをまたいだ通信を考えます。
+        </p>
+      </section>
+
+      <section class="lesson">
+        <article class="content story-content">
+          <section class="story-block opening">
+            <p>
+              カフェのレジやプリンタなら、同じ店内LANの中で見つけられます。
+              しかし、Maeda LabのWebサーバーは店内にはありません。
+              どこか別のネットワーク、別のデータセンター、あるいはクラウド上にいます。
+            </p>
+            <p>
+              そこで必要になるのがL3です。
+              L3は、IPアドレスを使って「どのネットワークへ向かうか」を決めます。
+              近所の机に届けるL2から、街の外へ配達するL3へ、話が少し広がります。
+            </p>
+          </section>
+
+          <section class="score-board" aria-live="polite">
+            <div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div>
+            <div><span>正答率</span><strong data-score-rate>0%</strong></div>
+            <div><span>偏差値風</span><strong data-score-dev>--</strong></div>
+            <p data-score-message>クイズに答えると、このページ内での正答率と偏差値風スコアが出ます。</p>
+          </section>
+
+          <h2>カフェの外へ出る道を見てみましょう</h2>
+          <p>
+            スマホは、まず自分と同じネットワークに相手がいるかを考えます。
+            いなければ、デフォルトゲートウェイ、つまりルーターへ渡します。
+            ルーターは経路表を見て、次にどこへ送るかを判断します。
+          </p>
+
+          <figure class="diagram-card journey-diagram" aria-label="L3 routing from cafe to server">
+            <svg viewBox="0 0 900 500" role="img">
+              <title>カフェからサーバーへのL3経路</title>
+              <rect x="20" y="20" width="860" height="460" rx="30" class="diagram-shell" />
+              <text x="54" y="72" class="diagram-title">L3: IPアドレスでネットワークをまたぎます</text>
+              <g class="journey-node">
+                <rect x="60" y="150" width="130" height="86" rx="18" />
+                <text x="96" y="186">スマホ</text>
+                <text x="74" y="226">192.168.1.23</text>
+              </g>
+              <g class="journey-node">
+                <rect x="260" y="140" width="150" height="108" rx="20" />
+                <text x="292" y="186">ルーター</text>
+                <text x="282" y="226">192.168.1.1</text>
+              </g>
+              <g class="journey-node">
+                <rect x="486" y="140" width="150" height="108" rx="20" />
+                <text x="518" y="186">回線事業者</text>
+                <text x="524" y="226">次の経路</text>
+              </g>
+              <g class="journey-node">
+                <rect x="710" y="150" width="130" height="86" rx="18" />
+                <text x="742" y="186">サーバー</text>
+                <text x="724" y="226">203.0.113.10</text>
+              </g>
+              <path class="journey-line cable" d="M190 194 C226 194 236 194 260 194" />
+              <path class="journey-line fiber" d="M410 194 C448 194 458 194 486 194" />
+              <path class="journey-line fiber" d="M636 194 C674 194 686 194 710 194" />
+              <text x="78" y="330" class="diagram-note">同じネットワークにいない相手は、まずデフォルトゲートウェイへ渡します。</text>
+            </svg>
+            <figcaption>
+              L3では、IPアドレスと経路を使って、別ネットワークの相手へ向かいます。
+              店内LANから外へ出る入口が、デフォルトゲートウェイです。
+            </figcaption>
+          </figure>
+
+          <div class="quiz-card" id="quiz" data-quiz>
+            <p class="quiz-label">Quick Quiz 1</p>
+            <h2>L3で主に使われる住所のようなものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">IPアドレス</button>
+              <button type="button" data-correct="false">MACアドレス</button>
+              <button type="button" data-correct="false">HTMLタグ</button>
+              <button type="button" data-correct="false">電圧</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はIPアドレスです。L2のMACアドレスは同じネットワーク内、L3のIPアドレスはネットワークをまたぐために使います。</p>
+          </div>
+
+          <section class="real-gallery" aria-label="Real L3 devices">
+            <figure>
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/ASUS_Wi-Fi_Router_%2848767215803%29.jpg?width=900" alt="Wi-Fi router" />
+              <figcaption>家庭や店舗で見るWi-Fiルーターです。無線AP、スイッチ、ルーター機能が一体化していることがあります。Photo: Daniel Aleksandersen, CC BY-SA 2.0.</figcaption>
+            </figure>
+            <figure>
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Router_Cisco_1900_series.jpg?width=900" alt="Cisco router" />
+              <figcaption>業務用ルーターの例です。ネットワーク間の経路制御を担当します。Photo: Maraguache, CC BY-SA 4.0.</figcaption>
+            </figure>
+          </section>
+
+          <h2>サブネットは、住所のまとまりです</h2>
+          <p>
+            192.168.1.23/24 のような表記を見たことがあるかもしれません。
+            /24は、どこまでがネットワーク部分かを示します。
+            ざっくり言えば「192.168.1.x の人たちは同じ町内」と考えると入りやすいです。
+          </p>
+
+          <div class="address-table">
+            <table>
+              <thead><tr><th>表記</th><th>意味</th><th>イメージ</th></tr></thead>
+              <tbody>
+                <tr><td>192.168.1.23</td><td>端末のIPアドレス</td><td>個人の住所</td></tr>
+                <tr><td>/24</td><td>ネットワーク範囲</td><td>町内の区切り</td></tr>
+                <tr><td>192.168.1.1</td><td>デフォルトゲートウェイ</td><td>町の出口</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 2</p>
+            <h2>同じLAN内の相手か、外のネットワークの相手かを判断するときに関係が深いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">HTMLの文字数</button>
+              <button type="button" data-correct="true">IPアドレスとサブネットマスク</button>
+              <button type="button" data-correct="false">LANケーブルの色</button>
+              <button type="button" data-correct="false">画像ファイルの拡張子</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。IPアドレスとサブネットマスクから、同じネットワーク内かどうかを判断します。</p>
+          </div>
+
+          <h2>デフォルトゲートウェイは、外へ出る玄関です</h2>
+          <p>
+            スマホが同じネットワーク内に相手を見つけられない場合、デフォルトゲートウェイへ送ります。
+            カフェでいえば、店内から外の道路へ出る玄関のような存在です。
+            ここが間違っていると、店内のプリンタには届くのに、インターネットには出られない、ということが起きます。
+          </p>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 3</p>
+            <h2>デフォルトゲートウェイの役割として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">電波を強くする</button>
+              <button type="button" data-correct="true">別ネットワークへ出る入口になる</button>
+              <button type="button" data-correct="false">HTMLを暗号化する</button>
+              <button type="button" data-correct="false">画像を圧縮する</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。デフォルトゲートウェイは、宛先が外のネットワークにあるときの送り先です。</p>
+          </div>
+
+          <h2>ルーターは、次にどこへ送るかを決めます</h2>
+          <p>
+            ルーターは経路表を見て、パケットを次のルーターや回線へ送ります。
+            目的地まで一気に飛ぶわけではなく、バケツリレーのように次の地点へ渡していきます。
+            tracerouteというコマンドを使うと、その途中の経路が見えることがあります。
+          </p>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 4</p>
+            <h2>ルーターが主に見る情報として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">宛先MACアドレスだけ</button>
+              <button type="button" data-correct="true">宛先IPアドレス</button>
+              <button type="button" data-correct="false">CSSのclass名</button>
+              <button type="button" data-correct="false">電源ランプの色だけ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。ルーターはL3機器なので、宛先IPアドレスをもとに経路を判断します。</p>
+          </div>
+
+          <h2>NATは、店内の住所を外向きの住所に変えるようなものです</h2>
+          <p>
+            カフェの中では 192.168.x.x のようなプライベートIPアドレスが使われることがあります。
+            しかし、そのままではインターネット上の住所としては使えません。
+            そこでルーターがNATを使い、店内の複数端末を外向きのグローバルIPアドレスに変換して通信します。
+          </p>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 5</p>
+            <h2>NATの説明として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">MACアドレス表を作ること</button>
+              <button type="button" data-correct="true">内側のIPアドレスを外向きのIPアドレスに変換すること</button>
+              <button type="button" data-correct="false">光信号を電気信号に戻すこと</button>
+              <button type="button" data-correct="false">HTMLをPDFにすること</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。NATは、プライベートIPアドレスとグローバルIPアドレスの変換として理解すると入りやすいです。</p>
+          </div>
+
+          <h2>ここからは応用です。外へ出られない原因を切り分けます</h2>
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 6</p>
+            <h2>店内プリンタには接続できますが、Webサイトだけ見られません。L3としてまず疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">LANケーブルが完全に抜けている</button>
+              <button type="button" data-correct="true">デフォルトゲートウェイや上流経路の問題</button>
+              <button type="button" data-correct="false">プリンタの用紙切れ</button>
+              <button type="button" data-correct="false">HTMLの見出し</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。同じLAN内は見えるのに外へ出られないなら、ゲートウェイやルーティングを疑います。</p>
+          </div>
+
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 7</p>
+            <h2>IPアドレスが 169.254.x.x になっています。よくある状況として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">DHCPでIPアドレスを取得できていない</button>
+              <button type="button" data-correct="false">Webサーバーが高速すぎる</button>
+              <button type="button" data-correct="false">CSSが読み込まれていない</button>
+              <button type="button" data-correct="false">光ファイバーが紫色である</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。169.254.x.x は、DHCPでうまくアドレスを取れなかったときに見ることがあります。</p>
+          </div>
+
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 8</p>
+            <h2>ある拠点だけ別拠点のサーバーへ到達できません。L3で確認したいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">スイッチのLEDの明るさだけ</button>
+              <button type="button" data-correct="true">経路表やルーティング設定</button>
+              <button type="button" data-correct="false">HTMLの文字色</button>
+              <button type="button" data-correct="false">プリンタのトナー残量</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。拠点間通信はL3の経路設計が関わります。どのネットワークへどう向かうかを確認します。</p>
+          </div>
+
+          <h2>最後に、IPAの試験っぽくまとめて確認しましょう</h2>
+          <div class="quiz-card exam" data-quiz>
+            <p class="quiz-label">IPA Style Test 1</p>
+            <h2>IPパケットを宛先ネットワークへ転送するために、ルーターが主に参照するものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">MACアドレス表</button>
+              <button type="button" data-correct="true">ルーティングテーブル</button>
+              <button type="button" data-correct="false">HTMLテンプレート</button>
+              <button type="button" data-correct="false">キーボード配列</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はルーティングテーブルです。どの宛先ネットワークへ、次にどこへ送るかを判断します。</p>
+          </div>
+
+          <div class="quiz-card exam" data-quiz>
+            <p class="quiz-label">IPA Style Test 2</p>
+            <h2>プライベートIPアドレスの端末がインターネットへ出るとき、ルーターでよく使われるアドレス変換技術はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">NAT</button>
+              <button type="button" data-correct="false">ARP</button>
+              <button type="button" data-correct="false">VLAN</button>
+              <button type="button" data-correct="false">FCS</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はNATです。プライベートIPアドレスを、外向きに使えるグローバルIPアドレスへ変換します。</p>
+          </div>
+
+          <h2>このページの落ち</h2>
+          <p>
+            L3は、ネットワークの外へ出るための道案内です。
+            店内の相手ならL2でよくても、遠くのサーバーへ行くにはIPアドレス、ゲートウェイ、経路表が必要です。
+            つまりルーターは、地味に見えて、インターネットへの改札口です。
+          </p>
+        </article>
+
+        <aside class="side-panel">
+          <span class="status ready">Story Note</span>
+          <h2>Network</h2>
+          <a href="network.html">Overview</a>
+          <a href="network-l1.html">L1 Physical</a>
+          <a href="network-l2.html">L2 Data Link</a>
+          <a href="network-l3.html">L3 Network</a>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Maeda Lab</span></footer>
+    <script src="it-quiz.js?v=20260510-l123"></script>
+  </body>
+</html>

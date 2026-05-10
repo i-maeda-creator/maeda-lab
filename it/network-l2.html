@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>L2 Data Link Layer | Network</title>
     <meta name="description" content="L2 Data Link Layer notes for Maeda Lab." />
-    <link rel="stylesheet" href="it.css?v=20260509-network-diagrams" />
+    <link rel="stylesheet" href="it.css?v=20260510-l123" />
   </head>
   <body>
     <header class="site-header">
@@ -17,34 +17,286 @@
       </nav>
     </header>
 
-    <main>
-      <section class="hero">
+    <main id="top">
+      <section class="hero story-hero">
         <p class="eyebrow">01-2 / Network</p>
-        <h1>L2 Data Link Layer</h1>
-        <p class="lead">L2は、同じネットワーク内でデータをフレームとして届ける層。MACアドレスやスイッチはここで考える。</p>
+        <h1>L2 Data Link Layer <span>同じ場所にいる相手を、どう見分けるか。</span></h1>
+        <p class="lead">
+          L1で信号が届くようになりました。では次に、店内のスマホ、レジ、店員PC、プリンタをどう見分けるのでしょうか。
+          L2は、同じネットワークの中でフレームを届けるための層です。
+        </p>
       </section>
 
       <section class="lesson">
-        <article class="content">
-          <h2>このページで扱うこと</h2>
-          <p>ここには今後、MACアドレス、Ethernet、フレーム、スイッチ、VLAN、ARPなどを整理していきます。</p>
-          <ul>
-            <li>Frame: L2で運ぶデータの単位。</li>
-            <li>MAC address: 同じネットワーク内で使う識別子。</li>
-            <li>Switch: MACアドレスを見て転送する機器。</li>
-            <li>VLAN: L2ネットワークを論理的に分ける仕組み。</li>
-          </ul>
+        <article class="content story-content">
+          <section class="story-block opening">
+            <p>
+              カフェのカウンター裏には、小さなスイッチが置かれているかもしれません。
+              そこにはレジ、店員PC、プリンタ、アクセスポイントがLANケーブルでつながっています。
+              信号が通るだけならL1でよさそうですが、それだけでは「誰宛てか」が分かりません。
+            </p>
+            <p>
+              ここで登場するのがL2です。L2は、同じネットワークの中で、MACアドレスを手がかりにフレームを届けます。
+              郵便でいうなら、ビル全体の住所ではなく、同じ部屋の中で「どの机に渡すか」を決める係です。
+            </p>
+          </section>
+
+          <section class="score-board" aria-live="polite">
+            <div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div>
+            <div><span>正答率</span><strong data-score-rate>0%</strong></div>
+            <div><span>偏差値風</span><strong data-score-dev>--</strong></div>
+            <p data-score-message>クイズに答えると、このページ内での正答率と偏差値風スコアが出ます。</p>
+          </section>
+
+          <h2>店内LANの全体像を見てみましょう</h2>
+          <p>
+            たとえば、カフェの中にスイッチが1台あるとします。
+            レジ、プリンタ、Wi-Fiアクセスポイントがそのスイッチにつながっています。
+            スイッチはフレームの送信元MACアドレスを見て、「このMACアドレスはこのポートにいる」と学習していきます。
+          </p>
+
+          <figure class="diagram-card journey-diagram" aria-label="L2 switch and MAC learning">
+            <svg viewBox="0 0 900 500" role="img">
+              <title>スイッチとMACアドレスの学習</title>
+              <rect x="20" y="20" width="860" height="460" rx="30" class="diagram-shell" />
+              <text x="54" y="72" class="diagram-title">L2: スイッチはMACアドレスで届け先を覚えます</text>
+              <g class="journey-node">
+                <rect x="72" y="120" width="130" height="80" rx="18" />
+                <text x="100" y="166">レジ</text>
+                <text x="88" y="230">MAC A</text>
+              </g>
+              <g class="journey-node">
+                <rect x="72" y="300" width="130" height="80" rx="18" />
+                <text x="94" y="346">プリンタ</text>
+                <text x="88" y="410">MAC B</text>
+              </g>
+              <g class="journey-node">
+                <rect x="374" y="188" width="150" height="120" rx="20" />
+                <text x="412" y="254">スイッチ</text>
+              </g>
+              <g class="journey-node">
+                <rect x="690" y="120" width="130" height="80" rx="18" />
+                <text x="724" y="166">店員PC</text>
+                <text x="706" y="230">MAC C</text>
+              </g>
+              <g class="journey-node">
+                <rect x="690" y="300" width="130" height="80" rx="18" />
+                <text x="710" y="346">アクセスポイント</text>
+                <text x="706" y="410">MAC D</text>
+              </g>
+              <path class="journey-line cable" d="M204 160 C280 160 310 230 376 236" />
+              <path class="journey-line cable" d="M204 340 C280 340 310 270 376 260" />
+              <path class="journey-line cable" d="M524 236 C590 226 620 160 690 160" />
+              <path class="journey-line cable" d="M524 260 C590 270 620 340 690 340" />
+              <text x="342" y="372" class="diagram-note">MAC表: A→1番, B→2番, C→3番, D→4番</text>
+            </svg>
+            <figcaption>
+              L2の中心は、同じネットワーク内での届け先管理です。スイッチはMACアドレスとポートの対応を覚えます。
+            </figcaption>
+          </figure>
+
+          <div class="quiz-card" id="quiz" data-quiz>
+            <p class="quiz-label">Quick Quiz 1</p>
+            <h2>L2で主に使われる住所のようなものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">IPアドレス</button>
+              <button type="button" data-correct="true">MACアドレス</button>
+              <button type="button" data-correct="false">URL</button>
+              <button type="button" data-correct="false">HTTPメソッド</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はMACアドレスです。IPアドレスはL3で使います。L2では、同じネットワーク内の機器をMACアドレスで見分けます。</p>
+          </div>
+
+          <section class="real-gallery" aria-label="Real L2 devices">
+            <figure>
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/RJ45_Switch_Ports.jpg?width=900" alt="Ethernet switch ports" />
+              <figcaption>スイッチのRJ-45ポートです。ケーブルがどのポートに刺さっているかが、L2の転送にも関係します。Photo: Ben Franske, CC BY-SA 4.0.</figcaption>
+            </figure>
+            <figure>
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/19-inch_rackmount_Ethernet_switches_and_patch_panels.jpg?width=900" alt="Rackmount switches and patch panels" />
+              <figcaption>ラック内のスイッチとパッチパネルです。現場では、どのケーブルがどこへ行くかの管理がかなり重要です。Photo: Dsimic, CC BY-SA 3.0.</figcaption>
+            </figure>
+          </section>
+
+          <h2>フレームは、L2で運ぶ荷物です</h2>
+          <p>
+            L2では、データはフレームという単位で扱われます。
+            フレームには、送信元MACアドレス、宛先MACアドレス、データ、誤り検出用の情報などが入ります。
+            スイッチはフレームを見て、必要なポートへ転送します。
+          </p>
+
+          <div class="address-table">
+            <table>
+              <thead><tr><th>要素</th><th>イメージ</th><th>役割</th></tr></thead>
+              <tbody>
+                <tr><td>宛先MAC</td><td>誰に渡すか</td><td>フレームの届け先</td></tr>
+                <tr><td>送信元MAC</td><td>誰から来たか</td><td>スイッチが学習する手がかり</td></tr>
+                <tr><td>FCS</td><td>破損チェック</td><td>フレームが壊れていないか確認</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 2</p>
+            <h2>スイッチがMACアドレス表を作るとき、主に見ているものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">HTTPヘッダー</button>
+              <button type="button" data-correct="true">受信したフレームの送信元MACアドレス</button>
+              <button type="button" data-correct="false">HTMLのtitleタグ</button>
+              <button type="button" data-correct="false">DNSのドメイン名</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。スイッチは「この送信元MACはこのポートから来た」と覚えます。これがMACアドレス表です。</p>
+          </div>
+
+          <h2>知らない宛先には、いったん広く聞くことがあります</h2>
+          <p>
+            スイッチが宛先MACアドレスをまだ知らない場合、関係しそうなポートへ広く流すことがあります。
+            これをフラッディングと呼びます。
+            ずっと全員に流すわけではなく、学習すると必要なポートへだけ送るようになります。
+          </p>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 3</p>
+            <h2>スイッチが宛先MACをまだ知らないときに起こりやすい動作はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">関係するポートへ広く転送する</button>
+              <button type="button" data-correct="false">必ずインターネットへ送る</button>
+              <button type="button" data-correct="false">HTMLに変換する</button>
+              <button type="button" data-correct="false">IPアドレスを消す</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解は広く転送することです。宛先を学習していない段階では、必要な相手を探すような動きになります。</p>
+          </div>
+
+          <h2>ARPは、L2とL3の橋渡し役です</h2>
+          <p>
+            PCはIPアドレスで通信相手を考えますが、同じLAN内で実際にフレームを届けるにはMACアドレスが必要です。
+            そこでARPが「このIPアドレスを持っている人は、MACアドレスを教えてください」と聞きます。
+            L2の勉強では、このARPがとても大事な登場人物になります。
+          </p>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 4</p>
+            <h2>ARPの役割として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">URLをHTMLに変換する</button>
+              <button type="button" data-correct="true">IPアドレスからMACアドレスを知る</button>
+              <button type="button" data-correct="false">光信号を強くする</button>
+              <button type="button" data-correct="false">パスワードを暗号化する</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。ARPはIPアドレスとMACアドレスの橋渡しです。L2とL3のつなぎ目を感じるポイントです。</p>
+          </div>
+
+          <h2>VLANは、同じスイッチの中に別の部屋を作るようなものです</h2>
+          <p>
+            店内ネットワークで、客用Wi-Fiとレジ用ネットワークを同じにしてしまうと少し怖いです。
+            そこでVLANを使うと、同じ物理スイッチを使いながら、論理的にネットワークを分けられます。
+            現場では「ケーブルは同じラックにあるのに、ネットワークとしては別」ということがよくあります。
+          </p>
+
+          <div class="quiz-card" data-quiz>
+            <p class="quiz-label">Quick Quiz 5</p>
+            <h2>VLANの説明として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">電波を強くする装置</button>
+              <button type="button" data-correct="true">L2ネットワークを論理的に分ける仕組み</button>
+              <button type="button" data-correct="false">Webページを速く描画する技術</button>
+              <button type="button" data-correct="false">IPアドレスを世界中で一意にする制度</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解は、L2ネットワークを論理的に分ける仕組みです。客用Wi-Fiと業務用端末を分けるような場面で使われます。</p>
+          </div>
+
+          <h2>ここからは応用です。店内ネットワークのトラブルとして見てみましょう</h2>
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 6</p>
+            <h2>プリンタだけ見つかりません。同じスイッチにはつながっていますが、客用VLANに入っていました。まず疑うべきことはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">PCとプリンタが別VLANにいる</button>
+              <button type="button" data-correct="false">光ファイバーが曲がっている</button>
+              <button type="button" data-correct="false">Webサーバーの証明書が切れている</button>
+              <button type="button" data-correct="false">HTMLの段落が多すぎる</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。L2でネットワークが分かれていると、同じスイッチに刺さっていても見えないことがあります。</p>
+          </div>
+
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 7</p>
+            <h2>スイッチを2本のケーブルで輪っか状につないだら、急にネットワーク全体が重くなりました。関係が深いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">DNSキャッシュ</button>
+              <button type="button" data-correct="true">L2ループ</button>
+              <button type="button" data-correct="false">SQLインジェクション</button>
+              <button type="button" data-correct="false">HTTP Cookie</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はL2ループです。フレームがぐるぐる回ると、ネットワーク全体に影響します。STPなどの話につながります。</p>
+          </div>
+
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 8</p>
+            <h2>端末を別ポートに差し替えた直後、少しだけ通信が不安定でした。スイッチ側で起きていそうなことはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">HTMLの再コンパイル</button>
+              <button type="button" data-correct="true">MACアドレス表の学習更新</button>
+              <button type="button" data-correct="false">電源電圧の昇圧</button>
+              <button type="button" data-correct="false">画像圧縮</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。スイッチは「どのMACがどのポートにいるか」を学習します。差し替え直後はその対応が更新されます。</p>
+          </div>
+
+          <h2>最後に、IPAの試験っぽくまとめて確認しましょう</h2>
+          <div class="quiz-card exam" data-quiz>
+            <p class="quiz-label">IPA Style Test 1</p>
+            <h2>イーサネットスイッチがフレームの転送先を決めるために参照する情報として、最も適切なものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">HTTPメソッド</button>
+              <button type="button" data-correct="true">宛先MACアドレス</button>
+              <button type="button" data-correct="false">ファイル拡張子</button>
+              <button type="button" data-correct="false">文字コード</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解は宛先MACアドレスです。スイッチはL2機器なので、MACアドレスをもとにフレームを転送します。</p>
+          </div>
+
+          <div class="quiz-card exam" data-quiz>
+            <p class="quiz-label">IPA Style Test 2</p>
+            <h2>同じ物理スイッチ上で、部署ごとにブロードキャストドメインを分けたい。利用する技術として適切なものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">VLAN</button>
+              <button type="button" data-correct="false">HTML</button>
+              <button type="button" data-correct="false">SMTP</button>
+              <button type="button" data-correct="false">PNG</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はVLANです。同じ物理機器を使いながら、L2ネットワークを論理的に分割できます。</p>
+          </div>
+
+          <h2>このページの落ち</h2>
+          <p>
+            L2は、ケーブルの先にいる相手を見分ける層です。
+            目立つのはIPアドレスやWebですが、その手前でスイッチは黙々とMACアドレスを覚えています。
+            カフェのプリンタが見つからないとき、犯人は意外と「別VLANにいました」という地味な話かもしれません。
+          </p>
         </article>
+
         <aside class="side-panel">
-          <span class="status seed">Seed</span>
+          <span class="status ready">Story Note</span>
           <h2>Network</h2>
           <a href="network.html">Overview</a>
           <a href="network-l1.html">L1 Physical</a>
           <a href="network-l2.html">L2 Data Link</a>
+          <a href="network-l3.html">L3 Network</a>
         </aside>
       </section>
     </main>
 
     <footer class="site-footer"><span>Maeda Lab</span></footer>
+    <script src="it-quiz.js?v=20260510-l123"></script>
   </body>
 </html>
