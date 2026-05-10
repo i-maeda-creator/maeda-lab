@@ -251,10 +251,10 @@
             <p class="quiz-label">Field Quiz A</p>
             <h2>客用Wi-Fiとレジ端末を同じスイッチにつなぎつつ、通信範囲を分けたいときに使いやすい考え方はどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">画像圧縮</button>
+              <button type="button" data-correct="false">サブネット分割</button>
               <button type="button" data-correct="true">VLAN</button>
-              <button type="button" data-correct="false">ページ番号</button>
-              <button type="button" data-correct="false">文字コード変換</button>
+              <button type="button" data-correct="false">NAT</button>
+              <button type="button" data-correct="false">プロキシ認証</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はVLANです。物理的には同じ機器を使っていても、論理的にネットワークを分けられます。店舗やオフィスではかなり実務的な考え方です。</p>
@@ -265,9 +265,9 @@
             <h2>スイッチ同士を誤って輪のようにつなぎ、通信が不安定になったときに疑いやすいものはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">L2ループ</button>
-              <button type="button" data-correct="false">決算整理仕訳</button>
-              <button type="button" data-correct="false">CSSの余白</button>
-              <button type="button" data-correct="false">ファイル名の拡張子</button>
+              <button type="button" data-correct="false">デフォルトゲートウェイ未設定</button>
+              <button type="button" data-correct="false">DNSキャッシュの不整合</button>
+              <button type="button" data-correct="false">TLS証明書の期限切れ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。L2ループはネットワーク全体に影響することがあります。現場では「誰かが空きポート同士をつないだ」みたいな地味な原因もあります。</p>
@@ -279,9 +279,9 @@
             <h2>プリンタだけ見つかりません。同じスイッチにはつながっていますが、客用VLANに入っていました。まず疑うべきことはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">PCとプリンタが別VLANにいる</button>
-              <button type="button" data-correct="false">光ファイバーが曲がっている</button>
-              <button type="button" data-correct="false">Webサーバーの証明書が切れている</button>
-              <button type="button" data-correct="false">HTMLの段落が多すぎる</button>
+              <button type="button" data-correct="false">プリンタのIPアドレスが同じVLAN内にある</button>
+              <button type="button" data-correct="false">DNSのAレコードだけが古い</button>
+              <button type="button" data-correct="false">FWでTCP 443番だけが閉じている</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。L2でネットワークが分かれていると、同じスイッチに刺さっていても見えないことがあります。</p>
@@ -291,10 +291,10 @@
             <p class="quiz-label">Applied Quiz 7</p>
             <h2>スイッチを2本のケーブルで輪っか状につないだら、急にネットワーク全体が重くなりました。関係が深いものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">DNSキャッシュ</button>
+              <button type="button" data-correct="false">ARPの名前解決失敗</button>
               <button type="button" data-correct="true">L2ループ</button>
-              <button type="button" data-correct="false">SQLインジェクション</button>
-              <button type="button" data-correct="false">HTTP Cookie</button>
+              <button type="button" data-correct="false">NAT変換テーブル枯渇</button>
+              <button type="button" data-correct="false">HTTP Keep-Aliveの無効化</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はL2ループです。フレームがぐるぐる回ると、ネットワーク全体に影響します。STPなどの話につながります。</p>
@@ -304,10 +304,10 @@
             <p class="quiz-label">Applied Quiz 8</p>
             <h2>端末を別ポートに差し替えた直後、少しだけ通信が不安定でした。スイッチ側で起きていそうなことはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">HTMLの再コンパイル</button>
+              <button type="button" data-correct="false">ARPキャッシュのTTL更新</button>
               <button type="button" data-correct="true">MACアドレス表の学習更新</button>
-              <button type="button" data-correct="false">電源電圧の昇圧</button>
-              <button type="button" data-correct="false">画像圧縮</button>
+              <button type="button" data-correct="false">DNSキャッシュの再帰問い合わせ</button>
+              <button type="button" data-correct="false">NATの送信元ポート変換</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。スイッチは「どのMACがどのポートにいるか」を学習します。差し替え直後はその対応が更新されます。</p>
@@ -318,10 +318,10 @@
             <p class="quiz-label">IPA Style Test 1</p>
             <h2>イーサネットスイッチがフレームの転送先を決めるために参照する情報として、最も適切なものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">HTTPメソッド</button>
+              <button type="button" data-correct="false">宛先IPアドレス</button>
               <button type="button" data-correct="true">宛先MACアドレス</button>
-              <button type="button" data-correct="false">ファイル拡張子</button>
-              <button type="button" data-correct="false">文字コード</button>
+              <button type="button" data-correct="false">TCPポート番号</button>
+              <button type="button" data-correct="false">URLのパス</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解は宛先MACアドレスです。スイッチはL2機器なので、MACアドレスをもとにフレームを転送します。</p>
@@ -332,9 +332,9 @@
             <h2>同じ物理スイッチ上で、部署ごとにブロードキャストドメインを分けたい。利用する技術として適切なものはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">VLAN</button>
-              <button type="button" data-correct="false">HTML</button>
-              <button type="button" data-correct="false">SMTP</button>
-              <button type="button" data-correct="false">PNG</button>
+              <button type="button" data-correct="false">サブネットマスク</button>
+              <button type="button" data-correct="false">NAT</button>
+              <button type="button" data-correct="false">DNSラウンドロビン</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はVLANです。同じ物理機器を使いながら、L2ネットワークを論理的に分割できます。</p>
@@ -351,10 +351,10 @@
             <p class="quiz-label">Network Specialist Challenge 1</p>
             <h2>アクセスポイントの上位ポートを交換したところ、社内SSIDは使えますがゲストSSIDだけ通信できません。APは複数SSIDをVLANタグ付きで上位スイッチへ渡す設計です。原因として最も疑いやすいものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">ゲスト端末の画面輝度が低い</button>
+              <button type="button" data-correct="false">ゲストSSIDのDNSサーバーだけが未設定である</button>
               <button type="button" data-correct="true">交換後ポートでゲスト用VLANが許可されていない</button>
-              <button type="button" data-correct="false">DNSサーバーの時刻同期がずれている</button>
-              <button type="button" data-correct="false">ルーターのNATテーブルが満杯である</button>
+              <button type="button" data-correct="false">社内SSID側のDHCPスコープが枯渇している</button>
+              <button type="button" data-correct="false">クラウド側Webサーバーの証明書が期限切れである</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>
@@ -368,9 +368,9 @@
             <h2>フロアスイッチ増設後、全体の通信が断続的に遅くなりました。CPU使用率が高いスイッチがあり、MACアドレス表が短時間で大きく変動しています。L2として最も疑うべきものはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">L2ループやSTP設定不備によるブロードキャストストーム</button>
-              <button type="button" data-correct="false">Webブラウザのフォント設定</button>
-              <button type="button" data-correct="false">会計システムの締め処理</button>
-              <button type="button" data-correct="false">グローバルIPアドレスの枯渇</button>
+              <button type="button" data-correct="false">デフォルトゲートウェイの片方向ルート不足</button>
+              <button type="button" data-correct="false">DNSキャッシュのTTLが長すぎること</button>
+              <button type="button" data-correct="false">HTTPS証明書の信頼チェーン不備</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>

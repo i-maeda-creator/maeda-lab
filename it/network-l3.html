@@ -264,9 +264,9 @@
             <h2>拠点Aと拠点BをVPNでつなぐとき、L3設計として特に避けたいことはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">両拠点で同じIPアドレス帯を使ってしまうこと</button>
-              <button type="button" data-correct="false">机の色を白にすること</button>
-              <button type="button" data-correct="false">HTMLの見出しを短くすること</button>
-              <button type="button" data-correct="false">画像を圧縮すること</button>
+              <button type="button" data-correct="false">両拠点で異なるVLAN IDを使うこと</button>
+              <button type="button" data-correct="false">DNS名を拠点ごとに分けること</button>
+              <button type="button" data-correct="false">HTTPSをTCP 443番で公開すること</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。拠点間で同じアドレス帯を使うと、どちらのネットワークへ送ればよいか判断しにくくなります。IP設計はあとから直すほど大変です。</p>
@@ -276,10 +276,10 @@
             <p class="quiz-label">Field Quiz B</p>
             <h2>「IPアドレスを直接指定するとつながるのに、ドメイン名だとつながらない」とき、まず疑いやすいものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">L1の光ファイバーの色</button>
+              <button type="button" data-correct="false">デフォルトゲートウェイ</button>
               <button type="button" data-correct="true">DNSの名前解決</button>
-              <button type="button" data-correct="false">スイッチの筐体サイズ</button>
-              <button type="button" data-correct="false">会計年度</button>
+              <button type="button" data-correct="false">NATの送信元変換</button>
+              <button type="button" data-correct="false">TCP 443番の待受</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はDNSです。DNS自体はL3そのものではありませんが、L3の切り分けでは「IPで届くか、名前で届くか」を分けて考えると原因に近づきます。</p>
@@ -290,10 +290,10 @@
             <p class="quiz-label">Applied Quiz 6</p>
             <h2>店内プリンタには接続できますが、Webサイトだけ見られません。L3としてまず疑いやすいものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">LANケーブルが完全に抜けている</button>
+              <button type="button" data-correct="false">同じLAN内のL2到達性の問題</button>
               <button type="button" data-correct="true">デフォルトゲートウェイや上流経路の問題</button>
-              <button type="button" data-correct="false">プリンタの用紙切れ</button>
-              <button type="button" data-correct="false">HTMLの見出し</button>
+              <button type="button" data-correct="false">HTTPの認証Cookieだけの問題</button>
+              <button type="button" data-correct="false">TLS証明書のSAN不一致だけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。同じLAN内は見えるのに外へ出られないなら、ゲートウェイやルーティングを疑います。</p>
@@ -304,9 +304,9 @@
             <h2>IPアドレスが 169.254.x.x になっています。よくある状況として近いものはどれでしょうか。</h2>
             <div class="quiz-options">
               <button type="button" data-correct="true">DHCPでIPアドレスを取得できていない</button>
-              <button type="button" data-correct="false">Webサーバーが高速すぎる</button>
-              <button type="button" data-correct="false">CSSが読み込まれていない</button>
-              <button type="button" data-correct="false">光ファイバーが紫色である</button>
+              <button type="button" data-correct="false">DNSのAレコードが古い</button>
+              <button type="button" data-correct="false">デフォルトルートが2本ある</button>
+              <button type="button" data-correct="false">NAT変換後のグローバルIPが共有されている</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。169.254.x.x は、DHCPでうまくアドレスを取れなかったときに見ることがあります。</p>
@@ -316,10 +316,10 @@
             <p class="quiz-label">Applied Quiz 8</p>
             <h2>ある拠点だけ別拠点のサーバーへ到達できません。L3で確認したいものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">スイッチのLEDの明るさだけ</button>
+              <button type="button" data-correct="false">同一LAN内のMACアドレス学習だけ</button>
               <button type="button" data-correct="true">経路表やルーティング設定</button>
-              <button type="button" data-correct="false">HTMLの文字色</button>
-              <button type="button" data-correct="false">プリンタのトナー残量</button>
+              <button type="button" data-correct="false">HTTPレスポンスのキャッシュ制御だけ</button>
+              <button type="button" data-correct="false">TLS証明書の有効期限だけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解です。拠点間通信はL3の経路設計が関わります。どのネットワークへどう向かうかを確認します。</p>
@@ -330,10 +330,10 @@
             <p class="quiz-label">IPA Style Test 1</p>
             <h2>IPパケットを宛先ネットワークへ転送するために、ルーターが主に参照するものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">MACアドレス表</button>
+              <button type="button" data-correct="false">ARPテーブル</button>
               <button type="button" data-correct="true">ルーティングテーブル</button>
-              <button type="button" data-correct="false">HTMLテンプレート</button>
-              <button type="button" data-correct="false">キーボード配列</button>
+              <button type="button" data-correct="false">NAT変換後のHTTPヘッダー</button>
+              <button type="button" data-correct="false">DNSのMXレコード</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はルーティングテーブルです。どの宛先ネットワークへ、次にどこへ送るかを判断します。</p>
@@ -346,7 +346,7 @@
               <button type="button" data-correct="true">NAT</button>
               <button type="button" data-correct="false">ARP</button>
               <button type="button" data-correct="false">VLAN</button>
-              <button type="button" data-correct="false">FCS</button>
+              <button type="button" data-correct="false">DHCPリレー</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>正解はNATです。プライベートIPアドレスを、外向きに使えるグローバルIPアドレスへ変換します。</p>
@@ -363,10 +363,10 @@
             <p class="quiz-label">Network Specialist Challenge 1</p>
             <h2>拠点Aから拠点Bのサーバーへpingは届きますが、拠点Bから拠点Aへの応答が途中で戻りません。拠点間VPNは確立済みで、拠点B側のサーバーログには要求が届いています。L3として最も疑うべきものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">拠点Aの端末の画面解像度</button>
+              <button type="button" data-correct="false">拠点A側のDNSレコード名だけ</button>
               <button type="button" data-correct="true">戻り経路のルーティング、またはファイアウォールの戻り通信許可</button>
-              <button type="button" data-correct="false">LANケーブルの色</button>
-              <button type="button" data-correct="false">HTMLの見出しレベル</button>
+              <button type="button" data-correct="false">拠点B側サーバーのHTMLテンプレート</button>
+              <button type="button" data-correct="false">APのSSID名の表記ゆれだけ</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>
@@ -379,10 +379,10 @@
             <p class="quiz-label">Network Specialist Challenge 2</p>
             <h2>社内端末からクラウド上の業務システムへ接続できません。宛先IPへtracerouteすると社内FWまでは到達し、その先で止まります。FWログには許可ログがありますが、NAT変換ログがありません。原因として最も近いものはどれでしょうか。</h2>
             <div class="quiz-options">
-              <button type="button" data-correct="false">端末の壁紙が高解像度である</button>
-              <button type="button" data-correct="false">スイッチのMACアドレス表が多い</button>
+              <button type="button" data-correct="false">FWで通信許可はされているがDNSが引けない</button>
+              <button type="button" data-correct="false">社内スイッチのMACアドレス表が学習されていない</button>
               <button type="button" data-correct="true">FWで通信許可はされているが、送信元NATの対象から漏れている</button>
-              <button type="button" data-correct="false">DNS名に大文字が含まれている</button>
+              <button type="button" data-correct="false">TLS証明書のSANにホスト名が含まれていない</button>
             </div>
             <p class="quiz-result" aria-live="polite"></p>
             <p class="quiz-explain" hidden>
