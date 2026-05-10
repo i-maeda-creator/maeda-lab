@@ -267,6 +267,53 @@ h1 span {
   padding: clamp(18px, 3vw, 28px);
 }
 
+.score-board {
+  align-items: stretch;
+  background: #f7f7f8;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  color: #15161a;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 24px 0 36px;
+  padding: 14px;
+}
+
+.score-board div {
+  background: #fff;
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.score-board span {
+  color: #606069;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.score-board strong {
+  color: #15161a;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.score-board small {
+  color: #606069;
+  font-weight: 700;
+}
+
+.score-board p {
+  color: #36363d;
+  grid-column: 1 / -1;
+  line-height: 1.7;
+  margin: 2px 6px 0;
+}
+
 .real-gallery {
   display: grid;
   gap: 14px;
@@ -326,6 +373,15 @@ h1 span {
 
 .quiz-card {
   margin: 34px 0;
+}
+
+.quiz-card.applied {
+  border-color: rgba(140, 200, 255, 0.48);
+}
+
+.quiz-card.exam {
+  background: linear-gradient(135deg, rgba(100, 217, 138, 0.13), rgba(140, 200, 255, 0.08));
+  border-color: rgba(100, 217, 138, 0.46);
 }
 
 .quiz-label {
@@ -522,6 +578,51 @@ h1 span {
   font-weight: 700;
 }
 
+.journey-node rect,
+.building-box,
+.mini-device {
+  fill: #eef6ff;
+  stroke: rgba(17, 17, 20, 0.12);
+}
+
+.journey-node path,
+.rack-lines {
+  fill: none;
+  stroke: #17171a;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.journey-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 7;
+}
+
+.journey-line.radio {
+  stroke: #8cc8ff;
+  stroke-dasharray: 10 10;
+}
+
+.journey-line.cable {
+  stroke: #64d98a;
+}
+
+.journey-line.fiber,
+.fiber-line {
+  stroke: #bda7ff;
+}
+
+.journey-tags rect {
+  fill: #f2f2f4;
+}
+
+.diagram-small {
+  fill: #5f6068;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .lesson-list.compact {
   margin-top: 18px;
 }
@@ -591,7 +692,8 @@ h1 span {
   .chapter-grid,
   .lesson,
   .real-gallery,
-  .term-grid {
+  .term-grid,
+  .score-board {
     grid-template-columns: 1fr;
   }
 
