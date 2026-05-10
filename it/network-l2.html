@@ -210,6 +210,69 @@
             <p class="quiz-explain" hidden>正解は、L2ネットワークを論理的に分ける仕組みです。客用Wi-Fiと業務用端末を分けるような場面で使われます。</p>
           </div>
 
+          <h2>L2で実際に関わる会社・人を見てみましょう</h2>
+          <p>
+            L2は、店舗やオフィスの中のネットワーク設計にかなり近い層です。
+            ここではスイッチ、アクセスポイント、VLAN、PoE、配線管理、ポート設定が出てきます。
+            つまり、機器メーカー、SIer、情シス、施工会社が一緒に登場します。
+          </p>
+          <div class="address-table">
+            <table>
+              <thead><tr><th>関係者</th><th>具体例</th><th>見ているもの</th></tr></thead>
+              <tbody>
+                <tr><td>ネットワーク機器メーカー</td><td>Cisco、ヤマハ、Allied Telesis、HPE Aruba、Buffaloなど</td><td>スイッチ、アクセスポイント、PoE、VLAN機能</td></tr>
+                <tr><td>SIer・構築ベンダー</td><td>社内LAN構築会社、店舗IT施工会社</td><td>VLAN設計、ポート設計、機器設定、試験</td></tr>
+                <tr><td>情シス・店舗本部</td><td>企業の情報システム部、店舗運営本部</td><td>客用Wi-Fiと業務端末の分離、セキュリティ要件</td></tr>
+                <tr><td>保守・運用担当</td><td>ネットワーク運用会社、ヘルプデスク</td><td>ポート障害、MACアドレス表、ループ、VLAN誤設定</td></tr>
+                <tr><td>現地担当者</td><td>店長、現場スタッフ</td><td>どの端末がどこに刺さっているか、現場確認</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            実務では、「プリンタが見えません」という相談が、実はVLANのポート設定ミスだったりします。
+            その場合、プリンタメーカーよりも、スイッチ設定を触れる人に連絡する方が早いです。
+            L2は、機器の設定と現場の配線が混ざるので、図面と実物の対応がとても大切になります。
+          </p>
+
+          <h2>L2は、同じ建物の中を安全に分ける設計でもあります</h2>
+          <p>
+            カフェなら、客用Wi-Fi、レジ、監視カメラ、スタッフ用PCを同じようにつなぐと危険です。
+            そこでVLANを使い、同じ物理スイッチの上でも、通信できる範囲を論理的に分けます。
+            実務では「どのポートを客用にするか」「どのポートを業務用にするか」「アクセスポイントへ複数VLANを渡すか」という設計が出てきます。
+          </p>
+          <p>
+            もうひとつ大事なのがループです。
+            スイッチ同士をうっかり輪っかのようにつなぐと、同じフレームが回り続けてネットワーク全体が重くなることがあります。
+            そのため、STPのような仕組みや、現場での配線確認が必要になります。
+            L2は「見えない道路標識」をスイッチの中に作っている、と考えると少し面白くなります。
+          </p>
+
+          <div class="quiz-card field" data-quiz>
+            <p class="quiz-label">Field Quiz A</p>
+            <h2>客用Wi-Fiとレジ端末を同じスイッチにつなぎつつ、通信範囲を分けたいときに使いやすい考え方はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">画像圧縮</button>
+              <button type="button" data-correct="true">VLAN</button>
+              <button type="button" data-correct="false">ページ番号</button>
+              <button type="button" data-correct="false">文字コード変換</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はVLANです。物理的には同じ機器を使っていても、論理的にネットワークを分けられます。店舗やオフィスではかなり実務的な考え方です。</p>
+          </div>
+
+          <div class="quiz-card field" data-quiz>
+            <p class="quiz-label">Field Quiz B</p>
+            <h2>スイッチ同士を誤って輪のようにつなぎ、通信が不安定になったときに疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">L2ループ</button>
+              <button type="button" data-correct="false">決算整理仕訳</button>
+              <button type="button" data-correct="false">CSSの余白</button>
+              <button type="button" data-correct="false">ファイル名の拡張子</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。L2ループはネットワーク全体に影響することがあります。現場では「誰かが空きポート同士をつないだ」みたいな地味な原因もあります。</p>
+          </div>
+
           <h2>ここからは応用です。店内ネットワークのトラブルとして見てみましょう</h2>
           <div class="quiz-card applied" data-quiz>
             <p class="quiz-label">Applied Quiz 6</p>

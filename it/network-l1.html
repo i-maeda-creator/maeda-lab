@@ -328,6 +328,75 @@
             </p>
           </div>
 
+          <h2>L1で実際に関わる会社・人を見てみましょう</h2>
+          <p>
+            L1の話は、エンジニアだけで完結しません。
+            カフェに回線を引くなら、回線事業者、ISP、ビル管理会社、電気工事会社、店舗側の担当者が関わります。
+            障害対応でも、「誰の管理範囲か」を間違えると、調査が止まります。
+          </p>
+          <div class="address-table">
+            <table>
+              <thead><tr><th>関係者</th><th>具体例</th><th>見ているもの</th></tr></thead>
+              <tbody>
+                <tr><td>アクセス回線事業者</td><td>NTT東日本/西日本、KDDI、ソフトバンクなど</td><td>光回線、閉域網、ビルへの引き込み</td></tr>
+                <tr><td>ISP・ネットワーク事業者</td><td>IIJ、OCN、So-net、BIGLOBEなど</td><td>インターネット接続、バックボーン、固定IP</td></tr>
+                <tr><td>光ファイバー・ケーブルメーカー</td><td>フジクラ、住友電工、古河電工など</td><td>光ファイバー、光ケーブル、屋内外配線材</td></tr>
+                <tr><td>融着機・測定器メーカー</td><td>フジクラ、住友電工、横河計測、EXFOなど</td><td>融着接続、OTDR測定、損失測定、工事試験</td></tr>
+                <tr><td>ビル管理・MDF管理</td><td>ビルオーナー、管理会社、保守会社</td><td>MDF/IDF、ビル内配線、入館・作業許可</td></tr>
+                <tr><td>工事・保守会社</td><td>通信工事会社、電気工事会社</td><td>配線、成端、ケーブル試験、現地作業</td></tr>
+                <tr><td>店舗・利用者側</td><td>店長、情シス、施工ベンダー</td><td>ONU、ルーター、電源、設置場所、利用要件</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            たとえば「回線がつながらない」と言っても、ONUの電源が落ちているのか、MDFでジャンパが間違っているのか、ビル入館が必要なのかで、動く人が変わります。
+            実務では、技術だけでなく、責任分界点を確認する力もかなり重要です。
+          </p>
+          <p>
+            さらに細かく見ると、ケーブルそのものにも企業名が出てきます。
+            たとえばフジクラ、住友電工、古河電工のようなメーカーは、光ファイバーや光ケーブル、関連部材の世界で登場します。
+            工事現場では、ケーブルを引くだけでなく、融着機で光ファイバーをつなぎ、OTDRなどの測定器で損失や断線位置を確認します。
+            L1は「線がある」だけではなく、線を作る会社、つなぐ道具、測る人まで含めて現実です。
+          </p>
+
+          <h2>L1をもう少し現場の目で見ると、素材と施工の話になります</h2>
+          <p>
+            LANケーブルなら Cat5e、Cat6、Cat6A のようなカテゴリが出てきます。
+            光ファイバーなら、長距離に強いシングルモード、建物内や短距離で使われることがあるマルチモード、コネクタの種類、曲げにどれくらい強いか、という話になります。
+            ここは暗記だけでなく、「どれくらいの距離を、どれくらいの速度で、どんな場所に通すのか」とセットで見ると急に現実味が出ます。
+          </p>
+          <p>
+            たとえば、店舗の天井裏を通すケーブル、ビルのMDFからIDFへ上がる幹線、屋外から引き込まれる光ケーブルでは、気にすることが少しずつ違います。
+            ノイズ、曲げ半径、電源、ラックの余白、ラベル、将来増設する余地。
+            こういう地味な条件が、あとで「なぜか通信が不安定です」という相談に変わります。
+          </p>
+
+          <div class="quiz-card field" data-quiz>
+            <p class="quiz-label">Field Quiz A</p>
+            <h2>光ファイバー工事で、断線位置や損失を調べるときに使われる測定器として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">HTMLバリデータ</button>
+              <button type="button" data-correct="true">OTDR</button>
+              <button type="button" data-correct="false">表計算ソフト</button>
+              <button type="button" data-correct="false">DNSキャッシュ</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はOTDRです。光を入れて反射を見ながら、どのあたりで損失や断線が起きているかを推定します。L1は測って証拠を取る世界です。</p>
+          </div>
+
+          <div class="quiz-card field" data-quiz>
+            <p class="quiz-label">Field Quiz B</p>
+            <h2>新しい店舗にLAN配線を入れるとき、L1として最初に確認したいことに近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">配線経路、距離、電源、ラックやMDFの場所</button>
+              <button type="button" data-correct="false">Webページの文字サイズ</button>
+              <button type="button" data-correct="false">Pythonの変数名</button>
+              <button type="button" data-correct="false">会計ソフトの勘定科目</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。L1では、通信の前に物理的に通せるか、届くか、置けるか、電源が取れるかを確認します。設計図と現場が違うこともよくあります。</p>
+          </div>
+
           <h2>ここからは応用です。現場の切り分けとして考えてみましょう</h2>
           <p>
             L1の勉強は、用語を覚えるだけだと少し退屈です。

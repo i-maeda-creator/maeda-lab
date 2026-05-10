@@ -207,6 +207,84 @@
             <p class="quiz-explain" hidden>正解です。NATは、プライベートIPアドレスとグローバルIPアドレスの変換として理解すると入りやすいです。</p>
           </div>
 
+          <h2>L3で実際に関わる会社・人を見てみましょう</h2>
+          <p>
+            L3は、カフェの外へ出るための道案内なので、関係者も少し広がります。
+            ルーターやファイアウォールを作る会社、回線やISPを提供する会社、クラウド接続を設計する人、社内の情シスや運用チームが関わります。
+            「IPアドレスがあるか」だけでなく、「どの経路で、誰のネットワークを通って、どこで止まっているか」を見る層です。
+          </p>
+          <div class="address-table">
+            <table>
+              <thead><tr><th>関係者</th><th>具体例</th><th>見ているもの</th></tr></thead>
+              <tbody>
+                <tr><td>ルーター・ファイアウォールメーカー</td><td>Cisco、ヤマハ、Juniper Networks、Fortinet、Palo Alto Networks、NECなど</td><td>ルーティング、NAT、VPN、ACL、ファイアウォール</td></tr>
+                <tr><td>ISP・回線/クラウド接続</td><td>IIJ、NTTコミュニケーションズ/OCN、KDDI、ソフトバンク、AWS、Microsoft Azure、Google Cloudなど</td><td>グローバルIP、閉域接続、インターネット接続、クラウド接続</td></tr>
+                <tr><td>SIer・ネットワーク設計</td><td>企業ネットワーク構築会社、クラウドインテグレーター</td><td>IP設計、サブネット設計、静的/動的ルーティング、冗長化</td></tr>
+                <tr><td>情シス・セキュリティ担当</td><td>企業の情報システム部、SOC、CSIRT</td><td>拠点間VPN、アクセス制御、NAT設計、通信許可</td></tr>
+                <tr><td>運用・監視担当</td><td>NOC、MSP、ヘルプデスク</td><td>ping、traceroute、経路障害、パケットロス、監視アラート</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            実務で「本社のサーバーだけつながりません」と言われたとき、L3ではまず経路を疑います。
+            端末のIP、デフォルトゲートウェイ、VPN、NAT、ファイアウォール、上流ISPの障害情報を順に見ます。
+            ここで大切なのは、犯人探しではなく、責任分界点をまたぎながら証拠を集めることです。
+          </p>
+
+          <h2>L3は、住所の設計と通行許可の設計です</h2>
+          <p>
+            IPアドレスは、ただ割り振ればよいわけではありません。
+            店舗、倉庫、本社、クラウド、開発環境、本番環境をどう分けるか。
+            将来店舗が増えたときに足りるか。
+            VPNで別拠点とつないだときに、アドレス帯が重複しないか。
+            このあたりを考えるのが、L3のかなり実務的な部分です。
+          </p>
+          <p>
+            さらに、L3の障害はDNSやセキュリティの問題と見分けにくいことがあります。
+            「example.com が見られない」なら、名前解決が悪いのか、IPへは届くのか、途中のファイアウォールで止まっているのか、NATで戻り通信が迷子になっているのかを分けて考えます。
+            ping、traceroute、nslookup、ルーティングテーブル、ファイアウォールログ。
+            実務のL3は、こうした小さな証拠を並べて、通信の旅を復元する作業です。
+          </p>
+
+          <div class="address-table">
+            <table>
+              <thead><tr><th>確認すること</th><th>見る理由</th><th>よくある落とし穴</th></tr></thead>
+              <tbody>
+                <tr><td>IPアドレス/サブネット</td><td>同じネットワークか、外へ出る通信かを判断する</td><td>拠点間VPNでアドレス帯が重複する</td></tr>
+                <tr><td>デフォルトゲートウェイ</td><td>外のネットワークへ出る入口を見る</td><td>端末だけ古い設定のまま残っている</td></tr>
+                <tr><td>ルーティング</td><td>どの経路へ進むかを確認する</td><td>戻りの経路がなく、片道だけ届く</td></tr>
+                <tr><td>NAT</td><td>内側と外側のアドレス変換を見る</td><td>許可ルールはあるのに、変換ルールがない</td></tr>
+                <tr><td>ファイアウォール</td><td>通してよい通信かを確認する</td><td>通信元や戻り通信の許可を忘れる</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="quiz-card field" data-quiz>
+            <p class="quiz-label">Field Quiz A</p>
+            <h2>拠点Aと拠点BをVPNでつなぐとき、L3設計として特に避けたいことはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">両拠点で同じIPアドレス帯を使ってしまうこと</button>
+              <button type="button" data-correct="false">机の色を白にすること</button>
+              <button type="button" data-correct="false">HTMLの見出しを短くすること</button>
+              <button type="button" data-correct="false">画像を圧縮すること</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解です。拠点間で同じアドレス帯を使うと、どちらのネットワークへ送ればよいか判断しにくくなります。IP設計はあとから直すほど大変です。</p>
+          </div>
+
+          <div class="quiz-card field" data-quiz>
+            <p class="quiz-label">Field Quiz B</p>
+            <h2>「IPアドレスを直接指定するとつながるのに、ドメイン名だとつながらない」とき、まず疑いやすいものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="false">L1の光ファイバーの色</button>
+              <button type="button" data-correct="true">DNSの名前解決</button>
+              <button type="button" data-correct="false">スイッチの筐体サイズ</button>
+              <button type="button" data-correct="false">会計年度</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>正解はDNSです。DNS自体はL3そのものではありませんが、L3の切り分けでは「IPで届くか、名前で届くか」を分けて考えると原因に近づきます。</p>
+          </div>
+
           <h2>ここからは応用です。外へ出られない原因を切り分けます</h2>
           <div class="quiz-card applied" data-quiz>
             <p class="quiz-label">Applied Quiz 6</p>
