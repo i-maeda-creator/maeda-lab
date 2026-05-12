@@ -347,37 +347,9 @@
             ここでは、設計ミスと現場ミスが混ざった問題にしてみます。
           </p>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 1</p>
-            <h2>アクセスポイントの上位ポートを交換したところ、社内SSIDは使えますがゲストSSIDだけ通信できません。APは複数SSIDをVLANタグ付きで上位スイッチへ渡す設計です。原因として最も疑いやすいものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">ゲストSSIDのDNSサーバーだけが未設定である</button>
-              <button type="button" data-correct="true">交換後ポートでゲスト用VLANが許可されていない</button>
-              <button type="button" data-correct="false">社内SSID側のDHCPスコープが枯渇している</button>
-              <button type="button" data-correct="false">クラウド側Webサーバーの証明書が期限切れである</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>
-              正解です。複数SSIDをVLANタグで運ぶなら、上位ポートは必要なVLANを通す設定になっている必要があります。
-              社内SSIDだけ生きているなら、物理断ではなく、特定VLANだけ通っていない可能性が高いです。
-            </p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 2</p>
-            <h2>フロアスイッチ増設後、全体の通信が断続的に遅くなりました。CPU使用率が高いスイッチがあり、MACアドレス表が短時間で大きく変動しています。L2として最も疑うべきものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="true">L2ループやSTP設定不備によるブロードキャストストーム</button>
-              <button type="button" data-correct="false">デフォルトゲートウェイの片方向ルート不足</button>
-              <button type="button" data-correct="false">DNSキャッシュのTTLが長すぎること</button>
-              <button type="button" data-correct="false">HTTPS証明書の信頼チェーン不備</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>
-              正解です。MACアドレス表が揺れる、スイッチCPUが高い、全体が不安定という条件は、L2ループを強く疑います。
-              ネットワークスペシャリストでは、STP、冗長配線、ポート設定、障害時の経路変化を図から追う問題がよく効きます。
-            </p>
-          </div>
+
+
 
           <h2>このページの落ち</h2>
           <p>
@@ -385,7 +357,20 @@
             目立つのはIPアドレスやWebですが、その手前でスイッチは黙々とMACアドレスを覚えています。
             カフェのプリンタが見つからないとき、犯人は意外と「別VLANにいました」という地味な話かもしれません。
           </p>
-        </article>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>L2 Data Link 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>MACアドレス表で同じMACが複数ポートに揺れます。疑う障害と確認設定を答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>監視カメラVLANだけ通信不能です。端末VLANは正常、スイッチ間はトランク、最近フロアスイッチを交換しました。L2で確認する観点を説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>L2ループ、STP不備、トランク許可VLAN漏れ、ネイティブVLAN不一致を挙げる。</li><li>VLAN許可、アクセスポート設定、STP状態、MAC表を確認する。</li><li>IP以前にフレームが正しいVLANに乗るかを見る。</li></ul>
+            </div>
+          </section>
+</article>
 
         <aside class="side-panel">
           <span class="status ready">Story Note</span>

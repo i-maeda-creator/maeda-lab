@@ -511,38 +511,9 @@
             L1では、設定変更の前に、まず物理的な事実を押さえる力が問われます。
           </p>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 1</p>
-            <h2>新店舗で、ONU直下のルーターを交換してもリンクアップしません。別拠点で同じルーターを使うと正常です。MDF内の光成端箱までは回線事業者が正常確認済みです。次に確認すべき対象として最も適切なものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="true">MDFから店舗内ONUまでの宅内配線、成端、パッチコード</button>
-              <button type="button" data-correct="false">ルーターのデフォルトルートとNAT設定</button>
-              <button type="button" data-correct="false">DNSのAレコードとTTL設定</button>
-              <button type="button" data-correct="false">WebアプリのセッションCookie設定</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>
-              正解です。ルーター自体は別拠点で正常、回線事業者側もMDFまでは正常なら、責任分界点の内側、つまりビル内・店舗内のL1を疑います。
-              ネットワークスペシャリスト風に言うと、機器単体、上流、宅内配線を切り分け、未確認区間を狭めていく問題です。
-            </p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 2</p>
-            <h2>1000BASE-Tで接続しているはずの端末が、特定の島だけ100Mbpsでリンクします。スイッチ設定は自動ネゴシエーション、端末側も同じです。物理層として優先して疑うべきものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">スイッチのVLAN ID設定</button>
-              <button type="button" data-correct="true">ケーブルカテゴリ、結線不良、パッチパネルの品質</button>
-              <button type="button" data-correct="false">ルーターのNAT変換テーブル</button>
-              <button type="button" data-correct="false">DNSサーバーの再帰問い合わせ設定</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>
-              正解です。1000BASE-Tはより高い品質の配線を要求します。
-              自動ネゴシエーションの結果として100Mbpsに落ちるなら、設定よりもケーブル、結線、パッチパネル、長さ、ノイズを確認します。
-              こういう問題は「通信できるからL1ではない」と決めつけると外します。
-            </p>
-          </div>
+
+
 
           <h2>このページの落ち</h2>
           <p>
@@ -554,7 +525,20 @@
             次はL2です。信号が届くようになったら、今度は「同じ場所にいる相手をどう見分けるか」を考えます。
             そこで登場するのがMACアドレスです。
           </p>
-        </article>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>L1 Physical Layer 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>IP取得は成功するが会議室だけ通信速度が乱れます。L1の物理要因を三つ答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>昼休みだけ決済端末が切れます。APログに再認証、PoEポートに瞬断、MDFからIDFは既設配線です。電子レンジと大型冷蔵庫も近くにあります。L1として切り分ける順序を説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>電波干渉、遮蔽物、PoE不足、ケーブル劣化、コネクタ不良を挙げる。</li><li>無線と有線を分け、AP、スイッチポート、PoE、ケーブルテスタ、MDF/IDFを順に見る。</li><li>アプリやDNSではなく、まず信号・電源・物理経路を疑う。</li></ul>
+            </div>
+          </section>
+</article>
 
         <aside class="side-panel">
           <span class="status ready">Story Note</span>

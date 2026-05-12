@@ -14,7 +14,20 @@
         <h2>現場で起きる事故</h2><p>一番怖いのは重複です。本社と店舗が同じ 192.168.1.0/24 を使っていると、VPNでつないだ瞬間に宛先があいまいになります。次に怖いのは、最初に小さく切りすぎることです。監視カメラやタブレットが増えたとき、アドレスが足りなくなって休日作業で再設計になります。</p>
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>192.168.10.23/24 の /24 が示すものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">先頭24ビットがネットワーク部であること</button><button type="button" data-correct="false">24台しか接続できないこと</button><button type="button" data-correct="false">TCP 24番を使うこと</button><button type="button" data-correct="false">DNSのTTLが24秒であること</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>/24 はCIDR表記です。255.255.255.0 と同じ範囲を表すことが多いです。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>拠点間VPNで両拠点が 192.168.1.0/24 を使っています。起きやすい問題はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">宛先がどちらの拠点か判断しにくくなる</button><button type="button" data-correct="false">TLS証明書が必ず期限切れになる</button><button type="button" data-correct="false">DNSのMXが消える</button><button type="button" data-correct="false">L2ループが必ず起きる</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>アドレス重複はVPN設計でよくある痛い問題です。</p></div>
-        <div class="quiz-card exam hard" data-quiz><p class="quiz-label">Network Specialist Challenge</p><h2>店舗を今後200拠点まで増やす計画です。IP設計として重要な観点はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">拠点ごとの集約、重複回避、将来拡張、ルート数</button><button type="button" data-correct="false">全店舗を同じ/24に統一</button><button type="button" data-correct="false">DNS名を短くすることだけ</button><button type="button" data-correct="false">HTTPステータスを200にすることだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>大規模では経路集約や将来拡張が重要です。あとで直すほど大変です。</p></div>
+
         <h2>このページの落ち</h2><p>IP設計は地図作りです。地図が雑だと、通信も運用も迷子になります。</p>
-      </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-ip-address.html">IP Address</a><a href="network-dhcp.html">DHCP</a><a href="network-routing-vpn.html">Routing/VPN</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>IP Address / Subnet Mask 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>VPN接続した店舗A/Bがどちらも 192.168.1.0/24 です。原因と対策を答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>200店舗にレジ、業務PC、監視カメラ、来客Wi-Fiを置き、クラウドと本社へVPN接続します。CIDR、用途分離、将来拡張の観点でIP設計方針を説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>重複アドレスで経路判断できないこと、NAT回避策、再採番を挙げる。</li><li>店舗単位で集約可能な範囲を割り当て、用途別に/26などへ分ける。</li><li>DHCP、予約IP、ゲートウェイ、監視、戻り経路まで触れる。</li></ul>
+            </div>
+          </section>
+</article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-ip-address.html">IP Address</a><a href="network-dhcp.html">DHCP</a><a href="network-routing-vpn.html">Routing/VPN</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

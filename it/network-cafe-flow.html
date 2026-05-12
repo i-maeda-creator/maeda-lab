@@ -145,70 +145,15 @@
             正解以外もそれっぽくしています。ログ、到達範囲、層の違いを見て判断してください。
           </p>
 
-          <div class="quiz-card exam hard" id="quiz" data-quiz>
-            <p class="quiz-label">Network Specialist Final 1</p>
-            <h2>レジ端末はAPへ接続済みで、DHCPでIPも取得しています。店内プリンタには接続できますが、クラウド注文管理だけ開けません。まず優先して確認する組合せとして最も妥当なのはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">APの電波強度とLANケーブルの断線だけ</button>
-              <button type="button" data-correct="true">デフォルトゲートウェイ、NAT、上流回線、FWの外向き許可</button>
-              <button type="button" data-correct="false">プリンタのトナー残量とHTTPステータス404</button>
-              <button type="button" data-correct="false">スイッチのMACアドレス表だけ</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。店内プリンタへ行けるならL1/L2はかなり生きています。外へ出るL3/NAT/FWを優先します。</p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Final 2</p>
-            <h2>注文管理のURLにアクセスすると、DNSは正常に名前解決され、TCP 443の接続も成立します。しかしブラウザでは証明書警告が出ます。最も関係が深い層と確認対象はどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">L1、光ファイバーの損失</button>
-              <button type="button" data-correct="false">L2、VLANタグの許可</button>
-              <button type="button" data-correct="true">L5-7、証明書の期限、SAN、中間証明書、信頼チェーン</button>
-              <button type="button" data-correct="false">L3、デフォルトゲートウェイだけ</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。TCP 443まで成立しているので、TLS証明書の検証を見ます。</p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Final 3</p>
-            <h2>新しいAPへ交換後、客用SSIDは使えますが業務用SSIDだけクラウドへ出られません。APの上位スイッチポートはタグVLANを使う設計です。最も疑いやすいものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">クラウド側WebサーバーのCPUだけ</button>
-              <button type="button" data-correct="true">上位ポートで業務用VLANが許可されているか、SSIDとVLANの対応が正しいか</button>
-              <button type="button" data-correct="false">DNSのTTLが長すぎることだけ</button>
-              <button type="button" data-correct="false">HTTP 500が返っていることだけ</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。特定SSIDだけなら、SSIDとVLAN、タグ許可、スイッチポート設定を疑います。</p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Final 4</p>
-            <h2>LB配下のWebサーバーで、ヘルスチェックは成功しています。しかし利用者のPOSTリクエストだけtimeoutします。次に見るべき観点として最も妥当なのはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">ヘルスチェック成功なのでL4/L7の調査は不要</button>
-              <button type="button" data-correct="true">ヘルスチェックのパスと実通信のパス、リクエストサイズ、アイドルタイムアウト、バックエンドログ</button>
-              <button type="button" data-correct="false">APの電波強度だけ</button>
-              <button type="button" data-correct="false">MDFの配線順だけ</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。ヘルスチェックと実通信は同じ条件とは限りません。L4のtimeoutとL7の処理時間を両方見ます。</p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Final 5</p>
-            <h2>一部店舗だけ注文管理画面が古い表示のままです。クラウドのオリジンサーバーログには、その店舗からの最新リクエストが残っていません。最も疑いやすいものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="true">CDN、プロキシ、ブラウザキャッシュ、DNS切替後のTTL</button>
-              <button type="button" data-correct="false">レジ端末のIPアドレスがプライベートアドレスであることだけ</button>
-              <button type="button" data-correct="false">L2ループだけ</button>
-              <button type="button" data-correct="false">TCP 22番のSSH接続だけ</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。オリジンにログがないなら、手前のCDNやプロキシ、キャッシュが応答している可能性があります。</p>
-          </div>
+
+
+
+
+
 
           <h2>このページの落ち</h2>
           <p>
@@ -216,7 +161,20 @@
             どこかで止まったら、怒るより先に、どの層で止まったかを見ます。
             それができると、「ネットが悪いです」が、かなり具体的な調査に変わります。
           </p>
-        </article>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>総合午後問題</h2>
+            <h3>短答記述</h3>
+            <p>注文アプリだけ失敗します。Wi-Fi、DNS、HTTPS、API、DBのどこから切り分けるか順序を答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>来客Wi-Fiではトップは表示されますが決済だけ失敗します。従業員端末では成功します。AP、VLAN、FW/NAT、DNS、CDN、WAF、LB、アプリ、決済SaaSを含め、L1からL7で原因候補を説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>来客VLANのFW/NAT、DNS、WAF、決済SaaS到達、Cookie/認証、TLSを挙げる。</li><li>L1/L2/L3/L4/L7の順に観測点を置き、成功/失敗経路を比較する。</li><li>トップ表示成功から静的配信は生き、決済APIや外部連携が怪しいと推論する。</li></ul>
+            </div>
+          </section>
+</article>
 
         <aside class="side-panel">
           <span class="status ready">Story Note</span>

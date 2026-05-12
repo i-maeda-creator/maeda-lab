@@ -9,7 +9,20 @@
         <div class="address-table"><table><thead><tr><th>項目</th><th>意味</th><th>実務の落とし穴</th></tr></thead><tbody><tr><td>L4 LB</td><td>IP/ポートで分散</td><td>HTTPの中身は見ない</td></tr><tr><td>L7 LB</td><td>URLやヘッダーで分散</td><td>パス設定ミス</td></tr><tr><td>ヘルスチェック</td><td>生存確認</td><td>/healthだけ成功</td></tr><tr><td>Sticky Session</td><td>同じ利用者を同じサーバーへ</td><td>偏りや障害時影響</td></tr><tr><td>Timeout</td><td>待ち時間</td><td>放置後失敗</td></tr></tbody></table></div>
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>LBがバックエンドの生存確認に使うものとして近いものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">ヘルスチェック</button><button type="button" data-correct="false">DNS MX</button><button type="button" data-correct="false">ARP要求</button><button type="button" data-correct="false">MDF配線表</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>ヘルスチェックで正常なサーバーへ流します。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>/health は200ですが、POST /orders がtimeoutします。見るべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">実通信のパス、処理時間、本文サイズ、タイムアウト</button><button type="button" data-correct="false">ヘルスチェック成功なので調査不要</button><button type="button" data-correct="false">L1の電源だけ</button><button type="button" data-correct="false">DNSのTXTだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>ヘルスチェックと実通信は条件が違います。</p></div>
-        <div class="quiz-card exam hard" data-quiz><p class="quiz-label">Network Specialist Challenge</p><h2>一部利用者だけログイン後に別サーバーへ飛び、セッションが消えます。疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">Sticky Session、共有セッションストア、Cookie属性</button><button type="button" data-correct="false">光ファイバー損失だけ</button><button type="button" data-correct="false">VLAN IDだけ</button><button type="button" data-correct="false">DNSのMXだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>セッション保持の設計がLBと絡む典型です。</p></div>
+
         <h2>このページの落ち</h2><p>LBは入口の受付係です。元気なサーバーへ渡すだけでなく、タイムアウトやセッションの癖も持っています。</p>
-      </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-load-balancer.html">Load Balancer</a><a href="network-cdn-cache.html">CDN/Cache</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>Load Balancer 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>ログイン後だけセッションが消えます。LB配下で確認すべきことを答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>2台のアプリに分散後、決済直後だけログアウトします。Cookie、Sticky Session、共有セッション、ヘルスチェックを含めて説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>Sticky Session、共有セッション、Cookie属性、X-Forwarded-Proto、ヘルスチェックパスを挙げる。</li><li>同じ利用者が別ノードでもセッションを読めるか確認する。</li><li>LBはタイムアウト、ヘッダ、TLS終端も関わる。</li></ul>
+            </div>
+          </section>
+</article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-load-balancer.html">Load Balancer</a><a href="network-cdn-cache.html">CDN/Cache</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

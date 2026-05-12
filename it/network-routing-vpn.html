@@ -9,7 +9,20 @@
         <div class="address-table"><table><thead><tr><th>用語</th><th>意味</th><th>実務の注意</th></tr></thead><tbody><tr><td>静的ルート</td><td>手動で道を設定</td><td>小規模向き</td></tr><tr><td>動的ルーティング</td><td>経路を自動交換</td><td>OSPF/BGP</td></tr><tr><td>VPN</td><td>暗号化された拠点間通路</td><td>アドレス重複に注意</td></tr><tr><td>戻り経路</td><td>応答の道</td><td>非対称経路に注意</td></tr></tbody></table></div>
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>ルーターが次にどこへ送るか判断するために見るものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">ルーティングテーブル</button><button type="button" data-correct="false">HTTP Cookie</button><button type="button" data-correct="false">証明書SAN</button><button type="button" data-correct="false">HTML見出し</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>ルーティングテーブルが道案内です。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>要求はサーバーに届きますが応答が戻りません。疑うべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">戻り経路やFWの戻り通信許可</button><button type="button" data-correct="false">TLS証明書だけ</button><button type="button" data-correct="false">APの電波だけ</button><button type="button" data-correct="false">HTTP 404だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>片道だけ届くなら戻り経路を見ます。</p></div>
-        <div class="quiz-card exam hard" data-quiz><p class="quiz-label">Network Specialist Challenge</p><h2>拠点間VPNを追加したら既存クラウド接続が不安定になりました。調査観点として妥当なのはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">経路優先度、重複アドレス、経路広告、非対称経路</button><button type="button" data-correct="false">CSSだけ</button><button type="button" data-correct="false">メールのDKIMだけ</button><button type="button" data-correct="false">証明書の期限だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>経路が増えると意図しない道を選ぶことがあります。</p></div>
+
         <h2>このページの落ち</h2><p>VPNは橋、ルーティングは地図です。橋があっても地図に載っていなければ、誰も渡れません。</p>
-      </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-routing-vpn.html">Routing/VPN</a><a href="network-ip-address.html">IP Address</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>Routing / VPN 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>VPN追加後、既存クラウド接続が不安定です。経路制御で確認すべき観点を答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>本社、AWS、店舗VPNで、店舗からAWSへは行けるが戻りません。経路広告、優先度、重複、非対称経路で説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>経路広告、メトリック、戻り経路、重複CIDR、NAT、ACLを挙げる。</li><li>双方のルートテーブルとVPN状態を確認し、行き戻りを別々に追う。</li><li>片側ping成功だけでは双方向正常と言えない。</li></ul>
+            </div>
+          </section>
+</article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-routing-vpn.html">Routing/VPN</a><a href="network-ip-address.html">IP Address</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

@@ -658,6 +658,49 @@ h1 span {
   border-bottom: 0;
 }
 
+.ns-exam {
+  background: #f7f7f8;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+  color: #15161a;
+  margin: 30px 0;
+  padding: 24px;
+}
+
+.ns-exam .quiz-label {
+  color: #006dd6;
+  margin-top: 0;
+}
+
+.ns-exam h2 {
+  color: #15161a;
+  margin-top: 8px;
+}
+
+.ns-exam h3 {
+  color: #24252b;
+  font-size: 1.05rem;
+  margin: 24px 0 10px;
+}
+
+.ns-exam p,
+.ns-exam li {
+  color: #303138;
+}
+
+.ns-exam ul {
+  margin: 10px 0 0;
+  padding-left: 1.25rem;
+}
+
+.ns-answer {
+  background: #ffffff;
+  border: 1px solid rgba(21, 22, 26, 0.1);
+  border-radius: 16px;
+  margin-top: 14px;
+  padding: 16px;
+}
+
 .lesson-list.compact {
   margin-top: 18px;
 }

@@ -329,31 +329,9 @@
           </div>
 
           <h2>ネットワークスペシャリスト級チャレンジです</h2>
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 1</p>
-            <h2>FWログにはTCP SYNの許可ログがありますが、SYN/ACKが戻りません。サーバー側では対象ポートの待受プロセスが起動していません。妥当な説明はどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">FW許可ログがあるのでL4の問題は完全に除外できる</button>
-              <button type="button" data-correct="true">経路やFWだけでなく、サーバー側の待受ポートも確認すべきである</button>
-              <button type="button" data-correct="false">DNSが成功していればTCP接続も必ず成功する</button>
-              <button type="button" data-correct="false">SYN/ACKが戻らない場合は必ずTLS証明書が原因である</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。SYNが許可されても、サーバー側で待ち受けていなければ接続できません。L4では経路、FW、待受プロセスをセットで見ます。</p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 2</p>
-            <h2>ロードバランサ配下の一部サーバーだけ、ヘルスチェックが成功した直後に利用者通信でtimeoutします。原因調査として最も妥当なものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">LBのヘルスチェックが成功しているのでサーバー側の調査は不要である</button>
-              <button type="button" data-correct="true">ヘルスチェックのURL/ポートと実通信のURL/ポート、接続数、アイドルタイムアウトを比較する</button>
-              <button type="button" data-correct="false">DNSのTTLだけを短くすればL4のtimeoutは必ず解消する</button>
-              <button type="button" data-correct="false">TCPではなくUDPに変更すればWeb通信は必ず安定する</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。ヘルスチェックと実通信は同じではありません。見ているパス、ポート、接続数、タイムアウト条件を分けて確認します。</p>
-          </div>
+
+
 
           <h2>このページの落ち</h2>
           <p>
@@ -361,7 +339,20 @@
             IPアドレスだけでは「どの建物か」までしか分かりません。
             ポート番号、TCP/UDP、接続状態、待受プロセスを見て、ようやく「どの窓口で、どう会話しているか」が分かります。
           </p>
-        </article>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>L4 Transport 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>CPUは低いのに接続が遅く、SYN再送が増えています。L4で疑う観点を答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>GET /health は正常、POST /orders だけタイムアウトします。3ウェイハンドシェイクは成功し、その後再送が増えます。サーバ、LB、FWで何を見るべきか説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>TCP確立、再送、ウィンドウ、タイムアウト、FWセッション、LBアイドルタイムアウトを挙げる。</li><li>ヘルスチェックと実通信の差、本文サイズ、処理時間、接続プールを見る。</li><li>HTTPエラーだけでなくTCPとして応答が戻るかを追う。</li></ul>
+            </div>
+          </section>
+</article>
 
         <aside class="side-panel">
           <span class="status ready">Story Note</span>

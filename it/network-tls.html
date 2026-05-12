@@ -9,7 +9,20 @@
         <h2>証明書で見るもの</h2><div class="address-table"><table><thead><tr><th>項目</th><th>意味</th><th>失敗例</th></tr></thead><tbody><tr><td>SAN</td><td>対象ドメイン名</td><td>別名でアクセスして警告</td></tr><tr><td>期限</td><td>有効期間</td><td>期限切れ警告</td></tr><tr><td>中間証明書</td><td>信頼チェーン</td><td>一部端末だけ失敗</td></tr><tr><td>秘密鍵</td><td>サーバー側の鍵</td><td>漏えいすると再発行</td></tr></tbody></table></div>
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>証明書でアクセス先ドメイン名との一致を確認する項目として重要なものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">SAN</button><button type="button" data-correct="false">MX</button><button type="button" data-correct="false">VLAN ID</button><button type="button" data-correct="false">TTLだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>SANにアクセス先の名前が含まれているかを確認します。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>一部の古い端末だけHTTPS接続に失敗します。疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">中間証明書、対応TLSバージョン、暗号スイート</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">NATの送信元ポートだけ</button><button type="button" data-correct="false">DNSのMXレコードだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>一部端末だけなら、信頼チェーンや対応TLSの差を疑います。</p></div>
-        <div class="quiz-card exam hard" data-quiz><p class="quiz-label">Network Specialist Challenge</p><h2>証明書更新後、LB配下の片系だけ警告が出ます。最も現実的な確認はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">全LB/全ノードに同じ証明書チェーンと秘密鍵が反映されたか</button><button type="button" data-correct="false">DNSのTTLだけ</button><button type="button" data-correct="false">スイッチのMAC学習だけ</button><button type="button" data-correct="false">APの電波強度だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>片系だけなら反映漏れが濃厚です。チェーンも含めて確認します。</p></div>
+
         <h2>このページの落ち</h2><p>証明書は小さなファイルに見えますが、信頼の入口です。期限切れ一つで、元気なサービスも利用者には危険に見えます。</p>
-      </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-auth.html">Auth</a><a href="network-cdn-cache.html">CDN</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>TLS / Certificate 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>証明書更新後、一部端末だけ警告が出ます。証明書チェーンの観点で確認すべきことを答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>複数台LBの片系だけTLSエラーになります。SNI、秘密鍵、証明書配布、チェーンの観点で切り分けを説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>サーバ証明書、中間証明書、秘密鍵一致、有効期限、SAN、SNIを挙げる。</li><li>全LBノードをSNI付きで個別確認する。</li><li>ファイル配置だけでなく反映先、再起動/リロード、チェーンまで見る。</li></ul>
+            </div>
+          </section>
+</article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-auth.html">Auth</a><a href="network-cdn-cache.html">CDN</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

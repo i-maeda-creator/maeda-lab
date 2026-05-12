@@ -9,7 +9,20 @@
         <div class="address-table"><table><thead><tr><th>配るもの</th><th>意味</th><th>失敗例</th></tr></thead><tbody><tr><td>IPアドレス</td><td>端末の住所</td><td>重複、枯渇</td></tr><tr><td>サブネットマスク</td><td>町内の範囲</td><td>外と内の判断ミス</td></tr><tr><td>ゲートウェイ</td><td>外への出口</td><td>外へ出られない</td></tr><tr><td>DNS</td><td>名前解決</td><td>IP直指定なら行ける</td></tr></tbody></table></div>
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>DHCPで端末に配られることが多い情報はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">IPアドレス、ゲートウェイ、DNS</button><button type="button" data-correct="false">HTMLテンプレート</button><button type="button" data-correct="false">証明書の秘密鍵</button><button type="button" data-correct="false">CDNのキャッシュキー</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>DHCPは通信に必要な基本設定を配ります。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>端末のIPが169.254.x.xになりました。疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">DHCPでIPを取得できていない</button><button type="button" data-correct="false">HTTPS証明書が期限切れ</button><button type="button" data-correct="false">HTTP 404</button><button type="button" data-correct="false">DNSのMX不備</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>APIPAの典型です。DHCPサーバー、VLAN、リレーを見ます。</p></div>
-        <div class="quiz-card exam hard" data-quiz><p class="quiz-label">Network Specialist Challenge</p><h2>特定VLANだけDHCP取得に失敗します。他VLANは正常です。確認すべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">DHCPリレー、スコープ、VLANインターフェース、ACL</button><button type="button" data-correct="false">TLS証明書だけ</button><button type="button" data-correct="false">HTTPヘッダーだけ</button><button type="button" data-correct="false">CDNのTTLだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>VLANをまたぐDHCPではリレーやACLが効きます。</p></div>
+
         <h2>このページの落ち</h2><p>DHCPは受付で住所を渡す係です。ここで詰まると、端末は最初の一歩を踏み出せません。</p>
-      </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-dhcp.html">DHCP</a><a href="network-ip-address.html">IP Address</a><a href="network-vlan-stp.html">VLAN/STP</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>DHCP 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>特定VLANだけIPを取得できません。他VLANは正常です。DHCP観点を答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>新フロアで業務PCだけ169.254.x.xになります。DHCPサーバは正常です。DHCPリレー、スコープ、VLAN、ACLで説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>Discover/Offer、リレー、スコープ枯渇、VLAN SVI、ACLを挙げる。</li><li>端末、VLAN、L3インターフェース、DHCPサーバログを順に見る。</li><li>ブロードキャストがVLANを越えないためリレーが必要と説明する。</li></ul>
+            </div>
+          </section>
+</article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-dhcp.html">DHCP</a><a href="network-ip-address.html">IP Address</a><a href="network-vlan-stp.html">VLAN/STP</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

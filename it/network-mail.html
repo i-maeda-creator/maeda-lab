@@ -9,7 +9,20 @@
         <div class="address-table"><table><thead><tr><th>用語</th><th>意味</th><th>目的</th></tr></thead><tbody><tr><td>SMTP</td><td>送信/配送</td><td>メールを送る</td></tr><tr><td>IMAP</td><td>受信/閲覧</td><td>メールを読む</td></tr><tr><td>MX</td><td>配送先</td><td>受信サーバー指定</td></tr><tr><td>SPF</td><td>送信元IP確認</td><td>なりすまし対策</td></tr><tr><td>DKIM/DMARC</td><td>署名とポリシー</td><td>信頼性向上</td></tr></tbody></table></div>
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>メールの配送先サーバーを示すDNSレコードはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">MX</button><button type="button" data-correct="false">A</button><button type="button" data-correct="false">CNAME</button><button type="button" data-correct="false">NS</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>MXはメール配送先を示します。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>メールが迷惑メールに入りやすいとき、確認したいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">SPF、DKIM、DMARC、送信元IPの評判</button><button type="button" data-correct="false">VLANタグだけ</button><button type="button" data-correct="false">MDF配線だけ</button><button type="button" data-correct="false">HTTP 404だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>メールは認証と評判が重要です。</p></div>
-        <div class="quiz-card exam hard" data-quiz><p class="quiz-label">Network Specialist Challenge</p><h2>SaaSから送るメールだけSPF failになります。原因として近いものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">SPFにSaaSの送信元がincludeされていない</button><button type="button" data-correct="false">HTTPのGET/POST違い</button><button type="button" data-correct="false">APの電波干渉</button><button type="button" data-correct="false">STP設定不備だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>SaaS送信を許可するSPF includeが必要なことがあります。</p></div>
+
         <h2>このページの落ち</h2><p>メールは古いようで、DNSと認証のかたまりです。届かない理由は本文より配送経路にあります。</p>
-      </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-mail.html">Mail</a><a href="network-dns.html">DNS</a><a href="network-auth.html">Auth</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>Mail / SMTP 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>SaaSから送るメールだけ迷惑メール扱いです。DNS認証で確認すべきレコードを答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>社内メール、MAツール、請求SaaSから送信します。請求SaaSだけSPF fail、DKIMも一部失敗します。SPF、DKIM、DMARC、Return-Pathで説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>SPF include、DKIM署名ドメイン、DMARC alignment、Return-Pathを挙げる。</li><li>DNS TXT、SaaS指定値、送信元IP、Authentication-Resultsを見る。</li><li>本文ではなく配送認証とドメイン整合性を見る。</li></ul>
+            </div>
+          </section>
+</article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-mail.html">Mail</a><a href="network-dns.html">DNS</a><a href="network-auth.html">Auth</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

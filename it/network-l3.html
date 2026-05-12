@@ -359,37 +359,9 @@
             ここはかなり本気の問題です。すぐ解けなくて普通、むしろ解けるようになるために読む場所です。
           </p>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 1</p>
-            <h2>拠点Aから拠点Bのサーバーへpingは届きますが、拠点Bから拠点Aへの応答が途中で戻りません。拠点間VPNは確立済みで、拠点B側のサーバーログには要求が届いています。L3として最も疑うべきものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">拠点A側のDNSレコード名だけ</button>
-              <button type="button" data-correct="true">戻り経路のルーティング、またはファイアウォールの戻り通信許可</button>
-              <button type="button" data-correct="false">拠点B側サーバーのHTMLテンプレート</button>
-              <button type="button" data-correct="false">APのSSID名の表記ゆれだけ</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>
-              正解です。要求がサーバーに届いているなら、行きの経路だけでなく戻りの経路を確認します。
-              ネットワークスペシャリストでは、非対称経路、戻りルート不足、ファイアウォールのステート、VPN側の経路広告が絡む問題が難所になります。
-            </p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 2</p>
-            <h2>社内端末からクラウド上の業務システムへ接続できません。宛先IPへtracerouteすると社内FWまでは到達し、その先で止まります。FWログには許可ログがありますが、NAT変換ログがありません。原因として最も近いものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">FWで通信許可はされているがDNSが引けない</button>
-              <button type="button" data-correct="false">社内スイッチのMACアドレス表が学習されていない</button>
-              <button type="button" data-correct="true">FWで通信許可はされているが、送信元NATの対象から漏れている</button>
-              <button type="button" data-correct="false">TLS証明書のSANにホスト名が含まれていない</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>
-              正解です。FWで許可されていても、インターネットへ出る通信では送信元NATが必要な構成があります。
-              許可ログだけ見て安心すると外します。許可、NAT、ルート、戻り通信を別々に確認するのがL3の実務です。
-            </p>
-          </div>
+
+
 
           <h2>このページの落ち</h2>
           <p>
@@ -397,7 +369,20 @@
             店内の相手ならL2でよくても、遠くのサーバーへ行くにはIPアドレス、ゲートウェイ、経路表が必要です。
             つまりルーターは、地味に見えて、インターネットへの改札口です。
           </p>
-        </article>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>L3 Network 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>拠点AだけクラウドDBへ到達できません。ゲートウェイまでは疎通します。L3で確認する経路情報を答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>VPN接続後、一部店舗だけ本社へ行けません。店舗と本社に 192.168.1.0/24 が残り、クラウドは 192.168.0.0/16 を広告しています。原因候補と対策を説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>重複アドレス、広い経路広告、戻り経路、デフォルトルート、ACLを挙げる。</li><li>traceroute、経路表、VPN広告、NAT有無を確認する。</li><li>拠点ごとに重複しないCIDRを採番し、集約しやすくする。</li></ul>
+            </div>
+          </section>
+</article>
 
         <aside class="side-panel">
           <span class="status ready">Story Note</span>

@@ -380,31 +380,9 @@
           </div>
 
           <h2>ネットワークスペシャリスト級チャレンジです</h2>
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 1</p>
-            <h2>CDN導入後、一部地域だけ古い画面が表示されます。サーバー本体のログには新しいリクエストが来ていません。疑いやすいものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="true">CDNやブラウザキャッシュ、TTL、キャッシュキーの設定</button>
-              <button type="button" data-correct="false">TLS証明書のSANだけ</button>
-              <button type="button" data-correct="false">API Gatewayの認証設定だけ</button>
-              <button type="button" data-correct="false">DB接続プールの上限だけ</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。CDNが応答している場合、オリジンサーバーにログが残らないことがあります。キャッシュの設計を見ます。</p>
-          </div>
 
-          <div class="quiz-card exam hard" data-quiz>
-            <p class="quiz-label">Network Specialist Challenge 2</p>
-            <h2>API Gateway経由のAPIだけ401になり、直接アプリへ送ると200になります。最も疑いやすいものはどれでしょうか。</h2>
-            <div class="quiz-options">
-              <button type="button" data-correct="false">CDNのキャッシュTTL</button>
-              <button type="button" data-correct="true">Gateway側の認証設定、トークン検証、ヘッダー転送</button>
-              <button type="button" data-correct="false">TLS証明書の期限だけ</button>
-              <button type="button" data-correct="false">LBのアイドルタイムアウトだけ</button>
-            </div>
-            <p class="quiz-result" aria-live="polite"></p>
-            <p class="quiz-explain" hidden>正解です。401は認証まわりです。Gatewayを通したときだけなら、トークン検証やヘッダーの渡し方を確認します。</p>
-          </div>
+
+
 
           <h2>このページの落ち</h2>
           <p>
@@ -412,7 +390,20 @@
             でも中身は、DNS、TLS、HTTP、認証、ログの小さな積み重ねです。
             アプリ側の通信は、画面の裏でかなり几帳面に働いています。
           </p>
-        </article>
+
+          <section class="ns-exam">
+            <p class="quiz-label">Network Specialist Written</p>
+            <h2>L5-L7 Application 午後記述</h2>
+            <h3>短答記述</h3>
+            <p>HTTP 302が連続し、Cookieは発行されています。アプリ層で確認すべき観点を答えてください。</p>
+            <h3>事例ベースの午後問題</h3>
+            <p>会員だけ画像が表示されず、一般ページは正常です。CDN、WAF、認証基盤を通り、403と302が混在します。SameSite変更後から発生しました。原因候補を説明してください。</p>
+            <div class="ns-answer">
+              <h3>模範解答・採点観点</h3>
+              <ul><li>Cookie属性、SameSite/Secure、セッション、認証リダイレクト、WAF、CDNキャッシュキーを挙げる。</li><li>匿名/認証ページ、直接/CDN経由、WAFログ、Set-Cookie、Locationを比較する。</li><li>アプリとは認証、表現形式、セッション管理まで含むと説明する。</li></ul>
+            </div>
+          </section>
+</article>
 
         <aside class="side-panel">
           <span class="status ready">Story Note</span>
