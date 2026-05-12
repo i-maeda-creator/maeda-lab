@@ -15,56 +15,71 @@
     <main id="top">
       <section class="hero story-hero">
         <p class="eyebrow">Focus 01 / Network</p>
-        <h1>DNS <span>名前から住所を探す、インターネットの案内係です。</span></h1>
-        <p class="lead">ブラウザにURLを入れると、まず「その名前はどのIPアドレスか」を調べます。DNSは画面が開く前の、静かな最初の仕事です。</p>
+        <h1>DNS <span>名前を、通信できる住所へ変える仕組みです。</span></h1>
+        <p class="lead">DNSは、order.maeda-lab.example のような人間向けの名前を、サーバーのIPアドレスへ変換する仕組みです。Web、メール、CDN、SaaS連携の入口で必ず働きます。</p>
       </section>
       <section class="lesson">
         <article class="content story-content">
           <section class="story-block opening">
-            <p>カフェのスタッフが <strong>order.maeda-lab.example</strong> を開きます。人間には名前が分かりやすいですが、ネットワークは最終的にIPアドレスで相手へ向かいます。DNSは、店名から住所を調べる電話帳のように働きます。</p>
+            <p>カフェのスタッフがブラウザに <strong>order.maeda-lab.example</strong> と入力します。人間には店名のように読めますが、ネットワーク機器は最終的にIPアドレスで相手を探します。DNSは、電話帳というより「分散された案内所」です。端末、社内DNS、権威DNS、CDNのDNSが順番に関わり、利用者を正しい入口へ案内します。</p>
           </section>
           <section class="score-board" aria-live="polite"><div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div><div><span>正答率</span><strong data-score-rate>0%</strong></div><div><span>偏差値風</span><strong data-score-dev>--</strong></div><p data-score-message>クイズに答えるとスコアが出ます。</p></section>
-          <h2>DNSの流れを見ましょう</h2>
+
+          <h2>DNSがしていること</h2>
+          <p>DNSの本質は「名前から必要な情報を引く」ことです。WebならA/AAAAレコードでIPアドレスを調べ、メールならMXレコードで配送先を調べ、送信ドメイン認証ならTXTレコードを見ます。つまりDNSは、Webだけの仕組みではなく、インターネット上のサービス設計そのものを支える台帳です。</p>
           <figure class="diagram-card journey-diagram" aria-label="DNS flow">
-            <svg viewBox="0 0 900 420" role="img">
-              <title>DNS名前解決</title><rect x="20" y="20" width="860" height="380" rx="30" class="diagram-shell" /><text x="54" y="72" class="diagram-title">名前解決: 名前をIPアドレスへ</text>
-              <g class="journey-node"><rect x="60" y="155" width="130" height="82" rx="18" /><text x="92" y="190">端末</text><text x="82" y="220">ブラウザ</text></g>
-              <g class="journey-node"><rect x="255" y="155" width="150" height="82" rx="18" /><text x="282" y="190">再帰DNS</text><text x="276" y="220">問い合わせ</text></g>
-              <g class="journey-node"><rect x="470" y="155" width="150" height="82" rx="18" /><text x="500" y="190">権威DNS</text><text x="493" y="220">正式回答</text></g>
-              <g class="journey-node"><rect x="685" y="155" width="150" height="82" rx="18" /><text x="718" y="190">Web</text><text x="706" y="220">IPへ接続</text></g>
-              <path class="journey-line cable" d="M190 196 C220 196 230 196 255 196" /><path class="journey-line cable" d="M405 196 C435 196 445 196 470 196" /><path class="journey-line fiber" d="M620 196 C650 196 660 196 685 196" />
-              <text x="82" y="320" class="diagram-note">TTLが長いと古い答えが残り、短いと切替は早いが問い合わせが増えます。</text>
+            <svg viewBox="0 0 900 430" role="img">
+              <title>DNS名前解決</title>
+              <rect x="20" y="20" width="860" height="390" rx="30" class="diagram-shell" />
+              <text x="54" y="72" class="diagram-title">名前解決: order.maeda-lab.example をIPへ</text>
+              <g class="journey-node"><rect x="60" y="150" width="145" height="90" rx="18" /><text x="92" y="188">端末</text><text x="82" y="218">ブラウザ</text></g>
+              <g class="journey-node"><rect x="255" y="150" width="155" height="90" rx="18" /><text x="286" y="188">再帰DNS</text><text x="277" y="218">代わりに調査</text></g>
+              <g class="journey-node"><rect x="465" y="150" width="160" height="90" rx="18" /><text x="497" y="188">権威DNS</text><text x="486" y="218">正式な答え</text></g>
+              <g class="journey-node"><rect x="680" y="150" width="155" height="90" rx="18" /><text x="716" y="188">Web/CDN</text><text x="702" y="218">IPへ接続</text></g>
+              <path class="journey-line cable" d="M205 195 C230 195 235 195 255 195" />
+              <path class="journey-line cable" d="M410 195 C435 195 442 195 465 195" />
+              <path class="journey-line fiber" d="M625 195 C650 195 658 195 680 195" />
+              <text x="82" y="325" class="diagram-note">TTLが長いと古い答えが残りやすく、短いと切替は早いが問い合わせが増えます。</text>
             </svg>
-            <figcaption>再帰DNSが調べ、権威DNSが正式な答えを持ちます。キャッシュとTTLが実務の鍵です。</figcaption>
+            <figcaption>端末は多くの場合、直接権威DNSへ聞かず、再帰DNSに調査を任せます。</figcaption>
           </figure>
-          <h2>実務で見るレコード</h2>
-          <div class="address-table"><table><thead><tr><th>レコード</th><th>役割</th><th>現場の例</th></tr></thead><tbody>
-            <tr><td>A / AAAA</td><td>名前をIPv4/IPv6へ</td><td>Webサーバーの向き先</td></tr>
-            <tr><td>CNAME</td><td>別名へ向ける</td><td>CDNやSaaSへ接続</td></tr>
-            <tr><td>MX</td><td>メール配送先</td><td>Google WorkspaceやMicrosoft 365</td></tr>
-            <tr><td>TXT</td><td>文字情報</td><td>SPF、DKIM、所有確認</td></tr>
-            <tr><td>NS</td><td>権威DNSを示す</td><td>ドメイン管理の委任</td></tr>
+
+          <h2>レコードの意味</h2>
+          <div class="address-table"><table><thead><tr><th>レコード</th><th>役割</th><th>具体例</th></tr></thead><tbody>
+            <tr><td>A / AAAA</td><td>名前をIPv4/IPv6へ対応させる</td><td>order.example -> 203.0.113.10</td></tr>
+            <tr><td>CNAME</td><td>別名へ向ける</td><td>wwwをCDNやSaaSのホスト名へ向ける</td></tr>
+            <tr><td>MX</td><td>メールの配送先を示す</td><td>Microsoft 365やGoogle Workspace</td></tr>
+            <tr><td>TXT</td><td>任意の文字情報を置く</td><td>SPF、DKIM、DMARC、所有確認</td></tr>
+            <tr><td>NS</td><td>権威DNSを示す</td><td>ドメインをどのDNS事業者が管理するか</td></tr>
           </tbody></table></div>
-          <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>DNSで名前をIPv4アドレスへ対応させる代表的なレコードはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">Aレコード</button><button type="button" data-correct="false">MXレコード</button><button type="button" data-correct="false">TXTレコード</button><button type="button" data-correct="false">NSレコード</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>Aレコードは名前をIPv4アドレスへ対応させます。IPv6ならAAAAです。</p></div>
-          <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>サーバー移行後、一部店舗だけ古いIPへ接続しています。まず疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">DNSキャッシュとTTL</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">TCP 22番の待受だけ</button><button type="button" data-correct="false">証明書のSANだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>古い答えが残る典型例です。TTL、再帰DNS、端末やブラウザのキャッシュを見ます。</p></div>
+
+          <h2>実務でよく起きる事故</h2>
+          <p>DNS移行で多いのは、TTLを下げずに切り替えて一部利用者だけ旧サーバへ行く事故です。もう一つは、Web用のCNAMEだけを見て、メール用のMX/TXTを壊してしまう事故です。DNSは小さな設定に見えますが、Web、メール、証明書、SaaS連携の交通整理をしているため、切替前には現在のレコードを棚卸しする必要があります。</p>
+
+          <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>名前をIPv4アドレスへ対応させる代表的なDNSレコードはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">Aレコード</button><button type="button" data-correct="false">MXレコード</button><button type="button" data-correct="false">TXTレコード</button><button type="button" data-correct="false">NSレコード</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>Aレコードは名前をIPv4アドレスへ対応させます。IPv6ならAAAAレコードです。</p></div>
+          <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>サーバ移行後、一部の利用者だけ旧IPへ接続します。まず疑うべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">DNSキャッシュとTTL</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">TCP 22番だけ</button><button type="button" data-correct="false">証明書のSANだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>古い答えが再帰DNSや端末に残る典型例です。TTL、再帰DNS、端末キャッシュを見ます。</p></div>
 
           <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>DNS 午後記述</h2>
+            <h3>問題の背景</h3>
+            <p>カフェの注文サイトを旧サーバからCDN経由の新基盤へ移行しました。事前にAレコードを変更しましたが、移行後も一部の利用者は旧画面へ接続します。社内PCでは新画面が表示され、スマートフォンの一部では旧画面が残ります。DNS管理画面ではAレコードは新IPを指しています。さらに、apexドメインをCDNへ向けたいものの通常のCNAMEは設定できません。メールはMicrosoft 365を利用しており、SPF/DKIM/DMARCのTXTも同じゾーンにあります。</p>
             <h3>短答記述</h3>
-            <p>サーバ移行後、一部利用者だけ旧IPへ接続します。DNSの理由と確認方法を答えてください。</p>
+            <p>一部利用者だけ旧IPへ接続する原因として、DNSの観点で考えられるものを三つ挙げ、それぞれ確認方法を説明してください。</p>
             <h3>事例ベースの午後問題</h3>
-            <p>apexドメインをCDNへ向けたいが通常CNAMEを設定できません。メールはMicrosoft 365、DNSは社外管理です。切替時の設計と手順を説明してください。</p>
+            <p>apexドメインをCDNへ向けつつ、メール認証レコードを壊さずに安全に切り替える手順を説明してください。TTL、再帰DNSキャッシュ、権威DNS、ALIAS/ANAME/CNAME flattening、MX/TXTレコードの保全、切戻し手順を含めて述べてください。</p>
             <details class="ns-answer">
               <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
-              <ul><li>TTL、再帰DNSキャッシュ、端末キャッシュ、権威DNSの反映を挙げる。</li><li>ALIAS/ANAME/CNAME flatteningの有無を確認する。</li><li>MX/TXT/SPF/DKIM/DMARCを壊さず低TTL化、検証、段階切替、戻し手順を書く。</li></ul>
-
+              <ul><li>旧IPが残る理由として、TTLが長い、再帰DNSのキャッシュ、端末/ブラウザ/OSのキャッシュ、権威DNSの参照先違いを挙げる。</li><li>dig/nslookupで権威DNSと複数の再帰DNSへ問い合わせ、どこで旧IPが返っているか比較する。</li><li>apexドメインでは通常CNAMEを置けないため、DNS事業者のALIAS/ANAME/CNAME flattening機能を確認する。</li><li>MX/TXT/SPF/DKIM/DMARCを棚卸しし、Web切替でメール配送やドメイン認証を壊さないようにする。</li><li>切替前にTTLを下げ、検証環境で確認し、段階切替、監視、切戻し手順を用意する。</li></ul>
+              <h3>解説</h3>
+              <p>DNS障害で難しいのは、管理画面の表示が正しくても、利用者が見る答えがすぐには変わらないことです。DNSにはキャッシュがあります。再帰DNSや端末が古い答えを持っていれば、権威DNSを直しても一定時間は旧IPへ行くことがあります。だから、切替時は「権威DNSが正しいか」「よく使われる再帰DNSが何を返すか」「端末側で古い答えが残っていないか」を分けて確認します。</p>
+              <p>また、DNSはWebだけではありません。CDNへ向ける作業でMXやTXTを消すと、メールが届かない、SPF failになる、DMARCで拒否される、といった別事故が起きます。ネットワークスペシャリストの午後では、単にAレコードを書き換えるだけでなく、ドメイン全体の役割を見渡して、切替と切戻しを安全に設計する力が問われます。</p>
             </details>
           </section>
 
           <h2>このページの落ち</h2><p>DNSは地味ですが、画面が開く前に必ず働いています。名前が間違えば、どれだけサーバーが元気でも誰もたどり着けません。</p>
-</article>
+        </article>
         <aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-dns.html">DNS</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-ip-address.html">IP Address</a><a href="network-voice.html">Voice</a></aside>
       </section>
     </main>

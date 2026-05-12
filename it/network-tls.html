@@ -1,30 +1,83 @@
 <!doctype html>
 <html lang="ja">
-  <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>TLS / Certificate | Network Focus</title><meta name="description" content="TLS and certificate focused network note for Maeda Lab." /><link rel="stylesheet" href="it.css?v=20260510-l123" /></head>
-  <body><header class="site-header"><a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a><nav class="nav" aria-label="Primary navigation"><a href="network.html">Network</a><a href="index.html">IT</a><a href="../index.html#notes">Notes</a></nav></header>
-    <main id="top"><section class="hero story-hero"><p class="eyebrow">Focus 03 / Network</p><h1>TLS / Certificate <span>本物の相手と、安全な会話を始めます。</span></h1><p class="lead">HTTPSの安心感はTLSと証明書で支えられます。暗号化だけでなく、相手が本物かを確認する仕組みです。</p></section>
-      <section class="lesson"><article class="content story-content"><section class="story-block opening"><p>カフェのレジが注文管理サーバーへ接続するとき、偽物のサーバーへ注文を送るわけにはいきません。TLSは、相手の証明書を確認し、暗号化された通路を作ります。</p></section>
-        <section class="score-board" aria-live="polite"><div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div><div><span>正答率</span><strong data-score-rate>0%</strong></div><div><span>偏差値風</span><strong data-score-dev>--</strong></div><p data-score-message>クイズに答えるとスコアが出ます。</p></section>
-        <figure class="diagram-card journey-diagram"><svg viewBox="0 0 900 430" role="img"><title>TLS handshake</title><rect x="20" y="20" width="860" height="390" rx="30" class="diagram-shell" /><text x="54" y="72" class="diagram-title">TLS: 証明書を確認して暗号化</text><g class="journey-node"><rect x="80" y="150" width="160" height="90" rx="20" /><text x="120" y="185">端末</text><text x="105" y="220">信頼するCA</text></g><g class="journey-node"><rect x="610" y="150" width="200" height="90" rx="20" /><text x="650" y="185">サーバー</text><text x="630" y="220">証明書 + 秘密鍵</text></g><path class="journey-line cable" d="M240 182 C360 145 500 145 610 182" /><path class="journey-line fiber" d="M610 225 C500 260 360 260 240 225" /><text x="95" y="330" class="diagram-note">期限、SAN、中間証明書、秘密鍵管理が実務の焦点です。</text></svg><figcaption>TLSは暗号化だけでなく、証明書の検証を含みます。</figcaption></figure>
-        <h2>証明書で見るもの</h2><div class="address-table"><table><thead><tr><th>項目</th><th>意味</th><th>失敗例</th></tr></thead><tbody><tr><td>SAN</td><td>対象ドメイン名</td><td>別名でアクセスして警告</td></tr><tr><td>期限</td><td>有効期間</td><td>期限切れ警告</td></tr><tr><td>中間証明書</td><td>信頼チェーン</td><td>一部端末だけ失敗</td></tr><tr><td>秘密鍵</td><td>サーバー側の鍵</td><td>漏えいすると再発行</td></tr></tbody></table></div>
-        <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>証明書でアクセス先ドメイン名との一致を確認する項目として重要なものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">SAN</button><button type="button" data-correct="false">MX</button><button type="button" data-correct="false">VLAN ID</button><button type="button" data-correct="false">TTLだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>SANにアクセス先の名前が含まれているかを確認します。</p></div>
-        <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>一部の古い端末だけHTTPS接続に失敗します。疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">中間証明書、対応TLSバージョン、暗号スイート</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">NATの送信元ポートだけ</button><button type="button" data-correct="false">DNSのMXレコードだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>一部端末だけなら、信頼チェーンや対応TLSの差を疑います。</p></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TLS / Certificate | Network Focus</title>
+    <meta name="description" content="TLS and certificate focused network note for Maeda Lab." />
+    <link rel="stylesheet" href="it.css?v=20260510-l123" />
+  </head>
+  <body>
+    <header class="site-header"><a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a><nav class="nav" aria-label="Primary navigation"><a href="network.html">Network</a><a href="index.html">IT</a><a href="../index.html#notes">Notes</a></nav></header>
+    <main id="top">
+      <section class="hero story-hero">
+        <p class="eyebrow">Focus 03 / Network</p>
+        <h1>TLS / Certificate <span>本物の相手と、安全な会話を始める仕組みです。</span></h1>
+        <p class="lead">HTTPSの安心感は、TLSと証明書で支えられます。暗号化だけでなく、相手が本物か、信頼できる証明書か、鍵が正しく対応しているかを確認します。</p>
+      </section>
+      <section class="lesson">
+        <article class="content story-content">
+          <section class="story-block opening">
+            <p>カフェのレジが注文管理サーバーへ接続するとき、ただ暗号化されていればよいわけではありません。偽物のサーバーへ注文情報を送ってしまったら危険です。TLSは、証明書で相手を確認し、その後に暗号化された通信路を作ります。証明書は、Webサービスの身分証のようなものです。</p>
+          </section>
+          <section class="score-board" aria-live="polite"><div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div><div><span>正答率</span><strong data-score-rate>0%</strong></div><div><span>偏差値風</span><strong data-score-dev>--</strong></div><p data-score-message>クイズに答えるとスコアが出ます。</p></section>
 
-        <section class="ns-exam">
+          <h2>TLSで確認していること</h2>
+          <p>TLSでは、クライアントとサーバーが暗号方式を決め、サーバー証明書を検証し、暗号化に使う鍵を安全に共有します。証明書には、対象ドメイン、有効期限、発行者、中間証明書とのつながりが含まれます。ブラウザが警告を出すときは、暗号化の有無だけでなく「信頼できる相手か」に失敗していることが多いです。</p>
+          <figure class="diagram-card journey-diagram">
+            <svg viewBox="0 0 900 440" role="img">
+              <title>TLS handshake</title>
+              <rect x="20" y="20" width="860" height="400" rx="30" class="diagram-shell" />
+              <text x="54" y="72" class="diagram-title">TLS: 証明書を確認して暗号化通信へ</text>
+              <g class="journey-node"><rect x="75" y="145" width="180" height="110" rx="20" /><text x="120" y="185">クライアント</text><text x="98" y="220">SNIで名前を伝える</text></g>
+              <g class="journey-node"><rect x="360" y="145" width="180" height="110" rx="20" /><text x="402" y="185">サーバー</text><text x="390" y="220">証明書を提示</text></g>
+              <g class="journey-node"><rect x="645" y="145" width="180" height="110" rx="20" /><text x="700" y="185">CA</text><text x="672" y="220">信頼チェーン</text></g>
+              <path class="journey-line cable" d="M255 190 C300 165 325 165 360 190" />
+              <path class="journey-line fiber" d="M540 190 C585 165 610 165 645 190" />
+              <text x="92" y="335" class="diagram-note">SAN、有効期限、中間証明書、秘密鍵、SNI、TLSバージョンが実務の確認点です。</text>
+            </svg>
+            <figcaption>TLSは暗号化だけでなく、証明書の検証を含みます。</figcaption>
+          </figure>
+
+          <h2>証明書まわりの用語</h2>
+          <div class="address-table"><table><thead><tr><th>用語</th><th>意味</th><th>失敗例</th></tr></thead><tbody>
+            <tr><td>SAN</td><td>証明書が対象とするドメイン名</td><td>api.example.comが含まれず警告</td></tr>
+            <tr><td>有効期限</td><td>証明書を信頼できる期間</td><td>期限切れでブラウザ警告</td></tr>
+            <tr><td>中間証明書</td><td>信頼チェーンをつなぐ証明書</td><td>一部端末だけ検証失敗</td></tr>
+            <tr><td>秘密鍵</td><td>サーバー側が持つ鍵</td><td>証明書と一致せず起動失敗</td></tr>
+            <tr><td>SNI</td><td>接続先ホスト名をTLS開始時に伝える仕組み</td><td>LBが別ドメインの証明書を返す</td></tr>
+          </tbody></table></div>
+
+          <h2>実務でよく見る事故</h2>
+          <p>証明書更新では、ファイルを置いただけでは終わりません。LBやリバースプロキシの全ノードへ配布され、秘密鍵と一致し、中間証明書を含むチェーンが正しく、設定がリロードされている必要があります。片系だけ古い証明書、SNIなし確認で別証明書を見てしまう、検証環境だけ更新して本番片系が残る、といった事故がよく起きます。</p>
+
+          <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>証明書でアクセス先ドメイン名との一致を確認する項目として重要なものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">SAN</button><button type="button" data-correct="false">MX</button><button type="button" data-correct="false">VLAN ID</button><button type="button" data-correct="false">TTLだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>SANにアクセス先の名前が含まれているかを確認します。</p></div>
+          <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>一部の古い端末だけHTTPS接続に失敗します。疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">中間証明書、対応TLSバージョン、暗号スイート</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">DNSのMXだけ</button><button type="button" data-correct="false">NATの送信元ポートだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>一部端末だけなら、信頼チェーンやTLS対応差を疑います。</p></div>
+
+          <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>TLS / Certificate 午後記述</h2>
+            <h3>問題の背景</h3>
+            <p>注文APIの証明書を更新した翌朝から、一部利用者だけブラウザ警告が出るようになりました。LBは2台構成で、TLS終端はLBで行っています。運用担当者は「証明書ファイルは更新済み」と説明していますが、監視では片系に振られたときだけエラーが増えています。opensslで確認すると、SNIを指定した場合と指定しない場合で返る証明書が異なります。さらに、一部の古い端末では中間証明書の検証に失敗しています。</p>
             <h3>短答記述</h3>
-            <p>証明書更新後、一部端末だけ警告が出ます。証明書チェーンの観点で確認すべきことを答えてください。</p>
+            <p>証明書更新後に一部利用者だけ警告が出る場合、TLS/証明書の観点で確認すべき項目を五つ挙げてください。</p>
             <h3>事例ベースの午後問題</h3>
-            <p>複数台LBの片系だけTLSエラーになります。SNI、秘密鍵、証明書配布、チェーンの観点で切り分けを説明してください。</p>
+            <p>複数台LB構成で片系だけTLSエラーが出る原因を切り分ける手順を説明してください。SNI、SAN、有効期限、中間証明書、秘密鍵一致、LB全ノードへの反映、設定リロード、古い端末のTLS対応を含めて述べてください。</p>
             <details class="ns-answer">
               <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
-              <ul><li>サーバ証明書、中間証明書、秘密鍵一致、有効期限、SAN、SNIを挙げる。</li><li>全LBノードをSNI付きで個別確認する。</li><li>ファイル配置だけでなく反映先、再起動/リロード、チェーンまで見る。</li></ul>
-
+              <ul><li>SANに対象ドメインが含まれるか、有効期限が正しいか、証明書チェーンが完全かを確認する。</li><li>サーバー証明書と秘密鍵が一致しているか、LB全ノードに同じ証明書と中間証明書が反映されているかを確認する。</li><li>SNIを指定した確認と指定しない確認を分け、LBがホスト名に応じて正しい証明書を返すかを見る。</li><li>設定ファイルの配置だけでなく、LB/プロキシのreload/restartが行われたかを確認する。</li><li>古い端末だけ失敗する場合、TLSバージョン、暗号スイート、中間証明書の信頼状況を確認する。</li></ul>
+              <h3>解説</h3>
+              <p>TLS障害では、「証明書を更新した」という言葉だけでは足りません。どのノードに、どの証明書チェーンが、どの秘密鍵と組み合わされ、どのホスト名に対して返るのかを確認します。LBが複数台あれば、片系だけ古い証明書を返すことがあります。利用者から見ると断続的な警告になり、原因が分かりにくくなります。</p>
+              <p>SNIも重要です。1つのIPで複数ドメインを扱う場合、クライアントが接続したいホスト名をTLS開始時に伝え、その名前に合う証明書をサーバーが返します。SNIを指定しない確認だけでは、実際のブラウザ挙動と違う証明書を見てしまうことがあります。ネットワークスペシャリストの午後では、証明書そのものだけでなく、LB、SNI、チェーン、端末互換性まで含めて説明できることが大事です。</p>
             </details>
           </section>
 
           <h2>このページの落ち</h2><p>証明書は小さなファイルに見えますが、信頼の入口です。期限切れ一つで、元気なサービスも利用者には危険に見えます。</p>
-</article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-auth.html">Auth</a><a href="network-cdn-cache.html">CDN</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
+        </article>
+        <aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-auth.html">Auth</a><a href="network-cdn-cache.html">CDN</a></aside>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script>
+  </body>
 </html>

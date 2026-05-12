@@ -1,34 +1,83 @@
 <!doctype html>
 <html lang="ja">
-  <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>HTTP | Network Focus</title><meta name="description" content="HTTP focused network note for Maeda Lab." /><link rel="stylesheet" href="it.css?v=20260510-l123" /></head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HTTP | Network Focus</title>
+    <meta name="description" content="HTTP focused network note for Maeda Lab." />
+    <link rel="stylesheet" href="it.css?v=20260510-l123" />
+  </head>
   <body>
     <header class="site-header"><a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a><nav class="nav" aria-label="Primary navigation"><a href="network.html">Network</a><a href="index.html">IT</a><a href="../index.html#notes">Notes</a></nav></header>
-    <main id="top"><section class="hero story-hero"><p class="eyebrow">Focus 02 / Network</p><h1>HTTP <span>ブラウザとサーバーの、注文票のやり取りです。</span></h1><p class="lead">HTTPはWebの会話です。どのURLへ、どのメソッドで、どんなヘッダーと本文を送り、どんなステータスで返ったかを見ます。</p></section>
-      <section class="lesson"><article class="content story-content">
-        <section class="story-block opening"><p>カフェの注文画面で「保存」を押すと、ブラウザはサーバーへリクエストを送ります。サーバーは成功、失敗、権限不足、見つからないなどをステータスコードで返します。</p></section>
-        <section class="score-board" aria-live="polite"><div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div><div><span>正答率</span><strong data-score-rate>0%</strong></div><div><span>偏差値風</span><strong data-score-dev>--</strong></div><p data-score-message>クイズに答えるとスコアが出ます。</p></section>
-        <figure class="diagram-card journey-diagram" aria-label="HTTP request response"><svg viewBox="0 0 900 420" role="img"><title>HTTP要求応答</title><rect x="20" y="20" width="860" height="380" rx="30" class="diagram-shell" /><text x="54" y="72" class="diagram-title">HTTP: Request と Response</text><g class="journey-node"><rect x="90" y="145" width="180" height="100" rx="20" /><text x="130" y="185">ブラウザ</text><text x="120" y="220">GET /orders</text></g><g class="journey-node"><rect x="620" y="145" width="180" height="100" rx="20" /><text x="660" y="185">サーバー</text><text x="650" y="220">200 JSON</text></g><path class="journey-line cable" d="M270 180 C390 150 500 150 620 180" /><path class="journey-line fiber" d="M620 220 C500 255 390 255 270 220" /><text x="105" y="325" class="diagram-note">メソッド、URL、ヘッダー、本文、ステータスコードをセットで見ます。</text></svg><figcaption>HTTPは要求と応答です。アプリの意味がここに乗ります。</figcaption></figure>
-        <h2>よく使うメソッドとステータス</h2><div class="address-table"><table><thead><tr><th>項目</th><th>意味</th><th>カフェの例</th></tr></thead><tbody><tr><td>GET</td><td>取得</td><td>注文一覧を開く</td></tr><tr><td>POST</td><td>作成</td><td>新しい注文を登録</td></tr><tr><td>PUT/PATCH</td><td>更新</td><td>注文内容を修正</td></tr><tr><td>401/403</td><td>認証/認可</td><td>ログイン切れ、権限不足</td></tr><tr><td>500</td><td>サーバー内部エラー</td><td>アプリやDBで例外</td></tr></tbody></table></div>
-        <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>注文一覧を取得する操作に最も近いHTTPメソッドはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">GET</button><button type="button" data-correct="false">POST</button><button type="button" data-correct="false">PATCH</button><button type="button" data-correct="false">DELETE</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>取得はGETです。作成はPOST、更新はPUT/PATCH、削除はDELETEが代表です。</p></div>
-        <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>ログイン後の管理画面だけ403になります。まず見るべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">認可、Cookie、セッション、WAFログ</button><button type="button" data-correct="false">光ファイバーの損失だけ</button><button type="button" data-correct="false">VLANタグだけ</button><button type="button" data-correct="false">DNSのMXレコードだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>403は権限やアクセス制御の問題です。ログイン済みか、許可されているかを見ます。</p></div>
+    <main id="top">
+      <section class="hero story-hero">
+        <p class="eyebrow">Focus 02 / Network</p>
+        <h1>HTTP <span>ブラウザとサーバーが交わす、注文票の形式です。</span></h1>
+        <p class="lead">HTTPはWebの会話です。どのURLへ、どのメソッドで、どんなヘッダと本文を送り、どんなステータスで返ってきたかを読みます。</p>
+      </section>
+      <section class="lesson">
+        <article class="content story-content">
+          <section class="story-block opening">
+            <p>カフェの注文画面で「注文する」を押すと、ブラウザはサーバーへHTTPリクエストを送ります。サーバーは「成功しました」「ログインしてください」「権限がありません」「内部で失敗しました」といった結果をHTTPレスポンスで返します。HTTPは画面の裏にある、かなりきっちりした伝票のやり取りです。</p>
+          </section>
+          <section class="score-board" aria-live="polite"><div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div><div><span>正答率</span><strong data-score-rate>0%</strong></div><div><span>偏差値風</span><strong data-score-dev>--</strong></div><p data-score-message>クイズに答えるとスコアが出ます。</p></section>
 
-        <section class="ns-exam">
+          <h2>HTTPリクエストの中身</h2>
+          <p>HTTPでは、メソッド、パス、ヘッダ、本文を見ます。GETは取得、POSTは作成や実行、PUT/PATCHは更新、DELETEは削除に使われます。ヘッダにはCookie、Authorization、Content-Type、Acceptなどが入り、ログイン状態や本文形式を伝えます。本文にはJSONやフォームデータが入ります。</p>
+          <figure class="diagram-card journey-diagram" aria-label="HTTP request response">
+            <svg viewBox="0 0 900 430" role="img">
+              <title>HTTP request response</title>
+              <rect x="20" y="20" width="860" height="390" rx="30" class="diagram-shell" />
+              <text x="54" y="72" class="diagram-title">HTTP: Request と Response</text>
+              <g class="journey-node"><rect x="80" y="140" width="220" height="120" rx="20" /><text x="120" y="180">ブラウザ</text><text x="105" y="215">POST /orders</text><text x="105" y="245">Cookie + JSON</text></g>
+              <g class="journey-node"><rect x="600" y="140" width="220" height="120" rx="20" /><text x="648" y="180">サーバー</text><text x="630" y="215">201 Created</text><text x="630" y="245">注文IDを返す</text></g>
+              <path class="journey-line cable" d="M300 185 C405 150 500 150 600 185" />
+              <path class="journey-line fiber" d="M600 235 C500 270 405 270 300 235" />
+              <text x="92" y="335" class="diagram-note">メソッド、URL、ヘッダ、本文、ステータスコードをセットで読みます。</text>
+            </svg>
+            <figcaption>HTTPは、アプリの意味がネットワーク上に乗る場所です。</figcaption>
+          </figure>
+
+          <h2>ステータスコードを読む</h2>
+          <div class="address-table"><table><thead><tr><th>分類</th><th>意味</th><th>カフェの例</th></tr></thead><tbody>
+            <tr><td>2xx</td><td>成功</td><td>注文登録、メニュー取得に成功</td></tr>
+            <tr><td>3xx</td><td>リダイレクト</td><td>ログイン画面へ戻される</td></tr>
+            <tr><td>400</td><td>リクエスト不正</td><td>JSON形式が壊れている</td></tr>
+            <tr><td>401 / 403</td><td>認証/認可の問題</td><td>未ログイン、権限不足、WAF遮断</td></tr>
+            <tr><td>415</td><td>本文形式が不適切</td><td>Content-Typeが違う</td></tr>
+            <tr><td>500 / 502 / 504</td><td>サーバー側または中継の失敗</td><td>アプリ例外、LBからバックエンドタイムアウト</td></tr>
+          </tbody></table></div>
+
+          <h2>実務でよく見る切り分け</h2>
+          <p>「ブラウザでは動くがAPIクライアントでは失敗する」なら、Content-Type、Accept、Cookie、Authorization、CSRFトークンを比較します。「GETは成功するがPOSTだけ失敗する」なら、本文サイズ、WAF、LB制限、アプリ処理時間を見ます。HTTPはL7ですが、背後にはTLS、LB、FW、アプリ、DBがいるため、ステータスコードを手がかりに層を絞ります。</p>
+
+          <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>注文一覧を取得する操作に最も近いHTTPメソッドはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">GET</button><button type="button" data-correct="false">POST</button><button type="button" data-correct="false">PATCH</button><button type="button" data-correct="false">DELETE</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>取得はGETです。作成はPOST、更新はPUT/PATCH、削除はDELETEが代表です。</p></div>
+          <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>ログイン後の管理画面だけ403になります。まず見るべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">認可、Cookie、セッション、WAFログ</button><button type="button" data-correct="false">光ファイバーの損失だけ</button><button type="button" data-correct="false">VLANタグだけ</button><button type="button" data-correct="false">DNSのMXレコードだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>403は権限やアクセス制御の問題です。ログイン済みか、許可されているか、WAFで止められていないかを見ます。</p></div>
+
+          <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>HTTP 午後記述</h2>
+            <h3>問題の背景</h3>
+            <p>カフェ注文APIで、ブラウザ操作は成功しますが、外部連携用のAPIクライアントから送ると 415 Unsupported Media Type になります。別件で、GET /menu は200ですが、POST /orders は本文サイズが大きいと504になります。LBのヘルスチェックはGET /healthで常に200、WAFログにはPOST /ordersのJSON本文に対する検知が一部あります。アプリログでは、成功時は注文IDが発行されますが、失敗時はアプリまで到達していないリクエストもあります。</p>
             <h3>短答記述</h3>
-            <p>ブラウザでは成功するがAPIクライアントでは415です。HTTPで確認すべき要素を答えてください。</p>
+            <p>ブラウザでは成功し、APIクライアントでは415になる場合、HTTPの観点で比較すべき要素を四つ挙げてください。</p>
             <h3>事例ベースの午後問題</h3>
-            <p>注文APIだけタイムアウトします。GETは200、POSTは本文サイズが大きいと失敗します。LB、WAF、アプリで確認する観点を説明してください。</p>
+            <p>GETは成功するがPOSTだけ失敗する障害について、HTTPメソッド、Content-Type、本文サイズ、認証ヘッダ、WAF、LBヘルスチェック、アプリ到達性の観点で切り分け手順を説明してください。ヘルスチェック200をもって注文APIが正常とは判断できない理由も述べてください。</p>
             <details class="ns-answer">
               <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
-              <ul><li>メソッド、Content-Type、Accept、本文形式、認証ヘッダ、ステータスコードを挙げる。</li><li>ボディ制限、WAFルール、ヘルスチェックとの差、処理時間を見る。</li><li>200だけで正常判断せず業務パスを再現する。</li></ul>
-
+              <ul><li>メソッド、Content-Type、Accept、Authorization、Cookie、CSRFトークン、本文形式を比較対象に挙げる。</li><li>415は本文の種類やContent-Type不一致で起きるため、application/jsonか、フォームか、multipartかを確認する。</li><li>POSTだけ504なら、本文サイズ、WAF検知、LBのリクエスト/アイドルタイムアウト、バックエンド処理時間を見る。</li><li>GET /healthは短く単純な通信であり、POST /ordersの本文、認証、WAF、DB更新を代表しないと説明する。</li><li>LBログ、WAFログ、アプリログを相関IDや時刻で突き合わせ、どこまで到達しているかを確認する。</li></ul>
+              <h3>解説</h3>
+              <p>HTTPの午後問題では、ステータスコードを暗記ではなく証拠として読みます。415なら、サーバーがリクエスト本文の形式を受け入れられないという意味です。ブラウザとAPIクライアントで成功/失敗が分かれるなら、送っているヘッダや本文が違う可能性が高くなります。</p>
+              <p>一方、POSTだけ504になる場合は、アプリのバグとは限りません。WAFで本文が止まる、LBがバックエンド応答を待ち切れない、FWやTCPのタイムアウトに当たる、アプリまで届く前に落ちる、など複数の層が絡みます。ヘルスチェックが200でも、それは「GET /healthが返る」ことを示すだけです。実際の注文と同じメソッド、同じヘッダ、同じ本文サイズで再現することが重要です。</p>
             </details>
           </section>
 
           <h2>このページの落ち</h2><p>HTTPはWebの操作そのものです。画面の裏では、注文票が決まった形式で行き来しています。</p>
-</article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-dns.html">DNS</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-auth.html">Auth</a></aside></section>
-    </main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script>
+        </article>
+        <aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-dns.html">DNS</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-auth.html">Auth</a></aside>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script>
   </body>
 </html>
