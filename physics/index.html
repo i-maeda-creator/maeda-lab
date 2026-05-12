@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Physics | Maeda Lab</title>
-    <meta name="description" content="古典物理学と現代物理学の全体図を眺める Maeda Lab の物理ノート。" />
-    <link rel="stylesheet" href="physics.css?v=20260512-map" />
+    <meta name="description" content="物理学と物理工学の全体図を眺める Maeda Lab の物理ノート。" />
+    <link rel="stylesheet" href="physics.css?v=20260513-engineering-map" />
   </head>
   <body>
     <header class="site-header">
@@ -24,9 +24,9 @@
       <section class="hero" aria-labelledby="physics-title">
         <div class="hero-copy">
           <p class="eyebrow">Physics Notes</p>
-          <h1 id="physics-title">物理学の全体図</h1>
+          <h1 id="physics-title">物理学・物理工学の全体図</h1>
           <p class="lead">
-            物理学は、日常の運動を説明する古典物理学から、光速・原子・宇宙を扱う現代物理学へ広がっていきます。
+            物理学は自然のしくみを理解するための学問であり、物理工学はその理解を技術やシステムへつなげる領域です。
           </p>
         </div>
 
@@ -40,45 +40,143 @@
         </div>
       </section>
 
-      <section class="overview" id="map" aria-label="物理学の分類図">
+      <section class="overview" id="map" aria-label="物理学と物理工学の分類図">
         <div class="section-heading">
           <p class="eyebrow">Map</p>
         </div>
 
-        <div class="physics-tree" aria-label="物理学の分類図">
-          <article class="root-node">
-            <span>Physics</span>
-            <strong>物理学</strong>
-          </article>
+        <div class="map-grid">
+          <section class="map-column" aria-labelledby="physics-map-title">
+            <h2 id="physics-map-title">物理学</h2>
+            <div class="group-grid">
+              <article class="map-group theory">
+                <h3>基礎理論</h3>
+                <ul>
+                  <li>古典力学</li>
+                  <li>電磁気学</li>
+                  <li>熱力学</li>
+                  <li>統計力学</li>
+                  <li>量子力学</li>
+                  <li>相対論</li>
+                </ul>
+              </article>
 
-          <div class="branch-grid">
-            <article class="branch-card classical">
-              <span class="number">01</span>
-              <h3>古典物理学</h3>
-              <p>私たちの日常的なスケールで見える、物体・熱・波・電気のふるまいを扱う。</p>
-              <ul>
-                <li>力学</li>
-                <li>電磁気学</li>
-                <li>熱力学</li>
-                <li>統計力学</li>
-                <li>波動・光学</li>
-              </ul>
-            </article>
+              <article class="map-group methods">
+                <h3>数学・方法論</h3>
+                <ul>
+                  <li>数理物理</li>
+                  <li>計算物理</li>
+                  <li>実験物理</li>
+                </ul>
+              </article>
 
-            <article class="branch-card modern" id="modern">
-              <span class="number">02</span>
-              <h3>現代物理学</h3>
-              <p>日常感覚を超える、光速に近い世界・ミクロな世界・宇宙全体の構造を扱う。</p>
-              <ul>
-                <li>相対性理論</li>
-                <li>量子力学</li>
-                <li>物性物理</li>
-                <li>原子核物理</li>
-                <li>素粒子物理</li>
-                <li>宇宙物理</li>
-              </ul>
-            </article>
-          </div>
+              <article class="map-group targets">
+                <h3>対象別</h3>
+                <ul>
+                  <li>物性物理</li>
+                  <li>原子核物理</li>
+                  <li>素粒子物理</li>
+                  <li>宇宙物理</li>
+                  <li>プラズマ物理</li>
+                  <li>光学</li>
+                  <li>生物物理</li>
+                </ul>
+              </article>
+
+              <article class="map-group modern-fields">
+                <h3>現代領域</h3>
+                <ul>
+                  <li>非平衡物理</li>
+                  <li>複雑系</li>
+                  <li>ソフトマター</li>
+                  <li>アクティブマター</li>
+                  <li>量子情報</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section class="map-column engineering" aria-labelledby="engineering-map-title">
+            <h2 id="engineering-map-title">物理工学</h2>
+            <div class="group-grid">
+              <article class="map-group mechanics">
+                <h3>力学系</h3>
+                <ul>
+                  <li>機械力学</li>
+                  <li>材料力学</li>
+                  <li>流体力学</li>
+                  <li>振動工学</li>
+                </ul>
+              </article>
+
+              <article class="map-group energy">
+                <h3>熱エネルギー</h3>
+                <ul>
+                  <li>熱工学</li>
+                  <li>熱流体</li>
+                  <li>伝熱</li>
+                  <li>発電</li>
+                  <li>原子力</li>
+                  <li>再エネ</li>
+                </ul>
+              </article>
+
+              <article class="map-group electronics">
+                <h3>電気電子</h3>
+                <ul>
+                  <li>回路</li>
+                  <li>電磁工学</li>
+                  <li>パワエレ</li>
+                  <li>制御</li>
+                  <li>通信</li>
+                </ul>
+              </article>
+
+              <article class="map-group quantum">
+                <h3>光・量子</h3>
+                <ul>
+                  <li>光工学</li>
+                  <li>レーザー</li>
+                  <li>半導体</li>
+                  <li>ナノ</li>
+                  <li>量子デバイス</li>
+                </ul>
+              </article>
+
+              <article class="map-group devices">
+                <h3>デバイス</h3>
+                <ul>
+                  <li>センサー</li>
+                  <li>MEMS</li>
+                  <li>アクチュエータ</li>
+                  <li>ロボティクス</li>
+                  <li>医療機器</li>
+                </ul>
+              </article>
+
+              <article class="map-group computing">
+                <h3>情報・計算</h3>
+                <ul>
+                  <li>数値解析</li>
+                  <li>シミュレーション</li>
+                  <li>AI</li>
+                  <li>最適化</li>
+                  <li>デジタルツイン</li>
+                </ul>
+              </article>
+
+              <article class="map-group systems">
+                <h3>システム</h3>
+                <ul>
+                  <li>システム工学</li>
+                  <li>信頼性工学</li>
+                  <li>安全工学</li>
+                  <li>人間工学</li>
+                  <li>UX/HMI</li>
+                </ul>
+              </article>
+            </div>
+          </section>
         </div>
       </section>
     </main>
