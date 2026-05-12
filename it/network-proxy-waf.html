@@ -10,19 +10,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>外部利用者からWebサーバーへ向かう通信を前段で受ける代理はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">Reverse Proxy</button><button type="button" data-correct="false">Forward Proxy</button><button type="button" data-correct="false">DHCP Relay</button><button type="button" data-correct="false">STP Root</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>外から内へ代理で受けるのはReverse Proxyです。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>アプリログに利用者IPではなくWAFのIPだけが残ります。確認したいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">X-Forwarded-Forなど元IPを渡すヘッダー</button><button type="button" data-correct="false">DNS MXだけ</button><button type="button" data-correct="false">ケーブルカテゴリだけ</button><button type="button" data-correct="false">VLAN IDだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>前段プロキシがあると、アプリから見える送信元が変わります。</p></div>
 
-        <h2>このページの落ち</h2><p>ProxyとWAFは、アプリの前に立つ受付です。受付が止めているのに、奥のアプリだけ見ても原因は見えません。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>Proxy / WAF 午後記述</h2>
             <h3>短答記述</h3>
             <p>直接アプリは200、WAF経由だけ403です。確認すべきものを答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>画像アップロードAPIだけ遮断されます。本文にBase64とJSONが含まれます。WAFルール、ログID、除外設定、アプリ検証で説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>WAF検知ルール、本文、ログID、誤検知、除外条件を挙げる。</li><li>直接/WAF経路の差分、該当ルール、最小範囲の例外、アプリ検証を見る。</li><li>WAF無効化ではなくリスクを残さない例外設計を書く。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>ProxyとWAFは、アプリの前に立つ受付です。受付が止めているのに、奥のアプリだけ見ても原因は見えません。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-proxy-waf.html">Proxy/WAF</a><a href="network-cdn-cache.html">CDN/Cache</a><a href="network-auth.html">Auth</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

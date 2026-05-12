@@ -384,13 +384,6 @@
 
 
 
-          <h2>このページの落ち</h2>
-          <p>
-            L5-7は、人が「Webが変」「ログインできない」「APIが落ちた」と感じる場所です。
-            でも中身は、DNS、TLS、HTTP、認証、ログの小さな積み重ねです。
-            アプリ側の通信は、画面の裏でかなり几帳面に働いています。
-          </p>
-
           <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>L5-L7 Application 午後記述</h2>
@@ -398,11 +391,20 @@
             <p>HTTP 302が連続し、Cookieは発行されています。アプリ層で確認すべき観点を答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>会員だけ画像が表示されず、一般ページは正常です。CDN、WAF、認証基盤を通り、403と302が混在します。SameSite変更後から発生しました。原因候補を説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>Cookie属性、SameSite/Secure、セッション、認証リダイレクト、WAF、CDNキャッシュキーを挙げる。</li><li>匿名/認証ページ、直接/CDN経由、WAFログ、Set-Cookie、Locationを比較する。</li><li>アプリとは認証、表現形式、セッション管理まで含むと説明する。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2>
+          <p>
+            L5-7は、人が「Webが変」「ログインできない」「APIが落ちた」と感じる場所です。
+            でも中身は、DNS、TLS、HTTP、認証、ログの小さな積み重ねです。
+            アプリ側の通信は、画面の裏でかなり几帳面に働いています。
+          </p>
 </article>
 
         <aside class="side-panel">

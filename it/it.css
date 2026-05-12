@@ -701,6 +701,17 @@ h1 span {
   padding: 16px;
 }
 
+.ns-answer summary {
+  color: #006dd6;
+  cursor: pointer;
+  font-weight: 800;
+  list-style-position: inside;
+}
+
+.ns-answer[open] summary {
+  margin-bottom: 12px;
+}
+
 .lesson-list.compact {
   margin-top: 18px;
 }

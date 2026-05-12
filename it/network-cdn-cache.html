@@ -10,19 +10,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>CDNで古い画面が残るときにまず見るものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">TTLやCache-Control</button><button type="button" data-correct="false">MDF配線だけ</button><button type="button" data-correct="false">VLAN IDだけ</button><button type="button" data-correct="false">TCP 22だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>キャッシュの保持時間や指示を見ます。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>オリジンログにリクエストが残っていません。利用者にはページが表示されています。疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">CDNやプロキシが手前で応答している</button><button type="button" data-correct="false">オリジンに必ず届いている</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">DHCPリースだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>手前のキャッシュが返すと、オリジンにログが残らないことがあります。</p></div>
 
-        <h2>このページの落ち</h2><p>CDNは近道です。ただし近道に古い地図が置かれていると、みんな古い場所へ案内されます。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>CDN / Cache 午後記述</h2>
             <h3>短答記述</h3>
             <p>別ユーザーの内容が表示されました。CDN設計で最も危険な点を答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>匿名ページは高速化したが会員ページで別人情報表示の疑いがあります。Cache-Control、Cookie、Authorization、キャッシュキー、パージで説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>個人別ページのキャッシュ、Cookie/Authorizationを含まないキーを挙げる。</li><li>private/no-store、Vary、除外設定、CDNログ、パージを確認する。</li><li>高速化より情報漏えい防止を優先する。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>CDNは近道です。ただし近道に古い地図が置かれていると、みんな古い場所へ案内されます。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-cdn-cache.html">CDN/Cache</a><a href="network-proxy-waf.html">Proxy/WAF</a><a href="network-http.html">HTTP</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

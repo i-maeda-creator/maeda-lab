@@ -10,19 +10,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>複数SSIDをAPからスイッチへ渡すときに使われやすいポート設定はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">トランクポート</button><button type="button" data-correct="false">NATポート</button><button type="button" data-correct="false">DNSポート</button><button type="button" data-correct="false">HTTPポート</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>複数VLANを通すにはトランクが使われます。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>ゲストSSIDだけ通信できません。社内SSIDは正常です。疑うべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">ゲストVLANのタグ許可やSSID-VLAN対応</button><button type="button" data-correct="false">全回線障害だけ</button><button type="button" data-correct="false">TLS証明書だけ</button><button type="button" data-correct="false">DB接続だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>特定SSIDだけならL2のVLAN設定が濃厚です。</p></div>
 
-        <h2>このページの落ち</h2><p>VLANは部屋分け、STPは輪っか対策。L2の設計は、現場の配線と設定がずれるとすぐ事故になります。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>VLAN / STP 午後記述</h2>
             <h3>短答記述</h3>
             <p>MAC表が揺れ、ブロードキャストが急増しました。疑う障害を答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>予備回線用にスイッチ間ケーブルを追加後、全端末が遅くCPUが高騰しました。VLAN、STP、トランクで説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>L2ループ、STP無効/不整合、Root意図違い、トランクVLAN設定を挙げる。</li><li>STP状態、Root、BPDU Guard、MACフラッピング、許可VLANを確認する。</li><li>冗長化はケーブル追加だけでは危険で制御が必要と書く。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>VLANは部屋分け、STPは輪っか対策。L2の設計は、現場の配線と設定がずれるとすぐ事故になります。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-vlan-stp.html">VLAN/STP</a><a href="network-dhcp.html">DHCP</a><a href="network-ip-address.html">IP Address</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

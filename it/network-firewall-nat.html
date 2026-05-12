@@ -11,19 +11,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>店内のプライベートIPを外向きのグローバルIPへ変換する考え方はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">送信元NAT</button><button type="button" data-correct="false">ARP</button><button type="button" data-correct="false">VLAN</button><button type="button" data-correct="false">HTTPリダイレクト</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>外へ出る通信では送信元NATがよく使われます。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>FW許可ログはありますがNAT変換ログがありません。疑うべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">許可ルールとは別にNAT対象から漏れている</button><button type="button" data-correct="false">DNSのMXがない</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">証明書の期限切れだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>FW許可とNATは別です。許可だけで外へ出られるとは限りません。</p></div>
 
-        <h2>このページの落ち</h2><p>Firewallは門番、NATは住所変換係です。どちらか片方だけ見ても、通信の旅は追い切れません。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>Firewall / NAT 午後記述</h2>
             <h3>短答記述</h3>
             <p>要求は届きますが応答が戻りません。FW/NATで確認すべき観点を答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>DMZのAPI公開で、外部SYNは届くが応答が別経路へ出てタイムアウトします。FW、NAT、ルーティング、ログで説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>戻り経路、ステート、SNAT/DNAT対応、非対称経路、セッションタイムアウトを挙げる。</li><li>FWログ、NAT変換表、サーバGW、経路表、キャプチャ位置を確認する。</li><li>許可ルールだけでなく戻り通信を見る。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>Firewallは門番、NATは住所変換係です。どちらか片方だけ見ても、通信の旅は追い切れません。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-firewall-nat.html">Firewall/NAT</a><a href="network-load-balancer.html">Load Balancer</a><a href="network-routing-vpn.html">Routing/VPN</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

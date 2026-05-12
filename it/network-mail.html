@@ -10,19 +10,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>メールの配送先サーバーを示すDNSレコードはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">MX</button><button type="button" data-correct="false">A</button><button type="button" data-correct="false">CNAME</button><button type="button" data-correct="false">NS</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>MXはメール配送先を示します。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>メールが迷惑メールに入りやすいとき、確認したいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">SPF、DKIM、DMARC、送信元IPの評判</button><button type="button" data-correct="false">VLANタグだけ</button><button type="button" data-correct="false">MDF配線だけ</button><button type="button" data-correct="false">HTTP 404だけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>メールは認証と評判が重要です。</p></div>
 
-        <h2>このページの落ち</h2><p>メールは古いようで、DNSと認証のかたまりです。届かない理由は本文より配送経路にあります。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>Mail / SMTP 午後記述</h2>
             <h3>短答記述</h3>
             <p>SaaSから送るメールだけ迷惑メール扱いです。DNS認証で確認すべきレコードを答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>社内メール、MAツール、請求SaaSから送信します。請求SaaSだけSPF fail、DKIMも一部失敗します。SPF、DKIM、DMARC、Return-Pathで説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>SPF include、DKIM署名ドメイン、DMARC alignment、Return-Pathを挙げる。</li><li>DNS TXT、SaaS指定値、送信元IP、Authentication-Resultsを見る。</li><li>本文ではなく配送認証とドメイン整合性を見る。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>メールは古いようで、DNSと認証のかたまりです。届かない理由は本文より配送経路にあります。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-mail.html">Mail</a><a href="network-dns.html">DNS</a><a href="network-auth.html">Auth</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

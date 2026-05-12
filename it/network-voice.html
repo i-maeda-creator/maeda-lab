@@ -13,19 +13,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>VoIPで音声そのものを運ぶメディア通信として関係が深いものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">RTP/SRTP</button><button type="button" data-correct="false">MX</button><button type="button" data-correct="false">STP</button><button type="button" data-correct="false">CNAME</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>音声メディアはRTP、暗号化されたものはSRTPとして説明されることがあります。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>通話はつながるが片方の声だけ聞こえません。疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">メディア経路、NAT/FW、片方向のRTP/SRTP</button><button type="button" data-correct="false">HTTP 404だけ</button><button type="button" data-correct="false">DNS MXだけ</button><button type="button" data-correct="false">Cookie SameSiteだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>呼制御は成功していても、音声メディアが片方向に通らないことがあります。</p></div>
 
-        <h2>このページの落ち</h2><p>音声はリアルタイムです。Webなら少し待てても、声は待ってくれません。だから音声ネットワークは、遅延と揺れにとても正直です。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>Voice / Telephone 午後記述</h2>
             <h3>短答記述</h3>
             <p>社内同士は良好、社外とのTeams通話だけ音切れします。確認すべき指標を答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>コールセンターで通話開始は成功するのに声が途切れます。メディアはRelay経由になることがあります。NAT/FW、UDP、ジッタ、ロス、SRTPで説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>遅延、ジッタ、パケットロス、UDP許可、NAT、Relay、QoSを挙げる。</li><li>呼制御とメディアを分け、制御成功でも音声経路が悪い可能性を書く。</li><li>音声は再送で救いにくくリアルタイム品質を見る。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>音声はリアルタイムです。Webなら少し待てても、声は待ってくれません。だから音声ネットワークは、遅延と揺れにとても正直です。</p>
 </article><aside class="side-panel"><span class="status ready">Extra</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-voice.html">Voice</a><a href="network-observability.html">Monitoring</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

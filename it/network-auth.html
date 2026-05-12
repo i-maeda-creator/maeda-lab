@@ -11,19 +11,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>「ログイン済みだが売上画面は見られない」に近い問題はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="false">認証</button><button type="button" data-correct="true">認可</button><button type="button" data-correct="false">名前解決</button><button type="button" data-correct="false">物理層</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>本人確認は済んでいますが、権限が足りません。認可の問題です。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>API Gateway経由だけ401になります。直接アプリへ送ると200です。まず疑うものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">Gateway側のトークン検証やAuthorizationヘッダー転送</button><button type="button" data-correct="false">LANケーブルカテゴリ</button><button type="button" data-correct="false">VLANタグだけ</button><button type="button" data-correct="false">MDF配線</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>Gatewayを通した時だけなら、認証設定やヘッダーの扱いが怪しいです。</p></div>
 
-        <h2>このページの落ち</h2><p>ログインは入口、権限は部屋の鍵です。入れたのに見られない、という障害はここで起きます。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>Auth / Session 午後記述</h2>
             <h3>短答記述</h3>
             <p>SSO後に特定利用者だけ無限リダイレクトします。認証連携で確認するパラメータを答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>社内IdPとSaaSのSAML連携で、社内は成功、社外はログイン後に戻れません。Reply URL、Cookie、時刻同期、プロキシを含めて説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>Reply URL、Issuer、Audience、時刻同期、Cookie属性、プロキシヘッダを挙げる。</li><li>社内外でLocationとCookieを比較し、IdP/SP双方のログを見る。</li><li>ログイン成功と認可成功、セッション確立を分けて追う。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>ログインは入口、権限は部屋の鍵です。入れたのに見られない、という障害はここで起きます。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-auth.html">Auth</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

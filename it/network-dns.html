@@ -48,8 +48,6 @@
           <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>DNSで名前をIPv4アドレスへ対応させる代表的なレコードはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">Aレコード</button><button type="button" data-correct="false">MXレコード</button><button type="button" data-correct="false">TXTレコード</button><button type="button" data-correct="false">NSレコード</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>Aレコードは名前をIPv4アドレスへ対応させます。IPv6ならAAAAです。</p></div>
           <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>サーバー移行後、一部店舗だけ古いIPへ接続しています。まず疑いやすいものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">DNSキャッシュとTTL</button><button type="button" data-correct="false">L2ループだけ</button><button type="button" data-correct="false">TCP 22番の待受だけ</button><button type="button" data-correct="false">証明書のSANだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>古い答えが残る典型例です。TTL、再帰DNS、端末やブラウザのキャッシュを見ます。</p></div>
 
-          <h2>このページの落ち</h2><p>DNSは地味ですが、画面が開く前に必ず働いています。名前が間違えば、どれだけサーバーが元気でも誰もたどり着けません。</p>
-
           <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>DNS 午後記述</h2>
@@ -57,11 +55,15 @@
             <p>サーバ移行後、一部利用者だけ旧IPへ接続します。DNSの理由と確認方法を答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>apexドメインをCDNへ向けたいが通常CNAMEを設定できません。メールはMicrosoft 365、DNSは社外管理です。切替時の設計と手順を説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>TTL、再帰DNSキャッシュ、端末キャッシュ、権威DNSの反映を挙げる。</li><li>ALIAS/ANAME/CNAME flatteningの有無を確認する。</li><li>MX/TXT/SPF/DKIM/DMARCを壊さず低TTL化、検証、段階切替、戻し手順を書く。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>DNSは地味ですが、画面が開く前に必ず働いています。名前が間違えば、どれだけサーバーが元気でも誰もたどり着けません。</p>
 </article>
         <aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-dns.html">DNS</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-ip-address.html">IP Address</a><a href="network-voice.html">Voice</a></aside>
       </section>

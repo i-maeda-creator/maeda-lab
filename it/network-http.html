@@ -12,20 +12,22 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>注文一覧を取得する操作に最も近いHTTPメソッドはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">GET</button><button type="button" data-correct="false">POST</button><button type="button" data-correct="false">PATCH</button><button type="button" data-correct="false">DELETE</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>取得はGETです。作成はPOST、更新はPUT/PATCH、削除はDELETEが代表です。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>ログイン後の管理画面だけ403になります。まず見るべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">認可、Cookie、セッション、WAFログ</button><button type="button" data-correct="false">光ファイバーの損失だけ</button><button type="button" data-correct="false">VLANタグだけ</button><button type="button" data-correct="false">DNSのMXレコードだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>403は権限やアクセス制御の問題です。ログイン済みか、許可されているかを見ます。</p></div>
 
-        <h2>このページの落ち</h2><p>HTTPはWebの操作そのものです。画面の裏では、注文票が決まった形式で行き来しています。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>HTTP 午後記述</h2>
             <h3>短答記述</h3>
             <p>ブラウザでは成功するがAPIクライアントでは415です。HTTPで確認すべき要素を答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>注文APIだけタイムアウトします。GETは200、POSTは本文サイズが大きいと失敗します。LB、WAF、アプリで確認する観点を説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>メソッド、Content-Type、Accept、本文形式、認証ヘッダ、ステータスコードを挙げる。</li><li>ボディ制限、WAFルール、ヘルスチェックとの差、処理時間を見る。</li><li>200だけで正常判断せず業務パスを再現する。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>HTTPはWebの操作そのものです。画面の裏では、注文票が決まった形式で行き来しています。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-dns.html">DNS</a><a href="network-http.html">HTTP</a><a href="network-tls.html">TLS</a><a href="network-auth.html">Auth</a></aside></section>
     </main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script>
   </body>

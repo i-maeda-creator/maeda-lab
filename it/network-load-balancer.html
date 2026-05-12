@@ -10,19 +10,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>LBがバックエンドの生存確認に使うものとして近いものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">ヘルスチェック</button><button type="button" data-correct="false">DNS MX</button><button type="button" data-correct="false">ARP要求</button><button type="button" data-correct="false">MDF配線表</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>ヘルスチェックで正常なサーバーへ流します。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>/health は200ですが、POST /orders がtimeoutします。見るべきものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">実通信のパス、処理時間、本文サイズ、タイムアウト</button><button type="button" data-correct="false">ヘルスチェック成功なので調査不要</button><button type="button" data-correct="false">L1の電源だけ</button><button type="button" data-correct="false">DNSのTXTだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>ヘルスチェックと実通信は条件が違います。</p></div>
 
-        <h2>このページの落ち</h2><p>LBは入口の受付係です。元気なサーバーへ渡すだけでなく、タイムアウトやセッションの癖も持っています。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>Load Balancer 午後記述</h2>
             <h3>短答記述</h3>
             <p>ログイン後だけセッションが消えます。LB配下で確認すべきことを答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>2台のアプリに分散後、決済直後だけログアウトします。Cookie、Sticky Session、共有セッション、ヘルスチェックを含めて説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>Sticky Session、共有セッション、Cookie属性、X-Forwarded-Proto、ヘルスチェックパスを挙げる。</li><li>同じ利用者が別ノードでもセッションを読めるか確認する。</li><li>LBはタイムアウト、ヘッダ、TLS終端も関わる。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>LBは入口の受付係です。元気なサーバーへ渡すだけでなく、タイムアウトやセッションの癖も持っています。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-load-balancer.html">Load Balancer</a><a href="network-cdn-cache.html">CDN/Cache</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>

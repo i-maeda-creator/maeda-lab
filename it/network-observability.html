@@ -10,19 +10,21 @@
         <div class="quiz-card" id="quiz" data-quiz><p class="quiz-label">Quick Quiz 1</p><h2>ドメイン名がどのIPに解決されるか確認する道具として近いものはどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">dig / nslookup</button><button type="button" data-correct="false">tcpdumpだけ</button><button type="button" data-correct="false">STPだけ</button><button type="button" data-correct="false">NATだけ</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>名前解決はdigやnslookupで確認します。</p></div>
         <div class="quiz-card applied" data-quiz><p class="quiz-label">Applied Quiz 2</p><h2>FWログとアプリログの時刻が5分ずれています。起きやすい問題はどれでしょうか。</h2><div class="quiz-options"><button type="button" data-correct="true">同じ通信の相関が難しくなる</button><button type="button" data-correct="false">DNSレコードが消える</button><button type="button" data-correct="false">L2ループが必ず起きる</button><button type="button" data-correct="false">証明書が必ず期限切れになる</button></div><p class="quiz-result" aria-live="polite"></p><p class="quiz-explain" hidden>ログの時刻同期は非常に重要です。</p></div>
 
-        <h2>このページの落ち</h2><p>ログは言い訳ではなく証拠です。証拠が並ぶと、障害は少しずつ形を持ちます。</p>
-
-          <section class="ns-exam">
+        <section class="ns-exam">
             <p class="quiz-label">Network Specialist Written</p>
             <h2>Monitoring / Logs 午後記述</h2>
             <h3>短答記述</h3>
             <p>SYNは出ていますがSYN/ACKが戻りません。観測点をどこに置くべきか答えてください。</p>
             <h3>事例ベースの午後問題</h3>
             <p>たまに遅い。APMとCPUは正常ですがFWログに断続dropがあります。端末、FW、LB、サーバのログをどう突き合わせるか説明してください。</p>
-            <div class="ns-answer">
+            <details class="ns-answer">
+              <summary>回答はこちらをクリック</summary>
               <h3>模範解答・採点観点</h3>
               <ul><li>端末、FW手前/奥、LB、サーバでパケットとログを比較する。</li><li>時刻同期、相関ID、5タプル、ステータス、再送、drop理由を見る。</li><li>一箇所で断定せず証拠を時系列に並べる。</li></ul>
-            </div>
+
+            </details>
           </section>
+
+          <h2>このページの落ち</h2><p>ログは言い訳ではなく証拠です。証拠が並ぶと、障害は少しずつ形を持ちます。</p>
 </article><aside class="side-panel"><span class="status ready">Focus</span><h2>Network Focus</h2><a href="network.html">Overview</a><a href="network-observability.html">Monitoring</a><a href="network-dns.html">DNS</a><a href="network-firewall-nat.html">Firewall/NAT</a></aside></section></main><footer class="site-footer"><span>Maeda Lab</span></footer><script src="it-quiz.js?v=20260510-l123"></script></body>
 </html>
