@@ -3,226 +3,87 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Maeda Lab | Notes & Works</title>
-    <meta name="description" content="IT, accounting, mathematics, physics, and works by Maeda Lab." />
-    <link rel="stylesheet" href="styles.css?v=20260524-dynamic-ipad" />
+    <title>maedaLAB</title>
+    <meta name="description" content="maedaLAB interactive homepage." />
+    <link rel="stylesheet" href="styles.css?v=20260524-popbook" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Maeda Lab home">
-        <span class="brand-mark">ML</span>
-        <span>Maeda Lab</span>
-      </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#curiosity">Experience</a>
-        <a href="#notes">Notes</a>
-        <a href="#works">Works</a>
-        <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
-      </nav>
-    </header>
+    <main class="experience" data-experience>
+      <canvas class="space" data-space aria-hidden="true"></canvas>
 
-    <main id="top">
-      <section class="curiosity-hero" id="curiosity" aria-label="Maeda Lab dynamic scene">
-        <canvas class="curiosity-canvas" data-curiosity-canvas aria-hidden="true"></canvas>
-        <div class="curiosity-copy">
-          <p class="kicker">maedaLAB</p>
-          <h1>maedaLAB</h1>
-          <p class="lead visual-lead" aria-hidden="true"></p>
-          <div class="hero-actions">
-            <a class="button primary" href="#notes">Notes</a>
-            <a class="button secondary" href="#works">Works</a>
-          </div>
-        </div>
+      <header class="topbar">
+        <a class="logo" href="#scene-0">maedaLAB</a>
+        <nav aria-label="Navigation">
+          <a href="it/">IT</a>
+          <a href="math/regression/">Math</a>
+          <a href="physics/">Physics</a>
+          <a href="#works">Works</a>
+        </nav>
+        <button class="sound" type="button" data-sound>Sound</button>
+      </header>
 
-        <div class="ipad-popbook" data-curiosity-stage aria-hidden="true">
-          <div class="ipad-glow"></div>
-          <div class="ipad-device">
-            <div class="ipad-camera"></div>
-            <div class="ipad-screen">
-              <div class="screen-topbar"><span></span><span></span><span></span></div>
-              <div class="screen-title">Maeda Lab</div>
-              <div class="screen-grid">
-                <span>IT</span>
-                <span>Math</span>
-                <span>Physics</span>
-                <span>Works</span>
-              </div>
+      <section class="stage" id="scene-0">
+        <p class="eyebrow">maedaLAB</p>
+        <h1>maedaLAB</h1>
+        <div class="device" data-book role="button" tabindex="0" aria-label="Tap to turn page">
+          <div class="device-shadow"></div>
+          <div class="ipad">
+            <div class="bezel-dot"></div>
+            <div class="book">
+              <article class="page active" data-page="0">
+                <span>01</span>
+                <strong>IT</strong>
+                <small>Network / Cloud / Security</small>
+                <div class="pop pop-a"></div>
+                <div class="line line-a"></div>
+              </article>
+              <article class="page" data-page="1">
+                <span>02</span>
+                <strong>Math</strong>
+                <small>Regression / Proof / Quiz</small>
+                <div class="formula">∫ tan x dx</div>
+                <div class="pop pop-b"></div>
+              </article>
+              <article class="page" data-page="2">
+                <span>03</span>
+                <strong>Physics</strong>
+                <small>Simulation / Model / Note</small>
+                <div class="orbit"><i></i><i></i><i></i></div>
+              </article>
+              <article class="page" data-page="3">
+                <span>04</span>
+                <strong>Works</strong>
+                <small>Video / Experiment / Code</small>
+                <div class="blocks"><i></i><i></i><i></i></div>
+              </article>
+              <article class="page" data-page="4">
+                <span>05</span>
+                <strong>Lab</strong>
+                <small>Keep making.</small>
+                <div class="spark-field"><i></i><i></i><i></i><i></i></div>
+              </article>
             </div>
           </div>
-          <div class="pop-layer pop-layer--it">
-            <span>01</span>
-            <strong>Network</strong>
-            <small>DNS / HTTP / TLS</small>
-          </div>
-          <div class="pop-layer pop-layer--math">
-            <span>02</span>
-            <strong>Regression</strong>
-            <small>Models / Tests</small>
-          </div>
-          <div class="pop-layer pop-layer--works">
-            <span>03</span>
-            <strong>Prototype</strong>
-            <small>Video / Experiment</small>
-          </div>
-          <div class="pop-pencil"></div>
-          <div class="pop-spark spark-a"></div>
-          <div class="pop-spark spark-b"></div>
-          <div class="pop-spark spark-c"></div>
         </div>
+        <button class="turn" type="button" data-turn>Tap / Turn</button>
       </section>
 
-      <section class="curiosity-strip" aria-label="Maeda Lab story">
-        <div class="strip-card">
-          <span>01</span>
-          <p>IT</p>
-        </div>
-        <div class="strip-card">
-          <span>02</span>
-          <p>Mathematics</p>
-        </div>
-        <div class="strip-card">
-          <span>03</span>
-          <p>Works</p>
-        </div>
+      <section class="portal" id="notes">
+        <a href="it/"><span>01</span>IT</a>
+        <a href="math/regression/"><span>02</span>Mathematics</a>
+        <a href="physics/"><span>03</span>Physics</a>
+        <a href="#works"><span>04</span>Works</a>
       </section>
 
-      <section class="section" id="notes">
-        <div class="section-heading">
-          <h2>Notes</h2>
-        </div>
-        <div class="track-grid" aria-label="Notes">
-          <a class="track-card" href="it/">
-            <h3>IT</h3>
-          </a>
-          <a class="track-card" href="#notes">
-            <h3>Accounting</h3>
-          </a>
-          <a class="track-card" href="math/regression/">
-            <h3>Mathematics</h3>
-          </a>
-          <a class="track-card" href="physics/">
-            <h3>Physics</h3>
-          </a>
-        </div>
-      </section>
-
-      <section class="section" id="works">
-        <div class="section-heading">
-          <h2>Works</h2>
-        </div>
-        <div class="works-grid">
-          <article class="work-card featured">
-            <span>Video</span>
-            <h3>Video</h3>
-          </article>
-          <article class="work-card">
-            <span>Experiment</span>
-            <h3>Experiment</h3>
-          </article>
-          <article class="work-card">
-            <span>Code</span>
-            <h3>GitHub Projects</h3>
-            <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">i-maeda-creator</a>
-          </article>
+      <section class="works" id="works">
+        <h2>Works</h2>
+        <div>
+          <article><span>Video</span><strong>Video</strong></article>
+          <article><span>Experiment</span><strong>Experiment</strong></article>
+          <article><span>Code</span><strong>GitHub</strong><a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">i-maeda-creator</a></article>
         </div>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <span>Maeda Lab</span>
-    </footer>
-
-    <div class="lab-girl" aria-hidden="true">
-      <div class="lab-girl__turn">
-        <svg class="handmade-mascot" viewBox="0 0 180 210" role="img">
-          <ellipse class="hm-shadow" cx="92" cy="196" rx="50" ry="10" />
-          <g class="hm-hair-back">
-            <path d="M46 70 C24 96 26 150 48 175 C60 188 75 178 72 156 C70 132 65 106 77 72 Z" />
-            <path d="M113 70 C145 94 150 150 127 178 C114 193 98 181 103 158 C109 130 110 101 98 72 Z" />
-          </g>
-          <g class="hm-leg hm-leg-back">
-            <path d="M103 143 L116 174" />
-            <path class="hm-shoe" d="M106 174 C120 174 130 181 129 190 C114 193 101 190 96 184 C96 178 100 175 106 174 Z" />
-          </g>
-          <g class="hm-leg hm-leg-front">
-            <path d="M76 143 L63 174" />
-            <path class="hm-shoe" d="M56 174 C72 174 81 181 79 190 C64 194 49 190 45 183 C46 177 50 174 56 174 Z" />
-          </g>
-          <g class="hm-body">
-            <path class="hm-shirt" d="M61 94 C75 86 104 86 118 96 L111 134 C99 146 78 146 66 134 Z" />
-            <path class="hm-overall" d="M67 108 L112 108 L108 151 L70 151 Z" />
-            <path class="hm-pocket" d="M82 124 L98 124 L96 138 L84 138 Z" />
-            <circle cx="74" cy="111" r="5" />
-            <circle cx="105" cy="111" r="5" />
-          </g>
-          <g class="hm-arm hm-arm-left">
-            <path d="M64 101 C44 112 34 126 31 142" />
-            <circle cx="31" cy="143" r="7" />
-          </g>
-          <g class="hm-wave-arm">
-            <path class="hm-wave-sleeve" d="M62 100 C48 84 40 68 34 50" />
-            <path class="hm-wave-forearm" d="M34 50 C28 38 24 28 20 16" />
-            <circle class="hm-wave-hand" cx="20" cy="16" r="9" />
-          </g>
-          <g class="hm-pencil">
-            <path class="hm-pencil-body" d="M98 133 L148 68 L163 78 L113 145 Z" />
-            <path class="hm-pencil-wood" d="M98 133 L88 154 L113 145 Z" />
-            <path class="hm-pencil-tip" d="M88 154 L82 167 L98 161 Z" />
-            <path class="hm-pencil-eraser" d="M148 68 L158 56 L174 66 L163 78 Z" />
-            <path class="hm-pencil-band" d="M143 75 L158 86" />
-          </g>
-          <g class="hm-arm hm-arm-right">
-            <path d="M114 101 C128 107 136 114 143 126" />
-            <circle cx="143" cy="126" r="8" />
-          </g>
-          <g class="hm-head">
-            <path class="hm-face" d="M49 60 C51 35 72 22 95 24 C121 26 137 43 134 69 C131 96 110 109 86 106 C62 103 47 86 49 60 Z" />
-            <g class="hm-hair-front">
-              <path d="M54 58 C62 42 74 34 93 34 C86 48 77 54 63 58 Z" />
-              <path d="M81 34 C95 34 109 39 124 52 C106 52 94 47 81 34 Z" />
-              <path d="M67 43 C72 63 67 75 54 87 C53 67 57 52 67 43 Z" />
-            </g>
-            <g class="hm-glasses">
-              <circle cx="74" cy="69" r="16" />
-              <circle cx="111" cy="69" r="16" />
-              <path d="M90 68 L95 68" />
-            </g>
-            <g class="hm-eyes">
-              <ellipse cx="76" cy="70" rx="7" ry="11" />
-              <ellipse cx="109" cy="70" rx="7" ry="11" />
-              <circle cx="79" cy="65" r="3" />
-              <circle cx="112" cy="65" r="3" />
-            </g>
-            <g class="hm-expression">
-              <path class="hm-mouth-open" d="M84 86 C91 97 103 95 108 85 C101 89 91 89 84 86 Z" />
-              <path class="hm-mouth-smile" d="M84 87 C92 93 101 93 109 87" />
-              <path class="hm-wink" d="M68 69 C73 65 80 65 85 69" />
-              <path class="hm-tear left" d="M66 78 C62 86 62 91 66 96 C70 91 70 86 66 78 Z" />
-              <path class="hm-tear right" d="M118 78 C114 86 114 91 118 96 C122 91 122 86 118 78 Z" />
-              <circle class="hm-cheek left" cx="60" cy="84" r="6" />
-              <circle class="hm-cheek right" cx="121" cy="84" r="6" />
-            </g>
-          </g>
-          <g class="hm-cap">
-            <path class="hm-cap-main" d="M42 47 C61 16 125 15 145 47 C118 38 70 38 42 47 Z" />
-            <path class="hm-cap-brim" d="M35 58 C63 46 121 45 153 57 C122 68 66 68 35 58 Z" />
-            <rect class="hm-cap-label" x="67" y="28" width="55" height="25" rx="9" />
-            <text x="94" y="47" text-anchor="middle">LAB</text>
-            <path class="hm-wing left" d="M38 42 C24 33 18 45 22 58 C12 56 7 66 17 75 C26 82 38 73 43 59 Z" />
-            <path class="hm-wing right" d="M145 43 C162 34 169 47 162 61 C174 58 178 69 167 78 C157 85 146 74 141 60 Z" />
-          </g>
-        </svg>
-      </div>
-      <div class="lab-girl__writing" aria-hidden="true"></div>
-      <div class="lab-girl__dropped-pencil" aria-hidden="true"></div>
-      <div class="lab-girl__magic-trail" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-
-    <script src="curiosity.js?v=20260524-dynamic-ipad"></script>
-    <script src="mascot.js?v=20260510-touch-mascot"></script>
+    <script src="curiosity.js?v=20260524-popbook"></script>
   </body>
 </html>
