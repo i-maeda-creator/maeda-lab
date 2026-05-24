@@ -14,6 +14,7 @@
         <span>Maeda Lab</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
+        <a href="#curiosity">Curiosity</a>
         <a href="#notes">Notes</a>
         <a href="#works">Works</a>
         <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
@@ -21,15 +22,66 @@
     </header>
 
     <main id="top">
-      <section class="hero">
-        <div class="hero-copy">
-          <h1>Maeda Lab</h1>
-          <p class="lead">Notes. Build. Publish.</p>
+      <section class="curiosity-hero" id="curiosity" aria-label="Maeda Lab curiosity scene">
+        <div class="curiosity-copy">
+          <p class="kicker">maedaLAB</p>
+          <h1>Curiosity is Lab.</h1>
+          <p class="lead">iPadから、学びと実験が立ち上がる。</p>
           <div class="hero-actions">
-            <a class="button primary" href="#notes">Notes</a>
-            <a class="button secondary" href="#works">Works</a>
-            <a class="button ghost" href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button primary" href="#notes">Open Notes</a>
+            <a class="button secondary" href="#works">See Works</a>
           </div>
+        </div>
+
+        <div class="ipad-popbook" data-curiosity-stage aria-hidden="true">
+          <div class="ipad-glow"></div>
+          <div class="ipad-device">
+            <div class="ipad-camera"></div>
+            <div class="ipad-screen">
+              <div class="screen-topbar"><span></span><span></span><span></span></div>
+              <div class="screen-title">Maeda Lab</div>
+              <div class="screen-grid">
+                <span>IT</span>
+                <span>Math</span>
+                <span>Physics</span>
+                <span>Works</span>
+              </div>
+            </div>
+          </div>
+          <div class="pop-layer pop-layer--it">
+            <span>01</span>
+            <strong>Network</strong>
+            <small>DNS / HTTP / TLS</small>
+          </div>
+          <div class="pop-layer pop-layer--math">
+            <span>02</span>
+            <strong>Regression</strong>
+            <small>Models / Tests</small>
+          </div>
+          <div class="pop-layer pop-layer--works">
+            <span>03</span>
+            <strong>Prototype</strong>
+            <small>Video / Experiment</small>
+          </div>
+          <div class="pop-pencil"></div>
+          <div class="pop-spark spark-a"></div>
+          <div class="pop-spark spark-b"></div>
+          <div class="pop-spark spark-c"></div>
+        </div>
+      </section>
+
+      <section class="curiosity-strip" aria-label="Maeda Lab story">
+        <div class="strip-card">
+          <span>Ask</span>
+          <p>気になったことを、まず開く。</p>
+        </div>
+        <div class="strip-card">
+          <span>Learn</span>
+          <p>図と問題で、手を動かして理解する。</p>
+        </div>
+        <div class="strip-card">
+          <span>Make</span>
+          <p>動画、実験、コードへつなげる。</p>
         </div>
       </section>
 
@@ -169,6 +221,7 @@
       </div>
     </div>
 
+    <script src="curiosity.js?v=20260524-ipad"></script>
     <script src="mascot.js?v=20260510-touch-mascot"></script>
   </body>
 </html>
