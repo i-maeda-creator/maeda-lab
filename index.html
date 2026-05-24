@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Maeda Lab | Notes & Works</title>
     <meta name="description" content="IT, accounting, mathematics, physics, and works by Maeda Lab." />
-    <link rel="stylesheet" href="styles.css?v=20260510-touch-mascot" />
+    <link rel="stylesheet" href="styles.css?v=20260524-dynamic-ipad" />
   </head>
   <body>
     <header class="site-header">
@@ -14,7 +14,7 @@
         <span>Maeda Lab</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#curiosity">Curiosity</a>
+        <a href="#curiosity">Experience</a>
         <a href="#notes">Notes</a>
         <a href="#works">Works</a>
         <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
@@ -22,14 +22,15 @@
     </header>
 
     <main id="top">
-      <section class="curiosity-hero" id="curiosity" aria-label="Maeda Lab curiosity scene">
+      <section class="curiosity-hero" id="curiosity" aria-label="Maeda Lab dynamic scene">
+        <canvas class="curiosity-canvas" data-curiosity-canvas aria-hidden="true"></canvas>
         <div class="curiosity-copy">
           <p class="kicker">maedaLAB</p>
-          <h1>Curiosity is Lab.</h1>
-          <p class="lead">iPadから、学びと実験が立ち上がる。</p>
+          <h1>maedaLAB</h1>
+          <p class="lead visual-lead" aria-hidden="true"></p>
           <div class="hero-actions">
-            <a class="button primary" href="#notes">Open Notes</a>
-            <a class="button secondary" href="#works">See Works</a>
+            <a class="button primary" href="#notes">Notes</a>
+            <a class="button secondary" href="#works">Works</a>
           </div>
         </div>
 
@@ -72,16 +73,16 @@
 
       <section class="curiosity-strip" aria-label="Maeda Lab story">
         <div class="strip-card">
-          <span>Ask</span>
-          <p>気になったことを、まず開く。</p>
+          <span>01</span>
+          <p>IT</p>
         </div>
         <div class="strip-card">
-          <span>Learn</span>
-          <p>図と問題で、手を動かして理解する。</p>
+          <span>02</span>
+          <p>Mathematics</p>
         </div>
         <div class="strip-card">
-          <span>Make</span>
-          <p>動画、実験、コードへつなげる。</p>
+          <span>03</span>
+          <p>Works</p>
         </div>
       </section>
 
@@ -221,7 +222,7 @@
       </div>
     </div>
 
-    <script src="curiosity.js?v=20260524-ipad"></script>
+    <script src="curiosity.js?v=20260524-dynamic-ipad"></script>
     <script src="mascot.js?v=20260510-touch-mascot"></script>
   </body>
 </html>
