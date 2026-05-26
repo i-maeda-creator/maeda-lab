@@ -400,6 +400,10 @@ h2 {
   padding: 26px;
 }
 
+.tool-group.wide {
+  grid-column: 1 / -1;
+}
+
 .tool-group.dark {
   background: var(--black);
   color: #fff;
@@ -422,6 +426,10 @@ h2 {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tool-group.wide .tool-links {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .tool-links a {
@@ -596,6 +604,10 @@ h2 {
 
   .quick-nav,
   .works .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tool-group.wide .tool-links {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
