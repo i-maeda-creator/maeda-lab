@@ -3,85 +3,151 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>maedaLAB</title>
-    <meta name="description" content="maedaLAB interactive homepage." />
-    <link rel="stylesheet" href="styles.css?v=20260524-popbook" />
+    <title>Maeda Lab</title>
+    <meta name="description" content="Maeda Lab - notes, work, tools, projects, and mind." />
+    <link rel="stylesheet" href="styles.css?v=20260526-brain2" />
   </head>
   <body>
-    <main class="experience" data-experience>
-      <canvas class="space" data-space aria-hidden="true"></canvas>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Maeda Lab home">Maeda Lab</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#notes">Notes</a>
+        <a href="#work">Work</a>
+        <a href="#tools">Tools</a>
+        <a href="#mind">Mind</a>
+        <a href="#map">Map</a>
+      </nav>
+    </header>
 
-      <header class="topbar">
-        <a class="logo" href="#scene-0">maedaLAB</a>
-        <nav aria-label="Navigation">
-          <a href="it/">IT</a>
-          <a href="math/regression/">Math</a>
-          <a href="physics/">Physics</a>
-          <a href="#works">Works</a>
-        </nav>
-        <button class="sound" type="button" data-sound>Sound</button>
-      </header>
-
-      <section class="stage" id="scene-0">
-        <div class="device" data-book role="button" tabindex="0" aria-label="Tap to turn page">
-          <div class="device-shadow"></div>
-          <div class="ipad">
-            <div class="bezel-dot"></div>
-            <div class="book">
-              <article class="page active" data-page="0">
-                <span>01</span>
-                <strong>IT</strong>
-                <small>Network / Cloud / Security</small>
-                <div class="pop pop-a"></div>
-                <div class="line line-a"></div>
-              </article>
-              <article class="page" data-page="1">
-                <span>02</span>
-                <strong>Math</strong>
-                <small>Regression / Proof / Quiz</small>
-                <div class="formula">int tan x dx</div>
-                <div class="pop pop-b"></div>
-              </article>
-              <article class="page" data-page="2">
-                <span>03</span>
-                <strong>Physics</strong>
-                <small>Simulation / Model / Note</small>
-                <div class="orbit"><i></i><i></i><i></i></div>
-              </article>
-              <article class="page" data-page="3">
-                <span>04</span>
-                <strong>Works</strong>
-                <small>Video / Experiment / Code</small>
-                <div class="blocks"><i></i><i></i><i></i></div>
-              </article>
-              <article class="page" data-page="4">
-                <span>05</span>
-                <strong>Lab</strong>
-                <small>Keep making.</small>
-                <div class="spark-field"><i></i><i></i><i></i><i></i></div>
-              </article>
-            </div>
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Personal Knowledge OS</p>
+          <h1>Maeda Lab</h1>
+          <p>知識、仕事、制作、ツール、考え方をまとめるためのホームページです。</p>
+          <div class="hero-actions">
+            <a href="#notes">Notesを見る</a>
+            <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
-        <button class="turn" type="button" data-turn>Tap / Turn</button>
+
+        <div class="phone-shell" aria-label="Maeda Lab preview">
+          <div class="phone-status"><span></span><span></span></div>
+          <div class="app-title">Brain</div>
+          <div class="app-card active">
+            <span>Today</span>
+            <strong>Network Specialist</strong>
+            <small>DNS / HTTP / TLS</small>
+          </div>
+          <div class="app-grid">
+            <a href="it/">IT</a>
+            <a href="math/regression/">Math</a>
+            <a href="physics/">Physics</a>
+            <a href="#tools">Tools</a>
+          </div>
+          <div class="mini-map" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
       </section>
 
-      <section class="portal" id="notes">
-        <a href="it/"><span>01</span>IT</a>
-        <a href="math/regression/"><span>02</span>Mathematics</a>
-        <a href="physics/"><span>03</span>Physics</a>
-        <a href="#works"><span>04</span>Works</a>
+      <section class="quick-nav" aria-label="Maeda Lab categories">
+        <a href="#notes"><span>01</span>Notes</a>
+        <a href="#work"><span>02</span>Work</a>
+        <a href="#tools"><span>03</span>Tools</a>
+        <a href="#mind"><span>04</span>Mind</a>
+        <a href="#map"><span>05</span>Map</a>
+      </section>
+
+      <section class="feature" id="notes">
+        <div>
+          <p class="eyebrow">Notes</p>
+          <h2>初心者に説明できる、自分の復習ノート。</h2>
+          <p>数学、物理、ネットワーク、会計を、仕事でどう使うかまでつなげて整理します。</p>
+        </div>
+        <div class="service-grid">
+          <a class="service-card black" href="it/"><span>IT</span><strong>Network / Cloud / Security</strong></a>
+          <a class="service-card" href="math/regression/"><span>Mathematics</span><strong>Regression / Statistics</strong></a>
+          <a class="service-card" href="physics/"><span>Physics</span><strong>Model / Simulation</strong></a>
+          <a class="service-card" href="#notes"><span>Accounting</span><strong>Bookkeeping / Finance</strong></a>
+        </div>
+      </section>
+
+      <section class="feature reverse" id="work">
+        <div>
+          <p class="eyebrow">Work</p>
+          <h2>知識を、仕事の言葉に変える場所。</h2>
+          <p>業界、職種、実務の失敗例、必要スキルをつなげて、学習を使える形にします。</p>
+        </div>
+        <div class="stack-list">
+          <article><span>Skill</span><strong>問題を分解する力</strong><small>要件整理、障害対応、仮説検証、説明力</small></article>
+          <article><span>Industry</span><strong>AI / Robot / Cloud</strong><small>Physical AI、製造、金融、教育、研究</small></article>
+          <article><span>Output</span><strong>説明できる資料</strong><small>図解、クイズ、制作ログ、復習ノート</small></article>
+        </div>
+      </section>
+
+      <section class="feature" id="tools">
+        <div>
+          <p class="eyebrow">Tools</p>
+          <h2>調べる、作る、残すための道具箱。</h2>
+          <p>GitHub、Obsidian、Kaggle、AtCoder、AIツール、会計ツールを目的別にまとめます。</p>
+        </div>
+        <div class="tool-board">
+          <span>GitHub</span>
+          <span>Obsidian</span>
+          <span>Kaggle</span>
+          <span>AtCoder</span>
+          <span>VS Code</span>
+          <span>ChatGPT</span>
+          <span>Notebook</span>
+          <span>Accounting</span>
+        </div>
+      </section>
+
+      <section class="feature reverse" id="mind">
+        <div>
+          <p class="eyebrow">Mind</p>
+          <h2>迷ったときに戻る、考え方の置き場。</h2>
+          <p>学習の理由、キャリアの方向、作りたいもの、落ち込んだ日に読む言葉を整理します。</p>
+        </div>
+        <div class="mind-panel">
+          <strong>Focus</strong>
+          <p>今日やること、今考えている問い、次に試すこと。</p>
+          <ul>
+            <li>なぜ学ぶのか</li>
+            <li>どこで使えるのか</li>
+            <li>何を作るのか</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="maps" id="map">
+        <p class="eyebrow">Map</p>
+        <h2>知識のつながりを、地図にする。</h2>
+        <div class="map-visual" aria-label="Knowledge map">
+          <span class="node center">Brain</span>
+          <span class="node n1">IT</span>
+          <span class="node n2">Math</span>
+          <span class="node n3">Physics</span>
+          <span class="node n4">Work</span>
+          <span class="node n5">Tools</span>
+          <svg viewBox="0 0 900 420" aria-hidden="true">
+            <path d="M450 210 L215 120 M450 210 L680 105 M450 210 L250 315 M450 210 L690 310 M450 210 L450 70" />
+          </svg>
+        </div>
       </section>
 
       <section class="works" id="works">
+        <p class="eyebrow">Works</p>
         <h2>Works</h2>
-        <div>
-          <article><span>Video</span><strong>Video</strong></article>
-          <article><span>Experiment</span><strong>Experiment</strong></article>
-          <article><span>Code</span><strong>GitHub</strong><a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">i-maeda-creator</a></article>
+        <div class="service-grid">
+          <article class="service-card"><span>Video</span><strong>動画</strong></article>
+          <article class="service-card"><span>Experiment</span><strong>実験</strong></article>
+          <article class="service-card black"><span>Code</span><strong>GitHub Projects</strong><a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">i-maeda-creator</a></article>
         </div>
       </section>
     </main>
-    <script src="curiosity.js?v=20260524-popbook"></script>
+
+    <footer class="footer">Maeda Lab</footer>
   </body>
 </html>
