@@ -271,6 +271,19 @@ h2 {
   padding: clamp(70px, 9vw, 128px) clamp(20px, 6vw, 96px);
 }
 
+.feature.clean,
+.maps.clean,
+.works.clean {
+  display: block;
+  padding-block: clamp(44px, 7vw, 90px);
+}
+
+.feature.clean > *,
+.works.clean > * {
+  margin-inline: auto;
+  max-width: 1180px;
+}
+
 .feature.reverse {
   grid-template-columns: minmax(320px, 1.14fr) minmax(0, 0.86fr);
 }
@@ -412,17 +425,14 @@ h2 {
   display: block;
 }
 
-.maps h2 {
-  max-width: 900px;
-}
-
 .map-visual {
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: 42px;
   box-shadow: var(--shadow);
   height: clamp(360px, 48vw, 560px);
-  margin-top: 34px;
+  margin: 0 auto;
+  max-width: 1180px;
   overflow: hidden;
   position: relative;
 }
