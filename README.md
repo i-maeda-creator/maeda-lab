@@ -20,6 +20,9 @@ GitHub: https://github.com/i-maeda-creator
 本文の編集元は `content/cloud/topics/*.json`、章構成は `content/cloud/catalog.json`、
 サクセスモードは `content/cloud/scenarios.json` です。生成後のHTMLもコミットします。
 
+図解は `content/cloud/diagrams.json` に意味・注記・図形をまとめ、`tools/cloud-diagrams.mjs` で描画します。
+トピックの `deepDive` 配列には見出し付きの詳しい説明を追加できます。検索対象とページ内目次にも反映されます。
+
 ```sh
 node tools/build-cloud.mjs
 node tools/check-cloud.mjs

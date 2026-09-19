@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { root, topics, catalog, scenarios } from './build-cloud.mjs';
+import { root, topics, catalog, scenarios, diagrams } from './build-cloud.mjs';
 
 const ids = new Set();
 const order = new Map(topics.map((t,i)=>[t.id,i]));
@@ -14,6 +14,27 @@ for (const t of topics) {
   for (const id of [...t.requires,...t.related]) assert(order.has(id),`${t.id}: unknown ${id}`);
   for (const id of t.requires) assert(order.get(id)<order.get(t.id),`${t.id}: prerequisite ${id} must appear earlier`);
   for (const s of t.sources) assert.equal(new URL(s.url).protocol,'https:');
+  for (const d of t.deepDive || []) {
+    assert.match(d.id,/^[a-z][a-z0-9-]*$/);
+    assert(d.title && d.paragraphs.length > 0, `${t.id}: incomplete deep dive`);
+  }
+}
+for (const [id,d] of Object.entries(diagrams)) {
+  assert(id==='home'||ids.has(id), `Unknown diagram topic: ${id}`);
+  assert(d.title && d.summary && d.note, `${id}: diagram explanation missing`);
+  assert(['pyramid','matrix','graph'].includes(d.kind));
+  if (d.kind==='graph') {
+    assert(d.reading.length && d.height > 0 && d.nodes.length > 0);
+    for (const n of [...d.nodes,...(d.groups||[])]) {
+      assert([n.x,n.y,n.w,n.h].every(Number.isFinite));
+      assert(n.x>=0 && n.y>=0 && n.x+n.w<=680 && n.y+n.h<=d.height, `${id}: node outside diagram`);
+    }
+  }
+  if (d.kind==='matrix') for (const row of d.rows) {
+    assert.equal(row.owners.length,d.columns.length);
+    assert(row.owners.every(v=>['user','provider'].includes(v)));
+  }
+  if (d.kind==='pyramid') for (const layer of d.layers) assert(catalog.levels[layer.level]);
 }
 assert.equal(new Set(scenarios.map(s=>s.id)).size,scenarios.length);
 for (const company of scenarios) {
@@ -43,4 +64,4 @@ for (const file of files) {
     links++;
   }
 }
-console.log(`PASS: ${topics.length} topics, ${catalog.levels.length} levels, ${files.length} pages, ${links} internal links, ${scenarios.length} complete company paths.`);
+console.log(`PASS: ${topics.length} topics, ${catalog.levels.length} levels, ${files.length} pages, ${links} internal links, ${Object.keys(diagrams).length} visual guides, ${scenarios.length} complete company paths.`);
