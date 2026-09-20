@@ -654,6 +654,8 @@ h2 {
 .tool-group.ai-creation .tool-links { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .ai-creation .tool-links a { min-width: 0; }
 .ai-creation .tool-links strong { overflow-wrap: anywhere; }
+.ai-creation .ai-context { font-size: .8rem; line-height: 1.8; color: #d0d0d0; }
+.ai-creation .ai-archive-link { margin: 28px 0 0; font-size: .8rem; line-height: 1.8; color: #c4c4c4; }
 .ai-sources { margin-top: 28px; border-top: 1px solid #555; padding-top: 18px; font-size: .8rem; line-height: 1.9; color: #d0d0d0; }
 .ai-sources summary { cursor: pointer; }
 .ai-sources a { color: inherit; text-underline-offset: 3px; }

@@ -7,3 +7,7 @@
 本文の編集元は `content/cloud/`。`node tools/build-cloud.mjs` で静的ページを生成し、
 `node tools/check-cloud.mjs` で前提の順序・内部リンク・シナリオの整合性を検査します。
 生成ファイルもコミットし、UI変更はブラウザで確認してください。
+
+AI / CreationやAI解説・履歴を編集する場合は `docs/ai-editorial.md` を読みます。
+編集元は `content/ai/catalog.json`。ホームの入れ替えはeditionを追記し、過去の項目・掲載名を残します。
+`node tools/check-ai.mjs` でホームと解説ページを生成・検証し、生成ファイルもコミットします。
