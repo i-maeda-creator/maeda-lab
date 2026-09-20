@@ -1,0 +1,82 @@
+/* An editorial reading layer, confined to the cloud textbook. */
+:root { --ink:#203b35; --muted:#59675e; --paper:#f5f2e9; --panel:#fffdf7; --line:#ccd1c3; --accent:#256557; }
+.cloud-book { color-scheme:light; background:var(--paper); color:var(--ink); }
+.cloud-book h1,.cloud-book .book-content h2,.cloud-book .book-content p,.cloud-book .book-content li,.cloud-book .note-box strong { color:inherit; }
+.cloud-book .story-block { background:none; border:0; border-radius:0; }
+.cloud-book .site-header { background:#f5f2e9ed; }
+.cloud-book main { max-width:1320px; }
+.cloud-book .muted,.reading-bar p,.section-heading>p,#search-count,.read-control p { color:#59675e; }
+.cloud-book .eyebrow { color:#59675e; letter-spacing:.13em; font-weight:700; }
+.cloud-book h1,.cloud-book h2,.topic-card h4 { font-family:'Yu Mincho','Hiragino Mincho ProN',serif; }
+.book-hero { padding:80px 0; gap:64px; }
+.book-hero h1 { font-size:clamp(2.6rem,5vw,4.8rem); letter-spacing:-.055em; line-height:1.45; }
+.book-hero .lead { font-size:1.1rem; margin-top:30px; }
+.hero-note { border:0; border-radius:2px; border-top:4px solid #a85837; background:#e8ecdf; padding:34px; transform:rotate(1deg); }
+.hero-note p { color:#3d5045; }
+.hero-note a { color:#245849; }
+.hero-note .status { background:transparent; color:#72402e; border:0; padding:0; font-size:.8rem; }
+.cloud-book .button,.cloud-book button { color:#234c40; background:#fffdf7; border-radius:3px; }
+.cloud-book .primary { color:#fffdf7; background:#234c40; border-color:#234c40; }
+.cloud-book :focus-visible { outline-color:#a64b29; }
+.cloud-book .button:hover,.cloud-book button:hover { filter:brightness(.95); }
+.search-panel { background:#e8ecdf; border-radius:3px; }
+.search-row input,.search-row select { color:#203b35; background:#fffdf7; border-color:#89978b; border-radius:3px; }
+.search-row input::placeholder { color:#647368; }
+.level-nav a,.breadcrumbs,.book-content a,.book-toc a,.book-toc .toc-home { color:#28614f; }
+.level-number { color:#9b4f32; font-family:Georgia,serif; font-weight:400; }
+.level-section { margin-block:48px; }
+.topic-card { background:transparent; border:0; border-top:1px solid #acb6a8; border-radius:0; padding:28px 16px; }
+.topic-card:hover { background:#e8ecdf; border-color:#234c40; }
+.topic-card h4 { font-size:1.5rem; }
+.topic-card p,.topic-status { color:#586b60; }
+.topic-status.is-read,.card-tail { color:#27604a; }
+.topic-hero { max-width:1000px; padding:60px 0 52px; border-bottom:1px solid var(--line); margin-bottom:48px; }
+.topic-hero h1 { font-size:clamp(2.3rem,4.9vw,4.4rem); max-width:17em; line-height:1.5; margin:20px 0; text-wrap:balance; }
+.episode-number { color:#a05132; font-size:.78rem; letter-spacing:.2em; }
+.chapter-subtitle { font-size:1.1rem; color:#56695d; }
+.book-layout { grid-template-columns:minmax(0,760px) minmax(170px,220px); gap:clamp(32px,5vw,80px); }
+.book-content p,.book-content li { font-size:1.0625rem; line-height:2.05; }
+.book-content>section { margin-bottom:56px; }
+.book-content h2 { border:0; padding:0; margin:0 0 24px; font-size:clamp(1.5rem,2.7vw,2.15rem); }
+.story-block { padding:0 0 12px; }
+.story-block h2 { font-size:clamp(1.7rem,3vw,2.4rem); }
+.story-block p { margin-block:22px; }
+.cloud-book .first-look { padding:28px 0 28px 26px; border-left:4px solid #a85837; }
+.first-look p:last-child { font-size:clamp(1.3rem,2vw,1.65rem); font-weight:600; line-height:1.85; margin-bottom:0; }
+.prerequisites { background:#e8ecdf; border-left:0; padding:18px 22px; margin-bottom:48px; }
+.prerequisites strong,.prerequisites p { font-size:.86rem; }
+.book-toc { top:100px; }
+.book-toc a:hover { color:#993e23; }
+.deep-reading,.side-note { margin:24px 0; border-block:1px solid #bec8b9; scroll-margin-top:110px; }
+.deep-reading summary,.side-note summary { cursor:pointer; padding:22px 8px; font-size:1.1rem; line-height:1.8; font-weight:600; }
+.deep-reading summary span { display:block; font-size:.72rem; font-weight:400; color:#677464; }
+.deep-reading>div,.side-note>p { padding:0 16px 20px; }
+.deep-reading[open] { background:#fffdf7; }
+.cloud-book table { color:#203b35; background:#fffdf7; }
+.cloud-book th,.cloud-book tbody th { background:#e5eadd; border-bottom-color:#bbc6b8; }
+.cloud-book td { border-bottom-color:#ccd1c3; }
+.flow { background:#e8ecdf; border-color:#adbca9; border-radius:3px; }
+.flow figcaption,.flow li::before,.flow li:not(:last-child)::after { color:#2d634d; }
+.flow li { border-color:#9aae9b; background:#f7f8f0; }
+.misconception { background:#eee3d4; border-color:#a85837; }
+.takeaway { background:#244e40; border:0; border-radius:3px; color:#fffdf7; }
+.takeaway .eyebrow { color:#d2e1cc; }
+.takeaway p:last-child { font-size:1.3rem; }
+.story-ending { padding:28px 0; border-block:1px solid #b9c6b4; }
+.dialogue { background:#e8ecdf; border-radius:3px; padding:22px 26px; margin:28px 0; }
+.dialogue .speaker { display:block; color:#315c48; font-size:.8rem; font-weight:700; margin-bottom:8px; }
+.dialogue p { margin:0; }
+.concept-figure,.system-map { color:#f4f7ee; }
+.concept-figure .eyebrow,.system-map .eyebrow { color:#c1d9db; }
+.concept-figure a,.system-map a { color:#c0e2ff; }
+.concept-figure table { color:#f4f7ee; background:#1b2431; }
+.concept-figure th,.concept-figure tbody th { background:#253e48; }
+.system-map .muted { color:#cbd9ce; }
+.cloud-book .read-control button[aria-pressed="true"],.cloud-book .choice-grid button[aria-pressed="true"] { color:#fff; background:#28543e; }
+.company-card span { color:#546a5c; }
+.feedback,.note-box { color:#203b35; background:#e8ecdf; border-color:#9dad98; }
+.feedback dt,.feedback a { color:#275540; }
+.cloud-book .site-footer { color:#586b60; }
+@media(max-width:640px) { .book-hero h1 { font-size:2.1rem; line-height:1.6; } }
+@media(max-width:900px) { .book-layout { grid-template-columns:minmax(0,1fr); } .book-toc { grid-row:auto; } .book-hero { gap:30px; } }
+@media(max-width:640px) { .book-hero { padding:36px 0; } .hero-note { transform:none; } .topic-hero { padding:32px 0; margin-bottom:32px; } .book-content p,.book-content li { font-size:1rem; } .first-look p:last-child { font-size:1.25rem; } .cloud-book main { padding-inline:22px; } .topic-hero h1 { font-size:2.25rem; } .book-content>section { margin-bottom:40px; } }

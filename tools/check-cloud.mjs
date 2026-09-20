@@ -9,6 +9,8 @@ for (const t of topics) {
   assert.match(t.id,/^[a-z][a-z0-9-]*$/);
   assert(!ids.has(t.id),`Duplicate topic ${t.id}`); ids.add(t.id);
   assert(catalog.levels[t.level],`Unknown level ${t.id}`);
+  for (const key of ['question','scene','foothold','closing','advice']) assert(t.narrative?.[key]?.trim(), `${t.id}: missing narrative ${key}`);
+  assert(t.narrative.paragraphs.length >= 2 && t.narrative.paragraphs.every(p=>typeof p==='string' && p.trim()), `${t.id}: incomplete scene`);
   for (const k of ['title','summary','why','analogy','position','example','tradeoff','practice','mistake','takeaway']) assert.equal(typeof t[k],'string',`${t.id}.${k}`);
   assert(t.mechanism.length>=2 && t.sources.length>0 && t.flow.length>=2,`Incomplete topic ${t.id}`);
   for (const id of [...t.requires,...t.related]) assert(order.has(id),`${t.id}: unknown ${id}`);
