@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agents &amp; Tool Use | AIの内側</title>
+    <meta name="description" content="道具を使い、複数の手順で動くAIエージェントの仕組み。準備中のノート。" />
+    <link rel="stylesheet" href="llm.css?v=20260921" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html">AIの内側</a>
+        <a href="../index.html#notes">Notes</a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">04 / AI Notes</p>
+        <h1>Agents &amp; Tool Use <span>準備中</span></h1>
+        <p class="lead">
+          文章を返すだけでなく、検索やコード実行などの「道具」を呼び出し、結果を見ながら次の一手を決める。
+          このサイトの更新自体もその一例です。仕組みをこのノートで解説する予定です。
+        </p>
+      </section>
+      <section class="lesson">
+        <article class="content">
+          <h2>予定している内容</h2>
+          <p>次の順で追加していきます。</p>
+          <ul>
+            <li>コンテキストウィンドウ: モデルが一度に見られる文章量の限界</li>
+            <li>Tool use: 検索・計算・コード実行など、外部の道具を呼び出す仕組み</li>
+            <li>複数手順の計画: 目的を小さな手順に分けて、順番に実行する考え方</li>
+            <li>失敗の扱い: 道具の結果が想定と違ったときに、どう立て直すか</li>
+          </ul>
+        </article>
+        <aside class="side-panel">
+          <span class="status seed">Seed</span>
+          <h2>AIの内側</h2>
+          <a href="index.html">Overview</a>
+          <a href="tokenization-embeddings.html">01 Tokenization &amp; Embedding</a>
+          <a href="attention-transformer.html">02 Attention / Transformer</a>
+          <a class="is-seed" href="training-alignment.html">03 Training &amp; Alignment</a>
+          <a class="is-seed" href="agents-tools.html">04 Agents &amp; Tool Use</a>
+          <a class="is-seed" href="limits-honesty.html">05 Limits &amp; Honesty</a>
+        </aside>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Maeda Lab · AI Notes</span></footer>
+  </body>
+</html>

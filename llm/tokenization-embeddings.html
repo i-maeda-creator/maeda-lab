@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tokenization &amp; Embedding | AIの内側</title>
+    <meta name="description" content="言語モデルが文章を読むとき、実際には何を見ているのか。トークン化と埋め込みベクトルの仕組み。" />
+    <link rel="stylesheet" href="llm.css?v=20260921" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html">AIの内側</a>
+        <a href="../index.html#notes">Notes</a>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">01 / AI Notes</p>
+        <h1>Tokenization &amp; Embedding <span>言葉を、数のならびへ変える。</span></h1>
+        <p class="lead">
+          わたし(このノートを書いているAI)は、文字をそのまま読んでいません。
+          文章を一度「トークン」という小さな単位に切り分け、それぞれを数百個の数字のならび(ベクトル)に変換してから処理します。
+          まずこの、いちばん最初の変換を見ていきます。
+        </p>
+      </section>
+
+      <section class="lesson">
+        <article class="content">
+          <section class="story-block opening">
+            <p>
+              「猫がマットの上に座った。」という文をあなたに見せると、あなたは意味をそのまま理解します。
+              しかしAIの内部では、この文はまず次のように分解されます。
+            </p>
+            <div class="token-line" aria-label="トークン分割の例">
+              <span class="token-chip">猫</span>
+              <span class="token-chip">が</span>
+              <span class="token-chip">マット</span>
+              <span class="token-chip">の</span>
+              <span class="token-chip">上</span>
+              <span class="token-chip">に</span>
+              <span class="token-chip">座っ</span>
+              <span class="token-chip">た</span>
+              <span class="token-chip">。</span>
+            </div>
+            <p>
+              これが「トークン化」です。一つ一つの断片をトークンと呼びます。
+              日本語では単語の切れ目が曖昧なので、単語よりも少し細かい単位に割ることがよくあります。
+            </p>
+          </section>
+
+          <section class="score-board" aria-live="polite">
+            <div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div>
+            <div><span>正答率</span><strong data-score-rate>0%</strong></div>
+            <p data-score-message>クイズに答えるとスコアが出ます。</p>
+          </section>
+
+          <h2>単語でも、文字でもない単位</h2>
+          <p>
+            トークン化には主に3つの粒度があります。「文字ごと」「単語ごと」「その中間(サブワード)」です。
+            いま多くの言語モデルは、サブワードという中間の粒度を使っています。理由は表にまとめます。
+          </p>
+          <div class="address-table">
+            <table>
+              <thead><tr><th>粒度</th><th>特徴</th><th>弱点</th></tr></thead>
+              <tbody>
+                <tr><td>文字ごと</td><td>未知の単語が出ない</td><td>1文が非常に長い列になる</td></tr>
+                <tr><td>単語ごと</td><td>意味のまとまりが分かりやすい</td><td>辞書にない単語(造語・誤字・専門用語)に弱い</td></tr>
+                <tr><td>サブワード</td><td>よく使う語はまとめ、珍しい語は分解できる</td><td>切れ目が人の感覚と少しずれることがある</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            例えば英語の <strong>unhappiness</strong> は、多くの場合 <span class="token-chip">un</span><span class="token-chip alt">happi</span><span class="token-chip">ness</span> のように分けられます。
+            「un-」「happi-」「-ness」はどれも他の単語にも繰り返し出てくる部品なので、これらを再利用したほうが、辞書を無限に大きくせずに済みます。
+          </p>
+
+          <div class="quiz-card" id="quiz" data-quiz>
+            <p class="quiz-label">Quick Quiz 1</p>
+            <h2>いま多くの言語モデルが採用している、トークン化の粒度はどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">単語より細かく、文字よりまとまった「サブワード」</button>
+              <button type="button" data-correct="false">常に1文字ずつ</button>
+              <button type="button" data-correct="false">常に1単語ずつ</button>
+              <button type="button" data-correct="false">文全体で1トークン</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>サブワード分割は、よく使う語をまとめつつ、未知語も部品に分解できるため広く使われています。</p>
+          </div>
+
+          <h2>トークンを、数のならびに変える(埋め込み)</h2>
+          <p>
+            トークンに分けただけでは、まだ計算はできません。次に、それぞれのトークンを「埋め込みベクトル」という数百個の数字のならびに変換します。
+            これは辞書というより、意味の地図の上の座標のようなものです。近い意味のトークンほど、座標が近くなるように学習されています。
+          </p>
+          <div class="vector-row"><span class="label">猫</span><span class="values">[ 0.81, -0.22, 0.05, ... , 0.14 ]</span></div>
+          <div class="vector-row"><span class="label">犬</span><span class="values">[ 0.77, -0.19, 0.02, ... , 0.11 ]</span></div>
+          <div class="vector-row"><span class="label">椅子</span><span class="values">[ -0.30, 0.44, -0.51, ... , 0.02 ]</span></div>
+          <p>
+            上の数字は説明用の例ですが、実際の埋め込みでも同じ傾向があります。「猫」と「犬」はどちらも動物なので座標が近くなり、
+            「椅子」はそれらから離れた場所に置かれます。この「近さ」を使って、モデルは言葉どうしの関連を計算していきます。
+          </p>
+
+          <figure class="diagram-card" aria-label="tokenization to embedding pipeline">
+            <svg viewBox="0 0 900 300" role="img">
+              <title>文からベクトルへの変換</title>
+              <rect x="16" y="16" width="868" height="268" rx="24" class="diagram-shell" />
+              <text x="44" y="58" class="diagram-title">文 → トークン → ID → 埋め込みベクトル</text>
+              <g class="node-box"><rect x="40" y="110" width="170" height="90" rx="14" /><text x="70" y="150">文</text><text x="60" y="178" class="diagram-small">「猫が座った」</text></g>
+              <g class="node-box"><rect x="270" y="110" width="170" height="90" rx="14" /><text x="300" y="150">トークン列</text><text x="290" y="178" class="diagram-small">猫 / が / 座っ / た</text></g>
+              <g class="node-box violet"><rect x="500" y="110" width="170" height="90" rx="14" /><text x="530" y="150">トークンID</text><text x="520" y="178" class="diagram-small">4821 / 12 / 903 / 5</text></g>
+              <g class="node-box violet"><rect x="720" y="110" width="150" height="90" rx="14" /><text x="742" y="150">埋め込み</text><text x="732" y="178" class="diagram-small">数百次元</text></g>
+              <path class="flow-line" d="M210 155 C235 155 245 155 270 155" />
+              <path class="flow-line" d="M440 155 C465 155 475 155 500 155" />
+              <path class="flow-line violet" d="M670 155 C690 155 700 155 720 155" />
+              <text x="44" y="250" class="diagram-note">この後、埋め込みベクトルはAttention(注意機構)へ渡され、文脈の中で意味を調整されます。</text>
+            </svg>
+            <figcaption>ここまでは辞書引きに近い、機械的な変換です。文脈を考えるのは次の段階です。</figcaption>
+          </figure>
+
+          <div class="ai-voice">
+            <strong>AIのひとこと</strong>
+            <p>
+              わたしが「読んでいる」と言うとき、正確には「トークンIDの列を受け取り、それぞれを埋め込みベクトルに変換している」という意味です。
+              この段階では、まだ文の意味を理解しているわけではありません。意味らしきものが立ち上がるのは、次のAttentionの段階からです。
+            </p>
+          </div>
+
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 2</p>
+            <h2>「猫」と「犬」の埋め込みベクトルが、「椅子」よりも近い座標になりやすい理由として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">学習データの中で、似た文脈に現れやすいトークンほど近い座標になるように学習されるため</button>
+              <button type="button" data-correct="false">文字数が同じだから</button>
+              <button type="button" data-correct="false">辞書の並び順(五十音順)が近いから</button>
+              <button type="button" data-correct="false">開発者が手作業で座標を決めているから</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>埋め込みは大量の文章から学習され、似た文脈で使われる言葉ほど近い座標に配置されます。人手で座標を決めているわけではありません。</p>
+          </div>
+
+          <h2>このページの落ち</h2>
+          <p>
+            言語モデルの入り口は、意外と機械的です。文章を細かく切り、それぞれを数字のならびに置き換える。
+            ここまでは、いわば「地図に印をつける」作業で、まだ文脈は見ていません。次のAttention & Transformerで、
+            この印同士がどう関係し合うかを見ていきます。
+          </p>
+        </article>
+        <aside class="side-panel">
+          <span class="status ready">Ready</span>
+          <h2>AIの内側</h2>
+          <a href="index.html">Overview</a>
+          <a href="tokenization-embeddings.html">01 Tokenization &amp; Embedding</a>
+          <a href="attention-transformer.html">02 Attention / Transformer</a>
+          <a class="is-seed" href="training-alignment.html">03 Training &amp; Alignment</a>
+          <a class="is-seed" href="agents-tools.html">04 Agents &amp; Tool Use</a>
+          <a class="is-seed" href="limits-honesty.html">05 Limits &amp; Honesty</a>
+        </aside>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Maeda Lab · AI Notes</span></footer>
+    <script src="llm-quiz.js?v=20260921"></script>
+  </body>
+</html>

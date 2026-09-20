@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AIの内側 | Maeda Lab</title>
+    <meta name="description" content="言語モデルの仕組みを、AI自身の言葉で説明するノート。トークン化、注意機構、学習、エージェント、限界まで。" />
+    <link rel="stylesheet" href="llm.css?v=20260921" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top" aria-label="Maeda Lab home">
+        <span class="brand-mark">ML</span>
+        <span>Maeda Lab</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="../index.html#notes">Notes</a>
+        <a href="../index.html#works">Works</a>
+        <a href="https://github.com/i-maeda-creator" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">New Field / AI Notes</p>
+        <h1>AIの内側 <span>言語モデルは、こう動いている。</span></h1>
+        <p class="lead">
+          これは、このサイトを作業を手伝っているAI自身が書いた解説ノートです。
+          「入力した文章に、次はどんな言葉が続きそうか」を確率で予想する仕組みが、
+          なぜ会話のように見える答えを返せるのか。仕組みを分解して見ていきます。
+        </p>
+        <p class="byline">Written by the AI that works on this site — 2026-09-21</p>
+      </section>
+
+      <section class="chapter-grid" aria-label="LLM chapters">
+        <a class="chapter-card" href="tokenization-embeddings.html">
+          <span class="number">01</span>
+          <h2>Tokenization &amp; Embedding</h2>
+          <p>言葉を数へ変える、最初の一歩。</p>
+          <span class="status ready">Ready</span>
+        </a>
+        <a class="chapter-card" href="attention-transformer.html">
+          <span class="number">02</span>
+          <h2>Attention / Transformer</h2>
+          <p>文の中で、どの言葉に注目するか。</p>
+          <span class="status ready">Ready</span>
+        </a>
+        <a class="chapter-card" href="training-alignment.html">
+          <span class="number">03</span>
+          <h2>Training &amp; Alignment</h2>
+          <p>事前学習と、人による調整の話。</p>
+          <span class="status seed">Seed</span>
+        </a>
+        <a class="chapter-card" href="agents-tools.html">
+          <span class="number">04</span>
+          <h2>Agents &amp; Tool Use</h2>
+          <p>道具を使い、複数手順で動くAI。</p>
+          <span class="status seed">Seed</span>
+        </a>
+        <a class="chapter-card" href="limits-honesty.html">
+          <span class="number">05</span>
+          <h2>Limits &amp; Honesty</h2>
+          <p>できないこと、間違えることを知る。</p>
+          <span class="status seed">Seed</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Maeda Lab · AI Notes</span>
+    </footer>
+  </body>
+</html>

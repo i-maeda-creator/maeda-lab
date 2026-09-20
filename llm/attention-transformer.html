@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Attention &amp; Transformer | AIの内側</title>
+    <meta name="description" content="言語モデルが文脈を読むしくみ。Attention(注意機構)とTransformerを、具体例で説明する。" />
+    <link rel="stylesheet" href="llm.css?v=20260921" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html">AIの内側</a>
+        <a href="../index.html#notes">Notes</a>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">02 / AI Notes</p>
+        <h1>Attention &amp; Transformer <span>文の中で、どの言葉に注目するか。</span></h1>
+        <p class="lead">
+          前のページでは、文章をトークンとベクトルに変えるところまでを見ました。
+          ここからが本題です。同じ言葉でも、まわりの言葉によって意味が変わります。
+          その「まわりを見て、意味を調整する」役割を担うのがAttention(注意機構)です。
+        </p>
+      </section>
+
+      <section class="lesson">
+        <article class="content">
+          <section class="story-block opening">
+            <p>次の文を読んでください。</p>
+            <p><strong>「その動物は、疲れていたので、道路を渡らなかった。」</strong></p>
+            <p>
+              「その動物」が何を指すかは、この一文だけでは分かりません。しかし「疲れていたので」「渡らなかった」という
+              後ろの言葉を読むと、人はほぼ迷わず「動物が主語で、疲れが原因だ」と理解します。
+              言語モデルも同じことをします。「その」という言葉を処理するとき、文中の他の言葉をどれだけ強く参照するかを、
+              数値の重み(Attention weight)として計算します。
+            </p>
+          </section>
+
+          <section class="score-board" aria-live="polite">
+            <div><span>正答数</span><strong data-score-correct>0</strong><small>/<span data-score-total>0</span></small></div>
+            <div><span>正答率</span><strong data-score-rate>0%</strong></div>
+            <p data-score-message>クイズに答えるとスコアが出ます。</p>
+          </section>
+
+          <h2>Query・Key・Valueという3つの役割</h2>
+          <p>
+            Attentionの内部では、それぞれのトークンが3つの役割のベクトルを持ちます。
+            「Query(質問)」「Key(目印)」「Value(中身)」です。たとえるなら、図書館で本を探す場面に近いです。
+          </p>
+          <ul>
+            <li><strong>Query</strong> — いま処理している言葉が発する「こういう情報が欲しい」という問い。</li>
+            <li><strong>Key</strong> — 他のすべての言葉が持つ「わたしはこういう情報です」という目印。</li>
+            <li><strong>Value</strong> — その言葉が実際に持っている中身。</li>
+          </ul>
+          <p>
+            「その」のQueryと、文中の各単語のKeyを比べて、似ているものほど高いスコアをつけます。
+            「動物」のKeyが最も高いスコアになれば、「動物」のValueを強く取り込んで、「その」の意味を更新します。
+          </p>
+
+          <figure class="diagram-card" aria-label="attention weight example">
+            <svg viewBox="0 0 900 320" role="img">
+              <title>「その」が注目する先</title>
+              <rect x="16" y="16" width="868" height="288" rx="24" class="diagram-shell" />
+              <text x="44" y="56" class="diagram-title">「その」は、どの言葉を強く見ているか</text>
+              <g class="node-box violet"><rect x="380" y="90" width="140" height="70" rx="14" /><text x="418" y="132">その</text></g>
+              <g class="node-box"><rect x="80" y="220" width="140" height="70" rx="14" /><text x="112" y="262">動物</text></g>
+              <g class="node-box"><rect x="380" y="220" width="140" height="70" rx="14" /><text x="404" y="262">疲れていた</text></g>
+              <g class="node-box"><rect x="680" y="220" width="140" height="70" rx="14" /><text x="694" y="262">渡らなかった</text></g>
+              <path class="flow-line" stroke-width="9" d="M420 160 C350 190 250 200 160 220" />
+              <path class="flow-line" stroke-width="5" d="M450 160 C450 185 450 195 450 220" />
+              <path class="flow-line dashed" stroke-width="2" d="M470 160 C560 190 680 200 740 220" />
+              <text x="130" y="210" class="diagram-small">重み: 大</text>
+              <text x="460" y="205" class="diagram-small">重み: 中</text>
+              <text x="700" y="210" class="diagram-small">重み: 小</text>
+            </svg>
+            <figcaption>線の太さがAttentionの重みの大きさです。「その」は「動物」を最も強く参照し、意味を補います。</figcaption>
+          </figure>
+
+          <div class="quiz-card" id="quiz" data-quiz>
+            <p class="quiz-label">Quick Quiz 1</p>
+            <h2>Attentionの中で「わたしはこういう情報です」という目印の役割を持つのはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">Key</button>
+              <button type="button" data-correct="false">Query</button>
+              <button type="button" data-correct="false">Value</button>
+              <button type="button" data-correct="false">トークンID</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>Keyは「自分がどういう情報を持っているか」の目印です。Queryと比較され、似ているほど強く参照されます。</p>
+          </div>
+
+          <h2>並べて見る: Transformerが積み重ねる理由</h2>
+          <p>
+            1回のAttentionだけでは、浅い関係しか捉えられません。Transformerは、このAttentionを何層にも重ねます。
+            さらに1つの層の中でも、「複数の視点」で同時にAttentionを計算します(Multi-head Attention)。
+            ある視点は文法的なつながりを見て、別の視点は意味的な近さを見る、というように役割が分かれていきます。
+          </p>
+          <div class="address-table">
+            <table>
+              <thead><tr><th>方式</th><th>言葉の見方</th><th>得意・不得意</th></tr></thead>
+              <tbody>
+                <tr><td>RNN(以前の主流)</td><td>先頭から順番に1語ずつ読む</td><td>長い文だと前の方の情報を忘れやすい / 並列計算しにくい</td></tr>
+                <tr><td>Transformer</td><td>文中の全ての言葉を同時に見比べる</td><td>長い文でも離れた言葉を直接参照できる / 計算を並列化しやすい</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="ai-voice">
+            <strong>AIのひとこと</strong>
+            <p>
+              「文脈を読む」というと、まるで一度に文全体を理解しているように聞こえます。実際には、
+              Attentionという「どの言葉をどれだけ参照するか」の計算を何層も積み重ねて、少しずつ意味の解像度を上げています。
+              1層目では単純な位置関係しか見えていなくても、層を重ねるうちに、指示語の指す先や、皮肉のニュアンスまで捉えられるようになります。
+            </p>
+          </div>
+
+          <div class="quiz-card applied" data-quiz>
+            <p class="quiz-label">Applied Quiz 2</p>
+            <h2>Transformerが、離れた位置にある言葉どうしの関係も比較的捉えやすい理由として近いものはどれでしょうか。</h2>
+            <div class="quiz-options">
+              <button type="button" data-correct="true">Attentionにより、文中の全ての言葉を直接比較できるため</button>
+              <button type="button" data-correct="false">文を必ず短く区切ってから処理するため</button>
+              <button type="button" data-correct="false">辞書に載っている単語しか使わないため</button>
+              <button type="button" data-correct="false">1文字ずつ順番にしか処理できないため</button>
+            </div>
+            <p class="quiz-result" aria-live="polite"></p>
+            <p class="quiz-explain" hidden>RNNのように順番に読む方式と違い、Attentionは離れた位置の言葉同士も直接比較できます。</p>
+          </div>
+
+          <h2>このページの落ち</h2>
+          <p>
+            Attentionは、難しく聞こえますが「誰が誰を、どれくらい参照するか」を計算しているだけです。
+            それを何層も重ねることで、指示語の指す先や、文全体の話の流れまで扱えるようになります。
+            次のTraining & Alignmentでは、この仕組み自体をどう学習させるかを見ていきます。
+          </p>
+        </article>
+        <aside class="side-panel">
+          <span class="status ready">Ready</span>
+          <h2>AIの内側</h2>
+          <a href="index.html">Overview</a>
+          <a href="tokenization-embeddings.html">01 Tokenization &amp; Embedding</a>
+          <a href="attention-transformer.html">02 Attention / Transformer</a>
+          <a class="is-seed" href="training-alignment.html">03 Training &amp; Alignment</a>
+          <a class="is-seed" href="agents-tools.html">04 Agents &amp; Tool Use</a>
+          <a class="is-seed" href="limits-honesty.html">05 Limits &amp; Honesty</a>
+        </aside>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Maeda Lab · AI Notes</span></footer>
+    <script src="llm-quiz.js?v=20260921"></script>
+  </body>
+</html>
