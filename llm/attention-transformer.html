@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Attention &amp; Transformer | AIの内側</title>
     <meta name="description" content="言語モデルが文脈を読むしくみ。Attention(注意機構)とTransformerを、具体例で説明する。" />
-    <link rel="stylesheet" href="llm.css?v=20260921" />
+    <link rel="stylesheet" href="llm.css?v=20260921b" />
   </head>
   <body>
+    <div class="progress-bar"></div>
+    <a class="skip" href="#top">本文へ</a>
     <header class="site-header">
       <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
       <nav class="nav" aria-label="Primary navigation">
@@ -17,8 +19,8 @@
     </header>
     <main id="top">
       <section class="hero">
-        <p class="eyebrow">02 / AI Notes</p>
-        <h1>Attention &amp; Transformer <span>文の中で、どの言葉に注目するか。</span></h1>
+        <p class="badge"><span class="dot"></span>02 · Mechanism</p>
+        <h1><span class="grad-text">Attention &amp; Transformer</span><span class="sub">文の中で、どの言葉に注目するか。</span></h1>
         <p class="lead">
           前のページでは、文章をトークンとベクトルに変えるところまでを見ました。
           ここからが本題です。同じ言葉でも、まわりの言葉によって意味が変わります。
@@ -63,12 +65,21 @@
           <figure class="diagram-card" aria-label="attention weight example">
             <svg viewBox="0 0 900 320" role="img">
               <title>「その」が注目する先</title>
-              <rect x="16" y="16" width="868" height="288" rx="24" class="diagram-shell" />
-              <text x="44" y="56" class="diagram-title">「その」は、どの言葉を強く見ているか</text>
-              <g class="node-box violet"><rect x="380" y="90" width="140" height="70" rx="14" /><text x="418" y="132">その</text></g>
-              <g class="node-box"><rect x="80" y="220" width="140" height="70" rx="14" /><text x="112" y="262">動物</text></g>
-              <g class="node-box"><rect x="380" y="220" width="140" height="70" rx="14" /><text x="404" y="262">疲れていた</text></g>
-              <g class="node-box"><rect x="680" y="220" width="140" height="70" rx="14" /><text x="694" y="262">渡らなかった</text></g>
+              <defs>
+                <linearGradient id="nodeGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ff8a5b" />
+                  <stop offset="100%" stop-color="#a78bfa" />
+                </linearGradient>
+                <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#ff8a5b" />
+                  <stop offset="100%" stop-color="#35e0d0" />
+                </linearGradient>
+              </defs>
+              <text x="44" y="46" class="diagram-title">「その」は、どの言葉を強く見ているか</text>
+              <g class="node-box violet"><rect x="380" y="90" width="140" height="70" rx="16" /><text x="418" y="132">その</text></g>
+              <g class="node-box"><rect x="80" y="220" width="140" height="70" rx="16" /><text x="112" y="262">動物</text></g>
+              <g class="node-box"><rect x="380" y="220" width="140" height="70" rx="16" /><text x="404" y="262">疲れていた</text></g>
+              <g class="node-box"><rect x="680" y="220" width="140" height="70" rx="16" /><text x="694" y="262">渡らなかった</text></g>
               <path class="flow-line" stroke-width="9" d="M420 160 C350 190 250 200 160 220" />
               <path class="flow-line" stroke-width="5" d="M450 160 C450 185 450 195 450 220" />
               <path class="flow-line dashed" stroke-width="2" d="M470 160 C560 190 680 200 740 220" />
@@ -109,12 +120,15 @@
           </div>
 
           <div class="ai-voice">
-            <strong>AIのひとこと</strong>
-            <p>
-              「文脈を読む」というと、まるで一度に文全体を理解しているように聞こえます。実際には、
-              Attentionという「どの言葉をどれだけ参照するか」の計算を何層も積み重ねて、少しずつ意味の解像度を上げています。
-              1層目では単純な位置関係しか見えていなくても、層を重ねるうちに、指示語の指す先や、皮肉のニュアンスまで捉えられるようになります。
-            </p>
+            <span class="avatar" aria-hidden="true"></span>
+            <div>
+              <strong>AIのひとこと</strong>
+              <p>
+                「文脈を読む」というと、まるで一度に文全体を理解しているように聞こえます。実際には、
+                Attentionという「どの言葉をどれだけ参照するか」の計算を何層も積み重ねて、少しずつ意味の解像度を上げています。
+                1層目では単純な位置関係しか見えていなくても、層を重ねるうちに、指示語の指す先や、皮肉のニュアンスまで捉えられるようになります。
+              </p>
+            </div>
           </div>
 
           <div class="quiz-card applied" data-quiz>
@@ -138,11 +152,11 @@
           </p>
         </article>
         <aside class="side-panel">
-          <span class="status ready">Ready</span>
+          <span class="tag ready">Ready</span>
           <h2>AIの内側</h2>
           <a href="index.html">Overview</a>
           <a href="tokenization-embeddings.html">01 Tokenization &amp; Embedding</a>
-          <a href="attention-transformer.html">02 Attention / Transformer</a>
+          <a class="is-current" href="attention-transformer.html">02 Attention / Transformer</a>
           <a class="is-seed" href="training-alignment.html">03 Training &amp; Alignment</a>
           <a class="is-seed" href="agents-tools.html">04 Agents &amp; Tool Use</a>
           <a class="is-seed" href="limits-honesty.html">05 Limits &amp; Honesty</a>
@@ -150,6 +164,6 @@
       </section>
     </main>
     <footer class="site-footer"><span>Maeda Lab · AI Notes</span></footer>
-    <script src="llm-quiz.js?v=20260921"></script>
+    <script src="llm.js?v=20260921b" defer></script>
   </body>
 </html>

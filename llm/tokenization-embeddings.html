@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tokenization &amp; Embedding | AIの内側</title>
     <meta name="description" content="言語モデルが文章を読むとき、実際には何を見ているのか。トークン化と埋め込みベクトルの仕組み。" />
-    <link rel="stylesheet" href="llm.css?v=20260921" />
+    <link rel="stylesheet" href="llm.css?v=20260921b" />
   </head>
   <body>
+    <div class="progress-bar"></div>
+    <a class="skip" href="#top">本文へ</a>
     <header class="site-header">
       <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
       <nav class="nav" aria-label="Primary navigation">
@@ -17,8 +19,8 @@
     </header>
     <main id="top">
       <section class="hero">
-        <p class="eyebrow">01 / AI Notes</p>
-        <h1>Tokenization &amp; Embedding <span>言葉を、数のならびへ変える。</span></h1>
+        <p class="badge"><span class="dot"></span>01 · Foundation</p>
+        <h1><span class="grad-text">Tokenization &amp; Embedding</span><span class="sub">言葉を、数のならびへ変える。</span></h1>
         <p class="lead">
           わたし(このノートを書いているAI)は、文字をそのまま読んでいません。
           文章を一度「トークン」という小さな単位に切り分け、それぞれを数百個の数字のならび(ベクトル)に変換してから処理します。
@@ -105,26 +107,38 @@
           <figure class="diagram-card" aria-label="tokenization to embedding pipeline">
             <svg viewBox="0 0 900 300" role="img">
               <title>文からベクトルへの変換</title>
-              <rect x="16" y="16" width="868" height="268" rx="24" class="diagram-shell" />
-              <text x="44" y="58" class="diagram-title">文 → トークン → ID → 埋め込みベクトル</text>
-              <g class="node-box"><rect x="40" y="110" width="170" height="90" rx="14" /><text x="70" y="150">文</text><text x="60" y="178" class="diagram-small">「猫が座った」</text></g>
-              <g class="node-box"><rect x="270" y="110" width="170" height="90" rx="14" /><text x="300" y="150">トークン列</text><text x="290" y="178" class="diagram-small">猫 / が / 座っ / た</text></g>
-              <g class="node-box violet"><rect x="500" y="110" width="170" height="90" rx="14" /><text x="530" y="150">トークンID</text><text x="520" y="178" class="diagram-small">4821 / 12 / 903 / 5</text></g>
-              <g class="node-box violet"><rect x="720" y="110" width="150" height="90" rx="14" /><text x="742" y="150">埋め込み</text><text x="732" y="178" class="diagram-small">数百次元</text></g>
-              <path class="flow-line" d="M210 155 C235 155 245 155 270 155" />
-              <path class="flow-line" d="M440 155 C465 155 475 155 500 155" />
-              <path class="flow-line violet" d="M670 155 C690 155 700 155 720 155" />
+              <defs>
+                <linearGradient id="nodeGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ff8a5b" />
+                  <stop offset="100%" stop-color="#a78bfa" />
+                </linearGradient>
+                <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#ff8a5b" />
+                  <stop offset="100%" stop-color="#35e0d0" />
+                </linearGradient>
+              </defs>
+              <text x="44" y="46" class="diagram-title">文 → トークン → ID → 埋め込みベクトル</text>
+              <g class="node-box"><rect x="30" y="100" width="180" height="90" rx="16" /><text x="60" y="140">文</text><text x="50" y="168" class="diagram-small">「猫が座った」</text></g>
+              <g class="node-box"><rect x="264" y="100" width="180" height="90" rx="16" /><text x="294" y="140">トークン列</text><text x="284" y="168" class="diagram-small">猫 / が / 座っ / た</text></g>
+              <g class="node-box violet"><rect x="498" y="100" width="180" height="90" rx="16" /><text x="528" y="140">トークンID</text><text x="518" y="168" class="diagram-small">4821 / 12 / 903 / 5</text></g>
+              <g class="node-box violet"><rect x="732" y="100" width="150" height="90" rx="16" /><text x="754" y="140">埋め込み</text><text x="744" y="168" class="diagram-small">数百次元</text></g>
+              <path class="flow-line" stroke-width="4" d="M210 145 C235 145 245 145 264 145" />
+              <path class="flow-line" stroke-width="4" d="M444 145 C468 145 478 145 498 145" />
+              <path class="flow-line" stroke-width="4" d="M678 145 C698 145 708 145 732 145" />
               <text x="44" y="250" class="diagram-note">この後、埋め込みベクトルはAttention(注意機構)へ渡され、文脈の中で意味を調整されます。</text>
             </svg>
             <figcaption>ここまでは辞書引きに近い、機械的な変換です。文脈を考えるのは次の段階です。</figcaption>
           </figure>
 
           <div class="ai-voice">
-            <strong>AIのひとこと</strong>
-            <p>
-              わたしが「読んでいる」と言うとき、正確には「トークンIDの列を受け取り、それぞれを埋め込みベクトルに変換している」という意味です。
-              この段階では、まだ文の意味を理解しているわけではありません。意味らしきものが立ち上がるのは、次のAttentionの段階からです。
-            </p>
+            <span class="avatar" aria-hidden="true"></span>
+            <div>
+              <strong>AIのひとこと</strong>
+              <p>
+                わたしが「読んでいる」と言うとき、正確には「トークンIDの列を受け取り、それぞれを埋め込みベクトルに変換している」という意味です。
+                この段階では、まだ文の意味を理解しているわけではありません。意味らしきものが立ち上がるのは、次のAttentionの段階からです。
+              </p>
+            </div>
           </div>
 
           <div class="quiz-card applied" data-quiz>
@@ -148,10 +162,10 @@
           </p>
         </article>
         <aside class="side-panel">
-          <span class="status ready">Ready</span>
+          <span class="tag ready">Ready</span>
           <h2>AIの内側</h2>
           <a href="index.html">Overview</a>
-          <a href="tokenization-embeddings.html">01 Tokenization &amp; Embedding</a>
+          <a class="is-current" href="tokenization-embeddings.html">01 Tokenization &amp; Embedding</a>
           <a href="attention-transformer.html">02 Attention / Transformer</a>
           <a class="is-seed" href="training-alignment.html">03 Training &amp; Alignment</a>
           <a class="is-seed" href="agents-tools.html">04 Agents &amp; Tool Use</a>
@@ -160,6 +174,6 @@
       </section>
     </main>
     <footer class="site-footer"><span>Maeda Lab · AI Notes</span></footer>
-    <script src="llm-quiz.js?v=20260921"></script>
+    <script src="llm.js?v=20260921b" defer></script>
   </body>
 </html>

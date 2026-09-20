@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Agents &amp; Tool Use | AIの内側</title>
     <meta name="description" content="道具を使い、複数の手順で動くAIエージェントの仕組み。準備中のノート。" />
-    <link rel="stylesheet" href="llm.css?v=20260921" />
+    <link rel="stylesheet" href="llm.css?v=20260921b" />
   </head>
   <body>
+    <div class="progress-bar"></div>
+    <a class="skip" href="#top">本文へ</a>
     <header class="site-header">
       <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
       <nav class="nav" aria-label="Primary navigation">
@@ -15,10 +17,10 @@
         <a href="../index.html#notes">Notes</a>
       </nav>
     </header>
-    <main>
+    <main id="top">
       <section class="hero">
-        <p class="eyebrow">04 / AI Notes</p>
-        <h1>Agents &amp; Tool Use <span>準備中</span></h1>
+        <p class="badge"><span class="dot"></span>04 · Action · Seed</p>
+        <h1><span class="grad-text">Agents &amp; Tool Use</span><span class="sub">準備中</span></h1>
         <p class="lead">
           文章を返すだけでなく、検索やコード実行などの「道具」を呼び出し、結果を見ながら次の一手を決める。
           このサイトの更新自体もその一例です。仕組みをこのノートで解説する予定です。
@@ -36,17 +38,18 @@
           </ul>
         </article>
         <aside class="side-panel">
-          <span class="status seed">Seed</span>
+          <span class="tag seed">Seed</span>
           <h2>AIの内側</h2>
           <a href="index.html">Overview</a>
           <a href="tokenization-embeddings.html">01 Tokenization &amp; Embedding</a>
           <a href="attention-transformer.html">02 Attention / Transformer</a>
           <a class="is-seed" href="training-alignment.html">03 Training &amp; Alignment</a>
-          <a class="is-seed" href="agents-tools.html">04 Agents &amp; Tool Use</a>
+          <a class="is-current is-seed" href="agents-tools.html">04 Agents &amp; Tool Use</a>
           <a class="is-seed" href="limits-honesty.html">05 Limits &amp; Honesty</a>
         </aside>
       </section>
     </main>
     <footer class="site-footer"><span>Maeda Lab · AI Notes</span></footer>
+    <script src="llm.js?v=20260921b" defer></script>
   </body>
 </html>

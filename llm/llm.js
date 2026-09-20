@@ -1,9 +1,39 @@
+// progress bar
+const progressBar = document.querySelector(".progress-bar");
+function updateProgress() {
+  if (!progressBar) return;
+  const scrollTop = window.scrollY;
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = height > 0 ? Math.min(1, scrollTop / height) : 0;
+  progressBar.style.transform = `scaleX(${ratio})`;
+}
+document.addEventListener("scroll", updateProgress, { passive: true });
+updateProgress();
+
+// scroll reveal
+const revealTargets = document.querySelectorAll(".content > *, .diagram-card, .quiz-card, .ai-voice, .story-block");
+revealTargets.forEach((el) => el.classList.add("reveal"));
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+  revealTargets.forEach((el) => observer.observe(el));
+} else {
+  revealTargets.forEach((el) => el.classList.add("in-view"));
+}
+
+// quiz scoring
 const quizzes = Array.from(document.querySelectorAll("[data-quiz]"));
-const score = {
-  answered: 0,
-  correct: 0,
-  total: quizzes.length,
-};
+const score = { answered: 0, correct: 0, total: quizzes.length };
 
 const scoreCorrect = document.querySelector("[data-score-correct]");
 const scoreTotal = document.querySelector("[data-score-total]");
@@ -12,7 +42,6 @@ const scoreMessage = document.querySelector("[data-score-message]");
 
 function updateScore() {
   if (!scoreCorrect || !scoreTotal || !scoreRate || !scoreMessage) return;
-
   const rate = score.answered ? score.correct / score.answered : 0;
   const percent = Math.round(rate * 100);
 
@@ -30,7 +59,6 @@ function updateScore() {
     scoreMessage.textContent = "解説を読み返すと、つながりがもう少し見えてきます。";
   }
 }
-
 updateScore();
 
 quizzes.forEach((quiz) => {

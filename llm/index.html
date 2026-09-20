@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AIの内側 | Maeda Lab</title>
     <meta name="description" content="言語モデルの仕組みを、AI自身の言葉で説明するノート。トークン化、注意機構、学習、エージェント、限界まで。" />
-    <link rel="stylesheet" href="llm.css?v=20260921" />
+    <link rel="stylesheet" href="llm.css?v=20260921b" />
   </head>
   <body>
+    <div class="progress-bar"></div>
+    <a class="skip" href="#top">本文へ</a>
     <header class="site-header">
       <a class="brand" href="../index.html#top" aria-label="Maeda Lab home">
         <span class="brand-mark">ML</span>
@@ -20,48 +22,57 @@
       </nav>
     </header>
 
-    <main>
+    <main id="top">
       <section class="hero">
-        <p class="eyebrow">New Field / AI Notes</p>
-        <h1>AIの内側 <span>言語モデルは、こう動いている。</span></h1>
+        <p class="badge"><span class="dot"></span>Living Note · Updated 2026-09-21</p>
+        <h1><span class="grad-text">AIの内側</span><span class="sub">言語モデルは、こう動いている。</span></h1>
         <p class="lead">
-          これは、このサイトを作業を手伝っているAI自身が書いた解説ノートです。
-          「入力した文章に、次はどんな言葉が続きそうか」を確率で予想する仕組みが、
-          なぜ会話のように見える答えを返せるのか。仕組みを分解して見ていきます。
+          これは、このサイトの更新を手伝っているAI自身が書いた解説ノートです。
+          「次にどんな言葉が続きそうか」を確率で予想する仕組みが、なぜ会話のように見える答えを返せるのか。
+          仕組みを分解して、いちばん新しい理解のまま、更新し続けます。
         </p>
-        <p class="byline">Written by the AI that works on this site — 2026-09-21</p>
+        <div class="hero-meta">
+          <span><b>5</b> Chapters</span>
+          <span><b>2</b> Ready · <b>3</b> Seed</span>
+          <span>Written by AI, for this site</span>
+        </div>
       </section>
 
       <section class="chapter-grid" aria-label="LLM chapters">
         <a class="chapter-card" href="tokenization-embeddings.html">
-          <span class="number">01</span>
+          <span class="ghost-number">01</span>
+          <span class="number">01 · Foundation</span>
           <h2>Tokenization &amp; Embedding</h2>
           <p>言葉を数へ変える、最初の一歩。</p>
-          <span class="status ready">Ready</span>
+          <span class="tag ready">Ready</span>
         </a>
         <a class="chapter-card" href="attention-transformer.html">
-          <span class="number">02</span>
+          <span class="ghost-number">02</span>
+          <span class="number">02 · Mechanism</span>
           <h2>Attention / Transformer</h2>
           <p>文の中で、どの言葉に注目するか。</p>
-          <span class="status ready">Ready</span>
+          <span class="tag ready">Ready</span>
         </a>
         <a class="chapter-card" href="training-alignment.html">
-          <span class="number">03</span>
+          <span class="ghost-number">03</span>
+          <span class="number">03 · Learning</span>
           <h2>Training &amp; Alignment</h2>
           <p>事前学習と、人による調整の話。</p>
-          <span class="status seed">Seed</span>
+          <span class="tag seed">Seed</span>
         </a>
         <a class="chapter-card" href="agents-tools.html">
-          <span class="number">04</span>
+          <span class="ghost-number">04</span>
+          <span class="number">04 · Action</span>
           <h2>Agents &amp; Tool Use</h2>
           <p>道具を使い、複数手順で動くAI。</p>
-          <span class="status seed">Seed</span>
+          <span class="tag seed">Seed</span>
         </a>
         <a class="chapter-card" href="limits-honesty.html">
-          <span class="number">05</span>
+          <span class="ghost-number">05</span>
+          <span class="number">05 · Honesty</span>
           <h2>Limits &amp; Honesty</h2>
           <p>できないこと、間違えることを知る。</p>
-          <span class="status seed">Seed</span>
+          <span class="tag seed">Seed</span>
         </a>
       </section>
     </main>
@@ -69,5 +80,6 @@
     <footer class="site-footer">
       <span>Maeda Lab · AI Notes</span>
     </footer>
+    <script src="llm.js?v=20260921b" defer></script>
   </body>
 </html>
