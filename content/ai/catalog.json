@@ -1,0 +1,882 @@
+{
+  "updated": "2026-09-20",
+  "categories": [
+    {
+      "id": "think",
+      "title": "考える・相談する"
+    },
+    {
+      "id": "code",
+      "title": "開発エージェント"
+    },
+    {
+      "id": "build",
+      "title": "アプリ・試作"
+    },
+    {
+      "id": "visual",
+      "title": "画像・映像"
+    },
+    {
+      "id": "sound",
+      "title": "音楽・音声"
+    },
+    {
+      "id": "learn",
+      "title": "調査・資料"
+    },
+    {
+      "id": "decision",
+      "title": "判断・自動化"
+    },
+    {
+      "id": "other",
+      "title": "その他・モデル基盤"
+    }
+  ],
+  "tools": [
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "url": "https://chatgpt.com/",
+      "tagline": "文章・アイデア・画像",
+      "category": "think",
+      "summary": "対話しながら文章、アイデア、画像などを作る総合AI。まず相談して考えを整理したいときの入口。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://chatgpt.com/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "url": "https://www.perplexity.ai/",
+      "tagline": "出典をたどるAI検索",
+      "category": "learn",
+      "summary": "出典をたどりながら調べるAI検索サービス。要約を入口に、元の資料へ戻って確認する使い方に向く。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://www.perplexity.ai/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "copilot",
+      "name": "Copilot",
+      "url": "https://github.com/features/copilot",
+      "tagline": "Coding",
+      "category": "code",
+      "summary": "開発中のコード作成や相談を支援するGitHubのAI。掲載時はコーディング支援の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://github.com/features/copilot"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "url": "https://cursor.com/",
+      "tagline": "エディタと開発エージェント",
+      "category": "code",
+      "summary": "エディタとAIエージェントを組み合わせた開発環境。コードを見ながら相談・修正を進めたいときに使う。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://cursor.com/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "codex",
+      "name": "Codex",
+      "url": "https://openai.com/codex/",
+      "tagline": "実装・修正・レビュー",
+      "category": "code",
+      "summary": "既存のコードを読んで実装、修正、レビューを進める開発エージェント。変更内容の確認と検証を組み合わせて使う。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://openai.com/codex/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "replit",
+      "name": "Replit",
+      "url": "https://replit.com/ai",
+      "tagline": "App Agent",
+      "category": "build",
+      "summary": "ブラウザの開発環境とAIを使ってアプリを作るサービス。掲載時はアプリ制作エージェントとして紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://replit.com/ai"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "v0",
+      "name": "v0",
+      "url": "https://v0.app/",
+      "tagline": "UIからフルスタック開発",
+      "category": "build",
+      "summary": "UIやWebアプリを生成するVercelのサービス。画面のたたき台からアプリ開発へつなげる。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://v0.app/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "url": "https://lovable.dev/",
+      "tagline": "対話からWebアプリへ",
+      "category": "build",
+      "summary": "対話からWebアプリを形にするサービス。画面だけでなく、動く試作品を作って検討する入口。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://lovable.dev/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "bolt-new",
+      "name": "Bolt.new",
+      "url": "https://bolt.new/",
+      "tagline": "App Builder",
+      "category": "build",
+      "summary": "対話からWebアプリの試作を進めるツール。掲載時はアプリビルダーとして紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://bolt.new/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "url": "https://claude.ai/",
+      "tagline": "文章・分析・コード",
+      "category": "think",
+      "summary": "文章や資料を読み、分析やコード作成を支援する対話AI。Claude Codeとは別の利用入口。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://claude.ai/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "url": "https://gemini.google.com/",
+      "tagline": "マルチモーダルAI",
+      "category": "think",
+      "summary": "文章・画像などを扱うGoogleのAIアシスタント。複数の種類の情報を使う相談に向く。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://gemini.google.com/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "notebooklm",
+      "name": "Gemini Notebook",
+      "url": "https://notebook.google/",
+      "tagline": "資料をもとに学ぶ・整理",
+      "category": "learn",
+      "summary": "資料をもとに学習や整理を進めるGoogleのツール。以前の掲載名はNotebookLM。現在の公式案内名・リンクを更新して記録する。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://notebook.google/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "url": "https://www.notion.so/",
+      "tagline": "Workspace",
+      "category": "learn",
+      "summary": "文書や情報をまとめるワークスペース。掲載時はAIも使える作業場所として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.notion.so/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "figma-make",
+      "name": "Figma Make",
+      "url": "https://www.figma.com/make/",
+      "tagline": "動くプロトタイプ",
+      "category": "build",
+      "summary": "指示やデザインをもとに動くプロトタイプを作るFigmaのツール。触って確かめる試作品づくりに使う。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://www.figma.com/make/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "google-flow",
+      "name": "Google Flow",
+      "url": "https://flow.google.com/",
+      "tagline": "画像・動画の制作",
+      "category": "visual",
+      "summary": "画像や動画を使った制作を支援するGoogleのツール。映像のアイデアを形にする入口。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://flow.google.com/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "midjourney",
+      "name": "Midjourney",
+      "url": "https://www.midjourney.com/",
+      "tagline": "Image",
+      "category": "visual",
+      "summary": "テキストなどから画像表現を作るサービス。掲載時は画像生成の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.midjourney.com/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "adobe-firefly",
+      "name": "Adobe Firefly",
+      "url": "https://www.adobe.com/products/firefly.html",
+      "tagline": "画像・動画の生成と編集",
+      "category": "visual",
+      "summary": "画像や動画の生成・編集をまとめる制作環境。素材を作り、修正して仕上げる工程をつなぐ。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://www.adobe.com/products/firefly.html"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "ideogram",
+      "name": "Ideogram",
+      "url": "https://ideogram.ai/",
+      "tagline": "Image / Text",
+      "category": "visual",
+      "summary": "文字を含む画像表現などを扱う画像生成サービス。掲載時は画像と文字のデザイン用途で紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://ideogram.ai/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "leonardo-ai",
+      "name": "Leonardo.Ai",
+      "url": "https://leonardo.ai/",
+      "tagline": "Image / Video",
+      "category": "visual",
+      "summary": "画像・動画の素材制作を支援するサービス。掲載時はビジュアル制作の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://leonardo.ai/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "krea",
+      "name": "Krea",
+      "url": "https://www.krea.ai/",
+      "tagline": "Image / Video",
+      "category": "visual",
+      "summary": "画像や動画を扱うAI制作ツール。掲載時はビジュアル表現を試す場所として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.krea.ai/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "runway",
+      "name": "Runway",
+      "url": "https://runway.com/",
+      "tagline": "生成映像の制作",
+      "category": "visual",
+      "summary": "生成AIを使う映像制作のサービス。動画素材や表現を試しながら作品へつなげる。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://runway.com/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "pika",
+      "name": "Pika",
+      "url": "https://pika.art/",
+      "tagline": "Video",
+      "category": "visual",
+      "summary": "生成AIを使う動画制作サービス。掲載時は短い映像表現を作る入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://pika.art/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "luma-ai",
+      "name": "Luma AI",
+      "url": "https://lumalabs.ai/dream-machine",
+      "tagline": "Video",
+      "category": "visual",
+      "summary": "Dream Machineなどの映像制作ツールを提供するサービス。掲載時は動画生成の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://lumalabs.ai/dream-machine"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "kling-ai",
+      "name": "Kling AI",
+      "url": "https://kling.ai/",
+      "tagline": "Video",
+      "category": "visual",
+      "summary": "画像や指示から映像を作るAIサービス。掲載時は動画制作の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://kling.ai/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "capcut",
+      "name": "CapCut",
+      "url": "https://www.capcut.com/",
+      "tagline": "Video Edit",
+      "category": "visual",
+      "summary": "動画を編集するサービス。掲載時は生成素材などを動画に仕上げる編集ツールとして紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.capcut.com/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "vrew",
+      "name": "Vrew",
+      "url": "https://vrew.voyagerx.com/",
+      "tagline": "Subtitle / Edit",
+      "category": "visual",
+      "summary": "字幕や音声を手がかりに動画を編集するツール。掲載時は字幕・動画編集の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://vrew.voyagerx.com/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "descript",
+      "name": "Descript",
+      "url": "https://www.descript.com/",
+      "tagline": "Video / Audio",
+      "category": "visual",
+      "summary": "動画と音声を編集するサービス。掲載時は音声・映像コンテンツの編集用途で紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.descript.com/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "heygen",
+      "name": "HeyGen",
+      "url": "https://www.heygen.com/",
+      "tagline": "Avatar Video",
+      "category": "visual",
+      "summary": "アバターなどを使った動画制作サービス。掲載時は人物が説明する映像の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.heygen.com/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "synthesia",
+      "name": "Synthesia",
+      "url": "https://www.synthesia.io/",
+      "tagline": "Avatar Video",
+      "category": "visual",
+      "summary": "AIアバターによる動画制作サービス。掲載時は説明動画などを作る入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.synthesia.io/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "suno",
+      "name": "Suno",
+      "url": "https://suno.com/",
+      "tagline": "歌・楽曲の生成",
+      "category": "sound",
+      "summary": "指示から歌や楽曲を生成する音楽制作サービス。曲のアイデアや雰囲気を試すために使う。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://suno.com/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "udio",
+      "name": "Udio",
+      "url": "https://www.udio.com/",
+      "tagline": "Music",
+      "category": "sound",
+      "summary": "指示を使って音楽を制作するサービス。掲載時は楽曲生成の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.udio.com/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "url": "https://elevenlabs.io/",
+      "tagline": "音声生成・音声エージェント",
+      "category": "sound",
+      "summary": "音声生成や音声エージェントのサービス。ナレーションや声によるインターフェースを作る用途がある。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://elevenlabs.io/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "canva-ai",
+      "name": "Canva AI",
+      "url": "https://www.canva.com/ai/",
+      "tagline": "Design",
+      "category": "visual",
+      "summary": "CanvaでAIを使ってデザインを作る入口。掲載時は視覚資料の制作用途として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.canva.com/ai/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "gamma",
+      "name": "Gamma",
+      "url": "https://gamma.app/",
+      "tagline": "プレゼン・資料作成",
+      "category": "learn",
+      "summary": "プレゼンテーションや資料を作るサービス。情報をページにまとめ、伝える形にする用途が中心。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://gamma.app/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "napkin-ai",
+      "name": "Napkin AI",
+      "url": "https://www.napkin.ai/",
+      "tagline": "Diagrams",
+      "category": "learn",
+      "summary": "文章の内容を図にまとめるツール。掲載時は図解制作の入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://www.napkin.ai/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "stability-ai",
+      "name": "Stability AI",
+      "url": "https://stability.ai/",
+      "tagline": "Open Models",
+      "category": "other",
+      "summary": "画像などの生成モデルを提供する企業。掲載時は生成モデルを調べる入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://stability.ai/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "hugging-face",
+      "name": "Hugging Face",
+      "url": "https://huggingface.co/",
+      "tagline": "Model Hub",
+      "category": "other",
+      "summary": "モデルやデータセット、デモを共有するプラットフォーム。単一のAIモデルではなく、探して試すための場所。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://huggingface.co/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "url": "https://replicate.com/",
+      "tagline": "Model API",
+      "category": "other",
+      "summary": "さまざまなAIモデルをAPIなどから利用するプラットフォーム。掲載時はモデルをアプリへ組み込む入口として紹介。",
+      "sources": [
+        {
+          "title": "掲載時の公式リンク",
+          "url": "https://replicate.com/"
+        }
+      ],
+      "verified": null
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "url": "https://claude.com/product/claude-code",
+      "tagline": "コードを理解して開発",
+      "category": "code",
+      "summary": "プロジェクトを理解し、コードの変更や開発作業を進めるエージェント。ターミナルや開発環境から利用する。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://claude.com/product/claude-code"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "google-flow-music",
+      "name": "Google Flow Music",
+      "url": "https://flowmusic.google/",
+      "tagline": "Lyriaで楽曲制作",
+      "category": "sound",
+      "summary": "Googleの音楽制作サービス。Lyriaを使い、指示から楽曲を作る。映像制作のFlowとは入口が異なる。",
+      "sources": [
+        {
+          "title": "公式サービス案内",
+          "url": "https://flowmusic.google/"
+        }
+      ],
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "jev",
+      "name": "Jev",
+      "url": "https://typesafe.ai/",
+      "tagline": "分類・振り分け・評価",
+      "category": "decision",
+      "summary": "TypeSafe AIの判断用モデル。入力をもとに、決められた選択肢や評価と確率を返す。文章作成ではなく、アプリ内の分岐や処理先の選択に組み込む用途。",
+      "note": "2026年9月15日に早期アクセスを発表。判断を誤る可能性はある。型が正しいことと判断が正しいことは別で、速度・費用の倍率は提供元の条件付き評価。広い普及や長期の実績はまだ判断しない。",
+      "verified": "2026-09-20",
+      "sources": [
+        {
+          "title": "TypeSafe：Jevの発表（2026-09-15）",
+          "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+        },
+        {
+          "title": "TypeSafe：公式ドキュメント",
+          "url": "https://docs.typesafe.ai/introduction"
+        },
+        {
+          "title": "Cloudflare：Jevの統合資料",
+          "url": "https://developers.cloudflare.com/ai/models/typesafe/jev/"
+        }
+      ]
+    }
+  ],
+  "editions": [
+    {
+      "id": "baseline",
+      "date": "2026-09-20",
+      "title": "更新前の掲載内容を保存",
+      "reason": "Gitのea53536から復元した掲載一覧。各製品の発売日や初回掲載日は不明のため、この日は履歴を記録した日。",
+      "featured": [
+        "chatgpt",
+        "perplexity",
+        "copilot",
+        "cursor",
+        "codex",
+        "replit",
+        "v0",
+        "lovable",
+        "bolt-new",
+        "claude",
+        "gemini",
+        "notebooklm",
+        "notion",
+        "figma-make",
+        "google-flow",
+        "midjourney",
+        "adobe-firefly",
+        "ideogram",
+        "leonardo-ai",
+        "krea",
+        "runway",
+        "pika",
+        "luma-ai",
+        "kling-ai",
+        "capcut",
+        "vrew",
+        "descript",
+        "heygen",
+        "synthesia",
+        "suno",
+        "udio",
+        "elevenlabs",
+        "canva-ai",
+        "gamma",
+        "napkin-ai",
+        "stability-ai",
+        "hugging-face",
+        "replicate"
+      ],
+      "names": {
+        "chatgpt": "ChatGPT",
+        "perplexity": "Perplexity",
+        "copilot": "Copilot",
+        "cursor": "Cursor",
+        "codex": "Codex",
+        "replit": "Replit",
+        "v0": "v0",
+        "lovable": "Lovable",
+        "bolt-new": "Bolt.new",
+        "claude": "Claude",
+        "gemini": "Gemini",
+        "notebooklm": "NotebookLM",
+        "notion": "Notion",
+        "figma-make": "Figma Make",
+        "google-flow": "Google Flow",
+        "midjourney": "Midjourney",
+        "adobe-firefly": "Adobe Firefly",
+        "ideogram": "Ideogram",
+        "leonardo-ai": "Leonardo.Ai",
+        "krea": "Krea",
+        "runway": "Runway",
+        "pika": "Pika",
+        "luma-ai": "Luma AI",
+        "kling-ai": "Kling AI",
+        "capcut": "CapCut",
+        "vrew": "Vrew",
+        "descript": "Descript",
+        "heygen": "HeyGen",
+        "synthesia": "Synthesia",
+        "suno": "Suno",
+        "udio": "Udio",
+        "elevenlabs": "ElevenLabs",
+        "canva-ai": "Canva AI",
+        "gamma": "Gamma",
+        "napkin-ai": "Napkin AI",
+        "stability-ai": "Stability AI",
+        "hugging-face": "Hugging Face",
+        "replicate": "Replicate"
+      }
+    },
+    {
+      "id": "curated",
+      "date": "2026-09-20",
+      "title": "用途別の18サービスへ整理",
+      "reason": "開発エージェントと制作環境を中心に選び直し、Claude CodeとFlow Musicを追加。掲載を外したサービスも解説を残す。",
+      "featured": [
+        "chatgpt",
+        "claude",
+        "gemini",
+        "codex",
+        "claude-code",
+        "cursor",
+        "lovable",
+        "v0",
+        "figma-make",
+        "adobe-firefly",
+        "google-flow",
+        "runway",
+        "suno",
+        "google-flow-music",
+        "elevenlabs",
+        "perplexity",
+        "notebooklm",
+        "gamma"
+      ],
+      "names": {
+        "chatgpt": "ChatGPT",
+        "claude": "Claude",
+        "gemini": "Gemini",
+        "codex": "Codex",
+        "claude-code": "Claude Code",
+        "cursor": "Cursor",
+        "lovable": "Lovable",
+        "v0": "v0",
+        "figma-make": "Figma Make",
+        "adobe-firefly": "Adobe Firefly",
+        "google-flow": "Google Flow",
+        "runway": "Runway",
+        "suno": "Suno",
+        "google-flow-music": "Google Flow Music",
+        "elevenlabs": "ElevenLabs",
+        "perplexity": "Perplexity",
+        "notebooklm": "Gemini Notebook",
+        "gamma": "Gamma"
+      }
+    },
+    {
+      "id": "decision-models",
+      "date": "2026-09-20",
+      "title": "新着のJevと解説・履歴ページを追加",
+      "reason": "判断に特化したモデルという新しい方向を追う。ホームの注目枠へJevを追加し、過去の掲載内容も参照できるようにした。",
+      "featured": [
+        "jev",
+        "chatgpt",
+        "claude",
+        "gemini",
+        "codex",
+        "claude-code",
+        "cursor",
+        "lovable",
+        "v0",
+        "figma-make",
+        "adobe-firefly",
+        "google-flow",
+        "runway",
+        "suno",
+        "google-flow-music",
+        "elevenlabs",
+        "perplexity",
+        "notebooklm",
+        "gamma"
+      ],
+      "names": {
+        "jev": "Jev",
+        "chatgpt": "ChatGPT",
+        "claude": "Claude",
+        "gemini": "Gemini",
+        "codex": "Codex",
+        "claude-code": "Claude Code",
+        "cursor": "Cursor",
+        "lovable": "Lovable",
+        "v0": "v0",
+        "figma-make": "Figma Make",
+        "adobe-firefly": "Adobe Firefly",
+        "google-flow": "Google Flow",
+        "runway": "Runway",
+        "suno": "Suno",
+        "google-flow-music": "Google Flow Music",
+        "elevenlabs": "ElevenLabs",
+        "perplexity": "Perplexity",
+        "notebooklm": "Gemini Notebook",
+        "gamma": "Gamma"
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2022-11-30",
+      "title": "対話を入口にする",
+      "fact": "OpenAIがChatGPTを公開。対話形式で回答を受け取るサービスを紹介。",
+      "analysis": "AIに自然な言葉で頼む入口が分かりやすくなった節目として読む。これ以前の対話AIの存在を否定するものではない。",
+      "url": "https://openai.com/index/chatgpt/"
+    },
+    {
+      "date": "2025-02-24",
+      "title": "開発の作業を任せる",
+      "fact": "AnthropicがClaude Codeを研究プレビューとして発表。",
+      "analysis": "コードの提案から、プロジェクト内で作業を進めるエージェントへ。評価軸に変更の検証やレビューが加わる。",
+      "url": "https://www.anthropic.com/news/claude-3-7-sonnet"
+    },
+    {
+      "date": "2025-05-20",
+      "title": "生成を制作の流れにつなぐ",
+      "fact": "Googleが映像制作ツールFlowを発表。",
+      "analysis": "単発の素材生成に加え、作品を組み立てる環境にも注目する。各分野の進歩は並行している。",
+      "url": "https://blog.google/innovation-and-ai/products/google-flow-veo-ai-filmmaking-tool/"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "音楽でも表現を調整する",
+      "fact": "GoogleがFlow MusicへのLyria 3.5導入を発表。",
+      "analysis": "出力できるかだけでなく、テンポや長さなど、作り手が調整できる範囲も比較の軸になる。",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/lyria-3-5/"
+    },
+    {
+      "date": "2026-09-15",
+      "title": "小さな判断を部品として使う",
+      "fact": "TypeSafe AIが判断用モデルJevの早期アクセスを発表。",
+      "analysis": "生成・判断・実行を役割ごとに組み合わせる設計の例。今後の普及を予測する材料ではあるが、普及済みという証拠ではない。",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+    }
+  ]
+}
