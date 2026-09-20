@@ -15,7 +15,8 @@
     "IOPS",
     "遅延",
     "スループット",
-    "一時ストレージ"
+    "一時ストレージ",
+    "エフェメラル"
   ],
   "requires": [
     "vm"
@@ -94,7 +95,12 @@
       "Cloud Storage"
     ]
   ],
-  "links": [],
+  "links": [
+    [
+      "コンテナ・Pod・保存領域の寿命を比較する",
+      "containers.html#ephemeral-lifecycle"
+    ]
+  ],
   "deepDive": [
     {
       "id": "database-io",
