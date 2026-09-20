@@ -12,7 +12,9 @@
     "IaaS",
     "PaaS",
     "SaaS",
-    "責任共有"
+    "責任共有",
+    "XaaS",
+    "プロビジョニング"
   ],
   "requires": [
     "dns"
@@ -21,7 +23,8 @@
     "vm",
     "iam",
     "design",
-    "database"
+    "database",
+    "pricing"
   ],
   "story": "ハルはサービスを公開したいが、機械を買い、電源を守り、故障時に交換する余裕がない。",
   "why": "機械そのものの調達や管理まで全部行うと、サービスを作る時間が減る。必要な部分を事業者に任せる選択肢がクラウド。",
@@ -67,14 +70,37 @@
     {
       "title": "Microsoft：クラウドの責任共有",
       "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility"
+    },
+    {
+      "title": "Microsoft：PaaSを選ぶ設計原則",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/managed-services"
     }
   ],
-  "verified": "2026-09-19",
+  "verified": "2026-09-20",
   "products": [],
   "links": [
     [
       "管理されたDBで、保守と設定の境界を確かめる",
       "database.html#managed-database"
     ]
+  ],
+  "deepDive": [
+    {
+      "id": "service-models",
+      "title": "自分のコードを、どの層から管理する？",
+      "paragraphs": [
+        "プロビジョニングとは、使う資源や環境を用意すること。IaaSではVMなどを用意してもらい、その上のOSやアプリは利用者が管理するのが基本です。",
+        "PaaSではOSなどの実行基盤の管理を事業者へ任せ、自分のコードをデプロイします。対応する言語・ランタイム・設定の範囲で、環境構築の手間を減らして開発を進められます。OSやパッチを自分で用意せず、独自コードを動かしたい場合の代表的な選択です。",
+        "SaaSでは完成したソフトを利用します。XaaSは「さまざまなものをサービスとして提供する」という広い呼び方で、独自コードを動かす責任範囲をそれだけで特定できません。"
+      ]
+    },
+    {
+      "id": "paas-boundary",
+      "title": "PaaSでも、アプリへの責任は残る",
+      "paragraphs": [
+        "ハルが会場と受付設備を借り、独自の大会ルールで運営するように、基盤を任せてもコード・データ・アクセス権は自分で管理します。アプリに含める依存ライブラリの更新や秘密情報の保護も確認します。",
+        "OSの管理を減らす代わりに、使えるランタイムや実行時間、ネットワーク、ファイル保存などの制約が生まれる場合があります。自由なOS設定が必要ならIaaSを検討するなど、運用負担と自由度を比べます。"
+      ]
+    }
   ]
 }

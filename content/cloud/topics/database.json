@@ -28,7 +28,8 @@
     "delivery",
     "recovery",
     "cloud",
-    "iam"
+    "iam",
+    "san"
   ],
   "story": "残り一枠の大会へ、二人が同時に申し込んだ。名簿を単にファイルへ上書きするだけでは定員を守れない。",
   "why": "情報を残すだけでなく、条件で探し、同時更新の矛盾を防ぎたい。更新の約束を持つデータベースが必要になる。",
@@ -105,7 +106,12 @@
       "Cloud SQL"
     ]
   ],
-  "links": [],
+  "links": [
+    [
+      "DB用の保存方式とIOPSを考える",
+      "storage.html#database-io"
+    ]
+  ],
   "deepDive": [
     {
       "id": "managed-database",

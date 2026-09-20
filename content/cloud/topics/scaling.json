@@ -11,7 +11,11 @@
     "スケールアウト",
     "可用性",
     "AZ",
-    "リージョン"
+    "リージョン",
+    "Cookie",
+    "セッション",
+    "アフィニティ",
+    "スティッキーセッション"
   ],
   "requires": [
     "vm",
@@ -20,7 +24,9 @@
   "related": [
     "delivery",
     "operations",
-    "design"
+    "design",
+    "pricing",
+    "orchestration"
   ],
   "story": "大会が話題になり、ハルのアプリのCPU使用率が90%を超えた。入口を増やすべきか、計算する力を増やすべきか。",
   "why": "一台の処理能力には限界があり、故障すればサービス全体が止まりうる。容量不足と故障の両方を考える必要がある。",
@@ -67,14 +73,29 @@
     {
       "title": "AWS：コンピューティングサービス",
       "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/compute-services.html"
+    },
+    {
+      "title": "AWS：ALBのスティッキーセッション",
+      "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html"
     }
   ],
-  "verified": "2026-09-19",
+  "verified": "2026-09-20",
   "products": [],
   "links": [
     [
       "既存教材：負荷分散",
       "../network-load-balancer.html"
     ]
+  ],
+  "deepDive": [
+    {
+      "id": "session-state",
+      "title": "Cookie・セッション・アフィニティを分ける",
+      "paragraphs": [
+        "Cookieはブラウザが保持し、要求に付けて送る情報。セッションは利用者との一連のやり取りの状態。CookieのIDを手がかりに、共有DBやキャッシュからログイン状態を読む設計なら、別のアプリサーバーでも処理しやすくなります。",
+        "同じ利用者を同じ処理先へ送る仕組みはセッションアフィニティ、またはスティッキーセッションと呼ばれます。Cookieを使って接続先を固定する実装もあるので、Cookie使用とアフィニティなしは同じ意味ではありません。",
+        "一台のメモリにしか状態がない場合、その台を減らすとセッションを失うことがあります。共有する保存先や状態の持ち方を設計し、要求を受けなくして処理完了を待ってから停止します。保存先の障害や負荷にも備えます。"
+      ]
+    }
   ]
 }
