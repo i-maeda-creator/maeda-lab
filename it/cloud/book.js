@@ -1,5 +1,20 @@
 (() => {
   'use strict';
+  function revealSection() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const target = document.getElementById(id);
+    if (!target) return;
+    let el = target;
+    let opened = false;
+    while (el) {
+      if (el.tagName === 'DETAILS' && !el.open) { el.open = true; opened = true; }
+      el = el.parentElement;
+    }
+    if (opened) target.scrollIntoView();
+  }
+  window.addEventListener('hashchange', revealSection);
+  revealSection();
   const topics = window.CLOUD_TOPICS || [];
   const ids = new Set(topics.map(t => t.id));
   const key = 'maeda-cloud-reading-v1';
