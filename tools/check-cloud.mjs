@@ -17,6 +17,10 @@ for (const t of topics) {
   for (const d of t.deepDive || []) {
     assert.match(d.id,/^[a-z][a-z0-9-]*$/);
     assert(d.title && d.paragraphs.length > 0, `${t.id}: incomplete deep dive`);
+    if (d.table) {
+      assert(d.table.headers.length>=2 && d.table.rows.length>0, `${t.id}: incomplete table`);
+      for (const row of d.table.rows) assert(row.length===d.table.headers.length && row.every(v=>typeof v==='string'), `${t.id}: malformed table row`);
+    }
   }
 }
 for (const [id,d] of Object.entries(diagrams)) {
