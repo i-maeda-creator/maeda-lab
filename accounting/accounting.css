@@ -67,3 +67,44 @@ main { max-width:1120px; margin:auto; padding:0 32px 80px; } h1,h2,h3,p { margin
 .diagram-flow li { position:relative; flex:1; background:#edf4f6; border:1px solid #a9bec7; padding:22px 16px; font-size:.95rem; }
 .diagram-flow li:not(:last-child)::after { content:'→'; position:absolute; right:-25px; top:50%; transform:translateY(-50%); color:#456275; }
 @media(max-width:600px) { .word-pairs,.diagram-columns:not(.journal):not(.change),.sales-comparison { grid-template-columns:1fr; } .diagram-columns>div { padding:15px; } .journal strong { font-size:.9rem; } .equations>div { gap:5px; } .equations span { font-size:.8rem; padding:18px 3px; } .cost-row { grid-template-columns:1fr auto; gap:5px; } .cost-bar { grid-column:1 / -1; grid-row:2; } .cost-bar>div { padding:15px 0; } .diagram-flow { flex-direction:column; gap:25px; } .diagram-flow li:not(:last-child)::after { content:'↓'; top:auto; bottom:-25px; left:50%; right:auto; transform:none; } .balance-company { max-width:320px; } }
+/* Read first; use scenes only where the distinction needs a story. */
+.lesson-body { max-width:960px; margin:auto; }
+.lesson-jumps { display:flex; flex-wrap:wrap; gap:12px 24px; padding:14px 0; margin:5px 0 35px; border-block:1px solid var(--line); font-size:.85rem; }
+section[id],details[id] { scroll-margin-top:25px; }
+.lesson-explanation { max-width:760px; margin:35px 0; }
+.lesson-explanation h2 { margin-bottom:20px; }
+.lesson-explanation p:not(.eyebrow) { font-size:1.08rem; line-height:2.1; margin:18px 0; }
+.worked-example { padding:28px; background:#e8efec; border-left:4px solid #547c6e; margin:32px 0; }
+.worked-example h2 { font-size:1.4rem; margin-bottom:16px; }
+.worked-example p:not(.eyebrow) { font-size:1.05rem; line-height:2; }
+.pitfall { padding:20px 24px; background:#f0e5d5; border-left:3px solid #ae653c; margin:25px 0; }
+.pitfall strong { font-size:.85rem; }.pitfall p { margin-top:8px; font-size:.95rem; }
+.challenge-link { display:block; border:1px solid #69808e; background:#e9eff2; text-decoration:none; padding:24px 28px; margin:35px 0; }
+.challenge-link>span { display:block; font-size:.7rem; letter-spacing:.09em; color:#4c6674; }
+.challenge-link>strong { display:block; font-size:1.4rem; margin:7px 0; }.challenge-link>p { font-size:.9rem; }
+.comic-inset { margin:40px 0; }.comic-inset>.eyebrow { margin-bottom:8px; }
+.stage-rich { height:220px; margin-top:15px; overflow:hidden; }
+.scenery { display:block; position:absolute; width:100%; height:100%; inset:0; }
+.scene-location { position:absolute; z-index:2; top:8px; left:10px; font-size:.63rem; line-height:1.4; padding:4px 7px; background:#fffaf0ec; color:#4b514d; border:1px solid #b7b8aa; }
+.stage-rich .actor { position:absolute; z-index:1; width:180px; height:185px; left:10px; bottom:-8px; }
+.stage-rich .actor .character { width:100%; height:100%; left:0; right:auto; bottom:0; }
+.stage-rich .partner { width:150px; height:155px; left:auto; right:15px; }
+.shot-1 .main-actor { left:auto; right:12px; width:210px; height:216px; bottom:-25px; }
+.shot-2 .main-actor { width:135px; height:140px; left:0; bottom:-10px; }
+.shot-3 .main-actor { left:auto; right:15px; }.shot-3 .partner { right:auto; left:8px; }
+.scene-prop { position:absolute; z-index:2; right:15px; top:63px; width:57%; padding:15px; background:#fffdf2; border:2px solid #555e5c; transform:rotate(-3deg); box-shadow:3px 4px 0 #283b3420; }
+.scene-prop span,.scene-prop strong { display:block; font-size:.85rem; line-height:1.8; }.scene-prop strong { border-top:1px solid #d4d3c0; margin-top:10px; padding-top:10px; }
+.problem-body { max-width:820px; margin:auto; }
+.original-note { font-size:.84rem; color:#655e52; margin:10px 0 20px; }
+.preparation { background:#e9eee6; padding:25px; margin:30px 0; }
+.preparation h2,.problem-data h2,.problem-tasks h2,.solution h2 { font-size:1.45rem; }
+.preparation p { font-size:.85rem; margin-top:18px; }
+.problem-body ol { padding-left:1.6em; }
+.problem-body li { padding-left:6px; margin:15px 0; line-height:2; }
+.problem-data { margin:35px 0; padding:25px; background:#fffdf8; border:1px solid #c3c8bc; }
+.problem-tasks { margin:35px 0; }
+.solution { border:2px solid #385a62; margin:25px 0; padding:0; background:#fffdf8; }
+.solution>summary { background:#e4eef0; padding:20px; font-size:1.05rem; }
+.solution>div { padding:10px 25px 20px; }
+.answer-line { font-size:1.3rem; font-weight:bold; line-height:1.8; border-bottom:1px solid #cbd5cf; padding-bottom:20px; }
+@media(max-width:500px) { .lesson-explanation p:not(.eyebrow) { font-size:1rem; } .worked-example,.preparation,.problem-data { padding:20px; }.challenge-link { padding:20px; }.stage-rich { height:200px; }.stage-rich .actor { width:145px; height:150px; }.stage-rich .partner { width:115px; height:120px; right:4px; }.shot-1 .main-actor { width:185px; height:190px; }.shot-2 .main-actor { width:115px; height:120px; }.shot-3 .partner { left:0; }.scene-prop { right:10px; width:61%; padding:12px; }.scene-prop span,.scene-prop strong { font-size:.75rem; }.solution>div { padding-inline:18px; } }
