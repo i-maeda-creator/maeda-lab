@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>企業マップ | フィジカルAI</title>
+    <meta name="description" content="Figure AI、1X、Boston Dynamics、NVIDIA、Google DeepMindなど。フィジカルAIの主要企業を整理する。" />
+    <link rel="stylesheet" href="physical-ai.css?v=20260921" />
+  </head>
+  <body>
+    <a class="skip" href="#top">本文へ</a>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="history.html">History</a>
+        <a href="technology.html">Technology</a>
+        <a class="is-current" href="companies.html">Companies</a>
+        <a href="now.html">Now</a>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero stripes">
+        <span class="hero-tag">03 · Companies</span>
+        <h1>企業マップ<span class="sub">誰が、ハードを作り、誰が、頭脳を作っているのか。</span></h1>
+        <p class="lead">
+          フィジカルAIの企業は、「ヒューマノイド専業のスタートアップ」「頭脳(基盤モデル)を提供する巨大テック」
+          「動的制御の老舗」「日本勢」の4つに大まかに分けると見通しが良くなります。ここでは代表的な企業を、
+          設立年・本拠地・代表製品つきで並べます。
+        </p>
+      </section>
+
+      <section class="lesson">
+        <article class="content">
+          <h2>ヒューマノイド専業スタートアップ</h2>
+          <p>ハードウェアとソフトウェアの両方を自社で持ち、ヒューマノイドそのものを開発・販売しようとする企業群です。</p>
+          <div class="profile-grid">
+            <div class="profile-card">
+              <header><h3>Figure AI</h3><span class="pill">米国</span></header>
+              <p class="spec">設立 2022年 · 代表製品: Figure 01 / 02 / 03</p>
+              <p class="desc">
+                Brett Adcockが設立。2024年にOpenAIとの提携・出資が発表され大きな話題になりましたが、
+                同年後半には自社基盤モデル「Helix」の開発に軸足を移したと報じられています。
+                BMWの製造ラインでの実証パイロットも発表しています。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>1X Technologies</h3><span class="pill">ノルウェー/米国</span></header>
+              <p class="spec">前身 Halodi Robotics · 代表製品: EVE(車輪型) / NEO(二足型)</p>
+              <p class="desc">
+                OpenAI Startup Fundなどからの出資を受けたと報じられています。工場よりも家庭・オフィスでの利用を
+                見据えた「NEO」を打ち出している点が、他の専業勢と比べた特徴です。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>Apptronik</h3><span class="pill">米国</span></header>
+              <p class="spec">設立 2016年 · 拠点 テキサス州オースティン · 代表製品: Apollo</p>
+              <p class="desc">
+                テキサス大学オースティン校のヒューマノイド研究室を母体に設立され、NASAの人型ロボット
+                「Valkyrie」開発に関わった人材も参加しているとされます。Mercedes-Benzの工場での実証パイロットを発表しました。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>Sanctuary AI</h3><span class="pill">カナダ</span></header>
+              <p class="spec">設立 2018年 · 拠点 バンクーバー · 代表製品: Phoenix</p>
+              <p class="desc">
+                自動車部品大手Magnaと提携し、製造ラインでの実証を進めていると発表しています。
+                「汎用的な作業ができる手」の器用さを重視した開発方針を掲げています。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>Agility Robotics</h3><span class="pill">米国</span></header>
+              <p class="spec">設立 2015年 · 拠点 オレゴン州 · 代表製品: Digit</p>
+              <p class="desc">
+                オレゴン州立大学の二足歩行研究者らが創業。倉庫・物流向けの実証で先行し、
+                自社量産拠点「RoboFab」の建設や、大手物流企業との協業を発表しています。
+                ヒューマノイドの中では「工場・倉庫の実労働」に最も近い位置づけです。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+          </div>
+
+          <h2>頭脳(基盤モデル)を提供する側</h2>
+          <p>自社でヒューマノイドを量産するより、複数社が使えるAI・インフラを提供する立ち位置の企業です。</p>
+          <div class="profile-grid">
+            <div class="profile-card">
+              <header><h3>Tesla</h3><span class="pill">米国</span></header>
+              <p class="spec">代表製品: Optimus</p>
+              <p class="desc">
+                自動運転車で培ったカメラ主体の実世界認識・大量の走行データ処理のノウハウを、
+                ヒューマノイドに転用する方針を掲げています。2021年に構想発表、2022年に実機プロトタイプを披露し、
+                以後も新世代機を継続的に公開しています。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>NVIDIA</h3><span class="pill">米国</span></header>
+              <p class="spec">代表製品: Isaac / GR00T / Jetson Thor</p>
+              <p class="desc">
+                自社でヒューマノイドを売るのではなく、シミュレーション基盤「Isaac Sim」、
+                ヒューマノイド向け基盤モデル構想「Project GR00T」、車載・ロボット向け半導体「Jetson Thor」など、
+                各社が使う「インフラ」を提供する立ち位置です。CEOのジェンスン・フアンは「フィジカルAI」という
+                呼び方を広めた張本人としても知られます。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>Google DeepMind</h3><span class="pill">米国/英国</span></header>
+              <p class="spec">代表製品: RT-2 / RT-X / Gemini Robotics</p>
+              <p class="desc">
+                視覚言語行動モデル(VLA)の研究を早期から主導してきた研究組織です。RT-2、複数機関共同の
+                Open X-Embodiment、そしてGemini本体の推論能力をロボット制御に応用する「Gemini Robotics」など、
+                「ロボットの頭脳」の研究成果を段階的に発表しています。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>Physical Intelligence</h3><span class="pill">米国</span></header>
+              <p class="spec">設立 2024年 · 代表製品: π0(パイゼロ)</p>
+              <p class="desc">
+                Google DeepMindやUC Berkeley、Stanford出身の研究者らが創業。特定のロボットの機種に依存しない、
+                汎用的なロボット基盤モデル「π0」を開発しています。ハードウェア自体は自社で量産せず、
+                ソフトウェア(頭脳)に専念する方針が特徴です。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+          </div>
+
+          <h2>動的制御の老舗・ハード先行勢</h2>
+          <div class="profile-grid">
+            <div class="profile-card">
+              <header><h3>Boston Dynamics</h3><span class="pill">米国</span></header>
+              <p class="spec">設立 1992年 · 代表製品: Atlas / Spot</p>
+              <p class="desc">
+                MITからのスピンオフとして設立された、動的バランス制御のパイオニア。研究・実演用の
+                ヒューマノイド「Atlas」と、商用の四脚ロボット「Spot」を持ちます。所有者はGoogle→ソフトバンク→
+                現代自動車グループと変遷し、事業化の難しさを体現してきた企業でもあります。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>Unitree</h3><span class="pill">中国</span></header>
+              <p class="spec">拠点 杭州 · 代表製品: Go2(四脚) / G1・H1(ヒューマノイド)</p>
+              <p class="desc">
+                四脚ロボットで先に実績と価格競争力を築き、その後ヒューマノイド市場に参入しました。
+                他社と比べて大幅に低い価格帯の機体を打ち出しており、「ヒューマノイドの民主化」を象徴する存在として
+                しばしば取り上げられます。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+          </div>
+          <div class="note-box">
+            <strong>見落としがちな存在</strong>
+            <p>
+              ヒューマノイドが話題になる一方、工場の溶接・組み立てを支えているのは、いまも安川電機、ファナック、
+              ABB、KUKA、川崎重工業といった従来型の産業用ロボットメーカーです。フィジカルAIの主戦場は「新しい柵の外」
+              ですが、「柵の中」の生産性は依然としてこれらの企業が支えています。
+            </p>
+          </div>
+
+          <h2>日本勢</h2>
+          <div class="profile-grid">
+            <div class="profile-card">
+              <header><h3>本田技研工業(Honda)</h3><span class="pill">日本</span></header>
+              <p class="spec">代表製品: ASIMO(研究は終了)</p>
+              <p class="desc">
+                1986年から続けた二足歩行研究の集大成として、2000年にASIMOを発表しました。
+                2022年にASIMO自体の研究開発終了が伝えられましたが、蓄積された二足歩行・バランス制御の技術は、
+                同社の他のロボティクス研究に引き継がれているとされています。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>トヨタ自動車 / Toyota Research Institute</h3><span class="pill">日本/米国</span></header>
+              <p class="spec">研究領域: Large Behavior Models(器用な作業の学習)</p>
+              <p class="desc">
+                少ない実演回数からロボットに器用な作業を学ばせる「Large Behavior Models」などの研究を発表しています。
+                工場への即時導入よりも、学習方法そのものの研究に重心を置いているのが特徴です。
+              </p>
+              <p class="checked">情報確認: 2026-09-21(公表・報道ベース)</p>
+            </div>
+          </div>
+
+          <p>
+            ヒューマノイド以前の「感情表現ロボット」の代表例だったソフトバンクロボティクスの<strong>Pepper</strong>や、
+            DARPAロボティクスチャレンジで存在感を示した国内の研究チームについては
+            <a href="history.html">01 History</a> で扱っています。
+          </p>
+        </article>
+        <aside class="side-panel">
+          <h2>Physical AI</h2>
+          <a href="index.html">Overview</a>
+          <a href="history.html">01 History</a>
+          <a href="technology.html">02 Technology</a>
+          <a class="is-current" href="companies.html">03 Companies</a>
+          <a href="now.html">04 Now</a>
+          <a class="column-link" href="../llm/index.html">コラム: AIの内側 →</a>
+        </aside>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <span>Maeda Lab · Physical AI</span>
+      <a href="../llm/index.html">コラム: AIの内側(言語モデルの仕組み) →</a>
+    </footer>
+    <script src="physical-ai.js?v=20260921" defer></script>
+  </body>
+</html>

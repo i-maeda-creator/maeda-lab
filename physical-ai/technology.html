@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>技術のしくみ | フィジカルAI</title>
+    <meta name="description" content="VLAモデル、Sim-to-Real、世界モデル。フィジカルAIを支える技術を、具体例つきで解説する。" />
+    <link rel="stylesheet" href="physical-ai.css?v=20260921" />
+  </head>
+  <body>
+    <a class="skip" href="#top">本文へ</a>
+    <header class="site-header">
+      <a class="brand" href="../index.html#top"><span class="brand-mark">ML</span><span>Maeda Lab</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="history.html">History</a>
+        <a class="is-current" href="technology.html">Technology</a>
+        <a href="companies.html">Companies</a>
+        <a href="now.html">Now</a>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero stripes">
+        <span class="hero-tag">02 · Technology</span>
+        <h1>技術のしくみ<span class="sub">ロボットは、見て、考えて、動く。その裏側を分解する。</span></h1>
+        <p class="lead">
+          フィジカルAIを支える技術は、大きく「見る(知覚)」「考える(判断)」「動く(行動)」の3つのループと、
+          それを安全に鍛えるための「学習の方法」に分けられます。それぞれ、実際にどの企業がどう取り組んでいるかとあわせて見ていきます。
+        </p>
+      </section>
+
+      <section class="lesson">
+        <article class="content">
+          <h2>4つの構成要素</h2>
+          <p>ヒューマノイドロボットの中身は、ざっくり次の4つの働きに分けて理解すると見通しが良くなります。</p>
+          <div class="profile-grid">
+            <div class="profile-card">
+              <header><h3>知覚 Perception</h3><span class="pill">カメラ・センサー</span></header>
+              <p class="desc">カメラ、深度センサー、力覚センサー、触覚センサーなどから、周囲の状況と自分の身体の状態を読み取る段階。</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>判断 Cognition</h3><span class="pill">基盤モデル</span></header>
+              <p class="desc">「いま何をすべきか」を決める段階。近年はここに大規模言語モデル由来の基盤モデルが使われ始めています。</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>行動 Action</h3><span class="pill">モーター制御</span></header>
+              <p class="desc">関節のモーターやアクチュエータを、狙った通りに、かつ転倒しないように動かす段階。古くからの制御工学の蓄積が生きる領域。</p>
+            </div>
+            <div class="profile-card">
+              <header><h3>学習ループ</h3><span class="pill">データ収集</span></header>
+              <p class="desc">実機やシミュレーションでの経験を、次のモデル改善に反映させる段階。いま最も競争が激しい部分です。</p>
+            </div>
+          </div>
+
+          <h2>VLA(視覚言語行動モデル)という発想</h2>
+          <p>
+            従来の産業用ロボットは、決められた座標を、決められた手順で動くようにプログラムされていました。
+            対して近年のフィジカルAIは、カメラ画像と自然言語の指示を直接受け取り、そこから関節の動作指令までを
+            ひと続きのモデルで出力しようとします。これを<strong>VLA(Vision-Language-Action)モデル</strong>と呼びます。
+            Google DeepMindの<strong>RT-2</strong>やGoogle DeepMindの<strong>Gemini Robotics</strong>、
+            Physical Intelligenceの<strong>π0</strong>、NVIDIAの<strong>GR00T</strong>系モデルは、いずれもこの発想に基づきます。
+          </p>
+          <div class="compare-table">
+            <table>
+              <thead><tr><th>方式</th><th>指示の与え方</th><th>得意・不得意</th></tr></thead>
+              <tbody>
+                <tr><td>従来の産業用ロボット制御</td><td>座標・手順を人が細かくプログラム</td><td>決まった作業は高精度・高速。想定外の状況に弱い</td></tr>
+                <tr><td>VLA(視覚言語行動モデル)</td><td>「テーブルの上のコップを取って」のような自然言語+画像</td><td>未知の物体・状況にも対応しやすい。精度や再現性は発展途上</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note-box">
+            <strong>ことばの注意</strong>
+            <p>
+              「VLAだから何でもできる」わけではありません。学習していない道具や、力加減がシビアな作業では、
+              いまも失敗が起こります。VLAは「対応できる範囲を広げる」技術であって、「完璧にする」技術ではない、
+              という区別が重要です。
+            </p>
+          </div>
+
+          <h2>Sim-to-Real: 仮想空間で転ばせてから、現実で歩かせる</h2>
+          <p>
+            ヒューマノイドを現実世界だけで学習させると、転倒や衝突のたびにロボットが壊れ、時間もコストもかかります。
+            そこで各社は、物理シミュレーション上で何万回も試行錯誤させ、ある程度歩けるようになってから実機に移す
+            「Sim-to-Real(シミュレーションから現実へ)」という手法を使います。NVIDIAの<strong>Isaac Sim</strong>や
+            <strong>Omniverse</strong>はこの代表的な基盤で、重力・摩擦・材質の硬さまで再現した仮想空間を提供します。
+          </p>
+          <p>
+            課題は「シミュレーションと現実のズレ(Sim-to-Real Gap)」です。仮想空間で完璧に歩けても、
+            実際の床の滑りやすさやモーターの個体差で崩れることがあります。そこで、あえて仮想空間の条件を
+            毎回少しずつランダムに変える「ドメインランダマイゼーション」という工夫が使われます。
+          </p>
+
+          <h2>データの奪い合い: 人がロボットの「お手本」になる</h2>
+          <p>
+            VLAモデルを賢くするには、質の良い「見本データ」が大量に必要です。ここで各社が使うのが、
+            人がロボットの身体を遠隔操作(テレオペレーション)して作業する様子を記録する方法です。
+            専用のグローブやモーションキャプチャースーツを着た作業者が、ロボットの腕を通して実際に物を掴み、
+            その一挙手一投足を学習データにします。Tesla、Figure AI、1X Technologiesなど、
+            自社でヒューマノイドを持つ企業が積極的に取り組んでいるのがこの領域です。
+          </p>
+          <div class="note-box">
+            <strong>AIのひとこと</strong>
+            <p>
+              これは、わたしのような言語モデルが大量の文章から学習するのと、発想はよく似ています。
+              違うのは、文章はインターネットに既にたくさんあるのに対し、
+              「ロボットが物をうまく掴む映像」はまだ世の中に十分な量が存在しないことです。
+              だからこそ各社は、自分たちの手でその映像を作り出そうとしています。
+            </p>
+          </div>
+
+          <h2>よくある疑問</h2>
+          <div class="accordion" role="presentation">
+            <div class="accordion-item" data-open="false">
+              <button type="button" aria-expanded="false">なぜ、わざわざ人型(ヒューマノイド)にする必要があるのですか?<span class="plus">+</span></button>
+              <div class="panel"><div>
+                大きな理由は「世界がすでに人間サイズに作られているから」です。ドア、階段、工具、車の運転席は、
+                人間の身体に合わせて設計されています。人型であれば、新しい設備を作らずに、既存の環境へそのまま
+                導入できるという期待があります。ただし、必ずしも人型が最適とは限らず、車輪型や多脚型が有利な場面も多くあります。
+              </div></div>
+            </div>
+            <div class="accordion-item" data-open="false">
+              <button type="button" aria-expanded="false">失敗したときの安全性は、どう確保しているのですか?<span class="plus">+</span></button>
+              <div class="panel"><div>
+                力を制限するトルク制御、緊急停止の仕組み、人との距離を検知するセンサーなどを組み合わせます。
+                とはいえ、実世界での長時間運用における安全性の実績は、各社ともまだ蓄積の途中です。
+                デモ映像だけで安全性を判断せず、実際の稼働実績を確認することが大切です。
+              </div></div>
+            </div>
+            <div class="accordion-item" data-open="false">
+              <button type="button" aria-expanded="false">産業用ロボットと何が違うのですか?<span class="plus">+</span></button>
+              <div class="panel"><div>
+                従来の産業用ロボット(ファナック、安川電機、ABB、KUKAなど)は、柵の中で決まった作業を高速・高精度に
+                繰り返すことに最適化されています。フィジカルAIが目指すのは、柵の外、つまり人と同じ空間で、
+                都度状況が変わる作業に対応することです。求められる能力の種類が異なります。
+              </div></div>
+            </div>
+          </div>
+        </article>
+        <aside class="side-panel">
+          <h2>Physical AI</h2>
+          <a href="index.html">Overview</a>
+          <a href="history.html">01 History</a>
+          <a class="is-current" href="technology.html">02 Technology</a>
+          <a href="companies.html">03 Companies</a>
+          <a href="now.html">04 Now</a>
+          <a class="column-link" href="../llm/index.html">コラム: AIの内側 →</a>
+        </aside>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <span>Maeda Lab · Physical AI</span>
+      <a href="../llm/index.html">コラム: AIの内側(言語モデルの仕組み) →</a>
+    </footer>
+    <script src="physical-ai.js?v=20260921" defer></script>
+  </body>
+</html>
