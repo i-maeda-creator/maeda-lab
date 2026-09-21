@@ -1,0 +1,1278 @@
+{
+  "updated": "2026-09-21",
+  "subjects": [
+    {
+      "id": "start",
+      "title": "まずは簿記",
+      "description": "一つの取引を、二つの面から。"
+    },
+    {
+      "id": "english",
+      "title": "会計の英単語",
+      "description": "日本語でつかんで、英語につなぐ。"
+    },
+    {
+      "id": "financial",
+      "title": "財務会計論",
+      "description": "会社の姿を、外の人に伝える。"
+    },
+    {
+      "id": "management",
+      "title": "管理会計論",
+      "description": "会社の中で、次の一手を考える。"
+    },
+    {
+      "id": "audit",
+      "title": "監査論",
+      "description": "その数字は、信頼できる？"
+    },
+    {
+      "id": "corporate",
+      "title": "企業法",
+      "description": "会社の意思決定とルール。"
+    },
+    {
+      "id": "tax",
+      "title": "租税法",
+      "description": "利益と税金のつながり。"
+    },
+    {
+      "id": "business",
+      "title": "経営学",
+      "description": "組織と戦略を考える。"
+    },
+    {
+      "id": "economics",
+      "title": "経済学",
+      "description": "価格と選択のしくみ。"
+    },
+    {
+      "id": "civil",
+      "title": "民法",
+      "description": "約束と権利の土台。"
+    },
+    {
+      "id": "statistics",
+      "title": "統計学",
+      "description": "データから、どこまで言える？"
+    }
+  ],
+  "episodes": [
+    {
+      "id": "company-wallet",
+      "subject": "start",
+      "title": "会社のお金と、自分のお金。",
+      "scene": "月曜日、オフィス。堀内が領収書を整理している。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "堀内さん、昨日の私個人の買い物も、会社の帳簿に入れておいて。",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "星野さん、それは分けましょう。会社の活動を記録する帳簿に、個人の買い物を混ぜると実態が見えなくなります。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "なるほど。誰のお金なのかを、まずはっきりさせるんだね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。私は勉強中ですが、最初に覚えたのは「会社を一つの単位として見る」ことでした。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "会社の取引",
+        "会社の帳簿",
+        "個人の家計とは分ける"
+      ],
+      "takeaway": "会社と個人を分けて記録する。",
+      "question": "幹部の個人的な買い物は、そのまま会社の費用？",
+      "answer": "いいえ。会社の取引かを確かめます。会社が立て替えた場合も、直ちに会社の費用になるとは限りません。",
+      "terms": [
+        [
+          "entity",
+          "会計上、ひとまとまりとして見る主体"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "split",
+        "title": "財布は、混ぜない。",
+        "columns": [
+          [
+            "会社の取引",
+            "会社の帳簿へ"
+          ],
+          [
+            "個人の買い物",
+            "個人の家計へ"
+          ]
+        ],
+        "note": "所有者・取引の主体を分ける概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "two-sides",
+      "subject": "start",
+      "title": "借りた10万円は、もうけ？",
+      "scene": "新しい仕事のため、会社が銀行から借り入れた。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "口座に10万円増えた。これで10万円もうかった、でいい？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "増えたのは預金です。同時に、返す義務も10万円増えています。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "入ってきたお金だけ見たら、間違えてしまうね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "だから取引を二つの面から記録します。これが複式簿記への入口です。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "預金 ＋10万円",
+        "借入金 ＋10万円",
+        "収益ではない"
+      ],
+      "takeaway": "入金と、もうけは別。",
+      "question": "借入金が入金された時点で、利益は10万円増える？",
+      "answer": "増えません。預金という資産と、借入金という負債が同額増える取引です。",
+      "terms": [
+        [
+          "cash deposit",
+          "預金"
+        ],
+        [
+          "loan",
+          "借入金・貸付金（立場で変わる）"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "change",
+        "title": "10万円が入る。同時に、義務も増える。",
+        "columns": [
+          [
+            "資産：預金",
+            "＋10万円"
+          ],
+          [
+            "負債：借入金",
+            "＋10万円"
+          ]
+        ],
+        "note": "借入れによる変化だけを示す図です。会社全体の残高ではありません。利益は増えません。"
+      }
+    },
+    {
+      "id": "five-elements",
+      "subject": "start",
+      "title": "まずは、五つの引き出し。",
+      "scene": "堀内がノートに、取引を分類している。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "預金と借入金は別の種類。ほかにはどんな分類があるの？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "資産・負債・純資産・収益・費用。簿記ではまず、この五つを押さえます。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "会社が持つものと返す義務、それに仕事の成果や負担を分けるのか。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。純資産は資産から負債を引いた残り。収益と費用は、期間の利益を考えるための分類です。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "資産 − 負債 ＝ 純資産",
+        "収益 − 費用 ＝ 利益",
+        "財産の状態 ／ 期間の成績"
+      ],
+      "takeaway": "財産の状態と、期間の成績を分ける。",
+      "question": "借入金は「収益」と「負債」のどちら？",
+      "answer": "返済する義務なので、負債です。",
+      "terms": [
+        [
+          "asset",
+          "資産"
+        ],
+        [
+          "liability",
+          "負債"
+        ],
+        [
+          "equity",
+          "純資産・持分（文脈による）"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "equations",
+        "title": "「ある日の姿」と「期間の成績」。",
+        "note": "分類の関係を示す概念図。箱の幅・高さは金額の比率ではありません。"
+      }
+    },
+    {
+      "id": "debit-credit",
+      "subject": "start",
+      "title": "借方は左、貸方は右。",
+      "scene": "仕訳帳を開いた堀内が、首をかしげる。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "「借方」と「貸方」。借金の話にしか見えない名前だね。",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "ここでは記録する位置の名前です。左が借方、右が貸方。借りたか貸したかとは別です。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "じゃあ、銀行から10万円を借りた取引は？",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "借方に普通預金10万円、貸方に借入金10万円。左右の合計を同じにして記録します。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "借方（左）普通預金 10万円",
+        "貸方（右）借入金 10万円",
+        "資産の増加 ／ 負債の増加"
+      ],
+      "takeaway": "借方・貸方は、記録する位置の名前。",
+      "question": "借方は、いつでも「お金が減る側」？",
+      "answer": "違います。資産の増加は借方です。増減を書く側は、資産・負債などの分類によって変わります。",
+      "terms": [
+        [
+          "debit",
+          "借方"
+        ],
+        [
+          "credit",
+          "貸方"
+        ],
+        [
+          "journal entry",
+          "仕訳"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "journal",
+        "title": "左右の金額は、同じ。",
+        "columns": [
+          [
+            "借方 / 左",
+            "普通預金",
+            "100,000円"
+          ],
+          [
+            "貸方 / 右",
+            "借入金",
+            "100,000円"
+          ]
+        ],
+        "note": "銀行から10万円を借りたときの仕訳。借方・貸方は位置の名前です。"
+      }
+    },
+    {
+      "id": "journal-entry",
+      "subject": "start",
+      "title": "領収書を、仕訳に変える。",
+      "scene": "会社で使う文房具を、現金1,000円で買った。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "領収書をしまえば、記録は終わりかな？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "もう一歩です。何に使って、何が減ったかを書きます。今回は全額を消耗品費にする例です。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "文房具の費用が1,000円増えて、現金が1,000円減った。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "そのとおり。借方は消耗品費1,000円、貸方は現金1,000円です。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "借方：消耗品費 1,000円",
+        "貸方：現金 1,000円",
+        "費用の増加 ／ 資産の減少"
+      ],
+      "takeaway": "一つの出来事を、左右の記録にする。",
+      "question": "この仕訳で、現金を書くのは左？右？",
+      "answer": "右（貸方）です。現金という資産が減るためです。例では購入時に全額費用処理しています。",
+      "terms": [
+        [
+          "expense",
+          "費用"
+        ],
+        [
+          "cash",
+          "現金"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "journal",
+        "title": "費用の増加と、現金の減少。",
+        "columns": [
+          [
+            "借方 / 左",
+            "消耗品費",
+            "1,000円"
+          ],
+          [
+            "貸方 / 右",
+            "現金",
+            "1,000円"
+          ]
+        ],
+        "note": "購入時に全額を消耗品費として処理する学習例。税金は省略しています。"
+      }
+    },
+    {
+      "id": "english-position",
+      "subject": "english",
+      "title": "asset は、会社の資産。",
+      "scene": "堀内の机には、日本語と英語を並べたカードがある。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "英語の会計資料も読んでいるんだね。最初に何を覚える？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "今日は三つだけです。asset は資産、liability は負債、equity は純資産や持分です。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "英語になっても、さっきの五つの分類につながるんだ。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。単語だけでなく、何を指すかを一緒に覚えます。equity の訳は資料の文脈も確認します。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "assets：資産",
+        "liabilities：負債",
+        "equity：純資産・持分"
+      ],
+      "takeaway": "日本語でわかる概念と、英語を結ぶ。",
+      "question": "liabilities が示すのは、資産？負債？",
+      "answer": "負債です。複数形でも基本の意味は変わりません。",
+      "terms": [
+        [
+          "asset / assets",
+          "資産（単数 / 複数）"
+        ],
+        [
+          "liability / liabilities",
+          "負債（単数 / 複数）"
+        ],
+        [
+          "equity",
+          "純資産・持分"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "words",
+        "title": "言葉を、意味とつなぐ。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "english-cost",
+      "subject": "english",
+      "title": "cost と expense は同じ？",
+      "scene": "商品の英語資料に、cost の文字を見つけた。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "cost も expense も、全部「費用」と読めばいい？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "同じとは限りません。cost は原価や取得にかかった額。expense は期間の費用を指す言葉です。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "売るために買って、まだ残っている商品にも cost はあるね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。売れていない商品は原則として在庫という資産。売れた分の原価は、売上原価として費用になります。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "inventory：在庫・棚卸資産",
+        "cost：原価・取得原価",
+        "expense：費用"
+      ],
+      "takeaway": "買うためにかかった額と、期間の費用を区別する。",
+      "question": "まだ売れていない商品は、原則として在庫という資産？",
+      "answer": "はい。ただし価値の下落などで評価を見直す場合があります。ここでは通常の商品の流れを扱っています。",
+      "terms": [
+        [
+          "inventory",
+          "棚卸資産・在庫"
+        ],
+        [
+          "cost",
+          "原価・取得原価など"
+        ],
+        [
+          "expense",
+          "費用"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ],
+        [
+          "公式英語サンプル：管理会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_kanrikaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "words",
+        "title": "言葉を、意味とつなぐ。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "english-audit",
+      "subject": "english",
+      "title": "evidence は、確かめる手がかり。",
+      "scene": "英文の監査資料で、堀内の手が止まる。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "audit evidence。これは何を集める話だろう？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "audit は監査、evidence は証拠。監査人が判断の根拠に使う情報を、監査証拠と呼びます。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "担当者が「大丈夫です」と言うだけでは、足りないこともあるね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。書類や外部への確認なども使います。十分な量と、目的に合った質の両方が大切です。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "audit：監査",
+        "evidence：証拠",
+        "判断を支える情報"
+      ],
+      "takeaway": "監査の判断には、根拠が必要。",
+      "question": "evidence は「予算」と「証拠」のどちら？",
+      "answer": "証拠です。audit evidence は監査証拠。どんな情報でも同じ強さの根拠になるわけではありません。",
+      "terms": [
+        [
+          "audit",
+          "監査"
+        ],
+        [
+          "evidence",
+          "証拠"
+        ],
+        [
+          "auditor",
+          "監査人"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：監査",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_kansaron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "words",
+        "title": "言葉を、意味とつなぐ。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "financial-reports",
+      "subject": "financial",
+      "title": "会社の姿を、外へ伝える。",
+      "scene": "星野が銀行に、会社の状況を説明する準備をしている。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "「順調です」と言うだけでは、銀行には伝わらないね。",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "だから財務諸表で伝えます。持っている資産、返す義務、利益などを共通のルールで整理します。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "社内の私たちだけがわかる数字では、困るわけだ。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。財務会計は、会社の外で判断する人にも使える情報を届ける役割を持ちます。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "会社の活動",
+        "財務諸表",
+        "投資家・銀行などの判断"
+      ],
+      "takeaway": "財務会計は、会社の外への説明。",
+      "question": "財務諸表は、社長だけが読むためのもの？",
+      "answer": "いいえ。投資家や銀行など、会社の外の人にも情報を伝えます。",
+      "terms": [
+        [
+          "financial statements",
+          "財務諸表"
+        ]
+      ],
+      "sources": [
+        [
+          "日本取引所グループ：財務諸表",
+          "https://www.jpx.co.jp/glossary/sa/165.html"
+        ]
+      ],
+      "diagram": {
+        "kind": "flow",
+        "title": "この話のつながり。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "balance-sheet",
+      "subject": "financial",
+      "title": "ある日の会社を、切り取る。",
+      "scene": "月末の資料を、二人で見ている。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "会社の資産が100万円。なら、自由に使える余裕も100万円？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "負債がいくらあるかも見ましょう。負債が40万円なら、純資産は60万円です。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "100万円の資産を、負債と純資産の両面から見るんだね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "これが貸借対照表の基本です。ある一時点の状態を表します。資産の全部が現金とは限りません。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "資産 100万円",
+        "負債 40万円 ＋ 純資産 60万円",
+        "100 ＝ 40 ＋ 60"
+      ],
+      "takeaway": "貸借対照表は、ある時点の財産の状態。",
+      "question": "資産100万円、負債40万円なら純資産は？",
+      "answer": "60万円です。資産から負債を差し引きます。",
+      "terms": [
+        [
+          "balance sheet",
+          "貸借対照表"
+        ],
+        [
+          "B/S",
+          "balance sheet の略"
+        ]
+      ],
+      "sources": [
+        [
+          "日本取引所グループ：財務諸表",
+          "https://www.jpx.co.jp/glossary/sa/165.html"
+        ],
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "balance",
+        "title": "資産100万円の、反対側を見る。",
+        "companies": [
+          {
+            "name": "月末の会社",
+            "assets": 100,
+            "liabilities": 40,
+            "equity": 60
+          }
+        ],
+        "note": "架空の数値・単位は万円。左右の総額は同じ。右側の箱の高さは40：60の金額比です。"
+      }
+    },
+    {
+      "id": "balance-quiz",
+      "subject": "financial",
+      "title": "同じ100万円。でも、中身が違う。",
+      "scene": "星野が、二つの会社の図を並べた。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "mood": "wonder",
+          "text": "A社もB社も資産は100万円。会社の姿も同じと言えるかな？"
+        },
+        {
+          "speaker": "horiuchi",
+          "mood": "think",
+          "text": "右側も比べてみましょう。負債と純資産の割合が違います。"
+        },
+        {
+          "speaker": "hoshino",
+          "mood": "surprise",
+          "text": "図で見ると、負債の箱の大きさがずいぶん違うね。"
+        },
+        {
+          "speaker": "horiuchi",
+          "mood": "smile",
+          "text": "では、負債の割合が高いのはどちらでしょう？下の二つの図から考えてみてください。"
+        }
+      ],
+      "visual": [
+        "A社",
+        "B社",
+        "同じ資産総額で比較"
+      ],
+      "diagram": {
+        "kind": "balance",
+        "title": "QUIZ / 負債の割合が高いのは？",
+        "companies": [
+          {
+            "name": "A社",
+            "assets": 100,
+            "liabilities": 40,
+            "equity": 60
+          },
+          {
+            "name": "B社",
+            "assets": 100,
+            "liabilities": 70,
+            "equity": 30
+          }
+        ],
+        "note": "架空の2社・単位は万円。どちらも資産100万円。各図の右側は、金額の比率どおりに区切っています。"
+      },
+      "takeaway": "同じ総額でも、内訳を見ると違いがわかる。",
+      "question": "資産に対する負債の割合が高いのは、A社とB社のどちら？",
+      "answer": "B社です。負債はA社40万円、B社70万円で、資産はいずれも100万円。割合は40％と70％です。この図だけで、収益性や返済能力のすべては判断できません。",
+      "terms": [
+        [
+          "liabilities",
+          "負債"
+        ],
+        [
+          "equity",
+          "純資産・持分"
+        ]
+      ],
+      "sources": [
+        [
+          "日本取引所グループ：財務諸表",
+          "https://www.jpx.co.jp/glossary/sa/165.html"
+        ]
+      ]
+    },
+    {
+      "id": "profit-cash",
+      "subject": "financial",
+      "title": "黒字なのに、入金がない。",
+      "scene": "仕事は完了。でも、代金は来月受け取る契約だった。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "売上は立ったのに、口座が増えていない。計算が間違っている？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "今回は仕事が完了し、収益を計上する条件を満たした例です。代金を受け取る権利を、売掛金として記録しています。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "利益が出るタイミングと、お金を受け取るタイミングは違うんだ。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。だから利益を見る資料と、現金の動きを見る資料の両方が必要になります。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "今月：売上・売掛金を記録",
+        "来月：入金・売掛金の回収",
+        "売上の計上 ≠ 入金"
+      ],
+      "takeaway": "利益と現金は、別々に確かめる。",
+      "question": "入金前でも、売上を計上することはある？",
+      "answer": "あります。収益を計上する条件を満たしたかで判断します。入金があれば必ず売上、というわけでもありません。",
+      "terms": [
+        [
+          "revenue",
+          "収益"
+        ],
+        [
+          "receivable",
+          "債権・未収額"
+        ],
+        [
+          "cash flow",
+          "現金などの流れ"
+        ]
+      ],
+      "sources": [
+        [
+          "日本取引所グループ：財務諸表",
+          "https://www.jpx.co.jp/glossary/sa/165.html"
+        ],
+        [
+          "公式英語サンプル：財務会計",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_zaimukaikeiron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "timeline",
+        "title": "売上の日と、入金の日は違う。",
+        "columns": [
+          [
+            "今月：仕事を完了",
+            "売掛金 ＋10万円",
+            "売上 ＋10万円"
+          ],
+          [
+            "来月：代金を回収",
+            "預金 ＋10万円",
+            "売掛金 −10万円"
+          ]
+        ],
+        "note": "売上の計上条件を今月満たした、10万円の取引例。税金や原価は省略。来月の回収時に同じ売上をもう一度計上しません。"
+      }
+    },
+    {
+      "id": "fixed-variable",
+      "subject": "management",
+      "title": "売れなくても、かかるお金。",
+      "scene": "星野が新しい商品の採算を考えている。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "商品が一つも売れなかった月は、費用もゼロかな？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "店舗の家賃はかかります。一定の範囲では、販売量が変わっても変わらない費用を固定費と呼びます。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "一つ売るごとに使う包装材は、売れるほど増えるね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "それは変動費の例です。費用の動き方を分けると、売上が変わったときの利益を考えやすくなります。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "固定費：月の家賃",
+        "変動費：1個ごとの包装材",
+        "販売量との関係で分ける"
+      ],
+      "takeaway": "費用を、販売量に対する動きで分ける。",
+      "question": "月額一定の家賃は、この例では固定費？変動費？",
+      "answer": "固定費です。ただし期間や営業規模が変わると金額が変わることもあります。",
+      "terms": [
+        [
+          "fixed cost",
+          "固定費"
+        ],
+        [
+          "variable cost",
+          "変動費"
+        ]
+      ],
+      "sources": [
+        [
+          "中小企業庁：固定費と変動費",
+          "https://www.chusho.meti.go.jp/bcp/contents/level_c/bcpgl_05c_4_3.html"
+        ]
+      ],
+      "diagram": {
+        "kind": "cost",
+        "title": "売る数が変わると、どこが変わる？",
+        "note": "架空の例。家賃は月3万円、包装材は1個100円。棒の幅は共通の金額尺度で、他の費用は省略しています。"
+      }
+    },
+    {
+      "id": "audit-evidence",
+      "subject": "audit",
+      "title": "「合っています」を確かめる。",
+      "scene": "星野が売上の一覧表を持ってきた。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "担当者は「全部合っています」と言っている。それで十分かな？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "監査では、説明だけでなく根拠も確かめます。売上なら、契約や納品の記録なども手がかりです。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "数字を作った本人とは別の立場で、確かめる意味があるね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。ただし、すべての誤りが絶対にないと保証する仕組みではありません。重要な誤りがないかについて合理的な保証を得ます。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "説明を聞く",
+        "根拠を集めて確かめる",
+        "監査意見につなげる"
+      ],
+      "takeaway": "監査は、根拠に基づいて信頼性を確かめる。",
+      "question": "監査を受けたら、どんな小さな誤りも絶対にない？",
+      "answer": "いいえ。合理的な保証は、絶対的な保証とは異なります。重要性やリスクを踏まえて監査します。",
+      "terms": [
+        [
+          "reasonable assurance",
+          "合理的な保証"
+        ]
+      ],
+      "sources": [
+        [
+          "公式英語サンプル：監査",
+          "https://www.fsa.go.jp/cpaaob/kouninkaikeishi-shiken/sample_kansaron.pdf"
+        ]
+      ],
+      "diagram": {
+        "kind": "flow",
+        "title": "この話のつながり。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "company-decisions",
+      "subject": "corporate",
+      "title": "会社のことは、誰が決める？",
+      "scene": "星野が大きな投資の案を持ち込んだ。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "幹部の私が賛成なら、この投資はすぐ決められるかな？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "肩書だけでは決まりません。会社の機関設計、法律、定款や社内規程を確かめる必要があります。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "株主総会、取締役会、それぞれ役割があるんだね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。企業法では、会社の意思決定や責任の仕組みを学びます。まず「誰に決める権限があるか」です。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "何を決める？",
+        "誰に権限がある？",
+        "必要な手続を確かめる"
+      ],
+      "takeaway": "会社の判断には、権限と手続がある。",
+      "question": "「幹部」という肩書だけで、すべての決定権がわかる？",
+      "answer": "わかりません。法的な立場、会社の機関設計、決定事項などを確認します。",
+      "terms": [
+        [
+          "director",
+          "取締役"
+        ],
+        [
+          "shareholder",
+          "株主"
+        ]
+      ],
+      "sources": [
+        [
+          "e-Gov：会社法",
+          "https://laws.e-gov.go.jp/law/417AC0000000086"
+        ]
+      ],
+      "diagram": {
+        "kind": "flow",
+        "title": "この話のつながり。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "profit-tax",
+      "subject": "tax",
+      "title": "利益に、そのまま税率を掛ける？",
+      "scene": "決算を前に、星野が税金の見込みを聞く。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "利益がわかった。税率を掛ければ法人税も決まるね？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "出発点にはなりますが、税務のルールに合わせた調整が必要です。会計の利益と課税所得は一致するとは限りません。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "会計では費用でも、税務ではそのまま引けないことがあるのか。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。法人税では、原則として益金から損金を引いて所得を計算します。具体的な扱いは制度ごとに確認します。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "会計の利益",
+        "税務上の調整",
+        "課税所得"
+      ],
+      "takeaway": "会計の利益と課税所得を分けて考える。",
+      "question": "会計の費用は、すべてそのまま税務の損金になる？",
+      "answer": "いいえ。税法の扱いによって、損金にできない額や計上時期の違いがあります。",
+      "terms": [
+        [
+          "taxable income",
+          "課税所得"
+        ]
+      ],
+      "sources": [
+        [
+          "国税庁：法人税のあらまし",
+          "https://www.nta.go.jp/publication/pamph/hojin/aramashi2025/01.htm"
+        ]
+      ],
+      "diagram": {
+        "kind": "flow",
+        "title": "この話のつながり。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "strategy-choice",
+      "subject": "business",
+      "title": "全部の人に、売りたいけれど。",
+      "scene": "新商品について、会議が長引いている。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "安くて、高品質で、すぐ届く。全部を一番にしたいね。",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "使える人やお金には限りがあります。まず、誰のどんな困りごとに応えるかを絞りませんか。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "今回は、納期に困る小さな会社を優先しよう。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "なら、近い地域への配送に力を入れる。経営学では、こうした戦略と、それを実行する組織を考えます。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "誰に届ける？",
+        "何を大切にする？",
+        "人・お金を配分する"
+      ],
+      "takeaway": "戦略は、限りある力の使い道を選ぶこと。",
+      "question": "やりたいことを全部並べれば、実行できる戦略になる？",
+      "answer": "優先順位や資源の配分まで考える必要があります。ここでは架空の会社の選択を例にしています。",
+      "terms": [
+        [
+          "strategy",
+          "戦略"
+        ]
+      ],
+      "sources": [],
+      "diagram": {
+        "kind": "flow",
+        "title": "この話のつながり。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "opportunity-cost",
+      "subject": "economics",
+      "title": "選ばなかった仕事の価値。",
+      "scene": "午後の空き時間に、二つの仕事が入った。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "Aの仕事なら利益3万円、Bなら2万円。両方はできない。",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "ほかの条件が同じなら、Aを選ぶとBの2万円を得る機会を手放します。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "支払っていなくても、選ばなかったほうの価値を考えるんだね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "それが機会費用です。選択であきらめる、最も価値のある代替案を見ます。帳簿の費用とは別の考え方です。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "Aを選ぶ：利益3万円",
+        "Bをあきらめる：利益2万円",
+        "機会費用は2万円"
+      ],
+      "takeaway": "選択には、あきらめる機会の価値もある。",
+      "question": "この例でAを選ぶ機会費用は？",
+      "answer": "2万円です。同時にはできないBの利益をあきらめるためです。",
+      "terms": [
+        [
+          "opportunity cost",
+          "機会費用"
+        ]
+      ],
+      "sources": [],
+      "diagram": {
+        "kind": "flow",
+        "title": "この話のつながり。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "contract-promise",
+      "subject": "civil",
+      "title": "その約束で、何が決まった？",
+      "scene": "取引先から、商品の注文が届いた。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "「いつもの商品、お願いします」。この一言で進めていいかな？",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "まず、何を、いくつ、いくらで、いつ渡す合意なのかを確かめたいです。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "約束の内容があいまいだと、後で困るね。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "はい。契約は原則、申込みと承諾で成立します。民法では約束から生まれる権利や義務を学びます。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "申込み",
+        "承諾",
+        "権利と義務が生まれる"
+      ],
+      "takeaway": "契約では、合意の内容を確かめる。",
+      "question": "契約は、いつでも必ず紙への署名がなければ成立しない？",
+      "answer": "原則として書面は必須ではありません。ただし特定の契約には方式の定めがあります。内容を記録することはトラブル予防に役立ちます。",
+      "terms": [
+        [
+          "contract",
+          "契約"
+        ]
+      ],
+      "sources": [
+        [
+          "e-Gov：民法",
+          "https://laws.e-gov.go.jp/law/129AC0000000089"
+        ]
+      ],
+      "diagram": {
+        "kind": "flow",
+        "title": "この話のつながり。",
+        "note": "学習用の概念図。箱の大きさは金額を表しません。"
+      }
+    },
+    {
+      "id": "average-trap",
+      "subject": "statistics",
+      "title": "平均だけなら、順調に見える。",
+      "scene": "二つの店舗の売上を比べている。",
+      "panels": [
+        {
+          "speaker": "hoshino",
+          "text": "A店もB店も、3日間の平均売上は10万円。同じ調子だね。",
+          "mood": "wonder"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "A店は毎日10万円。B店は2万円、2万円、26万円です。平均は同じでも、動きは違います。",
+          "mood": "think"
+        },
+        {
+          "speaker": "hoshino",
+          "text": "B店を毎日10万円のつもりで運営したら、困りそうだ。",
+          "mood": "surprise"
+        },
+        {
+          "speaker": "horiuchi",
+          "text": "だから、平均だけでなくばらつきや元のデータも見ます。統計学は、数字のまとめ方と読み方を学ぶ道具です。",
+          "mood": "smile"
+        }
+      ],
+      "visual": [
+        "A：10・10・10万円",
+        "B：2・2・26万円",
+        "平均はどちらも10万円"
+      ],
+      "takeaway": "平均が同じでも、ばらつきは違う。",
+      "question": "平均が同じなら、毎日の売上も同じように安定している？",
+      "answer": "そうとは限りません。元の値の散らばり方も確認しましょう。",
+      "terms": [
+        [
+          "mean",
+          "平均"
+        ],
+        [
+          "variation",
+          "ばらつき"
+        ]
+      ],
+      "sources": [
+        [
+          "総務省統計局：なるほど統計学園",
+          "https://www.stat.go.jp/naruhodo/"
+        ]
+      ],
+      "diagram": {
+        "kind": "bars",
+        "title": "平均は10万円。毎日の形は？",
+        "note": "単位は万円。棒の高さは共通の尺度。A店もB店も3日間の合計は30万円です。"
+      }
+    }
+  ]
+}

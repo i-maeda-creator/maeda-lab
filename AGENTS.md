@@ -11,3 +11,7 @@
 AI / CreationやAI解説・履歴を編集する場合は `docs/ai-editorial.md` を読みます。
 編集元は `content/ai/catalog.json`。ホームの入れ替えはeditionを追記し、過去の項目・掲載名を残します。
 `node tools/check-ai.mjs` でホームと解説ページを生成・検証し、生成ファイルもコミットします。
+
+Accountingを編集する場合は `docs/accounting-editorial.md` を読みます。
+編集元は `content/accounting/catalog.json`。1話1テーマ・4コマを基本に、長い説明は別ページへ分けます。
+`node tools/check-accounting.mjs` で生成と短さ・図の合計・内部リンクを検証し、生成ページもコミットします。
