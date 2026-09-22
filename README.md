@@ -1,5 +1,7 @@
 # Maeda Lab
 
+Windowsでの作業再開・端末間の同期は [Windows作業手順](docs/windows-workflow.md) を参照してください。
+
 情報、会計、数学、競技、制作物をまとめる個人ホームページの初期案です。
 
 GitHub: https://github.com/i-maeda-creator
